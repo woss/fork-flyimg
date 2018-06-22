@@ -159,6 +159,14 @@ docker build -t flyimg .
 ```
 This will download and build the main image, It will take a few minutes. If you get some sort of error related to files not found by apt-get or similar, try this same command again.
 
+**IMPORTANT!** If you cloned the project, only for the first time, you need to run `composer install` **inside** the container:
+
+```sh
+docker exec -it flyimg composer install
+```
+
+Again, it will take a few minutes to download the dependencies. Same as before, if you get some errors you should try running `composer install` again.
+
 Then run the container:
 
 ```sh
@@ -172,14 +180,6 @@ docker run -itd -p 8080:80 -v $PWD:/var/www/html --name flyimg flyimg
 ```
 
 The above command will make the Dockerfile run supervisord command which launches 2 processes: **nginx** and **php-fpm** and starts listening on port 8080.
-
-**IMPORTANT!** If you cloned the project, only for the first time, you need to run `composer install` **inside** the container:
-
-```sh
-docker exec -it flyimg composer install
-```
-
-Again, it will take a few minutes to download the dependencies. Same as before, if you get some errors you should try running `composer install` again.
  
 
 # Testing Flyimg service
