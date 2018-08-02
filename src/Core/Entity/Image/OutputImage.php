@@ -167,7 +167,7 @@ class OutputImage
         $requestedOutput = $this->extractKey('output');
 
         if ($requestedOutput == self::EXT_INPUT) {
-            $resolvedExtension = $this->inputImageExtension();
+            $resolvedExtension = $this->extensionByMimeType($this->inputImage->sourceImageMimeType());
         } elseif ($requestedOutput == self::EXT_AUTO) {
             $resolvedExtension = $this->autoExtension();
         } else {
@@ -198,6 +198,18 @@ class OutputImage
             return self::EXT_WEBP;
         }
 
+        return $this->extensionByMimeType($this->inputImage->sourceImageMimeType());
+    }
+
+    /**
+     * given a mime-type this returns the extension associated to it
+     *
+     * @param  string $mimeType mime-type
+     *
+     * @return string extension OR jpeg as default
+     */
+    protected function extensionByMimeType(string $mimeType): string
+    {
         $mimeToExtensions = [
             self::PNG_MIME_TYPE => self::EXT_PNG,
             self::WEBP_MIME_TYPE => self::EXT_WEBP,
@@ -205,10 +217,7 @@ class OutputImage
             self::GIF_MIME_TYPE => self::EXT_GIF,
         ];
 
-        return array_key_exists(
-            $this->inputImage->sourceImageMimeType(),
-            $mimeToExtensions
-        ) ? $mimeToExtensions[$this->inputImage->sourceImageMimeType()] : self::EXT_JPG;
+        return array_key_exists($mimeType, $mimeToExtensions) ? $mimeToExtensions[$mimeType] : self::EXT_JPG;
     }
 
     /**
