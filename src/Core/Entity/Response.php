@@ -43,6 +43,8 @@ class Response extends BaseResponse
     protected function generateHeaders(OutputImage $image)
     {
         $this->headers->set('Content-Type', $this->imageHandler->responseContentType($image));
+        $this->headers->set('Content-Disposition', sprintf('inline;filename="%s"', $image->getOutputImageName()));
+
 
         $expireDate = new \DateTime();
         $expireDate->add(new \DateInterval('P1Y'));
