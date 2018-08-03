@@ -50,12 +50,16 @@ class OutputImage
      * OutputImage constructor.
      *
      * @param InputImage $inputImage
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(InputImage $inputImage)
     {
         $this->inputImage = $inputImage;
         $this->generateFilesName();
-        $this->generateFileExtension();
+        $this->outputImageExtension = $this->generateFileExtension();
+        $this->outputImagePath .= '.'.$this->outputImageExtension;
+        $this->outputImageName .= '.'.$this->outputImageExtension;
     }
 
     /**
@@ -166,39 +170,19 @@ class OutputImage
     {
         $requestedOutput = $this->extractKey('output');
 
-        if ($requestedOutput == self::EXT_INPUT) {
-            $resolvedExtension = $this->extensionByMimeType($this->inputImage->sourceImageMimeType());
-        } elseif ($requestedOutput == self::EXT_AUTO) {
-            $resolvedExtension = $this->autoExtension();
-        } else {
-            if (!in_array($requestedOutput, $this->allowedOutExtensions)) {
-                // Maybe trow exception only when in debug mode ?
-                throw new InvalidArgumentException("Invalid file output requested : ".$requestedOutput);
-            }
-            $resolvedExtension = $requestedOutput;
-        }
-
-        $this->outputImageExtension = $resolvedExtension;
-        $this->outputImagePath .= '.'.$this->outputImageExtension;
-        $this->outputImageName .= '.'.$this->outputImageExtension;
-    }
-
-    /**
-     * This method defines what extension / format to use in the output image, using the following criteria:
-     *   1. Optimal image format for the requesting browser
-     *   2. Source image format
-     *   3. JPG
-     *
-     * @return string One image extension
-     */
-    protected function autoExtension(): string
-    {
-        // for now AUTO means webP, or ...
-        if ($this->isWebPBrowserSupported()) {
+        if ($requestedOutput == self::EXT_AUTO && $this->isWebPBrowserSupported()) {
             return self::EXT_WEBP;
         }
 
-        return $this->extensionByMimeType($this->inputImage->sourceImageMimeType());
+        if ($requestedOutput == self::EXT_INPUT || $requestedOutput == self::EXT_AUTO) {
+            return $this->extensionByMimeType($this->inputImage->sourceImageMimeType());
+        }
+
+        if (!in_array($requestedOutput, $this->allowedOutExtensions)) {
+            throw new InvalidArgumentException("Invalid file output requested : ".$requestedOutput);
+        }
+
+        return $requestedOutput;
     }
 
     /**
