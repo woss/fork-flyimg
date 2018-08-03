@@ -18,7 +18,7 @@ script:
 #  - docker exec flyimg vendor/bin/phpunit --coverage-html build/html
 
 after_success:
-  - docker exec flyimg sh -c "CC_TEST_REPORTER_ID=20996649247bafadc73d7ed5aa45bfb5e3a7bee4c7d2edeef2a2d9626c6101d9 ./cc-test-reporter after-build -t clover -p build/logs/ --exit-code $?"
+  - docker exec flyimg sh -c "CC_TEST_REPORTER_ID=20996649247bafadc73d7ed5aa45bfb5e3a7bee4c7d2edeef2a2d9626c6101d9 ./cc-test-reporter after-build -t clover -p build/logs"
 
 notifications:
   email:
