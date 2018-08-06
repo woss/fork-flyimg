@@ -1,9 +1,13 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=c7264c1346c36d566e283acdb77d379d38ed2a61ef31f0dcf00b592e3de0c90f
+
 language: php
 
 services:
   - docker
 
-before_install:
+before_script:
   - docker build -t flyimg .
   - docker run -itd -v $(pwd):/var/www/html --name flyimg flyimg
   - docker exec flyimg composer install
@@ -15,10 +19,13 @@ before_install:
 script:
   - docker exec flyimg vendor/bin/phpcs --standard=PSR2 src/ tests/
   - docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-#  - docker exec flyimg vendor/bin/phpunit --coverage-html build/html
 
-after_success:
-  - docker exec flyimg sh -c "CC_TEST_REPORTER_ID=c7264c1346c36d566e283acdb77d379d38ed2a61ef31f0dcf00b592e3de0c90f ./cc-test-reporter after-build -t clover -p build/logs"
+after_script:
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker exec flyimg sh -c "CC_TEST_REPORTER_ID=c7264c1346c36d566e283acdb77d379d38ed2a61ef31f0dcf00b592e3de0c90f ./cc-test-reporter after-build -t clover -p build/logs --exit-code $TRAVIS_TEST_RESULT"; fi
+
+branches:
+  only:
+  - master
 
 notifications:
   email:
