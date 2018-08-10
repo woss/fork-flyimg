@@ -24,26 +24,26 @@ Image resizing, cropping and compression on the fly with the impressive [MozJPEG
 You pass the image URL and a set of keys with options, like size or compression. Flyimg will fetch the image, convert it, store it, cache it and serve it. The next time the request comes, it will serve the cached version.
 
 ```
-<!-- https://www.mozilla.org/media/img/firefox/firefox-256.e2c1fc556816.jpg -->
-<img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://www.mozilla.org/media/img/firefox/firefox-256.e2c1fc556816.jpg">
+<!-- https://m0.cl/t/butterfly-3000.jpg -->
+<img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://m0.cl/t/butterfly-3000.jpg">
 ```
 # Basic Usage Examples
 ## Get an image to fill exact dimensions
-* Image: `http://medula.cl/t/resize-test_1920.jpg` 
+* Image: `https://m0.cl/t/butterfly-3000.jpg` 
 * Width: 300
 * Height: 250
 * Crop if necesary: `c_1`
 
-https://oi.flyimg.io/upload/w_300,h_250,c_1/http://medula.cl/t/resize-test_1920.jpg
+https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1/http://medula.cl/t/resize-test_1920.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg)
 
 This will serve the image.
 
 ## Get the path to the generated image instead of serving it
 Change the first part of the path from `upload` to `path`, like so:
 
-https://oi.flyimg.io/path/w_300,h_250,c_1/http://medula.cl/t/resize-test_1920.jpg will output in the body of the response:
+https://oi.flyimg.io/path/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg will output in the body of the response:
 
 
 ```
@@ -51,36 +51,36 @@ http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg
 ```
 
 ## Get an image to fit maximum dimensions
-* Image: `http://medula.cl/t/resize-test_1920.jpg` 
+* Image: `https://m0.cl/t/butterfly-3000.jpg` 
 * Width: 300
 * Height: 250
 * Note that we ommit the crop parameter
 
-https://oi.flyimg.io/upload/w_300,h_250/http://medula.cl/t/resize-test_1920.jpg
+https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250/http://medula.cl/t/resize-test_1920.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Crop to a square and rotate 90 degrees clockwise
-* Image: `http://medula.cl/t/resize-test_1920.jpg` 
+* Image: `https://m0.cl/t/butterfly-3000.jpg` 
 * Width: 200
 * Height: 200
 * Crop: `c_1`
 * Rotate: 90
 
-https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/http://medula.cl/t/resize-test_1920.jpg
+https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/http://medula.cl/t/resize-test_1920.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Get an image with exact dimensions and low quality
-* Image: `http://medula.cl/t/resize-test_1920.jpg` 
+* Image: `https://m0.cl/t/butterfly-3000.jpg` 
 * Width: 200
 * Height: 200
 * Crop: `c_1`
 * Quality: 30
 
-https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/http://medula.cl/t/resize-test_1920.jpg
+https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/http://medula.cl/t/resize-test_1920.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg)
 
 
 # Table of Contents
@@ -186,9 +186,9 @@ The above command will make the Dockerfile run supervisord command which launche
 
 You can navigate to your machine's IP in port 8080 (ex: http://127.0.0.1:8080/ ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors  at this stage it's most likely that composer has not finished installing or skipped something.
 
-You can test your image resizing service by navigating to: http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://www.mozilla.org/media/img/firefox/firefox-256.e2c1fc556816.jpg
+You can test your image resizing service by navigating to: http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg
 
-![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90/https://www.mozilla.org/media/img/firefox/firefox-256.e2c1fc556816.jpg)
+![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg)
 
 **It's working!**
 
@@ -323,7 +323,7 @@ Than any request to Fyimg app will throw an error unless it's encrypted.
 To generate the encrypted url you need to run this command:
 
 ```sh
-docker exec flyimg php app.php encrypt w_200,h_200,c_1/http://medula.cl/t/resize-test_1920.jpg
+docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://m0.cl/t/butterfly-3000.jpg
 ```
 
 it'll return something like this:
@@ -416,7 +416,7 @@ Status Codes  [code:count]             200:500
 
 [https://oi.flyimg.io](https://oi.flyimg.io)
 
-![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1/http://medula.cl/t/resize-test_1920.jpg)
+![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg)
 
 
 # Roadmap
