@@ -21,7 +21,7 @@ script:
   - docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker exec flyimg sed -i 's:/var/www/html/src/::g' build/logs/clover.xml; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker exec flyimg sed -i 's:/var/www/html/::g' build/logs/clover.xml; fi
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build -t clover -p build/logs --exit-code $TRAVIS_TEST_RESULT; fi
 
 
