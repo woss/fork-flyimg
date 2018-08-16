@@ -12,16 +12,17 @@ before_script:
   - docker run -itd -v $(pwd):/var/www/html --name flyimg flyimg
   - docker exec flyimg composer install
   - docker exec flyimg vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard
-  - docker exec flyimg curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - docker exec flyimg chmod +x ./cc-test-reporter
-  - docker exec flyimg sh -c "CC_TEST_REPORTER_ID=c7264c1346c36d566e283acdb77d379d38ed2a61ef31f0dcf00b592e3de0c90f ./cc-test-reporter before-build"
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - docker exec flyimg vendor/bin/phpcs --standard=PSR2 src/ tests/
   - docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker exec flyimg sh -c "CC_TEST_REPORTER_ID=c7264c1346c36d566e283acdb77d379d38ed2a61ef31f0dcf00b592e3de0c90f ./cc-test-reporter after-build -t clover -p build/logs --exit-code $TRAVIS_TEST_RESULT"; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker exec flyimg sed -i 's:/var/www/html/src/::g' build/logs/clover.xml fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build -t clover -p build/logs --exit-code $TRAVIS_TEST_RESULT fi
 
 branches:
   only:
