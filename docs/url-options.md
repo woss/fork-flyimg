@@ -123,14 +123,14 @@ If `input` is passed, no "optimal" format will be attempted. Flyimg will try to 
 
 **example:`q_100`,`q_75`,...** 
 
-`q_30`  :  `https://oi.flyimg.io/upload/q_30/https://m0.cl/t/butterfly-3000.jpg` 
+`q_30`  :  `https://oi.flyimg.io/upload/q_20,w_600/https://m0.cl/t/butterfly-3000.jpg` 
 
-![q_30](https://oi.flyimg.io/upload/q_30/https://m0.cl/t/butterfly-3000.jpg)
+![q_30](https://oi.flyimg.io/upload/q_20,w_600/https://m0.cl/t/butterfly-3000.jpg)
 
 
-`q_100`  :  `https://oi.flyimg.io/upload/q_100/https://m0.cl/t/butterfly-3000.jpg`
+`q_100`  :  `https://oi.flyimg.io/upload/q_100,w_600/https://m0.cl/t/butterfly-3000.jpg`
 
-![q_100](https://oi.flyimg.io/upload/q_100/https://m0.cl/t/butterfly-3000.jpg)
+![q_100](https://oi.flyimg.io/upload/q_100,w_600/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `webpl` : webp-lossless
 `int`
