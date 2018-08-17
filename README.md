@@ -93,7 +93,8 @@ https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.
          * [with composer](#with-composer)
    * [Testing Flyimg service](#testing-flyimg-service)
    * [How to transform images](#how-to-transform-images)
-   * [Basic Option details](#basic-option-details)
+   * [Basic Options details](#basic-options-details)
+   * [Full Options details](#https://github.com/flyimg/flyimg/blob/master/docs/url-options.md)
    * [Application Server Options](#server-options)
    * [Security: Restricting Source Domains](#security-restricting-source-domains)
    * [Security: Signature Generation](#security-signature-generation)
@@ -205,7 +206,7 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 `<img src="http://imgs.kitty.com/upload/w_250,q_50/https://my.storage.io/imgs/pretty-kitten.jpg">`
 
 
-## Basic Option details
+## Basic Options details
 You can see the full list of options configurable by URL params, **with examples**, in the [URL-Options document](docs/url-options.md) 
 
 We put a lot of defaults in place to prevent distortion, bad quality, weird cropping and unwanted padding.
@@ -219,7 +220,7 @@ The most common URL options are:
 
 **example:`w_100`** 
 
-`w_100` :   `https://oi.flyimg.io/upload/w_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`w_100` :   `https://oi.flyimg.io/upload/w_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `h` : height
 `int`  
@@ -228,7 +229,7 @@ The most common URL options are:
 
 **example:`h_100`** 
 
-`h_100`  : `https://oi.flyimg.io/upload/h_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`h_100`  : `https://oi.flyimg.io/upload/h_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### Using width AND height
 
@@ -237,7 +238,7 @@ By default setting width and height together, works like defining a rectangle th
 
 By default; width, height, or both will **not scale up** an image that is smaller than the defined dimensions.
 
-`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://m0.cl/t/butterfly-3000.jpg`
 
 
 ### `c` : crop
@@ -247,7 +248,7 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 **example:`c_1`** 
 
-`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `g` : gravity
 `string`  
@@ -264,7 +265,7 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 **example: `r_90`, `r_-180`,...**
 
-`r_45` :  `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`r_45` :  `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `o` : output
 `string`  
@@ -280,10 +281,10 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 **example:`q_100`,`q_75`,...** 
 
-`q_30`  :  `https://oi.flyimg.io/upload/q_30/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg` 
+`q_30`  :  `https://oi.flyimg.io/upload/q_30/https://m0.cl/t/butterfly-3000.jpg` 
 
 
-`q_100`  :  `https://oi.flyimg.io/upload/q_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`q_100`  :  `https://oi.flyimg.io/upload/q_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### Refresh or re-fetch source image
 `rf` : refresh  
@@ -291,6 +292,42 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 *Description:* When this parameter is 1, it will force a re-request of the original image and run it through the transformations and compression again. It will delete the local cached copy.
 
 **example:`rf_1`** 
+
+## Face Detection options
+
+### `fc` : face-crop
+`int`
+*Default:* `0`
+*Description:* Using [facedetect](https://github.com/wavexx/facedetect) repository to detect faces and passe the coordinates to ImageMagick to crop.
+
+**example:`fc_1`** 
+
+`fc_1` :  `https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+
+![fc_1](https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+
+### `fcp` : face-crop-position
+`int`
+*Default:* `0`
+*Description:* When using the Face crop option and when the image contain more than one face, you can specify which one you want get cropped
+
+**example:`fcp_1`,`fcp_0`,...** 
+
+`fcp_2` : `https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
+
+![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg)
+
+### `fb` : face-blur
+`int`
+*Default:* `0`
+*Description:* Apply blur effect on faces in a given image
+
+**example:`fb_1`** 
+
+`fb_1`  : `https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+
+![fb_1](https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+
 
 --- 
 
@@ -423,7 +460,6 @@ Status Codes  [code:count]             200:500
 
 - [x] Benchmark the application.
 - [ ] Decouple the core logic from Silex in order to make it portable.
-- [ ] Test it with couple of frameworks, Phalcon Php is a good candidate.
 - [ ] Add overlays functionality (Text on top of the image)
 - [ ] Storage auto-mapping
 - [ ] Add support for FLIFF, BPG and JPEG2000
