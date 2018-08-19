@@ -13,7 +13,7 @@ https://server.address.io/process-type/image_options/path_to_image
 for example:
 
 ```
-https://oi.flyimg.io/upload/w_500/Rovinj-Croatia.jpg
+https://oi.flyimg.io/upload/w_500/https://m0.cl/t/butterfly-3000.jpg
 ```
 
 Explanation from end-to-begining 
@@ -22,7 +22,7 @@ Explanation from end-to-begining
 
 It's the first operation the server does, it will try to get an image from the URI in the path, it can be relative to the local server, or absolute to the internet.
 
-**example:** `Rovinj-Croatia.jpg` or `https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+**example:** `https://m0.cl/t/butterfly-3000.jpg`
 
 ---
 
@@ -44,9 +44,9 @@ The script **does a lot of sanitizing** of the parameters, so many options will 
 
 **example:`w_100`** 
 
-`w_100` :   `https://oi.flyimg.io/upload/w_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`w_100` :   `https://oi.flyimg.io/upload/w_100/https://m0.cl/t/butterfly-3000.jpg`
 
-[![w_100](https://oi.flyimg.io/upload/w_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)](https://oi.flyimg.io/upload/w_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)
+![w_100](https://oi.flyimg.io/upload/w_100/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `h` : height
 `int`
@@ -55,9 +55,9 @@ The script **does a lot of sanitizing** of the parameters, so many options will 
 
 **example:`h_100`** 
 
-`h_100`  : `https://oi.flyimg.io/upload/h_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`h_100`  : `https://oi.flyimg.io/upload/h_100/https://m0.cl/t/butterfly-3000.jpg`
  
-[![h_100](https://oi.flyimg.io/upload/h_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)](https://oi.flyimg.io/upload/h_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)
+![h_100](https://oi.flyimg.io/upload/h_100/https://m0.cl/t/butterfly-3000.jpg)
 
 ### Using width AND height
 
@@ -68,9 +68,9 @@ By default setting width and height together, works like defining a rectangle th
 By default; width, height, or both will **not scale up** an image that is smaller than the defined dimensions.
 <!-- in the future put example images here-->
 
-`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://m0.cl/t/butterfly-3000.jpg`
 
-[![h_300,w_300](https://oi.flyimg.io/upload/h_300,w_300/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)](https://oi.flyimg.io/upload/h_300,w_300/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)
+![h_300,w_300](https://oi.flyimg.io/upload/h_300,w_300/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `c` : crop
 `bool`
@@ -79,9 +79,9 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 **example:`c_1`** 
 
-`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://m0.cl/t/butterfly-3000.jpg`
 
-[![c_1,h_400,w_400](https://oi.flyimg.io/upload/c_1,h_400,w_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)](https://oi.flyimg.io/upload/c_1,h_400,w_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)
+![c_1,h_400,w_400](https://oi.flyimg.io/upload/c_1,h_400,w_400/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `g` : gravity
 `string`
@@ -98,9 +98,9 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 **example: `r_90`, `r_-180`,...**
 
-`r_45` :  `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`r_45` :  `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://m0.cl/t/butterfly-3000.jpg`
 
-[![r_45](https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)](https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)
+![r_45](https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://m0.cl/t/butterfly-3000.jpg)
 
 ---
 
@@ -123,14 +123,14 @@ If `input` is passed, no "optimal" format will be attempted. Flyimg will try to 
 
 **example:`q_100`,`q_75`,...** 
 
-`q_30`  :  `https://oi.flyimg.io/upload/q_30/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg` 
+`q_30`  :  `https://oi.flyimg.io/upload/q_20,w_600/https://m0.cl/t/butterfly-3000.jpg` 
 
-[![q_30](https://oi.flyimg.io/upload/q_30/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)](https://oi.flyimg.io/upload/q_30/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)
+![q_30](https://oi.flyimg.io/upload/q_20,w_600/https://m0.cl/t/butterfly-3000.jpg)
 
 
-`q_100`  :  `https://oi.flyimg.io/upload/q_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`q_100`  :  `https://oi.flyimg.io/upload/q_100,w_600/https://m0.cl/t/butterfly-3000.jpg`
 
-[![q_100](https://oi.flyimg.io/upload/q_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)](https://oi.flyimg.io/upload/q_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)
+![q_100](https://oi.flyimg.io/upload/q_100,w_600/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `webpl` : webp-lossless
 `int`
@@ -172,9 +172,9 @@ For the hex code, the hash `#` character should be replaced by `%23`
   [...] -background "rgb(255,120,100)" ...
 ```
 
-`https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://m0.cl/t/butterfly-3000.jpg`
 
-[![bg_red](https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)](https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg)
+![bg_red](https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `st` : strip
 `int`
@@ -222,7 +222,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 `fc_1` :  `https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-[![fc_1](https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg)](https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fc_1](https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fcp` : face-crop-position
 `int`
@@ -233,7 +233,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 `fcp_2` : `https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-[![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg)](https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fb` : face-blur
 `int`
@@ -244,7 +244,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 `fb_1`  : `https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-[![fb_1](https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg)](https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fb_1](https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `e` : extract
 #### `p1x` : extract-top-x

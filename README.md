@@ -24,26 +24,26 @@ Image resizing, cropping and compression on the fly with the impressive [MozJPEG
 You pass the image URL and a set of keys with options, like size or compression. Flyimg will fetch the image, convert it, store it, cache it and serve it. The next time the request comes, it will serve the cached version.
 
 ```
-<!-- https://www.mozilla.org/media/img/firefox/firefox-256.e2c1fc556816.jpg -->
-<img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://www.mozilla.org/media/img/firefox/firefox-256.e2c1fc556816.jpg">
+<!-- https://m0.cl/t/butterfly-3000.jpg -->
+<img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://m0.cl/t/butterfly-3000.jpg">
 ```
 # Basic Usage Examples
 ## Get an image to fill exact dimensions
-* Image: `http://medula.cl/t/resize-test_1920.jpg` 
+* Image: `https://m0.cl/t/butterfly-3000.jpg` 
 * Width: 300
 * Height: 250
 * Crop if necesary: `c_1`
 
-https://oi.flyimg.io/upload/w_300,h_250,c_1/http://medula.cl/t/resize-test_1920.jpg
+https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1/http://medula.cl/t/resize-test_1920.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg)
 
 This will serve the image.
 
 ## Get the path to the generated image instead of serving it
 Change the first part of the path from `upload` to `path`, like so:
 
-https://oi.flyimg.io/path/w_300,h_250,c_1/http://medula.cl/t/resize-test_1920.jpg will output in the body of the response:
+https://oi.flyimg.io/path/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg will output in the body of the response:
 
 
 ```
@@ -51,36 +51,36 @@ http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg
 ```
 
 ## Get an image to fit maximum dimensions
-* Image: `http://medula.cl/t/resize-test_1920.jpg` 
+* Image: `https://m0.cl/t/butterfly-3000.jpg` 
 * Width: 300
 * Height: 250
 * Note that we ommit the crop parameter
 
-https://oi.flyimg.io/upload/w_300,h_250/http://medula.cl/t/resize-test_1920.jpg
+https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250/http://medula.cl/t/resize-test_1920.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Crop to a square and rotate 90 degrees clockwise
-* Image: `http://medula.cl/t/resize-test_1920.jpg` 
+* Image: `https://m0.cl/t/butterfly-3000.jpg` 
 * Width: 200
 * Height: 200
 * Crop: `c_1`
 * Rotate: 90
 
-https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/http://medula.cl/t/resize-test_1920.jpg
+https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/http://medula.cl/t/resize-test_1920.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Get an image with exact dimensions and low quality
-* Image: `http://medula.cl/t/resize-test_1920.jpg` 
+* Image: `https://m0.cl/t/butterfly-3000.jpg` 
 * Width: 200
 * Height: 200
 * Crop: `c_1`
 * Quality: 30
 
-https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/http://medula.cl/t/resize-test_1920.jpg
+https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/http://medula.cl/t/resize-test_1920.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg)
 
 
 # Table of Contents
@@ -94,6 +94,7 @@ https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/http://medula.cl/t/resize-test_
    * [Testing Flyimg service](#testing-flyimg-service)
    * [How to transform images](#how-to-transform-images)
    * [Basic Option details](#basic-option-details)
+   * [Full Option details](https://github.com/flyimg/flyimg/blob/master/docs/url-options.md)
    * [Application Server Options](#server-options)
    * [Security: Restricting Source Domains](#security-restricting-source-domains)
    * [Security: Signature Generation](#security-signature-generation)
@@ -186,9 +187,9 @@ The above command will make the Dockerfile run supervisord command which launche
 
 You can navigate to your machine's IP in port 8080 (ex: http://127.0.0.1:8080/ ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors  at this stage it's most likely that composer has not finished installing or skipped something.
 
-You can test your image resizing service by navigating to: http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://www.mozilla.org/media/img/firefox/firefox-256.e2c1fc556816.jpg
+You can test your image resizing service by navigating to: http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg
 
-![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90/https://www.mozilla.org/media/img/firefox/firefox-256.e2c1fc556816.jpg)
+![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg)
 
 **It's working!**
 
@@ -219,7 +220,7 @@ The most common URL options are:
 
 **example:`w_100`** 
 
-`w_100` :   `https://oi.flyimg.io/upload/w_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`w_100` :   `https://oi.flyimg.io/upload/w_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `h` : height
 `int`  
@@ -228,7 +229,7 @@ The most common URL options are:
 
 **example:`h_100`** 
 
-`h_100`  : `https://oi.flyimg.io/upload/h_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`h_100`  : `https://oi.flyimg.io/upload/h_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### Using width AND height
 
@@ -237,7 +238,7 @@ By default setting width and height together, works like defining a rectangle th
 
 By default; width, height, or both will **not scale up** an image that is smaller than the defined dimensions.
 
-`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://m0.cl/t/butterfly-3000.jpg`
 
 
 ### `c` : crop
@@ -247,7 +248,7 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 **example:`c_1`** 
 
-`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `g` : gravity
 `string`  
@@ -264,7 +265,7 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 **example: `r_90`, `r_-180`,...**
 
-`r_45` :  `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`r_45` :  `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `o` : output
 `string`  
@@ -280,10 +281,10 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 **example:`q_100`,`q_75`,...** 
 
-`q_30`  :  `https://oi.flyimg.io/upload/q_30/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg` 
+`q_30`  :  `https://oi.flyimg.io/upload/q_30/https://m0.cl/t/butterfly-3000.jpg` 
 
 
-`q_100`  :  `https://oi.flyimg.io/upload/q_100/https://raw.githubusercontent.com/flyimg/flyimg/master/web/Rovinj-Croatia.jpg`
+`q_100`  :  `https://oi.flyimg.io/upload/q_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### Refresh or re-fetch source image
 `rf` : refresh  
@@ -291,6 +292,42 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 *Description:* When this parameter is 1, it will force a re-request of the original image and run it through the transformations and compression again. It will delete the local cached copy.
 
 **example:`rf_1`** 
+
+## Face Detection options
+
+### `fc` : face-crop
+`int`
+*Default:* `0`
+*Description:* Using [facedetect](https://github.com/wavexx/facedetect) repository to detect faces and passe the coordinates to ImageMagick to crop.
+
+**example:`fc_1`** 
+
+`fc_1` :  `https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+
+![fc_1](https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+
+### `fcp` : face-crop-position
+`int`
+*Default:* `0`
+*Description:* When using the Face crop option and when the image contain more than one face, you can specify which one you want get cropped
+
+**example:`fcp_1`,`fcp_0`,...** 
+
+`fcp_2` : `https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
+
+![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg)
+
+### `fb` : face-blur
+`int`
+*Default:* `0`
+*Description:* Apply blur effect on faces in a given image
+
+**example:`fb_1`** 
+
+`fb_1`  : `https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+
+![fb_1](https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+
 
 --- 
 
@@ -323,7 +360,7 @@ Than any request to Fyimg app will throw an error unless it's encrypted.
 To generate the encrypted url you need to run this command:
 
 ```sh
-docker exec flyimg php app.php encrypt w_200,h_200,c_1/http://medula.cl/t/resize-test_1920.jpg
+docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://m0.cl/t/butterfly-3000.jpg
 ```
 
 it'll return something like this:
@@ -416,14 +453,13 @@ Status Codes  [code:count]             200:500
 
 [https://oi.flyimg.io](https://oi.flyimg.io)
 
-![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1/http://medula.cl/t/resize-test_1920.jpg)
+![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg)
 
 
 # Roadmap
 
 - [x] Benchmark the application.
 - [ ] Decouple the core logic from Silex in order to make it portable.
-- [ ] Test it with couple of frameworks, Phalcon Php is a good candidate.
 - [ ] Add overlays functionality (Text on top of the image)
 - [ ] Storage auto-mapping
 - [ ] Add support for FLIFF, BPG and JPEG2000
