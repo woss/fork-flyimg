@@ -93,8 +93,8 @@ https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.
          * [with composer](#with-composer)
    * [Testing Flyimg service](#testing-flyimg-service)
    * [How to transform images](#how-to-transform-images)
-   * [Basic Options details](#basic-options-details)
-   * [Full Options details](https://github.com/flyimg/flyimg/blob/master/docs/url-options.md)
+   * [Basic Option details](#basic-option-details)
+   * [Full Option details](https://github.com/flyimg/flyimg/blob/master/docs/url-options.md)
    * [Application Server Options](#server-options)
    * [Security: Restricting Source Domains](#security-restricting-source-domains)
    * [Security: Signature Generation](#security-signature-generation)
@@ -206,7 +206,7 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 `<img src="http://imgs.kitty.com/upload/w_250,q_50/https://my.storage.io/imgs/pretty-kitten.jpg">`
 
 
-## Basic Options details
+## Basic Option details
 You can see the full list of options configurable by URL params, **with examples**, in the [URL-Options document](docs/url-options.md) 
 
 We put a lot of defaults in place to prevent distortion, bad quality, weird cropping and unwanted padding.

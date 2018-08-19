@@ -18,7 +18,7 @@ https://oi.flyimg.io/upload/w_500/https://m0.cl/t/butterfly-3000.jpg
 
 Explanation from end-to-begining 
 
-## path__to_image
+## path_to_image
 
 It's the first operation the server does, it will try to get an image from the URI in the path, it can be relative to the local server, or absolute to the internet.
 
