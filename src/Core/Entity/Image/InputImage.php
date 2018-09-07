@@ -36,7 +36,7 @@ class InputImage
         $this->optionsBag = $optionsBag;
         $this->sourceImageUrl = $sourceImageUrl;
 
-        $this->sourceImagePath = TMP_DIR.'original-'.$optionsBag->hashedOptionsAsString( $this->sourceImageUrl);
+        $this->sourceImagePath = TMP_DIR.'original-'.$optionsBag->hashedOptionsAsString($this->sourceImageUrl);
         $this->saveToTemporaryFile();
         $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
     }
@@ -133,6 +133,7 @@ class InputImage
         }
 
         $this->sourceImageMimeType = $this->sourceImageInfo->mimeType();
+
         return $this->sourceImageMimeType;
     }
 
