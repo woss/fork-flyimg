@@ -46,7 +46,7 @@ The script **does a lot of sanitizing** of the parameters, so many options will 
 
 `w_100` :   `https://oi.flyimg.io/upload/w_100/https://m0.cl/t/butterfly-3000.jpg`
 
-![w_100](https://oi.flyimg.io/upload/w_100/https://m0.cl/t/butterfly-3000.jpg)
+![w_100](https://oi.flyimg.io/upload/w_100,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `h` : height
 `int`
@@ -57,7 +57,7 @@ The script **does a lot of sanitizing** of the parameters, so many options will 
 
 `h_100`  : `https://oi.flyimg.io/upload/h_100/https://m0.cl/t/butterfly-3000.jpg`
  
-![h_100](https://oi.flyimg.io/upload/h_100/https://m0.cl/t/butterfly-3000.jpg)
+![h_100](https://oi.flyimg.io/upload/h_100,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ### Using width AND height
 
@@ -70,7 +70,7 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 `h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://m0.cl/t/butterfly-3000.jpg`
 
-![h_300,w_300](https://oi.flyimg.io/upload/h_300,w_300/https://m0.cl/t/butterfly-3000.jpg)
+![h_300,w_300](https://oi.flyimg.io/upload/h_300,w_300,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `c` : crop
 `bool`
@@ -81,7 +81,7 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 `c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://m0.cl/t/butterfly-3000.jpg`
 
-![c_1,h_400,w_400](https://oi.flyimg.io/upload/c_1,h_400,w_400/https://m0.cl/t/butterfly-3000.jpg)
+![c_1,h_400,w_400](https://oi.flyimg.io/upload/c_1,h_400,w_400,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `g` : gravity
 `string`
@@ -100,7 +100,7 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 `r_45` :  `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://m0.cl/t/butterfly-3000.jpg`
 
-![r_45](https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://m0.cl/t/butterfly-3000.jpg)
+![r_45](https://oi.flyimg.io/upload/r_-45,w_400,h_400,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ---
 
@@ -125,12 +125,12 @@ If `input` is passed, no "optimal" format will be attempted. Flyimg will try to 
 
 `q_30`  :  `https://oi.flyimg.io/upload/q_20,w_600/https://m0.cl/t/butterfly-3000.jpg` 
 
-![q_30](https://oi.flyimg.io/upload/q_20,w_600/https://m0.cl/t/butterfly-3000.jpg)
+![q_30](https://oi.flyimg.io/upload/q_20,w_600,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 
 `q_100`  :  `https://oi.flyimg.io/upload/q_100,w_600/https://m0.cl/t/butterfly-3000.jpg`
 
-![q_100](https://oi.flyimg.io/upload/q_100,w_600/https://m0.cl/t/butterfly-3000.jpg)
+![q_100](https://oi.flyimg.io/upload/q_100,w_600,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `webpl` : webp-lossless
 `int`
@@ -174,7 +174,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 `https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://m0.cl/t/butterfly-3000.jpg`
 
-![bg_red](https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://m0.cl/t/butterfly-3000.jpg)
+![bg_red](https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ### `st` : strip
 `int`
@@ -222,7 +222,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 `fc_1` :  `https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fc_1](https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fc_1](https://oi.flyimg.io/upload/fc_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fcp` : face-crop-position
 `int`
@@ -233,7 +233,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 `fcp_2` : `https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fb` : face-blur
 `int`
@@ -244,7 +244,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 `fb_1`  : `https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fb_1](https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fb_1](https://oi.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `e` : extract
 #### `p1x` : extract-top-x
