@@ -36,7 +36,7 @@ You pass the image URL and a set of keys with options, like size or compression.
 
 https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 This will serve the image.
 
@@ -58,7 +58,7 @@ http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg
 
 https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Crop to a square and rotate 90 degrees clockwise
 * Image: `https://m0.cl/t/butterfly-3000.jpg` 
@@ -69,7 +69,7 @@ https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg
 
 https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Get an image with exact dimensions and low quality
 * Image: `https://m0.cl/t/butterfly-3000.jpg` 
@@ -80,7 +80,7 @@ https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.
 
 https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 
 # Table of Contents
@@ -189,7 +189,7 @@ You can navigate to your machine's IP in port 8080 (ex: http://127.0.0.1:8080/ )
 
 You can test your image resizing service by navigating to: http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg
 
-![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg)
+![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 **It's working!**
 
@@ -304,7 +304,7 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 `fc_1` :  `https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fc_1](https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fc_1](https://oi.flyimg.io/upload/fc_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fcp` : face-crop-position
 `int`
@@ -315,7 +315,7 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 `fcp_2` : `https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fb` : face-blur
 `int`
@@ -326,7 +326,7 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 `fb_1`  : `https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fb_1](https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fb_1](https://oi.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 
 --- 
@@ -453,7 +453,7 @@ Status Codes  [code:count]             200:500
 
 [https://oi.flyimg.io](https://oi.flyimg.io)
 
-![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg)
+![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 
 # Roadmap
@@ -473,7 +473,7 @@ Status Codes  [code:count]             200:500
 
 A special thanks to JetBrains for supporting our project with their [open source license program](https://www.jetbrains.com/buy/opensource/).
 
-![Jetbrains](https://oi.flyimg.io/upload/w_300/jetbrains-variant-3.png)
+![Jetbrains](https://oi.flyimg.io/upload/w_300,o_jpg/jetbrains-variant-3.png)
 
 
 # Contributors
