@@ -19,6 +19,7 @@ class DefaultController extends CoreController
      * @param string $imageSrc
      *
      * @return Response
+     * @throws \Exception
      */
     public function uploadAction(string $options, string $imageSrc = null): Response
     {
@@ -34,6 +35,7 @@ class DefaultController extends CoreController
      * @param string $imageSrc
      *
      * @return Response
+     * @throws \Exception
      */
     public function pathAction(string $options, string $imageSrc = null): Response
     {

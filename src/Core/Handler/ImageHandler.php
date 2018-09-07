@@ -134,6 +134,7 @@ class ImageHandler
      * @param OutputImage $outputImage
      *
      * @return OutputImage
+     * @throws \Exception
      */
     protected function processNewImage(OutputImage $outputImage): OutputImage
     {
