@@ -56,6 +56,18 @@ class OptionsBag
     }
 
     /**
+     * Return a hashed string based on image output options
+     *
+     * @param string $sourceImageUrl
+     *
+     * @return string
+     */
+    public function hashedOptionsAsString(string $sourceImageUrl): string
+    {
+        return md5(implode('.', $this->asArray()).$sourceImageUrl);
+    }
+
+    /**
      * Returns a parameter by name.
      *
      * @param string $key     The key
@@ -102,7 +114,7 @@ class OptionsBag
      * Returns a parameter by name.
      * These options will not be removed by the extract method.
      *
-     * @param string $key     The key
+     * @param string $key The key
      *
      * @return mixed
      */
@@ -117,11 +129,13 @@ class OptionsBag
      *
      * @param string $key
      * @param string $value
+     *
      * @return OptionsBag
      */
     public function setOption(string $key, string $value)
     {
         $this->optionsCollection[$key] = $value;
+
         return $this;
     }
 }

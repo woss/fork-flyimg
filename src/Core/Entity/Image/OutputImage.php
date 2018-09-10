@@ -151,14 +151,11 @@ class OutputImage
      */
     protected function generateFilesName()
     {
-        $hashedOptions = clone $this->inputImage->optionsBag();
-        $hashedOptions->remove('refresh');
-        $this->outputImageName = md5(
-            implode('.', $hashedOptions->asArray()).$this->inputImage->sourceImageUrl()
-        );
+        $hashedOptions = $this->inputImage->optionsBag();
+        $this->outputImageName = $hashedOptions->hashedOptionsAsString($this->inputImage->sourceImageUrl());
         $this->outputImagePath = TMP_DIR.$this->outputImageName;
 
-        if ($this->inputImage->optionsBag()->get('refresh')) {
+        if ($hashedOptions->get('refresh')) {
             $this->outputImagePath .= uniqid("-", true);
         }
     }

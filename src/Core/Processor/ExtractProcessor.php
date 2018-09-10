@@ -19,6 +19,8 @@ class ExtractProcessor extends Processor
      * @param int        $topLeftY
      * @param int        $bottomRightX
      * @param int        $bottomRightY
+     *
+     * @throws \Exception
      */
     public function extract(InputImage $inputImage, int $topLeftX, int $topLeftY, int $bottomRightX, int $bottomRightY)
     {

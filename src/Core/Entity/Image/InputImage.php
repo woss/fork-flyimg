@@ -28,17 +28,15 @@ class InputImage
      *
      * @param OptionsBag $optionsBag
      * @param string     $sourceImageUrl
+     *
+     * @throws \Exception
      */
     public function __construct(OptionsBag $optionsBag, string $sourceImageUrl)
     {
         $this->optionsBag = $optionsBag;
         $this->sourceImageUrl = $sourceImageUrl;
 
-        $this->sourceImagePath = TMP_DIR.'original-'.
-            (md5(
-                $optionsBag->get('face-crop-position').
-                $this->sourceImageUrl
-            ));
+        $this->sourceImagePath = TMP_DIR.'original-'.$optionsBag->hashedOptionsAsString($this->sourceImageUrl);
         $this->saveToTemporaryFile();
         $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
     }
@@ -135,6 +133,7 @@ class InputImage
         }
 
         $this->sourceImageMimeType = $this->sourceImageInfo->mimeType();
+
         return $this->sourceImageMimeType;
     }
 
