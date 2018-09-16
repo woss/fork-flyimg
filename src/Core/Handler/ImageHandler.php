@@ -114,6 +114,8 @@ class ImageHandler
 
     /**
      * @param OutputImage $outputImage
+     *
+     * @throws \Exception
      */
     protected function faceDetectionProcess(OutputImage $outputImage): void
     {
@@ -157,6 +159,8 @@ class ImageHandler
 
     /**
      * @param OutputImage $outputImage
+     *
+     * @throws \Exception
      */
     protected function extractProcess(OutputImage $outputImage): void
     {

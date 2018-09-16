@@ -16,6 +16,8 @@ class FaceDetectProcessor extends Processor
      *
      * @param InputImage $inputImage
      * @param int        $faceCropPosition
+     *
+     * @throws \Exception
      */
     public function cropFaces(InputImage $inputImage, int $faceCropPosition = 0)
     {
@@ -43,6 +45,8 @@ class FaceDetectProcessor extends Processor
      * Blurring Faces
      *
      * @param InputImage $inputImage
+     *
+     * @throws \Exception
      */
     public function blurFaces(InputImage $inputImage)
     {
