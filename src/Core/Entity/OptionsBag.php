@@ -67,7 +67,13 @@ class OptionsBag
         // to ignore extra image parameters
         $parsedImageUrl = preg_replace('/\\?.*/', '', $imageUrl);
 
-        return md5(implode('.', $this->asArray()).$parsedImageUrl);
+        // Remove rf from the generated image
+        $keys = $this->asArray();
+        if (!empty($keys['refresh']) && $keys['refresh'] == 1) {
+            $keys['refresh'] = null;
+        }
+
+        return md5(implode('.', $keys).$parsedImageUrl);
     }
 
     /**
