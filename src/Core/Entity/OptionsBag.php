@@ -147,6 +147,15 @@ class OptionsBag
     }
 
     /**
+     * Returns the AppParamters Object
+     * @return AppParameters
+     */
+    public function appParameters()
+    {
+        return $this->appParameters;
+    }
+
+    /**
      * Update a parameter by name.
      * These options will not update the main options list.
      *

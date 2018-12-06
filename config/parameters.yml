@@ -36,6 +36,8 @@ aws_s3:
   region: ""
   bucket_name: ""
 
+header_extra_options: 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2) Gecko/20110201'
+
 #Keys used in url to match options. Ex: q_80,w_200,h_100
 options_keys:
   moz: mozjpeg
