@@ -55,6 +55,7 @@ class InputImage
         $opts = [
             'http' =>
                 [
+                    'header' => $this->optionsBag->appParameters()->parameterByKey('header_extra_options'),
                     'method' => 'GET',
                     'max_redirects' => '0',
                 ],
