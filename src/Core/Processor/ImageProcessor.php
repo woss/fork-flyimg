@@ -75,15 +75,7 @@ class ImageProcessor extends Processor
         $command->addArgument($this->calculateSize());
         $command->addArgument('-colorspace', 'sRGB');
 
-        //Background option
-        if (!empty($this->options->getOption('background'))) {
-            $command->addArgument("-background", $this->options->getOption('background'));
-        }
-
-        //Rotate option
-        if (!empty($this->options->getOption('rotate'))) {
-            $command->addArgument("-rotate", $this->options->getOption('rotate'));
-        }
+        $command->addArgument($this->checkForwardedOptions());
 
         //Strip is added internally by ImageMagick when using -thumbnail
         if (!empty($outputImage->extractKey('strip'))) {
@@ -284,5 +276,25 @@ class ImageProcessor extends Processor
         if ($originalHeight < $targetHeight) {
             $this->options->setOption('height', $originalHeight);
         }
+    }
+
+    /**
+     * Check if one of the defined options are passed via the URL
+     * And apply the value of it
+     *
+     * @return string
+     */
+    private function checkForwardedOptions(): string
+    {
+        $command = new Command("");
+        $forwardedOptions = ['background', 'rotate', 'unsharp', 'sharpen', 'blur', 'filter'];
+
+        foreach ($forwardedOptions as $option) {
+            if (!empty($this->options->getOption($option))) {
+                $command->addArgument("-".$option, $this->options->getOption($option));
+            }
+        }
+
+        return $command;
     }
 }

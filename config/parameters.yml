@@ -45,6 +45,8 @@ options_keys:
   q: quality
   o: output
   unsh: unsharp
+  sh: sharpen
+  blr: blur
   fc: face-crop
   fcp: face-crop-position
   fb: face-blur
@@ -77,6 +79,8 @@ default_options:
   quality: 90
   output: auto
   unsharp: null
+  sharpen: null
+  blur: null
   face-crop: 0
   face-crop-position: 0
   face-blur: 0
