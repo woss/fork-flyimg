@@ -26,6 +26,8 @@ class OutputImageTest extends BaseTest
             'quality' => 90,
             'output' => 'auto',
             'unsharp' => '0.25x0.25+8+0.065',
+            'sharpen' => null,
+            'blur' => null,
             'width' => '200',
             'height' => '100',
             'face-crop' => 0,

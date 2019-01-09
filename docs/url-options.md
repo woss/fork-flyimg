@@ -196,9 +196,23 @@ For the hex code, the hash `#` character should be replaced by `%23`
 ### `unsh` : unsharp
 `radiusxsigma{+gain}{+threshold}`
 *Default:* `null`
-*Description:* Sharpens an image with a convolved Gausian operator. A good example `0.25x0.25+8+0.065`.
+*Description:* UnSharpens an image with a convolved Gausian operator. A good example `0.25x0.25+8+0.065`.
 
 **example:`unsh_0.25x0.25+8+0.065`** 
+
+### `sh` : sharp
+`radiusxsigma{+gain}{+threshold}`
+*Default:* `null`
+*Description:* Sharpens an image with a convolved Gausian operator. A good example `0.25x0.25+8+0.065`.
+
+**example:`sh_0.25x0.25+8+0.065`** 
+
+### `blr` : Blur
+`radiusxsigma{+gain}{+threshold}`
+*Default:* `null`
+*Description:* Apply Blur on a image
+
+**example:`blr_1x2`** 
 
 ### `f` : filter
 `string`
