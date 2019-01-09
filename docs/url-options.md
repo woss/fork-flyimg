@@ -184,7 +184,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 **example:`st_1`** 
 
 ### `rz` : resize
-*Default:* `null`
+`int` *Default:* `null`
 *Description:* The alternative resizing method to -thumbnail.
 
 **example:`rz_1`** 
@@ -194,25 +194,28 @@ For the hex code, the hash `#` character should be replaced by `%23`
 *Description:* Use moz-jpeg compression library, if `0` it fallsback to the default ImageMagick compression algorithm.
 
 ### `unsh` : unsharp
-`radiusxsigma{+gain}{+threshold}`
+`{radius}x{sigma}[+gain][+threshold]`
 *Default:* `null`
-*Description:* UnSharpens an image with a convolved Gausian operator. A good example `0.25x0.25+8+0.065`.
+*Description:* Sharpens an image (despite the unfortunate naming). It basically sharpens via subtracting a blurred, low contrast, version of the image to the image itself. For more details check [Imagemagick docs](http://www.imagemagick.org/script/command-line-options.php#unsharp).
 
-**example:`unsh_0.25x0.25+8+0.065`** 
+**example 1:`unsh_0x6`**  
+**example 2:`unsh_0.25x0.25+8+0.065`**
 
-### `sh` : sharp
-`radiusxsigma{+gain}{+threshold}`
+### `sh` : sharpen
+`{radius}x{sigma}`
 *Default:* `null`
-*Description:* Sharpens an image with a convolved Gausian operator. A good example `0.25x0.25+8+0.065`.
+*Description:* Use a Gaussian operator of the given radius and standard deviation (sigma). For more details check [Imagemagick docs](http://www.imagemagick.org/script/command-line-options.php#sharpen).
 
-**example:`sh_0.25x0.25+8+0.065`** 
+**example 1:`sh_3`**  
+**example 2:`sh_0x5`**
 
-### `blr` : Blur
-`radiusxsigma{+gain}{+threshold}`
+### `blr` : blur
+`{radius}x{sigma}`
 *Default:* `null`
-*Description:* Apply Blur on a image
+*Description:* Apply Blur on a image. For more details check [Imagemagick docs](http://www.imagemagick.org/script/command-line-options.php#blur).
 
-**example:`blr_1x2`** 
+**example 1:`blr_2`**  
+**example 2:`blr_1x2`**
 
 ### `f` : filter
 `string`
