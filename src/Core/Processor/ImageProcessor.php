@@ -279,6 +279,9 @@ class ImageProcessor extends Processor
     }
 
     /**
+     * Check if one of the defined options are passed via the URL
+     * And apply the value of it
+     *
      * @return string
      */
     private function checkForwardedOptions(): string
