@@ -464,6 +464,9 @@ Status Codes  [code:count]             200:500
 - [ ] Storage auto-mapping
 - [ ] Add support for FLIFF, BPG and JPEG2000
 
+# Generate CHANGELOG
+
+`github-changes -o flyimg -r flyimg -a -k GITHUB-TOKEN --only-pulls --use-commit-body`
 
 # Community
 
