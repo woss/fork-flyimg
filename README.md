@@ -131,6 +131,14 @@ Start the container
 ```bash
 docker run -itd -p 8080:80 flyimg/flyimg-build
 ```
+
+To use custom parameters, make a copy of [parameters.yml](https://github.com/flyimg/flyimg/blob/master/config/parameters.yml) to your current directory. Update to suit your needs and run the command with volume parameter to replace the original parameters file.
+
+```bash
+docker run -itd -p 8080:80 -v $(pwd)/parameters.yml:/var/www/html/config/parameters.yml flyimg/flyimg-build
+```
+
+
 Check [how to provision the application](#how-to-provision-the-application-on)
 
 # Installation [Development Mode]
