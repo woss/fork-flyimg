@@ -5,12 +5,13 @@ namespace Tests\Core\Processor;
 use Core\Entity\Command;
 use Core\Exception\ExecFailedException;
 use Core\Processor\Processor;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ProcessorTest
  * @package Tests\Core\Processor
  */
-class ProcessorTest extends \PHPUnit_Framework_TestCase
+class ProcessorTest extends TestCase
 {
 
     public function testExecuteSuccess()

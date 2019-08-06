@@ -124,9 +124,9 @@ class ImageProcessor extends Processor
         $this->updateTargetDimensions();
         $command = [];
         $command[] = $this->getResizeOperator();
-        $command[] = $this->getDimensions().'^';
-        $command[] = '-gravity '.$this->options->getOption('gravity');
-        $command[] = '-extent '.$this->getDimensions();
+        $command[] = $this->getDimensions() . '^';
+        $command[] = '-gravity ' . $this->options->getOption('gravity');
+        $command[] = '-extent ' . $this->getDimensions();
 
         return implode(' ', $command);
     }
@@ -139,7 +139,7 @@ class ImageProcessor extends Processor
     {
         $command = [];
         $command[] = $this->getResizeOperator();
-        $command[] = $this->getDimensions().
+        $command[] = $this->getDimensions() .
             ($this->options->getOption('preserve-natural-size') ? escapeshellarg('>') : '');
 
         return implode(' ', $command);
@@ -148,7 +148,7 @@ class ImageProcessor extends Processor
     /**
      * Gets the source image path and adds any extra modifiers to the string
      *
-     * @param  OutputImage $outputImage
+     * @param OutputImage $outputImage
      *
      * @return string                   Path of the source file to be used in the conversion command
      */
@@ -162,7 +162,7 @@ class ImageProcessor extends Processor
 
             // set the frame if the output image is not gif (to get ony one  frame)
             if ($outputImage->getOutputImageExtension() !== OutputImage::EXT_GIF) {
-                $tmpFileName .= '['.escapeshellarg($frame).']';
+                $tmpFileName .= '[' . escapeshellarg($frame) . ']';
             }
         }
 
@@ -183,18 +183,18 @@ class ImageProcessor extends Processor
         /** WebP format */
         if (is_executable(self::CWEBP_COMMAND) && $outputImage->isOutputWebP()) {
             $lossLess = $outputImage->extractKey('webp-lossless') ? 'true' : 'false';
-            $parameter = "-quality ".escapeshellarg($quality).
-                " -define webp:lossless=".$lossLess." ".escapeshellarg($outputImage->getOutputImagePath());
-        } /** MozJpeg compression */
-        elseif (is_executable(self::MOZJPEG_COMMAND) && $outputImage->isOutputMozJpeg()) {
-            $parameter = "TGA:- | ".escapeshellarg(self::MOZJPEG_COMMAND)
-                ." -quality ".escapeshellarg($quality)
-                ." -outfile ".escapeshellarg($outputImage->getOutputImagePath())
-                ." -targa";
-        } /** default ImageMagick compression */
-        else {
-            $parameter = "-quality ".escapeshellarg($quality).
-                " ".escapeshellarg($outputImage->getOutputImagePath());
+            $parameter = "-quality " . escapeshellarg($quality) .
+                " -define webp:lossless=" . $lossLess . " " . escapeshellarg($outputImage->getOutputImagePath());
+        } elseif (is_executable(self::MOZJPEG_COMMAND) && $outputImage->isOutputMozJpeg()) {
+            /** MozJpeg compression */
+            $parameter = "TGA:- | " . escapeshellarg(self::MOZJPEG_COMMAND)
+                . " -quality " . escapeshellarg($quality)
+                . " -outfile " . escapeshellarg($outputImage->getOutputImagePath())
+                . " -targa";
+        } else {
+            /** default ImageMagick compression */
+            $parameter = "-quality " . escapeshellarg($quality) .
+                " " . escapeshellarg($outputImage->getOutputImagePath());
         }
 
         return $parameter;
@@ -203,8 +203,8 @@ class ImageProcessor extends Processor
     /**
      * This works as a cache for calculations
      *
-     * @param  string   $key       the key with wich we store a calculated value
-     * @param  callback $calculate function that returns a calculated value
+     * @param string $key the key with wich we store a calculated value
+     * @param callback $calculate function that returns a calculated value
      *
      * @return string|mixed
      */
@@ -234,7 +234,7 @@ class ImageProcessor extends Processor
                     $dimensions .= (string)escapeshellarg($targetWidth);
                 }
                 if ($targetHeight) {
-                    $dimensions .= (string)'x'.escapeshellarg($targetHeight);
+                    $dimensions .= (string)'x' . escapeshellarg($targetHeight);
                 }
 
                 return $dimensions;
@@ -291,7 +291,7 @@ class ImageProcessor extends Processor
 
         foreach ($forwardedOptions as $option) {
             if (!empty($this->options->getOption($option))) {
-                $command->addArgument("-".$option, $this->options->getOption($option));
+                $command->addArgument("-" . $option, $this->options->getOption($option));
             }
         }
 

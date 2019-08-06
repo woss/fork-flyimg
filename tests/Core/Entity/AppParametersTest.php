@@ -4,8 +4,9 @@ namespace Tests\Core\Entity;
 
 use Core\Entity\AppParameters;
 use Core\Exception\AppException;
+use PHPUnit\Framework\TestCase;
 
-class AppParametersTest extends \PHPUnit_Framework_TestCase
+class AppParametersTest extends TestCase
 {
     /**
      * Test SaveToTemporaryFileException
