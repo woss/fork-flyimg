@@ -4,9 +4,10 @@ namespace Tests\Core;
 
 use Core\Entity\Image\OutputImage;
 use Core\Handler\ImageHandler;
+use PHPUnit\Framework\TestCase;
 use Silex\Application;
 
-class BaseTest extends \PHPUnit_Framework_TestCase
+class BaseTest extends TestCase
 {
     const JPG_TEST_IMAGE = __DIR__.'/../testImages/square.jpg';
     const PNG_TEST_IMAGE = __DIR__.'/../testImages/square.png';
