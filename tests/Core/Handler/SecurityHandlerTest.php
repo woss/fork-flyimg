@@ -7,10 +7,14 @@ use Core\Exception\SecurityException;
 use Core\Handler\SecurityHandler;
 use Tests\Core\BaseTest;
 
+/**
+ * Class SecurityHandlerTest
+ */
 class SecurityHandlerTest extends BaseTest
 {
     /**
      *
+     * @throws SecurityException
      */
     public function testRestrictedDomains()
     {
@@ -53,7 +57,7 @@ class SecurityHandlerTest extends BaseTest
         $appParameters = clone $this->app['params'];
         $appParameters->addParameter('security_key', '');
         $securityHandler = new SecurityHandler($appParameters);
-        $securityHandler->encrypt(parent::OPTION_URL.'/'.parent::JPG_TEST_IMAGE);
+        $securityHandler->encrypt(parent::OPTION_URL . '/' . parent::JPG_TEST_IMAGE);
     }
 
     /**
@@ -72,6 +76,7 @@ class SecurityHandlerTest extends BaseTest
 
     /**
      *
+     * @throws SecurityException
      */
     public function testCheckSecurityHashSuccess()
     {
@@ -82,7 +87,7 @@ class SecurityHandlerTest extends BaseTest
         $securityHandler = new SecurityHandler($appParameters);
         $options = parent::OPTION_URL;
         $imageSrc = parent::JPG_TEST_IMAGE;
-        $hash = $securityHandler->encrypt($options.'/'.$imageSrc);
+        $hash = $securityHandler->encrypt($options . '/' . $imageSrc);
         list($hashedOptions, $hashedImageSrc) = $securityHandler->checkSecurityHash($hash, $imageSrc);
         $this->assertEquals($hashedOptions, $options);
         $this->assertEquals($hashedImageSrc, $imageSrc);
@@ -106,7 +111,8 @@ class SecurityHandlerTest extends BaseTest
     }
 
     /**
-     * @param $appParameters
+     * @param AppParameters $appParameters
+     * @throws SecurityException
      */
     protected function checkSecurityHash($appParameters): void
     {

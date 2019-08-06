@@ -13,6 +13,9 @@ use Tests\Core\BaseTest;
 class ImageMetaInfoTest extends BaseTest
 {
     /**
+     * @param string $testImagePath
+     * @param string $expectedMimeType
+     *
      * @dataProvider mimeTypeDataProvider
      */
     public function testGetMimeType(string $testImagePath, string $expectedMimeType)
@@ -21,6 +24,9 @@ class ImageMetaInfoTest extends BaseTest
         $this->assertEquals($expectedMimeType, $image->mimeType());
     }
 
+    /**
+     * @return array
+     */
     public function mimeTypeDataProvider(): array
     {
         return [
@@ -31,6 +37,9 @@ class ImageMetaInfoTest extends BaseTest
         ];
     }
 
+    /**
+     *
+     */
     public function testGetMimeTypeCached()
     {
         $testImagePath = self::JPG_TEST_IMAGE;
@@ -40,6 +49,8 @@ class ImageMetaInfoTest extends BaseTest
     }
 
     /**
+     * @param string $testImagePath
+     *
      * @dataProvider fileInfoProvider
      */
     public function testGetInfo(string $testImagePath)
@@ -83,6 +94,9 @@ class ImageMetaInfoTest extends BaseTest
         $this->assertEquals($expectedDimensions['height'], $imageDimensions['height']);
     }
 
+    /**
+     *
+     */
     public function testFileReadException()
     {
         $this->expectException(ExecFailedException::class);
@@ -90,6 +104,9 @@ class ImageMetaInfoTest extends BaseTest
         $image->colorBitDepth();
     }
 
+    /**
+     * @return array
+     */
     public function fileInfoProvider(): array
     {
         return [
@@ -99,7 +116,7 @@ class ImageMetaInfoTest extends BaseTest
                 '300x300+0+0',
                 '8-bit',
                 'sRGB',
-                '5.3KB',
+                '5301B',
                 [
                     'width' => '300',
                     'height' => '300',
@@ -124,7 +141,7 @@ class ImageMetaInfoTest extends BaseTest
                 '256x256+0+0',
                 '8-bit',
                 'sRGB',
-                '2.44KB',
+                '2438B',
                 [
                     'width' => '256',
                     'height' => '256',
@@ -133,11 +150,11 @@ class ImageMetaInfoTest extends BaseTest
             // this test is broken, the expected color depth should be `8-bit TrueColor`
             [
                 self::WEBP_TEST_IMAGE,
-                'PAM',
+                'WEBP',
                 '100x100+0+0',
                 '8-bit',
-                'TrueColor',
                 'sRGB',
+                '706B',
                 [
                     'width' => '100',
                     'height' => '100',

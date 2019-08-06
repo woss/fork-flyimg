@@ -9,9 +9,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
+/**
+ * Class ControllerResolverTests
+ */
 class ControllerResolverTests extends WebTestCase
 {
-
+    /**
+     *
+     */
     protected function tearDown()
     {
         unset($this->app);

@@ -9,11 +9,13 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ProcessorTest
- * @package Tests\Core\Processor
  */
 class ProcessorTest extends TestCase
 {
 
+    /**
+     * @throws \Exception
+     */
     public function testExecuteSuccess()
     {
         $processor = new Processor();
@@ -23,6 +25,9 @@ class ProcessorTest extends TestCase
         $this->assertNotEmpty($output);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testExecuteFail()
     {
         $this->expectException(ExecFailedException::class);
