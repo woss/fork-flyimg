@@ -1,5 +1,12 @@
 ## Change Log
 
+### 1.1.4 (2019/08/07 05:42 +00:00)
+- [#218](https://github.com/flyimg/flyimg/pull/218) Update docker libraries and move to use tags images, closes #217 (@sadok-f)
+- [#216](https://github.com/flyimg/flyimg/pull/216) Update php minimum version to 7.1, closes #215 (@sadok-f)
+- [#214](https://github.com/flyimg/flyimg/pull/214) Fix composer install warning, closes #213 (@sadok-f)
+- [#212](https://github.com/flyimg/flyimg/pull/212) Instructions to replace default parameters file (@diego-vieira)
+- [#207](https://github.com/flyimg/flyimg/pull/207) Update CHANGELOG file, closes #206 (@sadok-f)
+
 ### 1.1.3 (2019/01/09 22:15 +00:00)
 - [#205](https://github.com/flyimg/flyimg/pull/205) Updated the docs regarding blur, unsharp, and sharpen filters. Fixes #204 (@baamenabar)
 - [#203](https://github.com/flyimg/flyimg/pull/203) fix Unsharp option and add other options such as sharpen and blur (@sadok-f)
