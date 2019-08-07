@@ -28,7 +28,7 @@ class ImageProcessorTest extends BaseTest
     public function setUp()
     {
         parent::setUp();
-        $this->imageProcessor = $this->ImageHandler->imageProcessor();
+        $this->imageProcessor = $this->imageHandler->imageProcessor();
     }
 
     /**
@@ -37,10 +37,11 @@ class ImageProcessorTest extends BaseTest
      * @param string $sourceImage
      *
      * @dataProvider shrinkProvider
+     * @throws \Exception
      */
     public function testShrinkSuccess(string $options, string $expectedSize, string $sourceImage)
     {
-        $image = $this->ImageHandler->processImage($options, $sourceImage);
+        $image = $this->imageHandler->processImage($options, $sourceImage);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputImagePath());
         $imageDimensions = $this->imageInfo($image->getOutputImagePath())[ImageMetaInfo::IMAGE_PROP_DIMENSIONS];
@@ -53,10 +54,11 @@ class ImageProcessorTest extends BaseTest
      * @param string $sourceImage
      *
      * @dataProvider expandProvider
+     * @throws \Exception
      */
     public function testExpandSuccess(string $options, string $expectedSize, string $sourceImage)
     {
-        $image = $this->ImageHandler->processImage($options, $sourceImage);
+        $image = $this->imageHandler->processImage($options, $sourceImage);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputImagePath());
         $imageDimensions = $this->imageInfo($image->getOutputImagePath())['dimensions'];
@@ -258,6 +260,10 @@ class ImageProcessorTest extends BaseTest
         ];
     }
 
+    /**
+     * @param array $transformationsList
+     * @return array
+     */
     protected function addOutputExtensionsToTests(array $transformationsList): array
     {
         $tests = [];

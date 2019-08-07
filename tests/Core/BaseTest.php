@@ -33,7 +33,7 @@ class BaseTest extends TestCase
     /**
      * @var ImageHandler
      */
-    protected $ImageHandler = null;
+    protected $imageHandler = null;
 
     /**
      * @var array
@@ -46,7 +46,7 @@ class BaseTest extends TestCase
     public function setUp()
     {
         $this->app = $this->createApplication();
-        $this->ImageHandler = $this->app['image.handler'];
+        $this->imageHandler = $this->app['image.handler'];
     }
 
     /**
@@ -54,7 +54,7 @@ class BaseTest extends TestCase
      */
     protected function tearDown()
     {
-        unset($this->ImageHandler);
+        unset($this->imageHandler);
         unset($this->app);
 
         foreach ($this->generatedImage as $image) {

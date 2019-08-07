@@ -6,14 +6,15 @@ use Tests\Core\BaseTest;
 
 /**
  * Class ExtractProcessorTest
- * @package Tests\Core\Processor
  */
 class ExtractProcessorTest extends BaseTest
 {
-
+    /**
+     * @throws \Exception
+     */
     public function testExecuteSuccess()
     {
-        $image = $this->ImageHandler->processImage(
+        $image = $this->imageHandler->processImage(
             'e_1,p1x_100,p1y_100,p2x_300,p2y_300,o_jpg,rf_1',
             parent::EXTRACT_TEST_IMAGE
         );

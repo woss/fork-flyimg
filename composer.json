@@ -38,7 +38,8 @@
     "phpunit/phpunit": "7.*",
     "squizlabs/php_codesniffer": "3.*",
     "escapestudios/symfony2-coding-standard": "~3.0",
-    "symfony/browser-kit": "^4.3"
+    "symfony/browser-kit": "^4.3",
+    "ext-imagick": "*"
   },
   "autoload": {
     "psr-4": {

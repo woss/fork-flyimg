@@ -1,4 +1,4 @@
-FROM flyimg/docker-app
+FROM flyimg/base-image:1.0.0
 
 COPY .    /var/www/html
 
