@@ -164,18 +164,7 @@ class ImageHandler
      */
     protected function extractProcess(OutputImage $outputImage): void
     {
-        $topLeftX = $outputImage->extractKey('extract-top-x');
-        $topLeftY = $outputImage->extractKey('extract-top-y');
-        $bottomRightX = $outputImage->extractKey('extract-bottom-x');
-        $bottomRightY = $outputImage->extractKey('extract-bottom-y');
-
-        $this->extractProcessor->extract(
-            $outputImage->getInputImage(),
-            $topLeftX,
-            $topLeftY,
-            $bottomRightX,
-            $bottomRightY
-        );
+        $this->extractProcessor->extract($outputImage);
     }
 
     /**

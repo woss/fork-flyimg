@@ -4,6 +4,7 @@ namespace Core\Processor;
 
 use Core\Entity\Command;
 use Core\Entity\Image\InputImage;
+use Core\Entity\Image\OutputImage;
 
 /**
  * Class ExtractProcessor
@@ -14,19 +15,20 @@ class ExtractProcessor extends Processor
     /**
      * Extract a portion of the image based on coordinates
      *
-     * @param InputImage $inputImage
-     * @param int        $topLeftX
-     * @param int        $topLeftY
-     * @param int        $bottomRightX
-     * @param int        $bottomRightY
-     *
+     * @param OutputImage $outputImage
      * @throws \Exception
      */
-    public function extract(InputImage $inputImage, int $topLeftX, int $topLeftY, int $bottomRightX, int $bottomRightY)
+    public function extract(OutputImage $outputImage)
     {
         if (!is_executable(self::IM_CONVERT_COMMAND)) {
             return;
         }
+
+        $inputImage = $outputImage->getInputImage();
+        $topLeftX = $outputImage->extractKey('extract-top-x');
+        $topLeftY = $outputImage->extractKey('extract-top-y');
+        $bottomRightX = $outputImage->extractKey('extract-bottom-x');
+        $bottomRightY = $outputImage->extractKey('extract-bottom-y');
 
         $geometryW = $bottomRightX - $topLeftX;
         $geometryH = $bottomRightY - $topLeftY;
