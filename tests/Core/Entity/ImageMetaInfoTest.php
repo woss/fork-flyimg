@@ -116,7 +116,7 @@ class ImageMetaInfoTest extends BaseTest
                 '300x300+0+0',
                 '8-bit',
                 'sRGB',
-                '5301B',
+                '5.3KB',
                 [
                     'width' => '300',
                     'height' => '300',
@@ -141,7 +141,7 @@ class ImageMetaInfoTest extends BaseTest
                 '256x256+0+0',
                 '8-bit',
                 'sRGB',
-                '2438B',
+                '2.44KB',
                 [
                     'width' => '256',
                     'height' => '256',
@@ -150,11 +150,11 @@ class ImageMetaInfoTest extends BaseTest
             // this test is broken, the expected color depth should be `8-bit TrueColor`
             [
                 self::WEBP_TEST_IMAGE,
-                'WEBP',
+                'PAM',
                 '100x100+0+0',
                 '8-bit',
+                'TrueColor',
                 'sRGB',
-                '706B',
                 [
                     'width' => '100',
                     'height' => '100',

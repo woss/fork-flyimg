@@ -27,6 +27,8 @@ You pass the image URL and a set of keys with options, like size or compression.
 <!-- https://m0.cl/t/butterfly-3000.jpg -->
 <img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://m0.cl/t/butterfly-3000.jpg">
 ```
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/flyimg/flyimg)
+
 # Basic Usage Examples
 ## Get an image to fill exact dimensions
 * Image: `https://m0.cl/t/butterfly-3000.jpg` 
