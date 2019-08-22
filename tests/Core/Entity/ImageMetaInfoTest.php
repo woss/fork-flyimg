@@ -154,7 +154,7 @@ class ImageMetaInfoTest extends BaseTest
                 '100x100+0+0',
                 '8-bit',
                 'TrueColor',
-                '706B',
+                'sRGB',
                 [
                     'width' => '100',
                     'height' => '100',
