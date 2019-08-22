@@ -13,7 +13,6 @@
 <a href="https://insight.sensiolabs.com/projects/89b18390-ac79-4c3e-bf6c-92cd9993e8d3"><img alt="SensioLabsInsight" src="https://insight.sensiolabs.com/projects/89b18390-ac79-4c3e-bf6c-92cd9993e8d3/mini.png"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="License" src="https://poser.pugx.org/flyimg/flyimg/license.svg"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="Latest Stable Version]" src="https://poser.pugx.org/flyimg/flyimg/v/stable.svg"></a>
-[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/flyimg/flyimg)
 </p>
 
 # Flyimg
@@ -28,6 +27,8 @@ You pass the image URL and a set of keys with options, like size or compression.
 <!-- https://m0.cl/t/butterfly-3000.jpg -->
 <img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://m0.cl/t/butterfly-3000.jpg">
 ```
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/flyimg/flyimg)
+
 # Basic Usage Examples
 ## Get an image to fill exact dimensions
 * Image: `https://m0.cl/t/butterfly-3000.jpg` 
