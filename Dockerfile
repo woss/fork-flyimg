@@ -1,4 +1,4 @@
-FROM flyimg/base-image:1.0.0
+FROM flyimg/base-image:1.1.0
 
 COPY .    /var/www/html
 
