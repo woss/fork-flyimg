@@ -10,6 +10,3 @@ RUN usermod -u 1000 www-data && \
 
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 80
-
-CMD /usr/bin/supervisord
