@@ -1,4 +1,4 @@
-FROM flyimg/base-image:1.0.0
+FROM flyimg/base-image:1.1.0
 
 COPY .    /var/www/html
 
@@ -10,6 +10,3 @@ RUN usermod -u 1000 www-data && \
 
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 80
-
-CMD /usr/bin/supervisord
