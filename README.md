@@ -27,6 +27,10 @@ You pass the image URL and a set of keys with options, like size or compression.
 <!-- https://m0.cl/t/butterfly-3000.jpg -->
 <img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://m0.cl/t/butterfly-3000.jpg">
 ```
+
+## Cloud Run Button
+
+Flyimg can be deployed to GCP as a serverless container in one click with Cloud Run Button:
 [![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git)](https://deploy.cloud.run)
 
 # Basic Usage Examples
