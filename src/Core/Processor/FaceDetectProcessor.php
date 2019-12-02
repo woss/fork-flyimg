@@ -3,7 +3,7 @@
 namespace Core\Processor;
 
 use Core\Entity\Command;
-use Core\Entity\Image\InputImage;
+use Core\Entity\Image\OutputImage;
 
 /**
  * Class FaceDetectProcessor
@@ -14,18 +14,18 @@ class FaceDetectProcessor extends Processor
     /**
      * Face detection cropping
      *
-     * @param InputImage $inputImage
+     * @param OutputImage $outputImage
      * @param int        $faceCropPosition
      *
      * @throws \Exception
      */
-    public function cropFaces(InputImage $inputImage, int $faceCropPosition = 0)
+    public function cropFaces(OutputImage $outputImage, int $faceCropPosition = 0)
     {
         if (!is_executable(self::FACEDETECT_COMMAND)) {
             return;
         }
         $faceDetectCmd = new Command(self::FACEDETECT_COMMAND);
-        $faceDetectCmd->addArgument($inputImage->sourceImagePath());
+        $faceDetectCmd->addArgument($outputImage->getOutputImagePath());
         $output = $this->execute($faceDetectCmd);
         if (empty($output[$faceCropPosition])) {
             return;
@@ -34,9 +34,9 @@ class FaceDetectProcessor extends Processor
         if (count($geometry) == 4) {
             [$geometryX, $geometryY, $geometryW, $geometryH] = $geometry;
             $cropCmd = new Command(self::IM_CONVERT_COMMAND);
-            $cropCmd->addArgument($inputImage->sourceImagePath());
+            $cropCmd->addArgument($outputImage->getOutputImagePath());
             $cropCmd->addArgument("-crop", "{$geometryW}x{$geometryH}+{$geometryX}+{$geometryY}");
-            $cropCmd->addArgument($inputImage->sourceImagePath());
+            $cropCmd->addArgument($outputImage->getOutputImagePath());
             $this->execute($cropCmd);
         }
     }
@@ -44,17 +44,17 @@ class FaceDetectProcessor extends Processor
     /**
      * Blurring Faces
      *
-     * @param InputImage $inputImage
+     * @param OutputImage $outputImage
      *
      * @throws \Exception
      */
-    public function blurFaces(InputImage $inputImage)
+    public function blurFaces(OutputImage $outputImage)
     {
         if (!is_executable(self::FACEDETECT_COMMAND)) {
             return;
         }
         $faceDetectCmd = new Command(self::FACEDETECT_COMMAND);
-        $faceDetectCmd->addArgument($inputImage->sourceImagePath());
+        $faceDetectCmd->addArgument($outputImage->getOutputImagePath());
         $output = $this->execute($faceDetectCmd);
         if (empty($output)) {
             return;
@@ -69,7 +69,7 @@ class FaceDetectProcessor extends Processor
                 $blurCmd->addArgument("-region", "{$geometryW}x{$geometryH}+{$geometryX}+{$geometryY}");
                 $blurCmd->addArgument("-scale", "10%");
                 $blurCmd->addArgument("-scale", "1000%");
-                $blurCmd->addArgument($inputImage->sourceImagePath());
+                $blurCmd->addArgument($outputImage->getOutputImagePath());
                 $this->execute($blurCmd);
             }
         }
