@@ -21,7 +21,7 @@ class FaceDetectProcessorTest extends BaseTest
         $result = $image1->compareImages($image2, \Imagick::METRIC_MEANSQUAREERROR);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputImagePath());
-        $this->assertEquals(0, $result[1]);
+        $this->assertEquals(0, round($result[1], 2));
     }
 
     /**
@@ -35,6 +35,6 @@ class FaceDetectProcessorTest extends BaseTest
         $result = $image1->compareImages($image2, \Imagick::METRIC_MEANSQUAREERROR);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputImagePath());
-        $this->assertEquals(0, $result[1]);
+        $this->assertEquals(0, round($result[1], 2));
     }
 }
