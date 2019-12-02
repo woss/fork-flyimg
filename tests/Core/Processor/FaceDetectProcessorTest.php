@@ -16,12 +16,11 @@ class FaceDetectProcessorTest extends BaseTest
     public function testProcessFaceCropping()
     {
         $image = $this->imageHandler->processImage('fc_1,o_jpg,rf_1', parent::FACES_TEST_IMAGE);
-        $image1 = new \Imagick($image->getOutputImagePath());
-        $image2 = new \Imagick(parent::FACES_CP0_TEST_IMAGE);
-        $result = $image1->compareImages($image2, \Imagick::METRIC_MEANSQUAREERROR);
+        $image1Crc32 = crc32(\file_get_contents($image->getOutputImagePath()));
+        $image2Crc32 = crc32(\file_get_contents(parent::FACES_CP0_TEST_IMAGE));
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputImagePath());
-        $this->assertEquals(0, round($result[1], 2));
+        $this->assertEquals($image1Crc32, $image2Crc32);
     }
 
     /**
@@ -30,11 +29,10 @@ class FaceDetectProcessorTest extends BaseTest
     public function testProcessFaceBlurring()
     {
         $image = $this->imageHandler->processImage('fb_1,o_jpg,rf_1', parent::FACES_TEST_IMAGE);
-        $image1 = new \Imagick($image->getOutputImagePath());
-        $image2 = new \Imagick(parent::FACES_BLUR_TEST_IMAGE);
-        $result = $image1->compareImages($image2, \Imagick::METRIC_MEANSQUAREERROR);
+        $image1Crc32 = crc32(\file_get_contents($image->getOutputImagePath()));
+        $image2Crc32 = crc32(\file_get_contents(parent::FACES_BLUR_TEST_IMAGE));
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputImagePath());
-        $this->assertEquals(0, round($result[1], 2));
+        $this->assertEquals($image1Crc32, $image2Crc32);
     }
 }

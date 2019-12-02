@@ -18,11 +18,10 @@ class ExtractProcessorTest extends BaseTest
             'e_1,p1x_100,p1y_100,p2x_300,p2y_300,o_jpg,rf_1',
             parent::EXTRACT_TEST_IMAGE
         );
-        $image1 = new \Imagick($image->getOutputImagePath());
-        $image2 = new \Imagick(parent::EXTRACT_TEST_IMAGE_RESULT);
-        $result = $image1->compareImages($image2, \Imagick::METRIC_MEANSQUAREERROR);
+        $image1Crc32 = crc32(\file_get_contents($image->getOutputImagePath()));
+        $image2Crc32 = crc32(\file_get_contents(parent::EXTRACT_TEST_IMAGE_RESULT));
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputImagePath());
-        $this->assertEquals(0, round($result[1], 2));
+        $this->assertEquals($image1Crc32, $image2Crc32);
     }
 }
