@@ -124,11 +124,11 @@ class ImageHandler
         $faceBlur = $outputImage->extractKey('face-blur');
 
         if ($faceBlur && !$outputImage->isOutputGif()) {
-            $this->faceDetectProcessor->blurFaces($outputImage->getInputImage());
+            $this->faceDetectProcessor->blurFaces($outputImage);
         }
 
         if ($faceCrop && !$outputImage->isOutputGif()) {
-            $this->faceDetectProcessor->cropFaces($outputImage->getInputImage(), $faceCropPosition);
+            $this->faceDetectProcessor->cropFaces($outputImage, $faceCropPosition);
         }
     }
 
@@ -145,10 +145,11 @@ class ImageHandler
             $this->extractProcess($outputImage);
         }
 
+        $outputImage = $this->imageProcessor()->processNewImage($outputImage);
+        
         //Check Face Detection options
         $this->faceDetectionProcess($outputImage);
 
-        $outputImage = $this->imageProcessor()->processNewImage($outputImage);
         $this->filesystem->write(
             $outputImage->getOutputImageName(),
             stream_get_contents(fopen($outputImage->getOutputImagePath(), 'r'))

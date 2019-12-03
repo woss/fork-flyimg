@@ -15,8 +15,8 @@ class BaseTest extends TestCase
     const GIF_TEST_IMAGE = __DIR__.'/../testImages/animated.gif';
 
     const FACES_TEST_IMAGE = __DIR__.'/../testImages/faces.jpg';
-    const FACES_CP0_TEST_IMAGE = __DIR__.'/../testImages/face_cp0.jpg';
-    const FACES_BLUR_TEST_IMAGE = __DIR__.'/../testImages/face_fb.jpg';
+    const FACES_CP0_TEST_IMAGE = __DIR__.'/../testImages/face_cp0.png';
+    const FACES_BLUR_TEST_IMAGE = __DIR__.'/../testImages/face_fb.png';
 
     const EXTRACT_TEST_IMAGE = __DIR__.'/../testImages/extract-original.jpg';
     const EXTRACT_TEST_IMAGE_RESULT = __DIR__.'/../testImages/extract-result.jpg';
