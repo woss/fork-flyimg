@@ -16,6 +16,7 @@ class OutputImage
     const JPEG_MIME_TYPE = 'image/jpeg';
     const PNG_MIME_TYPE = 'image/png';
     const GIF_MIME_TYPE = 'image/gif';
+    const PDF_MIME_TYPE = 'application/pdf';
 
     /** Extension output */
     const EXT_INPUT = 'input';
@@ -196,6 +197,7 @@ class OutputImage
             self::WEBP_MIME_TYPE => self::EXT_WEBP,
             self::JPEG_MIME_TYPE => self::EXT_JPG,
             self::GIF_MIME_TYPE => self::EXT_GIF,
+            self::PDF_MIME_TYPE => self::EXT_JPG,
         ];
 
         return array_key_exists($mimeType, $mimeToExtensions) ? $mimeToExtensions[$mimeType] : self::EXT_JPG;
@@ -255,5 +257,13 @@ class OutputImage
     public function isWebPBrowserSupported(): bool
     {
         return in_array(self::WEBP_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInputPdf(): bool
+    {
+        return $this->inputImage->sourceImageMimeType() == self::PDF_MIME_TYPE;
     }
 }
