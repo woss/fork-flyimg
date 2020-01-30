@@ -1,5 +1,9 @@
 FROM flyimg/base-image:1.1.0
 
+# Install other file processors.
+RUN apt-get update
+RUN apt-get install -y ghostscript
+
 COPY .    /var/www/html
 
 #add www-data + mdkdir var folder
