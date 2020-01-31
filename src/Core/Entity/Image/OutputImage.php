@@ -60,6 +60,9 @@ class OutputImage
         $this->generateFilesName();
         $this->outputImageExtension = $this->generateFileExtension();
         $this->outputImagePath .= '.'.$this->outputImageExtension;
+        if ($this->isInputPdf()) {
+            $this->outputImageName .= '-' . $this->getPageNumber();
+        }
         $this->outputImageName .= '.'.$this->outputImageExtension;
     }
 
@@ -265,5 +268,16 @@ class OutputImage
     public function isInputPdf(): bool
     {
         return $this->inputImage->sourceImageMimeType() == self::PDF_MIME_TYPE;
+    }
+
+    /**
+     * Get page number
+     *
+     * @return integer
+     */
+    public function getPageNumber(): int
+    {
+        $opts = $this->inputImage->optionsBag();
+        return $opts->get('page_number');
     }
 }

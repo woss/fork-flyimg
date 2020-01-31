@@ -71,7 +71,7 @@ class ImageProcessor extends Processor
             $command->addArgument('-coalesce');
         }
 
-        $pdfPageNo = $outputImage->isInputPdf() ? '[' . ($outputImage->extractKey('pdf_page') - 1) . ']' : '';
+        $pdfPageNo = $outputImage->isInputPdf() ? '[' . ($outputImage->extractKey('page_number') - 1) . ']' : '';
 
         $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo) ;
 

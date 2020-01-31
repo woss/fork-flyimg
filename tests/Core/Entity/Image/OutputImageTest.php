@@ -53,6 +53,7 @@ class OutputImageTest extends BaseTest
             'extract-top-y' => null,
             'extract-bottom-x' => null,
             'extract-bottom-y' => null,
+            'page_number' => 1,
         ];
         $optionsBag = new OptionsBag($this->imageHandler->appParameters(), self::OPTION_URL);
         $inputImage = new InputImage($optionsBag, self::JPG_TEST_IMAGE);
