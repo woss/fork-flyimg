@@ -54,7 +54,8 @@ class InputImage
             $tmpTime = str_replace('.', '', $tmpTime);
             $dest = $this->sourceImagePath . '-'. $tmpTime;
             $overwrite = $this->optionsBag->get('refresh') ? ' -y' : ' -n';
-            $cmd = "ffmpeg " . $overwrite . " -i " . $this->sourceImagePath . " -vf scale='iw:ih' -ss " . $time . " -f image2 -vframes 1 " . $dest;
+            $cmd = "ffmpeg " . $overwrite . " -i " . $this->sourceImagePath . " -vf scale='iw:ih' -ss " . $time .
+            " -f image2 -vframes 1 " . $dest;
             exec($cmd . ' 2>&1', $output);
             $this->sourceImagePath = $dest;
         }
