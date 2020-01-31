@@ -73,6 +73,7 @@ options_keys:
   p2x: extract-bottom-x
   p2y: extract-bottom-y
   pg: page_number
+  tm: time
 
 #Default options values
 default_options:
@@ -108,3 +109,4 @@ default_options:
   extract-bottom-x: null
   extract-bottom-y: null
   page_number: 1
+  time: '00:00:01'

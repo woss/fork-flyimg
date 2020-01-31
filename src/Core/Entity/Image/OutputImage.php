@@ -63,6 +63,11 @@ class OutputImage
         if ($this->isInputPdf()) {
             $this->outputImageName .= '-' . $this->getPageNumber();
         }
+        if ($this->isInputMovie()) {
+            $time = $this->inputImage->getTime();
+            $tmpTime = str_replace(':', '', $time);
+            $this->outputImageName .= '-' . $tmpTime;
+        }
         $this->outputImageName .= '.'.$this->outputImageExtension;
     }
 
@@ -279,5 +284,16 @@ class OutputImage
     {
         $opts = $this->inputImage->optionsBag();
         return $opts->get('page_number');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInputMovie(): bool
+    {
+        if (strpos($this->inputImage->sourceFileMimeType(), 'video/') === false) {
+            return false;
+        }
+        return true;
     }
 }

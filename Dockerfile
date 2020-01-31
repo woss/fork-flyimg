@@ -2,7 +2,7 @@ FROM flyimg/base-image:1.1.0
 
 # Install other file processors.
 RUN apt-get update
-RUN apt-get install -y ghostscript
+RUN apt-get install -y ghostscript ffmpeg
 
 COPY .    /var/www/html
 
@@ -13,4 +13,3 @@ RUN usermod -u 1000 www-data && \
     chmod 777 -R var/  web/uploads/
 
 RUN composer install --no-dev --optimize-autoloader
-

@@ -23,6 +23,9 @@ class InputImage
     /** @var ImageMetaInfo */
     protected $sourceImageInfo;
 
+    /**  @var string */
+    protected $sourceFileMimeType;
+
     /**
      * OutputImage constructor.
      *
@@ -38,6 +41,23 @@ class InputImage
 
         $this->sourceImagePath = $optionsBag->hashOriginalImageUrl($this->sourceImageUrl);
         $this->saveToTemporaryFile();
+
+        $mime = finfo_file(
+            finfo_open(FILEINFO_MIME_TYPE),
+            $this->sourceImagePath
+        );
+
+        if (strpos($mime, 'video/') !== false) {
+            $this->sourceFileMimeType = $mime;
+            $time = $this->getTime();
+            $tmpTime = str_replace(':', '', $time);
+            $dest = $this->sourceImagePath . '-'. $tmpTime;
+            $overwrite = $this->optionsBag->get('refresh') ? ' -y' : ' -n';
+            $cmd = "ffmpeg " . $overwrite . " -i " . $this->sourceImagePath . " -vf scale='iw:ih' -ss " . $time . " -f image2 -vframes 1 " . $dest;
+            exec($cmd . ' 2>&1', $output);
+            $this->sourceImagePath = $dest;
+        }
+
         $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
     }
 
@@ -141,5 +161,23 @@ class InputImage
     public function sourceImageInfo()
     {
         return $this->sourceImageInfo;
+    }
+
+    /**
+     * Get time
+     *
+     * @return integer
+     */
+    public function getTime(): string
+    {
+        return $this->optionsBag->get('time');
+    }
+
+    /**
+     * @return string
+     */
+    public function sourceFileMimeType(): string
+    {
+        return $this->sourceFileMimeType;
     }
 }
