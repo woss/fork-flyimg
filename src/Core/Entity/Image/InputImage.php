@@ -3,6 +3,7 @@
 namespace Core\Entity\Image;
 
 use Core\Entity\OptionsBag;
+use Core\Exception\ExecFailedException;
 use Core\Exception\ReadFileException;
 use Core\Entity\ImageMetaInfo;
 
@@ -50,13 +51,18 @@ class InputImage
         if (strpos($mime, 'video/') !== false) {
             $this->sourceFileMimeType = $mime;
             $time = $this->getTime();
-            $tmpTime = str_replace(':', '', $time);
-            $tmpTime = str_replace('.', '', $tmpTime);
+            $tmpTime = str_replace(['.', ':'], '', $time);
             $dest = $this->sourceImagePath . '-'. $tmpTime;
             $overwrite = $this->optionsBag->get('refresh') ? ' -y' : ' -n';
             $cmd = "ffmpeg " . $overwrite . " -i " . $this->sourceImagePath . " -vf scale='iw:ih' -ss " . $time .
-            " -f image2 -vframes 1 " . $dest;
+            " -f image2 -vframes 1 " . $dest . " -hide_banner -loglevel warning";
             exec($cmd . ' 2>&1', $output);
+            foreach ($output as $item) {
+                if (strpos($item, 'Output file is empty') !== false) {
+                    $msg = 'Output file is empty, possibly the time parameter is greater than the movie length.';
+                    throw new ExecFailedException($msg);
+                }
+            }
             $this->sourceImagePath = $dest;
         }
 
