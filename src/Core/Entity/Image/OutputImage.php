@@ -268,6 +268,8 @@ class OutputImage
     }
 
     /**
+     * Is input file a pdf
+     *
      * @return bool
      */
     public function isInputPdf(): bool
@@ -287,6 +289,8 @@ class OutputImage
     }
 
     /**
+     * Is input file a movie
+     *
      * @return bool
      */
     public function isInputMovie(): bool

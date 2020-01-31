@@ -43,13 +43,16 @@ class InputImage
         $this->sourceImagePath = $optionsBag->hashOriginalImageUrl($this->sourceImageUrl);
         $this->saveToTemporaryFile();
 
-        $mime = finfo_file(
+        // Store the source file mime type.
+        $this->sourceFileMimeType = finfo_file(
             finfo_open(FILEINFO_MIME_TYPE),
             $this->sourceImagePath
         );
 
-        if (strpos($mime, 'video/') !== false) {
-            $this->sourceFileMimeType = $mime;
+        // If the source file has a video mime type, generate a full resolution
+        // image at the requested (or default) time duration and use that as
+        // the source image.
+        if (strpos($this->sourceFileMimeType, 'video/') !== false) {
             $time = $this->getTime();
             $tmpTime = str_replace(['.', ':'], '', $time);
             $dest = $this->sourceImagePath . '-'. $tmpTime;
@@ -172,9 +175,9 @@ class InputImage
     }
 
     /**
-     * Get time
+     * Get time param
      *
-     * @return integer
+     * @return string
      */
     public function getTime(): string
     {
@@ -182,6 +185,8 @@ class InputImage
     }
 
     /**
+     * Source file mime type
+     *
      * @return string
      */
     public function sourceFileMimeType(): string
