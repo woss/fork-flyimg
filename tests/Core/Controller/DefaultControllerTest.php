@@ -2,6 +2,7 @@
 
 namespace Tests\Core\Controller;
 
+use Core\Exception\ExecFailedException;
 use Core\Exception\InvalidArgumentException;
 use Core\Exception\ReadFileException;
 use Silex\WebTestCase;
@@ -111,6 +112,71 @@ class DefaultControllerTest extends WebTestCase
         $this->expectException(ReadFileException::class);
         $client = static::createClient();
         $client->request('GET', '/path/w_200,h_200,c_1/Rovinj-Croatia-nonExist.jpg');
+    }
+
+    /**
+     *
+     */
+    public function testUploadPdfNoPageSpecified()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_200,h_200/'.BaseTest::PDF_TEST_FILE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /**
+     *
+     */
+    public function testUploadPdfPage2()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_200,h_200,pg_2/'.BaseTest::PDF_TEST_FILE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /**
+     *
+     */
+    public function testUploadMovieNoTimeSpecified()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_200,h_200/'.BaseTest::MOVIE_TEST_FILE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /**
+     *
+     */
+    public function testUploadMovie5Seconds()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_200,h_200,tm_5/'.BaseTest::MOVIE_TEST_FILE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /**
+     *
+     */
+    public function testUploadMovie10Seconds()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_200,h_200,tm_00:00:10/'.BaseTest::MOVIE_TEST_FILE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /**
+     *
+     */
+    public function testUploadMovie20SecondsFails()
+    {
+        $this->expectException(ExecFailedException::class);
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_200,h_200,tm_00:00:20/'.BaseTest::MOVIE_TEST_FILE);
     }
 
     /**

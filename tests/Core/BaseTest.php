@@ -14,6 +14,10 @@ class BaseTest extends TestCase
     const WEBP_TEST_IMAGE = __DIR__.'/../testImages/square.webp';
     const GIF_TEST_IMAGE = __DIR__.'/../testImages/animated.gif';
 
+    const MOVIE_TEST_FILE = __DIR__.'/../testImages/SampleVideo_1280x720_2mb.mp4';
+
+    const PDF_TEST_FILE = __DIR__.'/../testImages/lighthouses.pdf';
+
     const FACES_TEST_IMAGE = __DIR__.'/../testImages/faces.jpg';
     const FACES_CP0_TEST_IMAGE = __DIR__.'/../testImages/face_cp0.png';
     const FACES_BLUR_TEST_IMAGE = __DIR__.'/../testImages/face_fb.png';
