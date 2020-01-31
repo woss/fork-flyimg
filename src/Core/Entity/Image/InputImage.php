@@ -51,6 +51,7 @@ class InputImage
             $this->sourceFileMimeType = $mime;
             $time = $this->getTime();
             $tmpTime = str_replace(':', '', $time);
+            $tmpTime = str_replace('.', '', $tmpTime);
             $dest = $this->sourceImagePath . '-'. $tmpTime;
             $overwrite = $this->optionsBag->get('refresh') ? ' -y' : ' -n';
             $cmd = "ffmpeg " . $overwrite . " -i " . $this->sourceImagePath . " -vf scale='iw:ih' -ss " . $time . " -f image2 -vframes 1 " . $dest;
@@ -178,6 +179,6 @@ class InputImage
      */
     public function sourceFileMimeType(): string
     {
-        return $this->sourceFileMimeType;
+        return isset($this->sourceFileMimeType) ? $this->sourceFileMimeType : '';
     }
 }

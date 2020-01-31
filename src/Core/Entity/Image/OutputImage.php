@@ -66,6 +66,7 @@ class OutputImage
         if ($this->isInputMovie()) {
             $time = $this->inputImage->getTime();
             $tmpTime = str_replace(':', '', $time);
+            $tmpTime = str_replace('.', '', $tmpTime);
             $this->outputImageName .= '-' . $tmpTime;
         }
         $this->outputImageName .= '.'.$this->outputImageExtension;
