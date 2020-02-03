@@ -3,9 +3,9 @@
 namespace Core\Entity\Image;
 
 use Core\Entity\OptionsBag;
-use Core\Exception\ExecFailedException;
 use Core\Exception\ReadFileException;
 use Core\Entity\ImageMetaInfo;
+use Core\Processor\VideoProcessor;
 
 class InputImage
 {
@@ -43,33 +43,19 @@ class InputImage
         $this->sourceImagePath = $optionsBag->hashOriginalImageUrl($this->sourceImageUrl);
         $this->saveToTemporaryFile();
 
+        $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
+
         // Store the source file mime type.
-        $this->sourceFileMimeType = finfo_file(
-            finfo_open(FILEINFO_MIME_TYPE),
-            $this->sourceImagePath
-        );
+        $this->sourceFileMimeType = $this->sourceImageInfo->mimeType();
 
         // If the source file has a video mime type, generate a full resolution
         // image at the requested (or default) time duration and use that as
         // the source image.
         if (strpos($this->sourceFileMimeType, 'video/') !== false) {
-            $time = $this->getTime();
-            $tmpTime = str_replace(['.', ':'], '', $time);
-            $dest = $this->sourceImagePath . '-'. $tmpTime;
-            $overwrite = $this->optionsBag->get('refresh') ? ' -y' : ' -n';
-            $cmd = "ffmpeg " . $overwrite . " -i " . $this->sourceImagePath . " -vf scale='iw:ih' -ss " . $time .
-            " -f image2 -vframes 1 " . $dest . " -hide_banner -loglevel warning";
-            exec($cmd . ' 2>&1', $output);
-            foreach ($output as $item) {
-                if (strpos($item, 'Output file is empty') !== false) {
-                    $msg = 'Output file is empty, possibly the time parameter is greater than the movie length.';
-                    throw new ExecFailedException($msg);
-                }
-            }
-            $this->sourceImagePath = $dest;
+            $videoProcessor = new VideoProcessor();
+            $this->sourceImagePath = $videoProcessor->generateVideoSourceImage($this->optionsBag, $this->sourceImagePath);
+            $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
         }
-
-        $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
     }
 
     /**

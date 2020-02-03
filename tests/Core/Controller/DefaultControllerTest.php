@@ -172,6 +172,17 @@ class DefaultControllerTest extends WebTestCase
     /**
      *
      */
+    public function testUploadMovie10SecondsRefresh()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_200,h_200,tm_00:00:10,rf_1/'.BaseTest::MOVIE_TEST_FILE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /**
+     *
+     */
     public function testUploadMovie20SecondsFails()
     {
         $this->expectException(ExecFailedException::class);

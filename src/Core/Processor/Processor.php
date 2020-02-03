@@ -26,6 +26,9 @@ class Processor
     /** FaceDetect bin path */
     public const FACEDETECT_COMMAND = '/usr/local/bin/facedetect';
 
+    /** Ffmpeg bin path */
+    public const FFMPEG_COMMAND = '/usr/bin/ffmpeg';
+
     /** OutputImage options excluded from IM command */
     const EXCLUDED_IM_OPTIONS = ['quality', 'mozjpeg', 'refresh', 'webp-lossless'];
 
