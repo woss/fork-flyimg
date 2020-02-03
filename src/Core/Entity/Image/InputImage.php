@@ -53,7 +53,10 @@ class InputImage
         // the source image.
         if (strpos($this->sourceFileMimeType, 'video/') !== false) {
             $videoProcessor = new VideoProcessor();
-            $this->sourceImagePath = $videoProcessor->generateVideoSourceImage($this->optionsBag, $this->sourceImagePath);
+            $this->sourceImagePath = $videoProcessor->generateVideoSourceImage(
+                $this->optionsBag,
+                $this->sourceImagePath
+            );
             $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
         }
     }
