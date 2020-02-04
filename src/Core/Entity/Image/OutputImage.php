@@ -61,12 +61,12 @@ class OutputImage
         $this->outputImageExtension = $this->generateFileExtension();
         $this->outputImagePath .= '.'.$this->outputImageExtension;
         if ($this->isInputPdf()) {
-            $this->outputImageName .= '-' . $this->getPageNumber();
+            $this->outputImageName .= '-'.$this->getPageNumber();
         }
         if ($this->isInputMovie()) {
             $time = $this->inputImage->getTime();
             $tmpTime = str_replace(['.', ':'], '', $time);
-            $this->outputImageName .= '-' . $tmpTime;
+            $this->outputImageName .= '-'.$tmpTime;
         }
         $this->outputImageName .= '.'.$this->outputImageExtension;
     }
@@ -249,6 +249,30 @@ class OutputImage
     }
 
     /**
+     * Is input file a pdf
+     *
+     * @return bool
+     */
+    public function isInputPdf(): bool
+    {
+        return $this->inputImage->sourceImageMimeType() == self::PDF_MIME_TYPE;
+    }
+
+    /**
+     * Is input file a movie
+     *
+     * @return bool
+     */
+    public function isInputMovie(): bool
+    {
+        if (strpos($this->inputImage->sourceFileMimeType(), 'video/') === false) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * @return bool
      */
     public function isOutputMozJpeg(): bool
@@ -268,36 +292,14 @@ class OutputImage
     }
 
     /**
-     * Is input file a pdf
-     *
-     * @return bool
-     */
-    public function isInputPdf(): bool
-    {
-        return $this->inputImage->sourceImageMimeType() == self::PDF_MIME_TYPE;
-    }
-
-    /**
-     * Get page number
+     * Get page number param
      *
      * @return integer
      */
     public function getPageNumber(): int
     {
         $opts = $this->inputImage->optionsBag();
-        return $opts->get('page_number');
-    }
 
-    /**
-     * Is input file a movie
-     *
-     * @return bool
-     */
-    public function isInputMovie(): bool
-    {
-        if (strpos($this->inputImage->sourceFileMimeType(), 'video/') === false) {
-            return false;
-        }
-        return true;
+        return $opts->get('page_number');
     }
 }
