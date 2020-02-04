@@ -102,16 +102,6 @@ class InputImage
     }
 
     /**
-     * Remove Input Image
-     */
-    public function removeInputImage()
-    {
-        if (file_exists($this->sourceImagePath())) {
-            unlink($this->sourceImagePath());
-        }
-    }
-
-    /**
      * @param string $key
      *
      * @return string
@@ -168,16 +158,6 @@ class InputImage
     public function sourceImageInfo()
     {
         return $this->sourceImageInfo;
-    }
-
-    /**
-     * Get time param
-     *
-     * @return string
-     */
-    public function getTime(): string
-    {
-        return $this->optionsBag->get('time');
     }
 
     /**

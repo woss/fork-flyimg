@@ -66,7 +66,9 @@ class BaseTest extends TestCase
                 if (file_exists(UPLOAD_DIR.$image->getOutputImageName())) {
                     unlink(UPLOAD_DIR.$image->getOutputImageName());
                 }
-                $image->getInputImage()->removeInputImage();
+                if (file_exists($image->getInputImage()->sourceImagePath())) {
+                    unlink($image->getInputImage()->sourceImagePath());
+                }
             }
         }
     }

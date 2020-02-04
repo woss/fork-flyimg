@@ -56,8 +56,9 @@ class OutputImage
         if ($this->inputImage->isInputPdf()) {
             $this->outputImageName .= '-'.$this->getPageNumber();
         }
+        
         if ($this->inputImage->isInputMovie()) {
-            $time = $this->inputImage->getTime();
+            $time = $this->inputImage->optionsBag()->get('time');
             $tmpTime = str_replace(['.', ':'], '', $time);
             $this->outputImageName .= '-'.$tmpTime;
         }
