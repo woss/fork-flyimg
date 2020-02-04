@@ -11,12 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class OutputImage
 {
-    /** Content TYPE */
-    const WEBP_MIME_TYPE = 'image/webp';
-    const JPEG_MIME_TYPE = 'image/jpeg';
-    const PNG_MIME_TYPE = 'image/png';
-    const GIF_MIME_TYPE = 'image/gif';
-
     /** Extension output */
     const EXT_INPUT = 'input';
     const EXT_AUTO = 'auto';
@@ -59,7 +53,30 @@ class OutputImage
         $this->generateFilesName();
         $this->outputImageExtension = $this->generateFileExtension();
         $this->outputImagePath .= '.'.$this->outputImageExtension;
+        if ($this->inputImage->isInputPdf()) {
+            $this->outputImageName .= '-'.$inputImage->optionsBag()->get('page_number');
+        }
+
+        if ($this->isInputMovie()) {
+            $time = $this->inputImage->optionsBag()->get('time');
+            $tmpTime = str_replace(['.', ':'], '', $time);
+            $this->outputImageName .= '-'.$tmpTime;
+        }
         $this->outputImageName .= '.'.$this->outputImageExtension;
+    }
+
+    /**
+     * Is input file a movie
+     *
+     * @return bool
+     */
+    private function isInputMovie(): bool
+    {
+        if (strpos($this->inputImage->sourceFileMimeType(), 'video/') === false) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -192,10 +209,11 @@ class OutputImage
     protected function extensionByMimeType(string $mimeType): string
     {
         $mimeToExtensions = [
-            self::PNG_MIME_TYPE => self::EXT_PNG,
-            self::WEBP_MIME_TYPE => self::EXT_WEBP,
-            self::JPEG_MIME_TYPE => self::EXT_JPG,
-            self::GIF_MIME_TYPE => self::EXT_GIF,
+            InputImage::PNG_MIME_TYPE => self::EXT_PNG,
+            InputImage::WEBP_MIME_TYPE => self::EXT_WEBP,
+            InputImage::JPEG_MIME_TYPE => self::EXT_JPG,
+            InputImage::GIF_MIME_TYPE => self::EXT_GIF,
+            InputImage::PDF_MIME_TYPE => self::EXT_JPG,
         ];
 
         return array_key_exists($mimeType, $mimeToExtensions) ? $mimeToExtensions[$mimeType] : self::EXT_JPG;
@@ -233,14 +251,6 @@ class OutputImage
     /**
      * @return bool
      */
-    public function isInputGif(): bool
-    {
-        return $this->inputImage->sourceImageMimeType() == self::GIF_MIME_TYPE;
-    }
-
-    /**
-     * @return bool
-     */
     public function isOutputMozJpeg(): bool
     {
         return $this->extractKey('mozjpeg') == 1 &&
@@ -254,6 +264,6 @@ class OutputImage
      */
     public function isWebPBrowserSupported(): bool
     {
-        return in_array(self::WEBP_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes());
+        return in_array(InputImage::WEBP_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes());
     }
 }

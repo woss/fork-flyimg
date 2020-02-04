@@ -3,7 +3,7 @@
 namespace Tests\Core\Entity;
 
 use Core\Entity\ImageMetaInfo;
-use Core\Entity\Image\OutputImage;
+use Core\Entity\Image\InputImage;
 use Core\Exception\ExecFailedException;
 use Tests\Core\BaseTest;
 
@@ -30,10 +30,10 @@ class ImageMetaInfoTest extends BaseTest
     public function mimeTypeDataProvider(): array
     {
         return [
-            [self::JPG_TEST_IMAGE, OutputImage::JPEG_MIME_TYPE],
-            [self::GIF_TEST_IMAGE, OutputImage::GIF_MIME_TYPE],
-            [self::PNG_TEST_IMAGE, OutputImage::PNG_MIME_TYPE],
-            [self::WEBP_TEST_IMAGE, OutputImage::WEBP_MIME_TYPE],
+            [self::JPG_TEST_IMAGE, InputImage::JPEG_MIME_TYPE],
+            [self::GIF_TEST_IMAGE, InputImage::GIF_MIME_TYPE],
+            [self::PNG_TEST_IMAGE, InputImage::PNG_MIME_TYPE],
+            [self::WEBP_TEST_IMAGE, InputImage::WEBP_MIME_TYPE],
         ];
     }
 
@@ -44,8 +44,8 @@ class ImageMetaInfoTest extends BaseTest
     {
         $testImagePath = self::JPG_TEST_IMAGE;
         $image = new ImageMetaInfo($testImagePath);
-        $this->assertEquals(OutputImage::JPEG_MIME_TYPE, $image->mimeType());
-        $this->assertEquals(OutputImage::JPEG_MIME_TYPE, $image->mimeType());
+        $this->assertEquals(InputImage::JPEG_MIME_TYPE, $image->mimeType());
+        $this->assertEquals(InputImage::JPEG_MIME_TYPE, $image->mimeType());
     }
 
     /**

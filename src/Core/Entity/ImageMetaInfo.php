@@ -27,7 +27,7 @@ class ImageMetaInfo
     protected $imageInfo;
 
     /**
-     * OutputImage constructor.
+     * ImageMetaInfo constructor.
      *
      * @param string $imagePath
      */

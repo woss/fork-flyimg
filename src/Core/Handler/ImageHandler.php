@@ -176,15 +176,15 @@ class ImageHandler
     public function responseContentType(OutputImage $outputImage): string
     {
         if ($outputImage->getOutputImageExtension() == OutputImage::EXT_WEBP) {
-            return OutputImage::WEBP_MIME_TYPE;
+            return InputImage::WEBP_MIME_TYPE;
         }
         if ($outputImage->getOutputImageExtension() == OutputImage::EXT_PNG) {
-            return OutputImage::PNG_MIME_TYPE;
+            return InputImage::PNG_MIME_TYPE;
         }
         if ($outputImage->getOutputImageExtension() == OutputImage::EXT_GIF) {
-            return OutputImage::GIF_MIME_TYPE;
+            return InputImage::GIF_MIME_TYPE;
         }
 
-        return OutputImage::JPEG_MIME_TYPE;
+        return InputImage::JPEG_MIME_TYPE;
     }
 }

@@ -5,9 +5,17 @@ namespace Core\Entity\Image;
 use Core\Entity\OptionsBag;
 use Core\Exception\ReadFileException;
 use Core\Entity\ImageMetaInfo;
+use Core\Processor\VideoProcessor;
 
 class InputImage
 {
+    /** Content TYPE */
+    const WEBP_MIME_TYPE = 'image/webp';
+    const JPEG_MIME_TYPE = 'image/jpeg';
+    const PNG_MIME_TYPE = 'image/png';
+    const GIF_MIME_TYPE = 'image/gif';
+    const PDF_MIME_TYPE = 'application/pdf';
+
     /** @var OptionsBag */
     protected $optionsBag;
 
@@ -23,8 +31,11 @@ class InputImage
     /** @var ImageMetaInfo */
     protected $sourceImageInfo;
 
+    /**  @var string */
+    protected $sourceFileMimeType;
+
     /**
-     * OutputImage constructor.
+     * InputImage constructor.
      *
      * @param OptionsBag $optionsBag
      * @param string     $sourceImageUrl
@@ -38,7 +49,23 @@ class InputImage
 
         $this->sourceImagePath = $optionsBag->hashOriginalImageUrl($this->sourceImageUrl);
         $this->saveToTemporaryFile();
+
         $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
+
+        // Store the source file mime type.
+        $this->sourceFileMimeType = $this->sourceImageInfo->mimeType();
+
+        // If the source file has a video mime type, generate a full resolution
+        // image at the requested (or default) time duration and use that as
+        // the source image.
+        if (strpos($this->sourceFileMimeType, 'video/') !== false) {
+            $videoProcessor = new VideoProcessor();
+            $this->sourceImagePath = $videoProcessor->generateVideoSourceImage(
+                $this->optionsBag,
+                $this->sourceImagePath
+            );
+            $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
+        }
     }
 
     /**
@@ -72,16 +99,6 @@ class InputImage
         $content = stream_get_contents($stream);
         fclose($stream);
         file_put_contents($this->sourceImagePath, $content);
-    }
-
-    /**
-     * Remove Input Image
-     */
-    public function removeInputImage()
-    {
-        if (file_exists($this->sourceImagePath())) {
-            unlink($this->sourceImagePath());
-        }
     }
 
     /**
@@ -141,5 +158,33 @@ class InputImage
     public function sourceImageInfo()
     {
         return $this->sourceImageInfo;
+    }
+
+    /**
+     * Source file mime type
+     *
+     * @return string
+     */
+    public function sourceFileMimeType(): string
+    {
+        return isset($this->sourceFileMimeType) ? $this->sourceFileMimeType : '';
+    }
+
+    /**
+     * Is input file a pdf
+     *
+     * @return bool
+     */
+    public function isInputPdf(): bool
+    {
+        return $this->sourceImageMimeType() == self::PDF_MIME_TYPE;
+    }
+
+     /**
+     * @return bool
+     */
+    public function isInputGif(): bool
+    {
+        return $this->sourceImageMimeType() == self::GIF_MIME_TYPE;
     }
 }
