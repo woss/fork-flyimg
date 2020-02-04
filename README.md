@@ -96,7 +96,7 @@ https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.
 
 https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://m0.cl/t/lighthouses.pdf
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://m0.cl/t/https://m0.cl/t/lighthouses.pdf)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://m0.cl/t/lighthouses.pdf)
 
 ## Get a video image to fit dimensions from a time duration point
 * Video: `https://m0.cl/t/SampleVideo_1280x720_2mb.mp4` 
@@ -106,7 +106,7 @@ https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://m0.cl/t/lighthouses.pdf
 
 https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://m0.cl/t/SampleVideo_1280x720_2mb.mp4
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://m0.cl/t/https://m0.cl/t/SampleVideo_1280x720_2mb.mp4)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://m0.cl/t/SampleVideo_1280x720_2mb.mp4)
 
 
 # Table of Contents
