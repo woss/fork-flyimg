@@ -54,7 +54,7 @@ class OutputImage
         $this->outputImageExtension = $this->generateFileExtension();
         $this->outputImagePath .= '.'.$this->outputImageExtension;
         if ($this->inputImage->isInputPdf()) {
-            $this->outputImageName .= '-'.$this->getPageNumber();
+            $this->outputImageName .= '-'.$inputImage->optionsBag()->get('page_number');
         }
 
         if ($this->isInputMovie()) {
@@ -265,17 +265,5 @@ class OutputImage
     public function isWebPBrowserSupported(): bool
     {
         return in_array(InputImage::WEBP_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes());
-    }
-
-    /**
-     * Get page number param
-     *
-     * @return integer
-     */
-    public function getPageNumber(): int
-    {
-        $opts = $this->inputImage->optionsBag();
-
-        return $opts->get('page_number');
     }
 }
