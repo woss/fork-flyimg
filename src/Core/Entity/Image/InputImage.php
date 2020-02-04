@@ -28,7 +28,7 @@ class InputImage
     protected $sourceFileMimeType;
 
     /**
-     * OutputImage constructor.
+     * InputImage constructor.
      *
      * @param OptionsBag $optionsBag
      * @param string     $sourceImageUrl
