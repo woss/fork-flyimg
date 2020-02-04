@@ -71,9 +71,9 @@ class ImageProcessor extends Processor
             $command->addArgument('-coalesce');
         }
 
-        $pdfPageNo = $outputImage->isInputPdf() ? '[' . ($outputImage->extractKey('page_number') - 1) . ']' : '';
+        $pdfPageNo = $outputImage->isInputPdf() ? '['.($outputImage->extractKey('page_number') - 1).']' : '';
 
-        $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo) ;
+        $command->addArgument($this->getSourceImagePath($outputImage).$pdfPageNo);
 
         $command->addArgument($this->calculateSize());
         $command->addArgument('-colorspace', 'sRGB');
