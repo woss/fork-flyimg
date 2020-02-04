@@ -88,6 +88,26 @@ https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
+## Get a PDF page image to fit dimensions
+* PDF: `https://m0.cl/t/lighthouses.pdf` 
+* Width: 200
+* Height: 200
+* Page: `pg_1`
+
+https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://m0.cl/t/lighthouses.pdf
+
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://m0.cl/t/lighthouses.pdf)
+
+## Get a video image to fit dimensions from a time duration point
+* Video: `https://m0.cl/t/SampleVideo_1280x720_2mb.mp4` 
+* Width: 200
+* Height: 200
+* Time: `tm_00:00:05`
+
+https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://m0.cl/t/SampleVideo_1280x720_2mb.mp4
+
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://m0.cl/t/SampleVideo_1280x720_2mb.mp4)
+
 
 # Table of Contents
 
@@ -306,6 +326,39 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 *Description:* When this parameter is 1, it will force a re-request of the original image and run it through the transformations and compression again. It will delete the local cached copy.
 
 **example:`rf_1`** 
+
+## PDF options
+
+Requires `ghostscript` installation in the Dockerfile.
+
+### `pg` : page number
+`int`  
+*Default:* 1  
+*Description:* Sets the target page of the PDF. If not set, the default is page 1.
+
+**example:`pg_2`** 
+
+`pg_2` :   `https://oi.flyimg.io/upload/pg_2/https://m0.cl/t/lighthouses.pdf`
+
+## Video options
+
+Requires `ffmpeg` installation in the Dockerfile.
+
+### `tm` : time
+`string`  
+*Default:* `00:00:01`  
+*Description:* Sets the frame capture time duration point in the video. If not set, the default is 1 second. The format is `HH:MM:SS` OR `SS`
+
+**example:`tm_00:00:05`** 
+
+`tm_00:00:05` :   `https://oi.flyimg.io/upload/tm_00:00:05/https://m0.cl/t/SampleVideo_1280x720_2mb.mp4`
+
+You can also use a shorter syntax for the first 60 seconds.
+
+**example:`tm_10`** 
+
+`tm_10 ` :   `https://oi.flyimg.io/upload/tm_10/https://m0.cl/t/SampleVideo_1280x720_2mb.mp4`
+
 
 ## Face Detection options
 
