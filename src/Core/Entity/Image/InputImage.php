@@ -187,18 +187,4 @@ class InputImage
     {
         return $this->sourceImageMimeType() == self::GIF_MIME_TYPE;
     }
-
-    /**
-     * Is input file a movie
-     *
-     * @return bool
-     */
-    public function isInputMovie(): bool
-    {
-        if (strpos($this->sourceFileMimeType(), 'video/') === false) {
-            return false;
-        }
-
-        return true;
-    }
 }
