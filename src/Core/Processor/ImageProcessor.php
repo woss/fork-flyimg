@@ -67,11 +67,13 @@ class ImageProcessor extends Processor
     {
         $command = new Command(self::IM_CONVERT_COMMAND);
 
-        if ($outputImage->isInputGif()) {
+        if ($outputImage->getInputImage()->isInputGif()) {
             $command->addArgument('-coalesce');
         }
 
-        $pdfPageNo = $outputImage->isInputPdf() ? '['.($outputImage->extractKey('page_number') - 1).']' : '';
+        $pdfPageNo = $outputImage->getInputImage()->isInputPdf() ?
+                        '['.($outputImage->extractKey('page_number') - 1).']' :
+                        '';
 
         $command->addArgument($this->getSourceImagePath($outputImage).$pdfPageNo);
 
@@ -160,7 +162,7 @@ class ImageProcessor extends Processor
         $tmpFileName = $this->sourceImageInfo->path();
 
         //Check the source image is gif
-        if ($outputImage->isInputGif()) {
+        if ($outputImage->getInputImage()->isInputGif()) {
             $frame = $this->options->getOption('gif-frame');
 
             // set the frame if the output image is not gif (to get ony one  frame)

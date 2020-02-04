@@ -9,6 +9,13 @@ use Core\Processor\VideoProcessor;
 
 class InputImage
 {
+    /** Content TYPE */
+    const WEBP_MIME_TYPE = 'image/webp';
+    const JPEG_MIME_TYPE = 'image/jpeg';
+    const PNG_MIME_TYPE = 'image/png';
+    const GIF_MIME_TYPE = 'image/gif';
+    const PDF_MIME_TYPE = 'application/pdf';
+
     /** @var OptionsBag */
     protected $optionsBag;
 
@@ -181,5 +188,37 @@ class InputImage
     public function sourceFileMimeType(): string
     {
         return isset($this->sourceFileMimeType) ? $this->sourceFileMimeType : '';
+    }
+
+    /**
+     * Is input file a pdf
+     *
+     * @return bool
+     */
+    public function isInputPdf(): bool
+    {
+        return $this->sourceImageMimeType() == self::PDF_MIME_TYPE;
+    }
+
+     /**
+     * @return bool
+     */
+    public function isInputGif(): bool
+    {
+        return $this->sourceImageMimeType() == self::GIF_MIME_TYPE;
+    }
+
+    /**
+     * Is input file a movie
+     *
+     * @return bool
+     */
+    public function isInputMovie(): bool
+    {
+        if (strpos($this->sourceFileMimeType(), 'video/') === false) {
+            return false;
+        }
+
+        return true;
     }
 }
