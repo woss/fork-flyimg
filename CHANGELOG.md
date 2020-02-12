@@ -1,6 +1,7 @@
 ## Change Log
 
-### upcoming (2020/02/06 15:23 +00:00)
+### 1.1.6 (2020/02/12 09:11 +00:00)
+- [#250](https://github.com/flyimg/flyimg/pull/250) Update changelog file closes #249 (@sadok-f)
 - [#247](https://github.com/flyimg/flyimg/pull/247) Updated demo source links (@louisl)
 - [#246](https://github.com/flyimg/flyimg/pull/246) Louisl/feature/movie support (@louisl)
 - [#245](https://github.com/flyimg/flyimg/pull/245) Updated readme for PDF and video (@louisl)
