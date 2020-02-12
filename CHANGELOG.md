@@ -1,6 +1,14 @@
 ## Change Log
 
-### 1.1.5 (2019/12/03 09:29 +00:00)
+### upcoming (2020/02/06 15:23 +00:00)
+- [#247](https://github.com/flyimg/flyimg/pull/247) Updated demo source links (@louisl)
+- [#246](https://github.com/flyimg/flyimg/pull/246) Louisl/feature/movie support (@louisl)
+- [#245](https://github.com/flyimg/flyimg/pull/245) Updated readme for PDF and video (@louisl)
+- [#244](https://github.com/flyimg/flyimg/pull/244) Louisl/feature/movie support, closes #243 (@sadok-f, @louisl)
+- [#240](https://github.com/flyimg/flyimg/pull/240) Update composer, fixes #239 (@sadok-f)
+
+### 1.1.5 (2019/12/03 09:37 +00:00)
+- [#238](https://github.com/flyimg/flyimg/pull/238) Add changelogs for the new release (@sadok-f)
 - [#237](https://github.com/flyimg/flyimg/pull/237) Fixing FaceDetect not working, closes #236 (@sadok-f)
 - [#233](https://github.com/flyimg/flyimg/pull/233) Update Readme: add Google Cloud Run description, closes #227 (@sadok-f)
 - [#232](https://github.com/flyimg/flyimg/pull/232) Add ?git_repo to cloud-run-button (@ahmetb)
@@ -62,13 +70,7 @@
 - [#136](https://github.com/flyimg/flyimg/pull/136) Replace getters and setters names with meaning names, closes #135 (@sadok-f)
 - [#134](https://github.com/flyimg/flyimg/pull/134) Refactor part 3: replace list function with [] (new in php7.1), close… (@sadok-f)
 - [#130](https://github.com/flyimg/flyimg/pull/130) Image Processor geometry refactor, added more tests. (@flyimg)
-- [#124](https://github.com/flyimg/flyimg/pull/124) [WIP]: Added more cases for the tests. Fixes #115. Added Image Info to the source image …
- 
- Alright! I'm done with this PR, I have more tests, but they are failing and I need to fix the functionallity. I'll do that in another PR. I've done enough here. And all works same as before.
- 
- We do need to fix all cases for the image identification (minor bugs there).
- 
- Also need to create an abstract Executor class for the command line executions and binary paths. (@flyimg)
+- [#124](https://github.com/flyimg/flyimg/pull/124) [WIP]: Added more cases for the tests. Fixes #115. Added Image Info to the source image …  Alright! I'm done with this PR, I have more tests, but they are failing and I need to fix the functionallity. I'll do that in another PR. I've done enough here. And all works same as before.  We do need to fix all cases for the image identification (minor bugs there).  Also need to create an abstract Executor class for the command line executions and binary paths. (@flyimg)
 - [#128](https://github.com/flyimg/flyimg/pull/128) Move url docs to https, closes #127 (@sadok-f)
 - [#126](https://github.com/flyimg/flyimg/pull/126) Add Community links (Github and Twitter) (@sadok-f)
 - [#123](https://github.com/flyimg/flyimg/pull/123) Fix SensioLabsInsight warning, closes #122 (@sadok-f)
@@ -100,8 +102,7 @@
 - [#77](https://github.com/flyimg/flyimg/pull/77) Update composer [phpunittest] (@sadok-f)
 - [#73](https://github.com/flyimg/flyimg/pull/73) Increase code coverage unit test + Update readme (@sadok-f)
 - [#72](https://github.com/flyimg/flyimg/pull/72) Add more UnitTest in order to increase the code coverage (@sadok-f)
-- [#71](https://github.com/flyimg/flyimg/pull/71) Add More Unit test cover WebTestCases
- #42 (@sadok-f)
+- [#71](https://github.com/flyimg/flyimg/pull/71) Add More Unit test cover WebTestCases #42 (@sadok-f)
 
 ### 1.0.0 (2017/06/30 16:12 +00:00)
 - [#70](https://github.com/flyimg/flyimg/pull/70) Optimization part 1 (@sadok-f)
@@ -122,9 +123,7 @@
 - [#60](https://github.com/flyimg/flyimg/pull/60) Activating Open Collective (@xdamman)
 
 ### 0.1.6 (2017/03/28 05:56 +00:00)
-- [#57](https://github.com/flyimg/flyimg/pull/57) Allow to serve WebP if explicitly requested
- 
- I need this to keep working on other branch, so I'll be a dick and just merge it without approval. If there is anything you don't like we can revert, no problem. (@baamenabar)
+- [#57](https://github.com/flyimg/flyimg/pull/57) Allow to serve WebP if explicitly requested  I need this to keep working on other branch, so I'll be a dick and just merge it without approval. If there is anything you don't like we can revert, no problem. (@baamenabar)
 - [#56](https://github.com/flyimg/flyimg/pull/56) Update docs (@sadok-f)
 - [#55](https://github.com/flyimg/flyimg/pull/55) Move phpunit to require-dev section (@sadok-f)
 - [#53](https://github.com/flyimg/flyimg/pull/53) Remove Twig from the repo. Clean clean clean! (@sadok-f)
