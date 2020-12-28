@@ -62,6 +62,19 @@ class Response extends BaseResponse
             $this->headers->set('im-identify', $this->imageHandler->imageProcessor()->imageIdentityInformation($image));
             $this->headers->set('im-command', $image->getCommandString());
         }
+
+        $this->headers->set('Last-Modified', $this->getLastModifiedDate($image));
+    }
+
+    /**
+     * Get Last modified Date
+     */
+    protected function getLastModifiedDate(OutputImage $image): string
+    {
+        $imagePath =  UPLOAD_DIR. $image->getOutputImageName();
+        $lastModifiedGmt = filemtime($imagePath);
+
+        return gmdate("D, d M Y H:i:s T", $lastModifiedGmt);
     }
 
     /**
@@ -94,8 +107,7 @@ class Response extends BaseResponse
      */
     public function generatePathResponse(OutputImage $image): void
     {
-        $imagePath = $image->getOutputImageName();
-        $imagePath = sprintf($this->filePathResolver, $imagePath);
+        $imagePath = sprintf($this->filePathResolver, $image->getOutputImageName());
         $this->setContent($imagePath);
         $image->removeOutputImage();
     }
