@@ -1,6 +1,16 @@
 ## Change Log
 
-### 1.1.6 (2020/02/12 09:11 +00:00)
+### 1.1.7 (2020/12/28 19:28 +00:00)
+- [#272](https://github.com/flyimg/flyimg/pull/272) Downgrade Github action to v5 (@sadok-f)
+- [#271](https://github.com/flyimg/flyimg/pull/271) add empty tag_prefix for Github actions (@sadok-f)
+- [#270](https://github.com/flyimg/flyimg/pull/270) Add new github action to release tag closes #269 (@sadok-f)
+- [#268](https://github.com/flyimg/flyimg/pull/268) Add CodeCov Repport, closes #267 (@sadok-f)
+- [#266](https://github.com/flyimg/flyimg/pull/266) Add Last-Modified headers tag, closes #261 (@sadok-f)
+- [#262](https://github.com/flyimg/flyimg/pull/262) Bump symfony/http-kernel from 4.4.1 to 4.4.13 (@dependabot[bot])
+- [#254](https://github.com/flyimg/flyimg/pull/254) Bump symfony/http-foundation from 4.4.1 to 4.4.7 (@dependabot[bot])
+
+### 1.1.6 (2020/02/12 09:19 +00:00)
+- [#252](https://github.com/flyimg/flyimg/pull/252) Update CHANGELOG file, closes #251 (@sadok-f)
 - [#250](https://github.com/flyimg/flyimg/pull/250) Update changelog file closes #249 (@sadok-f)
 - [#247](https://github.com/flyimg/flyimg/pull/247) Updated demo source links (@louisl)
 - [#246](https://github.com/flyimg/flyimg/pull/246) Louisl/feature/movie support (@louisl)
