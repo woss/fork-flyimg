@@ -39,7 +39,7 @@ class S3StorageProviderTest extends BaseTest
                 $this->app['flysystems']['upload_dir'],
                 $this->app['params']
             );
-        $this->imageHandler->processImage(parent::OPTION_URL.',o_webp', parent::PNG_TEST_IMAGE);
+        $this->imageHandler->processImage(parent::OPTION_URL . ',o_webp', parent::PNG_TEST_IMAGE);
     }
 
     /**

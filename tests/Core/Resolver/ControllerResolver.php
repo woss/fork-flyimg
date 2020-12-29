@@ -29,7 +29,7 @@ class ControllerResolverTests extends WebTestCase
      */
     public function createApplication()
     {
-        $app = require __DIR__.'/../../../app.php';
+        $app = require __DIR__ . '/../../../app.php';
         $app['debug'] = true;
         unset($app['exception_handler']);
 

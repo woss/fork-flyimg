@@ -52,17 +52,17 @@ class OutputImage
         $this->inputImage = $inputImage;
         $this->generateFilesName();
         $this->outputImageExtension = $this->generateFileExtension();
-        $this->outputImagePath .= '.'.$this->outputImageExtension;
+        $this->outputImagePath .= '.' . $this->outputImageExtension;
         if ($this->inputImage->isInputPdf()) {
-            $this->outputImageName .= '-'.$inputImage->optionsBag()->get('page_number');
+            $this->outputImageName .= '-' . $inputImage->optionsBag()->get('page_number');
         }
 
         if ($this->isInputMovie()) {
             $time = $this->inputImage->optionsBag()->get('time');
             $tmpTime = str_replace(['.', ':'], '', $time);
-            $this->outputImageName .= '-'.$tmpTime;
+            $this->outputImageName .= '-' . $tmpTime;
         }
-        $this->outputImageName .= '.'.$this->outputImageExtension;
+        $this->outputImageName .= '.' . $this->outputImageExtension;
     }
 
     /**
@@ -170,7 +170,7 @@ class OutputImage
     {
         $hashedOptions = $this->inputImage->optionsBag();
         $this->outputImageName = $hashedOptions->hashedOptionsAsString($this->inputImage->sourceImageUrl());
-        $this->outputImagePath = TMP_DIR.$this->outputImageName;
+        $this->outputImagePath = TMP_DIR . $this->outputImageName;
 
         if ($hashedOptions->get('refresh')) {
             $this->outputImagePath .= uniqid("-", true);
@@ -193,7 +193,7 @@ class OutputImage
         }
 
         if (!in_array($requestedOutput, $this->allowedOutExtensions)) {
-            throw new InvalidArgumentException("Invalid file output requested : ".$requestedOutput);
+            throw new InvalidArgumentException("Invalid file output requested : " . $requestedOutput);
         }
 
         return $requestedOutput;

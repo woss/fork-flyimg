@@ -21,6 +21,6 @@ class InputImageTest extends BaseTest
         $this->expectException(ReadFileException::class);
         $optionsBag = new OptionsBag($this->imageHandler->appParameters(), 'o_jpg');
 
-        new InputImage($optionsBag, parent::JPG_TEST_IMAGE.'--fail');
+        new InputImage($optionsBag, parent::JPG_TEST_IMAGE . '--fail');
     }
 }

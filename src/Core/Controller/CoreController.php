@@ -47,10 +47,10 @@ class CoreController
      */
     public function render(string $templateName): Response
     {
-        $templateFullPath = ROOT_DIR.'/src/Core/Views/'.$templateName.'.php';
+        $templateFullPath = ROOT_DIR . '/src/Core/Views/' . $templateName . '.php';
 
         if (!file_exists($templateFullPath)) {
-            throw new FileNotFoundException('Template file note exist: '.$templateFullPath);
+            throw new FileNotFoundException('Template file note exist: ' . $templateFullPath);
         }
 
         ob_start();

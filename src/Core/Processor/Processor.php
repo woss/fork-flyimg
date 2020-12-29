@@ -49,9 +49,9 @@ class Processor
 
         if ($code !== 0) {
             throw new ExecFailedException(
-                "Command failed. The exit code: ".
-                $outputError."<br>The last line of output: ".
-                $command
+                "Command failed. The exit code: " .
+                    $outputError . "<br>The last line of output: " .
+                    $command
             );
         }
 

@@ -146,7 +146,7 @@ class ImageHandler
         }
 
         $outputImage = $this->imageProcessor()->processNewImage($outputImage);
-        
+
         //Check Face Detection options
         $this->faceDetectionProcess($outputImage);
 

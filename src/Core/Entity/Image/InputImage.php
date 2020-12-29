@@ -81,19 +81,18 @@ class InputImage
 
         $opts = [
             'http' =>
-                [
-                    'header' => $this->optionsBag->appParameters()->parameterByKey('header_extra_options'),
-                    'method' => 'GET',
-                    'max_redirects' => '0',
-                ],
+            [
+                'header' => $this->optionsBag->appParameters()->parameterByKey('header_extra_options'),
+                'method' => 'GET',
+                'max_redirects' => '0',
+            ],
         ];
         $context = stream_context_create($opts);
 
-        if (!$stream = @fopen($this->sourceImageUrl, 'r', false, $context)
-        ) {
+        if (!$stream = @fopen($this->sourceImageUrl, 'r', false, $context)) {
             throw  new ReadFileException(
                 'Error occurred while trying to read the file Url : '
-                .$this->sourceImageUrl
+                    . $this->sourceImageUrl
             );
         }
         $content = stream_get_contents($stream);
@@ -180,7 +179,7 @@ class InputImage
         return $this->sourceImageMimeType() == self::PDF_MIME_TYPE;
     }
 
-     /**
+    /**
      * @return bool
      */
     public function isInputGif(): bool

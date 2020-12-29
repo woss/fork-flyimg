@@ -35,7 +35,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadAction()
     {
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200,c_1,rf_1,o_png/'.BaseTest::JPG_TEST_IMAGE);
+        $client->request('GET', '/upload/w_200,h_200,c_1,rf_1,o_png/' . BaseTest::JPG_TEST_IMAGE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -46,7 +46,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadActionWebp()
     {
         $client = static::createClient();
-        $client->request('GET', 'upload/o_webp/'.BaseTest::PNG_TEST_IMAGE);
+        $client->request('GET', 'upload/o_webp/' . BaseTest::PNG_TEST_IMAGE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -57,7 +57,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadActionGif()
     {
         $client = static::createClient();
-        $client->request('GET', 'upload/o_gif/'.BaseTest::PNG_TEST_IMAGE);
+        $client->request('GET', 'upload/o_gif/' . BaseTest::PNG_TEST_IMAGE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -68,7 +68,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadActionWithFaceDetection()
     {
         $client = static::createClient();
-        $client->request('GET', '/upload/fc_1/'.BaseTest::FACES_TEST_IMAGE);
+        $client->request('GET', '/upload/fc_1/' . BaseTest::FACES_TEST_IMAGE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -90,7 +90,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200,c_1,o_xxx/'.BaseTest::JPG_TEST_IMAGE);
+        $client->request('GET', '/upload/w_200,h_200,c_1,o_xxx/' . BaseTest::JPG_TEST_IMAGE);
     }
 
     /**
@@ -99,7 +99,7 @@ class DefaultControllerTest extends WebTestCase
     public function testPathAction()
     {
         $client = static::createClient();
-        $client->request('GET', '/path/w_200,h_200,c_1/'.BaseTest::JPG_TEST_IMAGE);
+        $client->request('GET', '/path/w_200,h_200,c_1/' . BaseTest::JPG_TEST_IMAGE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -120,7 +120,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadPdfNoPageSpecified()
     {
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200/'.BaseTest::PDF_TEST_FILE);
+        $client->request('GET', '/upload/w_200,h_200/' . BaseTest::PDF_TEST_FILE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -131,7 +131,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadPdfPage2()
     {
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200,pg_2/'.BaseTest::PDF_TEST_FILE);
+        $client->request('GET', '/upload/w_200,h_200,pg_2/' . BaseTest::PDF_TEST_FILE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -142,7 +142,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadMovieNoTimeSpecified()
     {
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200/'.BaseTest::MOVIE_TEST_FILE);
+        $client->request('GET', '/upload/w_200,h_200/' . BaseTest::MOVIE_TEST_FILE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -153,7 +153,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadMovie5Seconds()
     {
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200,tm_5/'.BaseTest::MOVIE_TEST_FILE);
+        $client->request('GET', '/upload/w_200,h_200,tm_5/' . BaseTest::MOVIE_TEST_FILE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -164,7 +164,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadMovie10Seconds()
     {
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200,tm_00:00:10/'.BaseTest::MOVIE_TEST_FILE);
+        $client->request('GET', '/upload/w_200,h_200,tm_00:00:10/' . BaseTest::MOVIE_TEST_FILE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -175,7 +175,7 @@ class DefaultControllerTest extends WebTestCase
     public function testUploadMovie10SecondsRefresh()
     {
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200,tm_00:00:10,rf_1/'.BaseTest::MOVIE_TEST_FILE);
+        $client->request('GET', '/upload/w_200,h_200,tm_00:00:10,rf_1/' . BaseTest::MOVIE_TEST_FILE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }
@@ -187,7 +187,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $this->expectException(ExecFailedException::class);
         $client = static::createClient();
-        $client->request('GET', '/upload/w_200,h_200,tm_00:00:20/'.BaseTest::MOVIE_TEST_FILE);
+        $client->request('GET', '/upload/w_200,h_200,tm_00:00:20/' . BaseTest::MOVIE_TEST_FILE);
     }
 
     /**
@@ -197,7 +197,7 @@ class DefaultControllerTest extends WebTestCase
      */
     public function createApplication()
     {
-        $app = require __DIR__.'/../../../app.php';
+        $app = require __DIR__ . '/../../../app.php';
         $app['debug'] = true;
         unset($app['exception_handler']);
 
