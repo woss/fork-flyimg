@@ -1,6 +1,6 @@
 # Application Options
 
-Here are the app options you can configure with the [config/parameters.yml](https://github.com/flyimg/flyimg/blob/master/config/parameters.yml) these options operate at runtime, you don't need to rebuild the container or restart any service, all requests<sup><a name="footnote1">1</a></sup> will check this config. 
+Here are the app options you can configure with the [config/parameters.yml](https://github.com/flyimg/flyimg/blob/main/config/parameters.yml) these options operate at runtime, you don't need to rebuild the container or restart any service, all requests<sup><a name="footnote1">1</a></sup> will check this config. 
 
 ### application_name
 *Defaults to:* `Flyimg.io`
@@ -12,7 +12,7 @@ Here are the app options you can configure with the [config/parameters.yml](http
 
 ### auto_webp_enabled
 *Defaults to:* `false`
-*Description:* Serve WebP automatically to Browsers supporting it. You can always request an image in webP format pasing the `o=webp` [URL option key](https://github.com/flyimg/flyimg/blob/master/docs/url-options.md).
+*Description:* Serve WebP automatically to Browsers supporting it. You can always request an image in webP format pasing the `o=webp` [URL option key](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md).
 
 ### header_cache_days
 *Defaults to:* `365`
@@ -70,7 +70,7 @@ aws_s3:
   bucket_name: "s3-bucket-name"
 ```
 
-The rest of the options are pased to the URL, check the [URL option keys document](https://github.com/flyimg/flyimg/blob/master/docs/url-options.md) .
+The rest of the options are pased to the URL, check the [URL option keys document](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md) .
 
 ## Footnotes
 

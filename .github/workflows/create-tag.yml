@@ -2,10 +2,10 @@ name: Create New Tag
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  create_tag:
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
       - name: Generate CHANGELOG

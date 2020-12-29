@@ -1,12 +1,12 @@
 
 <p align="center"><a href="http://flyimg.io" target="_blank">
-    <img alt="Flyimglogo" src="https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png" width="300">
+    <img alt="Flyimglogo" src="https://raw.githubusercontent.com/flyimg/graphic-assets/main/logo/raster/flyimg-logo-rgb.png" width="300">
 </a></p>
 
 <p align="center">
 <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/flyimg/backers/badge.svg"></a>
 <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/flyimg/sponsors/badge.svg"></a>
-<a href="https://travis-ci.org/flyimg/flyimg"><img alt="Build Status" src="https://travis-ci.org/flyimg/flyimg.svg?branch=master"></a>
+<a href="https://travis-ci.org/flyimg/flyimg"><img alt="Build Status" src="https://travis-ci.org/flyimg/flyimg.svg?branch=main"></a>
 <a href="https://codeclimate.com/github/flyimg/flyimg"><img alt="Code Climate" src="https://codeclimate.com/github/flyimg/flyimg/badges/gpa.svg"></a>
 <a href="https://codeclimate.com/github/flyimg/flyimg"><img alt="Issue Count" src="https://codeclimate.com/github/flyimg/flyimg/badges/issue_count.svg"></a>
 <a href="https://codeclimate.com/github/flyimg/flyimg/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/flyimg/flyimg/badges/coverage.svg"></a>
@@ -120,7 +120,7 @@ https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buc
    * [Testing Flyimg service](#testing-flyimg-service)
    * [How to transform images](#how-to-transform-images)
    * [Basic Option details](#basic-option-details)
-   * [Full Option details](https://github.com/flyimg/flyimg/blob/master/docs/url-options.md)
+   * [Full Option details](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md)
    * [Application Server Options](#server-options)
    * [Security: Restricting Source Domains](#security-restricting-source-domains)
    * [Security: Signature Generation](#security-signature-generation)
@@ -129,7 +129,7 @@ https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buc
    * [Technology stack](#technology-stack)
       * [Abstract storage with Flysystem](#abstract-storage-with-flysystem)
    * [Benchmark](#benchmark)
-   * [Enable Xdebug](https://github.com/flyimg/flyimg/blob/master/docs/enabling-xdebug.md)
+   * [Enable Xdebug](https://github.com/flyimg/flyimg/blob/main/docs/enabling-xdebug.md)
    * [Demo Application running](#demo-application-running)
    * [Roadmap](#roadmap)
    * [Community](#community)
@@ -158,7 +158,7 @@ Start the container
 docker run -itd -p 8080:80 flyimg/flyimg-build
 ```
 
-To use custom parameters, make a copy of [parameters.yml](https://github.com/flyimg/flyimg/blob/master/config/parameters.yml) to your current directory. Update to suit your needs and run the command with volume parameter to replace the original parameters file.
+To use custom parameters, make a copy of [parameters.yml](https://github.com/flyimg/flyimg/blob/main/config/parameters.yml) to your current directory. Update to suit your needs and run the command with volume parameter to replace the original parameters file.
 
 ```bash
 docker run -itd -p 8080:80 -v $(pwd)/parameters.yml:/var/www/html/config/parameters.yml flyimg/flyimg-build
@@ -474,11 +474,11 @@ Storage files based on [Flysystem](http://flysystem.thephpleague.com/) which is 
 
 Default storage is Local, but you can use other Adapters like AWS S3, Azure, FTP, DropBox, ... 
 
-Currently, only the **local** and **S3** are implemented as Storage Provider in Flyimg application, but you can add your specific one easily in `src/Core/Provider/StorageProvider.php`. Check an [example for AWS S3 here](https://github.com/flyimg/flyimg/blob/master/docs/application-options.md#using-aws-s3-as-storage-provider).
+Currently, only the **local** and **S3** are implemented as Storage Provider in Flyimg application, but you can add your specific one easily in `src/Core/Provider/StorageProvider.php`. Check an [example for AWS S3 here](https://github.com/flyimg/flyimg/blob/main/docs/application-options.md#using-aws-s3-as-storage-provider).
 
 # Benchmark
 
-See [benchmark.sh](https://github.com/flyimg/flyimg/blob/master/benchmark.sh) for more details.
+See [benchmark.sh](https://github.com/flyimg/flyimg/blob/main/benchmark.sh) for more details.
 
 Requires: **Vegeta**[http://github.com/tsenart/vegeta](http://github.com/tsenart/vegeta)
 
