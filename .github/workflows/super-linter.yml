@@ -10,12 +10,18 @@ jobs:
     # Name the Job
     name: Lint code base
     # Set the type of machine to run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
+      # Checks out a copy of your repository on the ubuntu-18.04 machine
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Install dependencies
+        uses: php-actions/composer@v5
+        with:
+          dev: no
+          args: --profile --ignore-platform-reqs
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
@@ -23,3 +29,4 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FILTER_REGEX_INCLUDE: .*src/.*
