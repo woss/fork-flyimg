@@ -30,16 +30,27 @@ jobs:
 
   build-test:
     runs-on: ubuntu-18.04
-    name: Run Unit Testss
+    name: Run Unit Tests
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
     - name: Build Flyimg Docker image
       run: docker build -t flyimg .
+
     - name: Run Flyimg container
-      run: docker run -itd -v $(pwd):/var/www/html --name flyimg flyimg
+      run: docker run -itd -v $(pwd):/var/www/html --name flyimg flyimg/
+
     - name: Install dependencies
       run: docker exec flyimg composer install
+
     - name: Run Unit Tests
       run: docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+    - uses: codecov/codecov-action@v1
+      with:
+        # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        file: build/logs/clover.xml
+        flags: unittests
+        fail_ci_if_error: true
