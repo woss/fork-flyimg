@@ -328,7 +328,7 @@ _Description:_ ...
 
 ---
 
-# process-type: _upload_ or _path_
+## process-type: _upload_ or _path_
 
 There are 2 main proceses you can do for images.
 

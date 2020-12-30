@@ -1,5 +1,7 @@
 # Application Options
 
+## Application Options
+
 Here are the app options you can configure with the [config/parameters.yml](https://github.com/flyimg/flyimg/blob/main/config/parameters.yml) these options operate at runtime, you don't need to rebuild the container or restart any service, all requests<sup><a name="footnote1">1</a></sup> will check this config.
 
 ### application_name
@@ -36,7 +38,7 @@ _Description:_ This restricts fetching images for transformations only from _whi
 
 _Defaults to:_
 
-```
+```yml
     - domain-1.com
     - domain-2.com
 ```
@@ -48,12 +50,12 @@ _Description:_ If `restricted_domains` is enabled, put your whitelisted domains 
 _Defaults to:_ `local`
 _Description:_ You can store the transformed images in many different ways taking advantage of the [Flysystem](http://flysystem.thephpleague.com/) file system, like FTP, Dropbox, or whatever, although currently the only two easy options are `local` (the default) and `s3` to use an AWS S3 bucket.
 
-### aws_s3:
+### aws_s3
 
 _Description:_ In case `storage_system` is set to `s3` you need to pass your AWS S3 Bucket credentials, do it here. Read more below at [Abstract storage with Flysystem](#abstract-storage-with-flysystem).
 _Defaults to:_
 
-```
+```yml
   access_id: ""
   secret_key: ""
   region: ""
