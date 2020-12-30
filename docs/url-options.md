@@ -340,7 +340,7 @@ The second: **path**, grabs an image from a URL, transforms it, saves it, and re
 
 ## Options keys
 
-```yml
+```
 options_keys:
   moz: mozjpeg
   q: quality
