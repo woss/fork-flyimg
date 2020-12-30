@@ -5,10 +5,8 @@
 <p align="center">
 <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/flyimg/backers/badge.svg"></a>
 <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/flyimg/sponsors/badge.svg"></a>
-<a href="https://travis-ci.org/flyimg/flyimg"><img alt="Build Status" src="https://travis-ci.org/flyimg/flyimg.svg?branch=main"></a>
-<a href="https://codeclimate.com/github/flyimg/flyimg"><img alt="Code Climate" src="https://codeclimate.com/github/flyimg/flyimg/badges/gpa.svg"></a>
-<a href="https://codeclimate.com/github/flyimg/flyimg"><img alt="Issue Count" src="https://codeclimate.com/github/flyimg/flyimg/badges/issue_count.svg"></a>
-<a href="https://codeclimate.com/github/flyimg/flyimg/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/flyimg/flyimg/badges/coverage.svg"></a>
+<a href="https://github.com/flyimg/flyimg/actions?query=workflow%3ACI"><img alt="Build Status" src="https://github.com/flyimg/flyimg/workflows/CI/badge.svg?branch=add-super-linter-action?branch=main"></a>
+<a href="https://codecov.io/gh/flyimg/flyimg"><img alt="Codecov" src="https://codecov.io/gh/flyimg/flyimg/branch/main/graph/badge.svg?token=jgryCuAGjF"></a>
 <a href="https://insight.sensiolabs.com/projects/89b18390-ac79-4c3e-bf6c-92cd9993e8d3"><img alt="SensioLabsInsight" src="https://insight.sensiolabs.com/projects/89b18390-ac79-4c3e-bf6c-92cd9993e8d3/mini.png"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="License" src="https://poser.pugx.org/flyimg/flyimg/license.svg"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="Latest Stable Version]" src="https://poser.pugx.org/flyimg/flyimg/v/stable.svg"></a>
