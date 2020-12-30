@@ -35,10 +35,19 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Install dependencies
-      uses: php-actions/composer@v5
-    - name: Rum Uni Test
-      uses: php-actions/phpunit@v2
+    - name: Build Flyimg Docker image
+      uses: actions/github-script@v3
       with:
-        php_version: 7.1
-        configuration: phpunit.xml.dist
+        script: docker build -t flyimg .
+    - name: Run Flyimg container
+      uses: actions/github-script@v3
+      with:
+        script: docker run -itd -v $(pwd):/var/www/html --name flyimg flyimg
+    - name: Install dependencies
+      uses: actions/github-script@v3
+      with:
+        script: docker exec flyimg composer install
+    - name: Run Unit Tests
+      uses: actions/github-script@v3
+      with:
+        script: docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
