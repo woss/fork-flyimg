@@ -111,6 +111,26 @@ class SecurityHandlerTest extends BaseTest
     }
 
     /**
+     *
+     */
+    public function testEncryptionEmptyDecryption()
+    {
+
+        /** @var AppParameters $appParameters */
+        $appParameters = clone $this->app['params'];
+        $appParameters->addParameter('security_key', 'TestSecurityKey');
+        $appParameters->addParameter('security_iv', 'TestSecurityIVXXXX');
+        $securityHandler = new SecurityHandler($appParameters);
+        $options = '';
+        $imageSrc = '';
+        $hash = $securityHandler->encrypt($options . '/' . $imageSrc);
+        $this->expectException(SecurityException::class);
+        $this->expectExceptionMessage("Something went wrong when decrypting the hashed URL: " . $hash);
+
+        $securityHandler->checkSecurityHash($hash, $imageSrc);
+    }
+
+    /**
      * @param AppParameters $appParameters
      * @throws SecurityException
      */

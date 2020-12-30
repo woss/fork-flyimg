@@ -45,6 +45,27 @@ class S3StorageProviderTest extends BaseTest
     /**
      *
      */
+    public function testUploadActionWithS3()
+    {
+        unset($this->app['flysystems']);
+        unset($this->app['image.handler']);
+        $this->app['params']->addParameter(
+            'aws_s3',
+            [
+                'access_id' => 'xxxxx',
+                'secret_key' => 'xxxxx',
+                'region' => 'xxxxx',
+                'bucket_name' => 'xxxxx',
+            ]
+        );
+
+        $this->app->register(new S3StorageProvider());
+        $this->assertContains('https://s3', $this->app['flysystems']['file_path_resolver']);
+    }
+
+    /**
+     *
+     */
     public function testUploadActionWithS3StorageException()
     {
         $this->expectException(MissingParamsException::class);
