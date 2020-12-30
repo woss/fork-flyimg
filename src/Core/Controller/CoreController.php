@@ -9,6 +9,20 @@ use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 class CoreController
 {
+
+    /**
+     * @param Application $app
+     */
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+        $this->response = new Response(
+            $this->app['image.handler'],
+            $this->app['flysystems']['file_path_resolver'],
+            $this->app['params']->parameterByKey('header_cache_days')
+        );
+    }
+
     /**
      * @var Application
      */
@@ -18,19 +32,6 @@ class CoreController
      * @var Response
      */
     protected $response;
-
-    /**
-     * @param Application $app
-     */
-    public function application(Application $app)
-    {
-        $this->app = $app;
-        $this->response = new  Response(
-            $this->app['image.handler'],
-            $this->app['flysystems']['file_path_resolver'],
-            $this->app['params']->parameterByKey('header_cache_days')
-        );
-    }
 
     /**
      * @return ImageHandler
@@ -47,7 +48,7 @@ class CoreController
      */
     public function render(string $templateName): Response
     {
-        $templateFullPath = ROOT_DIR . '/src/Core/Views/' . $templateName . '.php';
+        $templateFullPath = ROOT_DIR . '/src/Core/Views/' . $templateName . '.html';
 
         if (!file_exists($templateFullPath)) {
             throw new FileNotFoundException('Template file note exist: ' . $templateFullPath);

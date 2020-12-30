@@ -44,10 +44,7 @@ class ControllerResolver extends BaseControllerResolver
             throw new InvalidArgumentException(sprintf('Class "%s" does not exist.', $class));
         }
 
-        $controller = new $class();
-        if ($controller instanceof CoreController) {
-            $controller->application($this->app);
-        }
+        $controller = new $class($this->app);
 
         return [$controller, $method];
     }

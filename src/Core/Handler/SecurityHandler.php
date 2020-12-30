@@ -12,9 +12,9 @@ use Core\Exception\SecurityException;
 class SecurityHandler
 {
 
-    const ENCRYPT_METHOD = "AES-256-CBC";
+    public const ENCRYPT_METHOD = "AES-256-CBC";
 
-    /** @var array */
+    /** @var AppParameters */
     protected $appParameters;
 
     /**

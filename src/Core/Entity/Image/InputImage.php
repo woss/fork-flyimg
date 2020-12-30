@@ -10,11 +10,11 @@ use Core\Processor\VideoProcessor;
 class InputImage
 {
     /** Content TYPE */
-    const WEBP_MIME_TYPE = 'image/webp';
-    const JPEG_MIME_TYPE = 'image/jpeg';
-    const PNG_MIME_TYPE = 'image/png';
-    const GIF_MIME_TYPE = 'image/gif';
-    const PDF_MIME_TYPE = 'application/pdf';
+    public const WEBP_MIME_TYPE = 'image/webp';
+    public const JPEG_MIME_TYPE = 'image/jpeg';
+    public const PNG_MIME_TYPE = 'image/png';
+    public const GIF_MIME_TYPE = 'image/gif';
+    public const PDF_MIME_TYPE = 'application/pdf';
 
     /** @var OptionsBag */
     protected $optionsBag;

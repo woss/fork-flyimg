@@ -73,7 +73,7 @@ class OptionsBag
             $keys['refresh'] = null;
         }
 
-        return md5(implode('.', $keys).$parsedImageUrl);
+        return md5(implode('.', $keys) . $parsedImageUrl);
     }
 
     /**
@@ -87,7 +87,7 @@ class OptionsBag
     {
         $parsedImageUrl = preg_replace('/\\?.*/', '', $imageUrl);
 
-        return TMP_DIR.'original-'.md5($parsedImageUrl);
+        return TMP_DIR . 'original-' . md5($parsedImageUrl);
     }
 
     /**

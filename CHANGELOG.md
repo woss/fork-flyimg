@@ -1,5 +1,7 @@
 # Change Log
 
+## Releases
+
 ### 1.1.7 (2020/12/28 19:28 +00:00)
 
 - [#273](https://github.com/flyimg/flyimg/pull/273) Update Changelog (@sadok-f)

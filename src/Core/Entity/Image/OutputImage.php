@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 class OutputImage
 {
     /** Extension output */
-    const EXT_INPUT = 'input';
-    const EXT_AUTO = 'auto';
-    const EXT_PNG = 'png';
-    const EXT_WEBP = 'webp';
-    const EXT_JPG = 'jpg';
-    const EXT_GIF = 'gif';
+    public const EXT_INPUT = 'input';
+    public const EXT_AUTO = 'auto';
+    public const EXT_PNG = 'png';
+    public const EXT_WEBP = 'webp';
+    public const EXT_JPG = 'jpg';
+    public const EXT_GIF = 'gif';
 
     /** @var InputImage */
     protected $inputImage;

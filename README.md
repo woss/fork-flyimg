@@ -18,11 +18,11 @@
 
 Image resizing, cropping and compression on the fly with the impressive [MozJPEG](http://calendar.perfplanet.com/2014/mozjpeg-3-0) compression algorithm. One Docker container to build your own Cloudinary-like service.
 
-### Fetch an image from anywhere; resize, compress, cache and serve...<small> and serve, and serve, and serve...</small>
+## Fetch an image from anywhere; resize, compress, cache and serve...<small> and serve, and serve, and serve...</small>
 
 You pass the image URL and a set of keys with options, like size or compression. Flyimg will fetch the image, convert it, store it, cache it and serve it. The next time the request comes, it will serve the cached version.
 
-```
+```html
 <!-- https://m0.cl/t/butterfly-3000.jpg -->
 <img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://m0.cl/t/butterfly-3000.jpg">
 ```
@@ -53,9 +53,7 @@ Change the first part of the path from `upload` to `path`, like so:
 
 https://oi.flyimg.io/path/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg will output in the body of the response:
 
-```
-http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg
-```
+`http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg`
 
 ## Get an image to fit maximum dimensions
 
@@ -415,7 +413,7 @@ _Description:_ Apply blur effect on faces in a given image
 
 There are some easy to setup server configurations in the `config/parameters.yml` file, you can see the full list of options and server configurations in the **[Application Options Document](docs/application-options.md)**
 
-## Security: Restricting Source Domains:
+## Security: Restricting Source Domains
 
 Restricted domains disabled by default. This means that you can fetch a resource from any URL. To enable the domain restriction, change in config/parameters.yml
 
@@ -431,7 +429,7 @@ whitelist_domains:
   - www.domain-2.org
 ```
 
-## Security: Signature Generation:
+## Security: Signature Generation
 
 Based on this [RFC](https://github.com/flyimg/flyimg/issues/96) Signature Generation was added to Flyimg in order to avoid DDOS attacks.
 
@@ -452,11 +450,11 @@ Hashed request: TGQ1WWRKVGUrZUpoNmJMc2RMUENPL2t6ZDJkWkdOejlkM0p0U0F3WTgxOU5IMzF3
 
 Now you can request the image throw this new url:
 
-```
+```html
 http://localhost:8080/upload/TGQ1WWRKVGUrZUpoNmJMc2RMUENPL2t6ZDJkWkdOejlkM0p0U0F3WTgxOU5IMzF3U3R0d2V4b3dqbG52cFRTSFZDcmhrY1JnaGZYOHJ3V0NpZDNNRmc9PQ==
 ```
 
-## Run Unit Tests:
+## Run Unit Tests
 
 ```sh
 docker exec flyimg vendor/bin/phpunit
@@ -468,7 +466,7 @@ Generate Html Code Coverage
 docker exec flyimg vendor/bin/phpunit --coverage-html build/html
 ```
 
-## How to Provision the application on:
+## How to Provision the application on
 
 - [DigitalOcean](https://github.com/flyimg/DigitalOcean-provision)
 - [AWS Elastic-Beanstalk](https://github.com/flyimg/Elastic-Beanstalk-provision)
@@ -496,13 +494,13 @@ See [benchmark.sh](https://github.com/flyimg/flyimg/blob/main/benchmark.sh) for 
 
 Requires: **Vegeta**[http://github.com/tsenart/vegeta](http://github.com/tsenart/vegeta)
 
-```
+```sh
 ./benchmark.sh
 ```
 
 Latest Results:
 
-```
+```sh
 Crop http://localhost:8080/upload/w_200,h_200,c_1/Rovinj-Croatia.jpg
 Requests      [total, rate]            500, 50.10
 Duration      [total, attack, wait]    9.991377689s, 9.97999997s, 11.377719ms

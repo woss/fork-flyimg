@@ -142,7 +142,7 @@ class ImageMetaInfo
      */
     protected function imageImIdentify(): array
     {
-        $commandStr = Processor::IM_IDENTITY_COMMAND.' '.$this->path().' 2>&1';
+        $commandStr = Processor::IM_IDENTITY_COMMAND . ' ' . $this->path() . ' 2>&1';
         exec($commandStr, $output, $code);
         if (count($output) === 0) {
             $outputError = $code;
@@ -152,9 +152,9 @@ class ImageMetaInfo
 
         if ($code !== 0) {
             throw new ExecFailedException(
-                "Command failed. The exit code: ".
-                $outputError."<br>The last line of output: ".
-                $commandStr
+                "Command failed. The exit code: " .
+                    $outputError . "<br>The last line of output: " .
+                    $commandStr
             );
         }
 

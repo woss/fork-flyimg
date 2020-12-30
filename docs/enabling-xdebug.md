@@ -4,19 +4,19 @@
 
 - Create an alias for localhost network
 
-```
+```sh
 sudo ifconfig en0 alias 10.254.254.254 255.255.255.0
 ```
 
 - Run the Flyimg image with variable environment
 
-```
+```sh
 docker run -itd -p 8080:80 -e PHP_XDEBUG_ENABLED=1 -e XDEBUG_CONFIG=remote_host=10.254.254.254 -e PHP_IDE_CONFIG=serverName=Xdebug -v (pwd):/var/www/html --name flyimg flyimg
 ```
 
 - Add Xdebug params to php.ini
 
-```
+```sh
 docker exec flyimg sh -c 'printf "xdebug.idekey=PHPSTORM
 xdebug.default_enable=0
 xdebug.remote_enable=1
@@ -29,7 +29,8 @@ xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini'
 ```
 
 - Restart PHP7-fpm
-```
+
+```sh
 docker exec flyimg supervisorctl restart php7-fpm
 ```
 

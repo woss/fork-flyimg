@@ -13,13 +13,13 @@ use Tests\Core\BaseTest;
  */
 class ImageProcessorTest extends BaseTest
 {
-    const PNG_TEST_SQUARE_IMAGE = __DIR__ . '/../../testImages/square-opaque-600.png';
-    const PNG_TEST_LANDSCAPE_IMAGE = __DIR__ . '/../../testImages/landscape-color-squares-900x600.png';
-    const PNG_TEST_PORTRAIT_IMAGE = __DIR__ . '/../../testImages/portrait-color-squares-600x900.png';
-    const PNG_TEST_SMALL_SQUARE_IMAGE = __DIR__ . '/../../testImages/square-opaque-200.png';
-    const PNG_TEST_SMALL_LANDSCAPE_IMAGE = __DIR__ . '/../../testImages/landscape-color-squares-300x200.png';
-    const PNG_TEST_SMALL_PORTRAIT_IMAGE = __DIR__ . '/../../testImages/portrait-color-squares-200x300.png';
-    const OUTPUT_EXTENSIONS = ['png', 'jpg', 'webp', 'gif'];
+    public const PNG_TEST_SQUARE_IMAGE = __DIR__ . '/../../testImages/square-opaque-600.png';
+    public const PNG_TEST_LANDSCAPE_IMAGE = __DIR__ . '/../../testImages/landscape-color-squares-900x600.png';
+    public const PNG_TEST_PORTRAIT_IMAGE = __DIR__ . '/../../testImages/portrait-color-squares-600x900.png';
+    public const PNG_TEST_SMALL_SQUARE_IMAGE = __DIR__ . '/../../testImages/square-opaque-200.png';
+    public const PNG_TEST_SMALL_LANDSCAPE_IMAGE = __DIR__ . '/../../testImages/landscape-color-squares-300x200.png';
+    public const PNG_TEST_SMALL_PORTRAIT_IMAGE = __DIR__ . '/../../testImages/portrait-color-squares-200x300.png';
+    public const OUTPUT_EXTENSIONS = ['png', 'jpg', 'webp', 'gif'];
 
     protected $imageProcessor;
 
