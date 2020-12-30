@@ -1,6 +1,7 @@
-## Change Log
+# Change Log
 
 ### 1.1.7 (2020/12/28 19:28 +00:00)
+
 - [#273](https://github.com/flyimg/flyimg/pull/273) Update Changelog (@sadok-f)
 - [#272](https://github.com/flyimg/flyimg/pull/272) Downgrade Github action to v5 (@sadok-f)
 - [#271](https://github.com/flyimg/flyimg/pull/271) add empty tag_prefix for Github actions (@sadok-f)
@@ -11,6 +12,7 @@
 - [#254](https://github.com/flyimg/flyimg/pull/254) Bump symfony/http-foundation from 4.4.1 to 4.4.7 (@dependabot[bot])
 
 ### 1.1.6 (2020/02/12 09:19 +00:00)
+
 - [#252](https://github.com/flyimg/flyimg/pull/252) Update CHANGELOG file, closes #251 (@sadok-f)
 - [#250](https://github.com/flyimg/flyimg/pull/250) Update changelog file closes #249 (@sadok-f)
 - [#247](https://github.com/flyimg/flyimg/pull/247) Updated demo source links (@louisl)
@@ -20,6 +22,7 @@
 - [#240](https://github.com/flyimg/flyimg/pull/240) Update composer, fixes #239 (@sadok-f)
 
 ### 1.1.5 (2019/12/03 09:37 +00:00)
+
 - [#238](https://github.com/flyimg/flyimg/pull/238) Add changelogs for the new release (@sadok-f)
 - [#237](https://github.com/flyimg/flyimg/pull/237) Fixing FaceDetect not working, closes #236 (@sadok-f)
 - [#233](https://github.com/flyimg/flyimg/pull/233) Update Readme: add Google Cloud Run description, closes #227 (@sadok-f)
@@ -32,6 +35,7 @@
 - [#220](https://github.com/flyimg/flyimg/pull/220) Update CHANGELOG.md, closes #219 (@sadok-f)
 
 ### 1.1.4 (2019/08/07 05:42 +00:00)
+
 - [#218](https://github.com/flyimg/flyimg/pull/218) Update docker libraries and move to use tags images, closes #217 (@sadok-f)
 - [#216](https://github.com/flyimg/flyimg/pull/216) Update php minimum version to 7.1, closes #215 (@sadok-f)
 - [#214](https://github.com/flyimg/flyimg/pull/214) Fix composer install warning, closes #213 (@sadok-f)
@@ -39,6 +43,7 @@
 - [#207](https://github.com/flyimg/flyimg/pull/207) Update CHANGELOG file, closes #206 (@sadok-f)
 
 ### 1.1.3 (2019/01/09 22:15 +00:00)
+
 - [#205](https://github.com/flyimg/flyimg/pull/205) Updated the docs regarding blur, unsharp, and sharpen filters. Fixes #204 (@baamenabar)
 - [#203](https://github.com/flyimg/flyimg/pull/203) fix Unsharp option and add other options such as sharpen and blur (@sadok-f)
 - [#201](https://github.com/flyimg/flyimg/pull/201) New parameter to add more options to the header, fixes #200 (@sadok-f)
@@ -58,6 +63,7 @@
 - [#172](https://github.com/flyimg/flyimg/pull/172) issue-#171: Missing Test coverage in CodeClimate, fixes #171 (@sadok-f)
 
 ### 1.1.2 (2018/08/03 16:49 +00:00)
+
 - [#170](https://github.com/flyimg/flyimg/pull/170) issue-#169: Output auto problem, closes #169 (@sadok-f)
 - [#166](https://github.com/flyimg/flyimg/pull/166) Update README.md (@ankush981)
 - [#165](https://github.com/flyimg/flyimg/pull/165) Changed the domain where the source sample images are hosted. (@baamenabar)
@@ -68,9 +74,11 @@
 - [#150](https://github.com/flyimg/flyimg/pull/150) [issue-#149] Fix warning from SL insight, closes #149 (@sadok-f)
 
 ### 1.1.1 (2017/11/06 17:02 +00:00)
+
 - [#147](https://github.com/flyimg/flyimg/pull/147) [issue-#145] Fix the background color missing, closes #145 (@sadok-f)
 
 ### 1.1.0 (2017/10/29 10:14 +00:00)
+
 - [#144](https://github.com/flyimg/flyimg/pull/144) [issue-#109] Update docs about the new feature image extraction, (@sadok-f)
 - [#143](https://github.com/flyimg/flyimg/pull/143) [issue-#142] Create Response Entity, closes #142 (@sadok-f)
 - [#141](https://github.com/flyimg/flyimg/pull/141) "rebuild" was missing it's "d". (@tlongren)
@@ -78,17 +86,12 @@
 - [#139](https://github.com/flyimg/flyimg/pull/139) [issue-#101] Add Missing Headers, closes#101 (@sadok-f)
 
 ### 1.0.1 (2017/10/25 15:32 +00:00)
+
 - [#138](https://github.com/flyimg/flyimg/pull/138) [issue-#137] Fix the rotate issue, closes #137 (@sadok-f)
 - [#136](https://github.com/flyimg/flyimg/pull/136) Replace getters and setters names with meaning names, closes #135 (@sadok-f)
 - [#134](https://github.com/flyimg/flyimg/pull/134) Refactor part 3: replace list function with [] (new in php7.1), close… (@sadok-f)
 - [#130](https://github.com/flyimg/flyimg/pull/130) Image Processor geometry refactor, added more tests. (@flyimg)
-- [#124](https://github.com/flyimg/flyimg/pull/124) [WIP]: Added more cases for the tests. Fixes #115. Added Image Info to the source image …
- 
- Alright! I'm done with this PR, I have more tests, but they are failing and I need to fix the functionallity. I'll do that in another PR. I've done enough here. And all works same as before.
- 
- We do need to fix all cases for the image identification (minor bugs there).
- 
- Also need to create an abstract Executor class for the command line executions and binary paths. (@flyimg)
+- [#124](https://github.com/flyimg/flyimg/pull/124) [WIP]: Added more cases for the tests. Fixes #115. Added Image Info to the source image, Also need to create an abstract Executor class for the command line executions and binary paths. (@flyimg)
 - [#128](https://github.com/flyimg/flyimg/pull/128) Move url docs to https, closes #127 (@sadok-f)
 - [#126](https://github.com/flyimg/flyimg/pull/126) Add Community links (Github and Twitter) (@sadok-f)
 - [#123](https://github.com/flyimg/flyimg/pull/123) Fix SensioLabsInsight warning, closes #122 (@sadok-f)
@@ -121,44 +124,55 @@
 - [#73](https://github.com/flyimg/flyimg/pull/73) Increase code coverage unit test + Update readme (@sadok-f)
 - [#72](https://github.com/flyimg/flyimg/pull/72) Add more UnitTest in order to increase the code coverage (@sadok-f)
 - [#71](https://github.com/flyimg/flyimg/pull/71) Add More Unit test cover WebTestCases
- #42 (@sadok-f)
+  #42 (@sadok-f)
 
 ### 1.0.0 (2017/06/30 16:12 +00:00)
+
 - [#70](https://github.com/flyimg/flyimg/pull/70) Optimization part 1 (@sadok-f)
 - [#69](https://github.com/flyimg/flyimg/pull/69) Add travis-ci test coverage (@sadok-f)
 
 ### 0.2.0 (2017/06/30 12:10 +00:00)
-- [#68](https://github.com/flyimg/flyimg/pull/68) Add  test coverage (@sadok-f)
+
+- [#68](https://github.com/flyimg/flyimg/pull/68) Add test coverage (@sadok-f)
 
 ### 0.1.9 (2017/06/30 10:46 +00:00)
+
 - [#67](https://github.com/flyimg/flyimg/pull/67) Add travis ci test coverage (@sadok-f)
 - [#66](https://github.com/flyimg/flyimg/pull/66) Add travis ci test coverage (@sadok-f)
 - [#63](https://github.com/flyimg/flyimg/pull/63) Create CODE_OF_CONDUCT.md (@sadok-f)
 
 ### 0.1.8 (2017/06/27 05:09 +00:00)
+
 - [#62](https://github.com/flyimg/flyimg/pull/62) Refactor: Performance, structure and code improvement (@sadok-f)
 
 ### 0.1.7 (2017/06/21 14:27 +00:00)
+
 - [#60](https://github.com/flyimg/flyimg/pull/60) Activating Open Collective (@xdamman)
 
 ### 0.1.6 (2017/03/28 05:56 +00:00)
+
 - [#57](https://github.com/flyimg/flyimg/pull/57) Allow to serve WebP if explicitly requested
- 
- I need this to keep working on other branch, so I'll be a dick and just merge it without approval. If there is anything you don't like we can revert, no problem. (@baamenabar)
+
+I need this to keep working on other branch, so I'll be a dick and just merge it without approval. If there is anything you don't like we can revert, no problem. (@baamenabar)
+
 - [#56](https://github.com/flyimg/flyimg/pull/56) Update docs (@sadok-f)
 - [#55](https://github.com/flyimg/flyimg/pull/55) Move phpunit to require-dev section (@sadok-f)
 - [#53](https://github.com/flyimg/flyimg/pull/53) Remove Twig from the repo. Clean clean clean! (@sadok-f)
 
 ### 0.1.4 (2017/03/07 22:32 +00:00)
+
 - [#51](https://github.com/flyimg/flyimg/pull/51) Refactor part 1 (@sadok-f)
 
 ### 0.1.3 (2017/02/18 11:27 +00:00)
+
 - [#50](https://github.com/flyimg/flyimg/pull/50) Add gif support to flyimg (@sadok-f)
 
 ### 0.1.2 (2017/02/09 21:22 +00:00)
+
 - [#45](https://github.com/flyimg/flyimg/pull/45) Downgrade to Twig 1.3, refactor and cleanup (@sadok-f)
 
 ### 0.1.0 (2017/02/07 18:08 +00:00)
+
 - [#43](https://github.com/flyimg/flyimg/pull/43) Add path action to default controller to return the full path of processed image (@sadok-f)
 - [#42](https://github.com/flyimg/flyimg/pull/42) More unittests (@sadok-f)
 - [#41](https://github.com/flyimg/flyimg/pull/41) Add support to output png images in case source file is png (@sadok-f)
