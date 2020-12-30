@@ -6,7 +6,7 @@ vegeta -version >/dev/null 2>&1 || { echo >&2 "Benchmark require Vegeta but it's
 # which port
 port=8080
 # a random name for the container and the image
-randName=$(cat /dev/random | LC_CTYPE=C tr -dc "[:lower:]" | head -c 8)
+randName=$(LC_CTYPE=C tr -dc "[:lower:]" < /dev/random | head -c 8)
 
 # build the image
 docker build -t "$randName" .
