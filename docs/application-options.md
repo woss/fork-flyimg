@@ -1,6 +1,6 @@
 # Application Options
 
-## Application Options
+## The file config/parameters.yml
 
 Here are the app options you can configure with the [config/parameters.yml](https://github.com/flyimg/flyimg/blob/main/config/parameters.yml) these options operate at runtime, you don't need to rebuild the container or restart any service, all requests<sup><a name="footnote1">1</a></sup> will check this config.
 
