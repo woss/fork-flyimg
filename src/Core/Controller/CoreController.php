@@ -5,7 +5,7 @@ namespace Core\Controller;
 use Core\Entity\Response;
 use Core\Handler\ImageHandler;
 use Silex\Application;
-use Symfony\Component\Filesystem\Exception\FileNotFoundException;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 class CoreController
 {
