@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Define Constants && Load parameters files
+ */
+define('UPLOAD_WEB_DIR', 'uploads/');
+define('UPLOAD_DIR', __DIR__ . '/web/' . UPLOAD_WEB_DIR);
+define('TMP_DIR', __DIR__ . '/var/tmp/');
+define('ROOT_DIR', __DIR__);
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Debug\ErrorHandler;
@@ -13,7 +21,7 @@ $app['params'] = new \Core\Entity\AppParameters(__DIR__ . '/config/parameters.ym
 
 
 $app['env'] = $_ENV['env'] ?: 'dev';
-$exceptionHandlerFunction = function (\Exception $e) : void {
+$exceptionHandlerFunction = function (\Exception $e): void {
     $out = fopen('php://stdout', 'w');
     fputs(
         $out,
@@ -29,14 +37,6 @@ $exceptionHandler->setHandler($exceptionHandlerFunction);
 if ('test' !== $app['env']) {
     $app->error($exceptionHandlerFunction);
 }
-
-/**
- * Define Constants && Load parameters files
- */
-define('UPLOAD_WEB_DIR', 'uploads/');
-define('UPLOAD_DIR', __DIR__ . '/web/' . UPLOAD_WEB_DIR);
-define('TMP_DIR', __DIR__ . '/var/tmp/');
-define('ROOT_DIR', __DIR__);
 
 if (!is_dir(UPLOAD_DIR)) {
     mkdir(UPLOAD_DIR, 0777, true);
@@ -86,7 +86,7 @@ $app['resolver'] = function (\Silex\Application $app) {
  *
  * @return \Core\Handler\ImageHandler
  */
-$app['image.handler'] = function (\Silex\Application $app) : \Core\Handler\ImageHandler {
+$app['image.handler'] = function (\Silex\Application $app): \Core\Handler\ImageHandler {
     return new \Core\Handler\ImageHandler(
         $app['flysystems']['upload_dir'],
         $app['params']

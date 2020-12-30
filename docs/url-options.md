@@ -26,7 +26,7 @@ It's the first operation the server does, it will try to get an image from the U
 
 ---
 
-# image_options
+## image_options
 
 Here you set all the transformations and output settings you want to apply to the image you are fetching.
 

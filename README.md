@@ -41,7 +41,7 @@ Flyimg can be deployed to GCP as a serverless container in one click with Cloud 
 - Height: 250
 - Crop if necesary: `c_1`
 
-https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg
+`https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
@@ -51,7 +51,7 @@ This will serve the image.
 
 Change the first part of the path from `upload` to `path`, like so:
 
-https://oi.flyimg.io/path/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg will output in the body of the response:
+`https://oi.flyimg.io/path/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg` will output in the body of the response:
 
 `http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg`
 
@@ -62,7 +62,7 @@ https://oi.flyimg.io/path/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg wil
 - Height: 250
 - Note that we ommit the crop parameter
 
-https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg
+`https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
@@ -74,7 +74,7 @@ https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg
 - Crop: `c_1`
 - Rotate: 90
 
-https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg
+`https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
@@ -86,7 +86,7 @@ https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.
 - Crop: `c_1`
 - Quality: 30
 
-https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg
+`https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
@@ -97,7 +97,7 @@ https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.
 - Height: 200
 - Page: `pg_1`
 
-https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pdf
+`https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pdf`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pdf)
 
@@ -108,7 +108,7 @@ https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pd
 - Height: 200
 - Time: `tm_00:00:05`
 
-https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4
+`https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4)
 
@@ -222,9 +222,9 @@ The above command will make the Dockerfile run supervisord command which launche
 
 # Testing Flyimg service
 
-You can navigate to your machine's IP in port 8080 (ex: http://127.0.0.1:8080/ ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors at this stage it's most likely that composer has not finished installing or skipped something.
+You can navigate to your machine's IP in port 8080 (ex: `http://127.0.0.1:8080/` ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors at this stage it's most likely that composer has not finished installing or skipped something.
 
-You can test your image resizing service by navigating to: http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg
+You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg`
 
 ![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
@@ -367,7 +367,7 @@ You can also use a shorter syntax for the first 60 seconds.
 
 **example:`tm_10`**
 
-`tm_10 ` : `https://oi.flyimg.io/upload/tm_10/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
+`tm_10` : `https://oi.flyimg.io/upload/tm_10/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
 
 ## Face Detection options
 

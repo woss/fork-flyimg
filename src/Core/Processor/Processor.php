@@ -30,7 +30,7 @@ class Processor
     public const FFMPEG_COMMAND = '/usr/bin/ffmpeg';
 
     /** OutputImage options excluded from IM command */
-    const EXCLUDED_IM_OPTIONS = ['quality', 'mozjpeg', 'refresh', 'webp-lossless'];
+    public const EXCLUDED_IM_OPTIONS = ['quality', 'mozjpeg', 'refresh', 'webp-lossless'];
 
     /**
      * @param Command $command
