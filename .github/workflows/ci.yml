@@ -1,4 +1,4 @@
-name: Super-Linter
+name: CI
 
 # Run this workflow every time a new commit pushed to your repository
 on: push
@@ -27,3 +27,18 @@ jobs:
           VALIDATE_PHP_PHPSTAN: false
           VALIDATE_PHP_PSALM: false
           VALIDATE_DOCKERFILE_HADOLINT: false
+
+  build-test:
+    runs-on: ubuntu-18.04
+    name: Run Unit Testss
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      uses: php-actions/composer@v5
+    - name: Rum Uni Test
+      uses: php-actions/phpunit@v2
+      with:
+        php_version: 7.1
+        configuration: phpunit.xml.dist
