@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v2
-
+        
       - name: Build CHANGELOG
-        uses: mikepenz/release-changelog-builder-action@main
         id: change_log
-        with:
+        uses: mikepenz/release-changelog-builder-action@main
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version and push tag
