@@ -13,6 +13,12 @@ jobs:
       - name: Code Checkout
         uses: actions/checkout@v2
 
+      - name: Generate CHANGELOG
+        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        id: change_log
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v5
@@ -21,6 +27,15 @@ jobs:
           tag_prefix: ""
           release_branches: main
 
+      - name: Create a GitHub release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: |
+            ${{ steps.change_log.outputs.changelog }}
 
   docker_publish:
     name: Docker Build and Push
