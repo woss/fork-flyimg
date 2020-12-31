@@ -41,6 +41,8 @@ jobs:
     name: Docker Build and Push
     runs-on: ubuntu-18.04
     needs: create_tag
+    outputs:
+      new_tag: ${{ needs.create_tag.outputs.new_tag }}
     steps:
       - name: Code Checkout
         uses: actions/checkout@v2
@@ -80,6 +82,6 @@ jobs:
         username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
         key: ${{ secrets.FLYIMG_DEMO_KEY }}
         script: |
-          docker rm -f flyimg
-          docker run -itd -p 8080:80 --name flyimg flyimg/flyimg-build:${{ needs.create_tag.outputs.new_tag }}
+          docker rm -f flyimg &>/dev/null
+          docker run -itd -p 8080:80 --name flyimg flyimg/flyimg-build:${{ needs.docker_publish.outputs.new_tag }}
 
