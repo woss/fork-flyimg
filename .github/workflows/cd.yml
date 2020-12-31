@@ -71,6 +71,7 @@ jobs:
   deploy_demo:
     name: Deploy to Demo oi.flyimg.io
     runs-on: ubuntu-18.04
+    needs: docker_publish
     steps:
     - name: Deploy new version of Flyimg to the demo server
       uses: appleboy/ssh-action@master
