@@ -1,10 +1,11 @@
-name: Create New Tag
+name: CD
 on:
   push:
     branches:
       - main
 jobs:
   create_tag:
+    name: Create new Tag and Release
     runs-on: ubuntu-18.04
     outputs:
       new_tag: ${{ steps.tag_version.outputs.new_tag }}
@@ -36,9 +37,9 @@ jobs:
           body: |
             ${{ steps.change_log.outputs.changelog }}
 
-  docker-build-push:
-    runs-on: ubuntu-18.04
+  docker_publish:
     name: Docker Build and Push
+    runs-on: ubuntu-18.04
     needs: create_tag
     steps:
       - name: Code Checkout
@@ -66,3 +67,18 @@ jobs:
           tags: |
             flyimg/flyimg-build:latest
             flyimg/flyimg-build:${{ needs.create_tag.outputs.new_tag }}
+  
+  deploy_demo:
+    name: Deploy to Demo oi.flyimg.io
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Deploy new version of Flyimg to the demo server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.FLYIMG_DEMO_HOST }}
+        username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
+        key: ${{ secrets.FLYIMG_DEMO_KEY }}
+        script: |
+          docker rm -f flyimg
+          docker run -itd -p 8080:80 --name flyimg flyimg/flyimg-build:${{ needs.create_tag.outputs.new_tag }}
+
