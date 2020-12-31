@@ -69,19 +69,18 @@ jobs:
           tags: |
             flyimg/flyimg-build:latest
             flyimg/flyimg-build:${{ needs.create_tag.outputs.new_tag }}
-  
+
   deploy_demo:
     name: Deploy to Demo oi.flyimg.io
     runs-on: ubuntu-18.04
     needs: docker_publish
     steps:
-    - name: Deploy new version of Flyimg to the demo server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.FLYIMG_DEMO_HOST }}
-        username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
-        key: ${{ secrets.FLYIMG_DEMO_KEY }}
-        script: |
-          docker rm -f flyimg &>/dev/null
-          docker run -itd -p 8080:80 --name flyimg flyimg/flyimg-build:${{ needs.docker_publish.outputs.new_tag }}
-
+      - name: Deploy new version of Flyimg to the demo server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.FLYIMG_DEMO_HOST }}
+          username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
+          key: ${{ secrets.FLYIMG_DEMO_KEY }}
+          script: |
+            bash -c "docker rm -f flyimg &>/dev/null"
+            docker run -itd -p 8080:80 --name flyimg flyimg/flyimg-build:${{ needs.docker_publish.outputs.new_tag }}
