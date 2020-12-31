@@ -15,6 +15,7 @@ jobs:
 
       - name: Generate CHANGELOG
         uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        id: change_log
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -26,12 +27,6 @@ jobs:
           tag_prefix: ""
           release_branches: main
 
-      - name: Read CHANGELOG.md
-        id: change_log
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./CHANGELOG.md
-
       - name: Create a GitHub release
         uses: actions/create-release@v1
         env:
@@ -39,8 +34,7 @@ jobs:
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: |
-            ${{ steps.change_log.outputs.content }}
+          body: ${{ steps.change_log.outputs.changelog }}
 
   docker_publish:
     name: Docker Build and Push
