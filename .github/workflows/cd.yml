@@ -17,7 +17,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@main
         id: change_log
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version and push tag
         id: tag_version
