@@ -13,8 +13,8 @@ jobs:
       - name: Code Checkout
         uses: actions/checkout@v2
 
-      - name: Generate CHANGELOG
-        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+      - name: Build CHANGELOG
+        uses: mikepenz/release-changelog-builder-action@main
         id: change_log
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -34,8 +34,8 @@ jobs:
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: |
-            ${{ steps.change_log.outputs.changelog }}
+          body: ${{steps.change_log.outputs.changelog}}
+
 
   docker_publish:
     name: Docker Build and Push
