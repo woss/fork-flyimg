@@ -71,7 +71,7 @@ class Response extends BaseResponse
      */
     protected function getLastModifiedDate(OutputImage $image): string
     {
-        $imagePath =  UPLOAD_DIR. $image->getOutputImageName();
+        $imagePath =  UPLOAD_DIR . $image->getOutputImageName();
         $lastModifiedGmt = filemtime($imagePath);
 
         return gmdate("D, d M Y H:i:s T", $lastModifiedGmt);

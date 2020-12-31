@@ -1,8 +1,12 @@
 FROM flyimg/base-image:1.1.0
 
 # Install other file processors.
-RUN apt-get update
-RUN apt-get install -y ghostscript ffmpeg
+RUN apt update && \
+    apt install -y \
+    ghostscript \
+    ffmpeg \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY .    /var/www/html
 

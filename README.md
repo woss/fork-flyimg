@@ -1,4 +1,3 @@
-
 <p align="center"><a href="http://flyimg.io" target="_blank">
     <img alt="Flyimglogo" src="https://raw.githubusercontent.com/flyimg/graphic-assets/main/logo/raster/flyimg-logo-rgb.png" width="300">
 </a></p>
@@ -6,10 +5,8 @@
 <p align="center">
 <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/flyimg/backers/badge.svg"></a>
 <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/flyimg/sponsors/badge.svg"></a>
-<a href="https://travis-ci.org/flyimg/flyimg"><img alt="Build Status" src="https://travis-ci.org/flyimg/flyimg.svg?branch=main"></a>
-<a href="https://codeclimate.com/github/flyimg/flyimg"><img alt="Code Climate" src="https://codeclimate.com/github/flyimg/flyimg/badges/gpa.svg"></a>
-<a href="https://codeclimate.com/github/flyimg/flyimg"><img alt="Issue Count" src="https://codeclimate.com/github/flyimg/flyimg/badges/issue_count.svg"></a>
-<a href="https://codeclimate.com/github/flyimg/flyimg/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/flyimg/flyimg/badges/coverage.svg"></a>
+<a href="https://github.com/flyimg/flyimg/actions?query=workflow%3ACI"><img alt="Build Status" src="https://github.com/flyimg/flyimg/workflows/CI/badge.svg?branch=add-super-linter-action?branch=main"></a>
+<a href="https://codecov.io/gh/flyimg/flyimg"><img alt="Codecov" src="https://codecov.io/gh/flyimg/flyimg/branch/main/graph/badge.svg?token=jgryCuAGjF"></a>
 <a href="https://insight.sensiolabs.com/projects/89b18390-ac79-4c3e-bf6c-92cd9993e8d3"><img alt="SensioLabsInsight" src="https://insight.sensiolabs.com/projects/89b18390-ac79-4c3e-bf6c-92cd9993e8d3/mini.png"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="License" src="https://poser.pugx.org/flyimg/flyimg/license.svg"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="Latest Stable Version]" src="https://poser.pugx.org/flyimg/flyimg/v/stable.svg"></a>
@@ -19,11 +16,11 @@
 
 Image resizing, cropping and compression on the fly with the impressive [MozJPEG](http://calendar.perfplanet.com/2014/mozjpeg-3-0) compression algorithm. One Docker container to build your own Cloudinary-like service.
 
-### Fetch an image from anywhere; resize, compress, cache and serve...<small> and serve, and serve, and serve...</small>
+## Fetch an image from anywhere; resize, compress, cache and serve...<small> and serve, and serve, and serve...</small>
 
 You pass the image URL and a set of keys with options, like size or compression. Flyimg will fetch the image, convert it, store it, cache it and serve it. The next time the request comes, it will serve the cached version.
 
-```
+```html
 <!-- https://m0.cl/t/butterfly-3000.jpg -->
 <img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://m0.cl/t/butterfly-3000.jpg">
 ```
@@ -34,112 +31,115 @@ Flyimg can be deployed to GCP as a serverless container in one click with Cloud 
 [![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git)](https://deploy.cloud.run)
 
 # Basic Usage Examples
-## Get an image to fill exact dimensions
-* Image: `https://m0.cl/t/butterfly-3000.jpg` 
-* Width: 300
-* Height: 250
-* Crop if necesary: `c_1`
 
-https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg
+## Get an image to fill exact dimensions
+
+- Image: `https://m0.cl/t/butterfly-3000.jpg`
+- Width: 300
+- Height: 250
+- Crop if necesary: `c_1`
+
+`https://oi.flyimg.io/upload/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 This will serve the image.
 
 ## Get the path to the generated image instead of serving it
+
 Change the first part of the path from `upload` to `path`, like so:
 
-https://oi.flyimg.io/path/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg will output in the body of the response:
+`https://oi.flyimg.io/path/w_300,h_250,c_1/https://m0.cl/t/butterfly-3000.jpg` will output in the body of the response:
 
-
-```
-http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg
-```
+`http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg`
 
 ## Get an image to fit maximum dimensions
-* Image: `https://m0.cl/t/butterfly-3000.jpg` 
-* Width: 300
-* Height: 250
-* Note that we ommit the crop parameter
 
-https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg
+- Image: `https://m0.cl/t/butterfly-3000.jpg`
+- Width: 300
+- Height: 250
+- Note that we ommit the crop parameter
+
+`https://oi.flyimg.io/upload/w_300,h_250/https://m0.cl/t/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Crop to a square and rotate 90 degrees clockwise
-* Image: `https://m0.cl/t/butterfly-3000.jpg` 
-* Width: 200
-* Height: 200
-* Crop: `c_1`
-* Rotate: 90
 
-https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg
+- Image: `https://m0.cl/t/butterfly-3000.jpg`
+- Width: 200
+- Height: 200
+- Crop: `c_1`
+- Rotate: 90
+
+`https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://m0.cl/t/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Get an image with exact dimensions and low quality
-* Image: `https://m0.cl/t/butterfly-3000.jpg` 
-* Width: 200
-* Height: 200
-* Crop: `c_1`
-* Quality: 30
 
-https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg
+- Image: `https://m0.cl/t/butterfly-3000.jpg`
+- Width: 200
+- Height: 200
+- Crop: `c_1`
+- Quality: 30
+
+`https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://m0.cl/t/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
 ## Get a PDF page image to fit dimensions
-* PDF: `https://oi.flyimg.io/lighthouses.pdf` 
-* Width: 200
-* Height: 200
-* Page: `pg_1`
 
-https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pdf
+- PDF: `https://oi.flyimg.io/lighthouses.pdf`
+- Width: 200
+- Height: 200
+- Page: `pg_1`
+
+`https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pdf`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pdf)
 
 ## Get a video image to fit dimensions from a time duration point
-* Video: `https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4` 
-* Width: 200
-* Height: 200
-* Time: `tm_00:00:05`
 
-https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4
+- Video: `https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
+- Width: 200
+- Height: 200
+- Time: `tm_00:00:05`
+
+`https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4)
 
-
 # Table of Contents
 
-   * [Requirements](#requirements)
-   * [Installation [Deployment mode]](#installation-deployment-mode)
-   * [Installation [Development Mode]](#installation-development-mode)
-      * [Installation](#installation)
-         * [with git](#with-git)
-         * [with composer](#with-composer)
-   * [Testing Flyimg service](#testing-flyimg-service)
-   * [How to transform images](#how-to-transform-images)
-   * [Basic Option details](#basic-option-details)
-   * [Full Option details](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md)
-   * [Application Server Options](#server-options)
-   * [Security: Restricting Source Domains](#security-restricting-source-domains)
-   * [Security: Signature Generation](#security-signature-generation)
-   * [Run Unit Tests](#run-unit-tests)
-   * [How to Provision the application on](#how-to-provision-the-application-on)
-   * [Technology stack](#technology-stack)
-      * [Abstract storage with Flysystem](#abstract-storage-with-flysystem)
-   * [Benchmark](#benchmark)
-   * [Enable Xdebug](https://github.com/flyimg/flyimg/blob/main/docs/enabling-xdebug.md)
-   * [Demo Application running](#demo-application-running)
-   * [Roadmap](#roadmap)
-   * [Community](#community)
-   * [Supporters](#supporters)
-   * [Contributors](#contributors)
-   * [Backers](#backers)
-   * [Sponsors](#sponsors)
-   * [License](#license)
-   
-   
+- [Requirements](#requirements)
+- [Installation [Deployment mode]](#installation-deployment-mode)
+- [Installation [Development Mode]](#installation-development-mode)
+  - [Installation](#installation)
+    - [with git](#with-git)
+    - [with composer](#with-composer)
+- [Testing Flyimg service](#testing-flyimg-service)
+- [How to transform images](#how-to-transform-images)
+- [Basic Option details](#basic-option-details)
+- [Full Option details](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md)
+- [Application Server Options](#server-options)
+- [Security: Restricting Source Domains](#security-restricting-source-domains)
+- [Security: Signature Generation](#security-signature-generation)
+- [Run Unit Tests](#run-unit-tests)
+- [How to Provision the application on](#how-to-provision-the-application-on)
+- [Technology stack](#technology-stack)
+  - [Abstract storage with Flysystem](#abstract-storage-with-flysystem)
+- [Benchmark](#benchmark)
+- [Enable Xdebug](https://github.com/flyimg/flyimg/blob/main/docs/enabling-xdebug.md)
+- [Demo Application running](#demo-application-running)
+- [Roadmap](#roadmap)
+- [Community](#community)
+- [Supporters](#supporters)
+- [Contributors](#contributors)
+- [Backers](#backers)
+- [Sponsors](#sponsors)
+- [License](#license)
+
 # Requirements
 
 You will need to have **Docker** on your machine. Optionally you can use Docker machine to create a virtual environment. We have tested on **Mac**, **Windows** and **Ubuntu**.
@@ -164,7 +164,6 @@ To use custom parameters, make a copy of [parameters.yml](https://github.com/fly
 docker run -itd -p 8080:80 -v $(pwd)/parameters.yml:/var/www/html/config/parameters.yml flyimg/flyimg-build
 ```
 
-
 Check [how to provision the application](#how-to-provision-the-application-on)
 
 # Installation [Development Mode]
@@ -173,14 +172,16 @@ You can spin up your own working server in 10 minutes using the provision script
 
 ## Installation
 
-You can use `git` or `composer` for the first step. 
+You can use `git` or `composer` for the first step.
 
 ### with git
 
 ```sh
 git clone https://github.com/flyimg/flyimg.git
 ```
+
 ### with composer
+
 Create the project with `composer create` .
 
 ```sh
@@ -192,6 +193,7 @@ composer create-project flyimg/flyimg
 ```sh
 docker build -t flyimg .
 ```
+
 This will download and build the main image, It will take a few minutes. If you get some sort of error related to files not found by apt-get or similar, try this same command again.
 
 **IMPORTANT!** If you cloned the project, only for the first time, you need to run `composer install` **inside** the container:
@@ -208,20 +210,19 @@ Then run the container:
 docker run -itd -p 8080:80 -v $(pwd):/var/www/html --name flyimg flyimg
 ```
 
-For Fish shell users: 
+For Fish shell users:
 
 ```sh
 docker run -itd -p 8080:80 -v $PWD:/var/www/html --name flyimg flyimg
 ```
 
 The above command will make the Dockerfile run supervisord command which launches 2 processes: **nginx** and **php-fpm** and starts listening on port 8080.
- 
 
 # Testing Flyimg service
 
-You can navigate to your machine's IP in port 8080 (ex: http://127.0.0.1:8080/ ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors  at this stage it's most likely that composer has not finished installing or skipped something.
+You can navigate to your machine's IP in port 8080 (ex: `http://127.0.0.1:8080/` ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors at this stage it's most likely that composer has not finished installing or skipped something.
 
-You can test your image resizing service by navigating to: http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg
+You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://m0.cl/t/butterfly-3000.jpg`
 
 ![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
@@ -229,41 +230,42 @@ You can test your image resizing service by navigating to: http://127.0.0.1:8080
 
 This is fetching an image from Mozilla, resizing it, saving it and serving it.
 
-
 # How to transform images
 
-You go to your server URL`http://imgs.kitty.com` and append `/upload/`;  after that you can pass these options below, followed by an underscore and a value `w_250,q_50` Options are separated by coma (configurable to other separator).
+You go to your server URL`http://imgs.kitty.com` and append `/upload/`; after that you can pass these options below, followed by an underscore and a value `w_250,q_50` Options are separated by coma (configurable to other separator).
 
 After the options put the source of your image, it can be relative to your server or absolute: `/https://my.storage.io/imgs/pretty-kitten.jpg`
 
 So to get a pretty kitten at 250 pixels wide, with 50% compression, you would write.
 `<img src="http://imgs.kitty.com/upload/w_250,q_50/https://my.storage.io/imgs/pretty-kitten.jpg">`
 
-
 ## Basic Option details
-You can see the full list of options configurable by URL params, **with examples**, in the [URL-Options document](docs/url-options.md) 
+
+You can see the full list of options configurable by URL params, **with examples**, in the [URL-Options document](docs/url-options.md)
 
 We put a lot of defaults in place to prevent distortion, bad quality, weird cropping and unwanted padding.
 
 The most common URL options are:
 
 ### `w` : width
+
 `int`  
-*Default:* `null`  
-*Description:* Sets the target width of the image. If not set, width will be calculated in order to keep aspect ratio.
+_Default:_ `null`  
+_Description:_ Sets the target width of the image. If not set, width will be calculated in order to keep aspect ratio.
 
-**example:`w_100`** 
+**example:`w_100`**
 
-`w_100` :   `https://oi.flyimg.io/upload/w_100/https://m0.cl/t/butterfly-3000.jpg`
+`w_100` : `https://oi.flyimg.io/upload/w_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `h` : height
+
 `int`  
-*Default:* `null`  
-*Description:* Sets the target height of the image. If not set, height will be calculated in order to keep aspect ratio.
+_Default:_ `null`  
+_Description:_ Sets the target height of the image. If not set, height will be calculated in order to keep aspect ratio.
 
-**example:`h_100`** 
+**example:`h_100`**
 
-`h_100`  : `https://oi.flyimg.io/upload/h_100/https://m0.cl/t/butterfly-3000.jpg`
+`h_100` : `https://oi.flyimg.io/upload/h_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### Using width AND height
 
@@ -274,69 +276,74 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 `h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://m0.cl/t/butterfly-3000.jpg`
 
-
 ### `c` : crop
-`bool`  
-*Default:* `false`  
-*Description:* When both width and height are set, this allows the image to be cropped so it fills the **width x height** area.
 
-**example:`c_1`** 
+`bool`  
+_Default:_ `false`  
+_Description:_ When both width and height are set, this allows the image to be cropped so it fills the **width x height** area.
+
+**example:`c_1`**
 
 `c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `g` : gravity
+
 `string`  
-*Default:* `Center`  
-*Description:* When crop is applied, changing the gravity will define which part of the image is kept inside the crop area.
+_Default:_ `Center`  
+_Description:_ When crop is applied, changing the gravity will define which part of the image is kept inside the crop area.
 The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `East`, `SouthWest`, `South`, `SouthEast`.
 
-**example:`g_West`** 
+**example:`g_West`**
 
 ### `r` : rotate
+
 `string`  
-*Default:* `null`  
-*Description:* Apply image rotation (using shear operations) to the image. 
+_Default:_ `null`  
+_Description:_ Apply image rotation (using shear operations) to the image.
 
 **example: `r_90`, `r_-180`,...**
 
-`r_45` :  `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://m0.cl/t/butterfly-3000.jpg`
+`r_45` : `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://m0.cl/t/butterfly-3000.jpg`
 
 ### `o` : output
+
 `string`  
-*Default:* `auto`  
-*Description:* Output format requested, for example you can force the output as jpeg file in case of source file is png. The default `auto` will try to output the best format for the requesting browser, falling back to the same format as the source image or finally with a fallback to **jpg**.
+_Default:_ `auto`  
+_Description:_ Output format requested, for example you can force the output as jpeg file in case of source file is png. The default `auto` will try to output the best format for the requesting browser, falling back to the same format as the source image or finally with a fallback to **jpg**.
 
 **example:`o_auto`,`o_input`,`o_png`,`o_webp`,`o_jpeg`,`o_jpg`**
 
 ### `q` : quality
+
 `int` (0-100)  
-*Default:* `90`  
-*Description:* Sets the compression level for the output image. Your best results will be between **70** and **95**.
+_Default:_ `90`  
+_Description:_ Sets the compression level for the output image. Your best results will be between **70** and **95**.
 
-**example:`q_100`,`q_75`,...** 
+**example:`q_100`,`q_75`,...**
 
-`q_30`  :  `https://oi.flyimg.io/upload/q_30/https://m0.cl/t/butterfly-3000.jpg` 
+`q_30` : `https://oi.flyimg.io/upload/q_30/https://m0.cl/t/butterfly-3000.jpg`
 
-
-`q_100`  :  `https://oi.flyimg.io/upload/q_100/https://m0.cl/t/butterfly-3000.jpg`
+`q_100` : `https://oi.flyimg.io/upload/q_100/https://m0.cl/t/butterfly-3000.jpg`
 
 ### Refresh or re-fetch source image
-`rf` : refresh  
-*Default:* `false`  
-*Description:* When this parameter is 1, it will force a re-request of the original image and run it through the transformations and compression again. It will delete the local cached copy.
 
-**example:`rf_1`** 
+`rf` : refresh  
+_Default:_ `false`  
+_Description:_ When this parameter is 1, it will force a re-request of the original image and run it through the transformations and compression again. It will delete the local cached copy.
+
+**example:`rf_1`**
 
 ## PDF options
 
 Requires `ghostscript` installation in the Dockerfile.
 
 ### `pg` : page number
-`int`  
-*Default:* 1  
-*Description:* Sets the target page of the PDF. If not set, the default is page 1.
 
-**example:`pg_2`** 
+`int`  
+_Default:_ 1  
+_Description:_ Sets the target page of the PDF. If not set, the default is page 1.
+
+**example:`pg_2`**
 
 `pg_2` : `https://oi.flyimg.io/upload/pg_2/https://oi.flyimg.io/lighthouses.pdf`
 
@@ -345,66 +352,68 @@ Requires `ghostscript` installation in the Dockerfile.
 Requires `ffmpeg` installation in the Dockerfile.
 
 ### `tm` : time
-`string`  
-*Default:* `00:00:01`  
-*Description:* Sets the frame capture time duration point in the video. If not set, the default is 1 second. The format is `HH:MM:SS` OR `SS`
 
-**example:`tm_00:00:05`** 
+`string`  
+_Default:_ `00:00:01`  
+_Description:_ Sets the frame capture time duration point in the video. If not set, the default is 1 second. The format is `HH:MM:SS` OR `SS`
+
+**example:`tm_00:00:05`**
 
 `tm_00:00:05` : `https://oi.flyimg.io/upload/tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
 
 You can also use a shorter syntax for the first 60 seconds.
 
-**example:`tm_10`** 
+**example:`tm_10`**
 
-`tm_10 ` : `https://oi.flyimg.io/upload/tm_10/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
-
+`tm_10` : `https://oi.flyimg.io/upload/tm_10/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
 
 ## Face Detection options
 
 ### `fc` : face-crop
+
 `int`
-*Default:* `0`
-*Description:* Using [facedetect](https://github.com/wavexx/facedetect) repository to detect faces and passe the coordinates to ImageMagick to crop.
+_Default:_ `0`
+_Description:_ Using [facedetect](https://github.com/wavexx/facedetect) repository to detect faces and passe the coordinates to ImageMagick to crop.
 
-**example:`fc_1`** 
+**example:`fc_1`**
 
-`fc_1` :  `https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+`fc_1` : `https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
 ![fc_1](https://oi.flyimg.io/upload/fc_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fcp` : face-crop-position
-`int`
-*Default:* `0`
-*Description:* When using the Face crop option and when the image contain more than one face, you can specify which one you want get cropped
 
-**example:`fcp_1`,`fcp_0`,...** 
+`int`
+_Default:_ `0`
+_Description:_ When using the Face crop option and when the image contain more than one face, you can specify which one you want get cropped
+
+**example:`fcp_1`,`fcp_0`,...**
 
 `fcp_2` : `https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
 
 ![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fb` : face-blur
+
 `int`
-*Default:* `0`
-*Description:* Apply blur effect on faces in a given image
+_Default:_ `0`
+_Description:_ Apply blur effect on faces in a given image
 
-**example:`fb_1`** 
+**example:`fb_1`**
 
-`fb_1`  : `https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+`fb_1` : `https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
 ![fb_1](https://oi.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
-
---- 
+---
 
 ## Server Options
 
-There are some easy to setup server configurations in the `config/parameters.yml` file, you can see the full list of options and server configurations in the **[Application Options Document](docs/application-options.md)** 
+There are some easy to setup server configurations in the `config/parameters.yml` file, you can see the full list of options and server configurations in the **[Application Options Document](docs/application-options.md)**
 
-## Security: Restricting Source Domains:
+## Security: Restricting Source Domains
 
-Restricted domains disabled by default. This means that you can fetch a resource from any URL. To enable the domain restriction, change in config/parameters.yml 
+Restricted domains disabled by default. This means that you can fetch a resource from any URL. To enable the domain restriction, change in config/parameters.yml
 
 ```yml
 restricted_domains: true
@@ -414,14 +423,15 @@ After enabling, you need to put the white listed domains
 
 ```yml
 whitelist_domains:
-    - www.domain-1.org
-    - www.domain-2.org
+  - www.domain-1.org
+  - www.domain-2.org
 ```
-## Security: Signature Generation:
+
+## Security: Signature Generation
 
 Based on this [RFC](https://github.com/flyimg/flyimg/issues/96) Signature Generation was added to Flyimg in order to avoid DDOS attacks.
 
-First you need to edit `security_key` and `security_iv` in  parameters.yml file and add a proper values.
+First you need to edit `security_key` and `security_iv` in parameters.yml file and add a proper values.
 Than any request to Fyimg app will throw an error unless it's encrypted.
 
 To generate the encrypted url you need to run this command:
@@ -438,41 +448,41 @@ Hashed request: TGQ1WWRKVGUrZUpoNmJMc2RMUENPL2t6ZDJkWkdOejlkM0p0U0F3WTgxOU5IMzF3
 
 Now you can request the image throw this new url:
 
-```
+```html
 http://localhost:8080/upload/TGQ1WWRKVGUrZUpoNmJMc2RMUENPL2t6ZDJkWkdOejlkM0p0U0F3WTgxOU5IMzF3U3R0d2V4b3dqbG52cFRTSFZDcmhrY1JnaGZYOHJ3V0NpZDNNRmc9PQ==
 ```
 
-
-## Run Unit Tests:
+## Run Unit Tests
 
 ```sh
 docker exec flyimg vendor/bin/phpunit
 ```
 
 Generate Html Code Coverage
+
 ```sh
 docker exec flyimg vendor/bin/phpunit --coverage-html build/html
 ```
 
-## How to Provision the application on:
+## How to Provision the application on
 
 - [DigitalOcean](https://github.com/flyimg/DigitalOcean-provision)
 - [AWS Elastic-Beanstalk](https://github.com/flyimg/Elastic-Beanstalk-provision)
 
 # Technology stack
 
-* Server: nginx
-* Application:  [Silex](http://silex.sensiolabs.org/) , a PHP micro-framework.
-* Image manipulation: ImageMagick
-* JPEG encoder: MozJpeg
-* Storage: [Flysystem](http://flysystem.thephpleague.com/)
-* Containerisation:  Docker
+- Server: nginx
+- Application: [Silex](http://silex.sensiolabs.org/) , a PHP micro-framework.
+- Image manipulation: ImageMagick
+- JPEG encoder: MozJpeg
+- Storage: [Flysystem](http://flysystem.thephpleague.com/)
+- Containerisation: Docker
 
 ## Abstract storage with Flysystem
 
 Storage files based on [Flysystem](http://flysystem.thephpleague.com/) which is `a filesystem abstraction allows you to easily swap out a local filesystem for a remote one. Technical debt is reduced as is the chance of vendor lock-in.`
 
-Default storage is Local, but you can use other Adapters like AWS S3, Azure, FTP, DropBox, ... 
+Default storage is Local, but you can use other Adapters like AWS S3, Azure, FTP, DropBox, ...
 
 Currently, only the **local** and **S3** are implemented as Storage Provider in Flyimg application, but you can add your specific one easily in `src/Core/Provider/StorageProvider.php`. Check an [example for AWS S3 here](https://github.com/flyimg/flyimg/blob/main/docs/application-options.md#using-aws-s3-as-storage-provider).
 
@@ -482,12 +492,13 @@ See [benchmark.sh](https://github.com/flyimg/flyimg/blob/main/benchmark.sh) for 
 
 Requires: **Vegeta**[http://github.com/tsenart/vegeta](http://github.com/tsenart/vegeta)
 
-```
+```sh
 ./benchmark.sh
 ```
 
 Latest Results:
-```
+
+```sh
 Crop http://localhost:8080/upload/w_200,h_200,c_1/Rovinj-Croatia.jpg
 Requests      [total, rate]            500, 50.10
 Duration      [total, attack, wait]    9.991377689s, 9.97999997s, 11.377719ms
@@ -522,7 +533,6 @@ Status Codes  [code:count]             200:500
 
 ![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
-
 # Roadmap
 
 - [x] Benchmark the application.
@@ -537,7 +547,7 @@ Status Codes  [code:count]             200:500
 
 # Community
 
-* Follow us on [GitHub][1] and [Twitter][2].
+- Follow us on [GitHub][1] and [Twitter][2].
 
 # Supporters
 
@@ -545,19 +555,16 @@ A special thanks to JetBrains for supporting our project with their [open source
 
 ![Jetbrains](https://oi.flyimg.io/upload/w_300,o_jpg/jetbrains-variant-3.png)
 
-
 # Contributors
 
 This project exists thanks to all the people who contribute.
 <a href="https://github.com/flyimg/flyimg/graphs/contributors"><img src="https://opencollective.com/flyimg/contributors.svg?width=890" /></a>
-
 
 # Backers
 
 Thank you to all our backers! [[Become a backer](https://opencollective.com/flyimg#backer)]
 
 <a href="https://opencollective.com/flyimg#backers" target="_blank"><img src="https://opencollective.com/flyimg/backers.svg?width=890"></a>
-
 
 # Sponsors
 
@@ -574,12 +581,9 @@ Thank you to all our sponsors! (please ask your company to also support this ope
 <a href="https://opencollective.com/flyimg/sponsor/8/website" target="_blank"><img src="https://opencollective.com/flyimg/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/flyimg/sponsor/9/website" target="_blank"><img src="https://opencollective.com/flyimg/sponsor/9/avatar.svg"></a>
 
-
-
 # License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
 
 Enjoy your Flyimaging!
 

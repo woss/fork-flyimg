@@ -10,11 +10,11 @@ use Core\Processor\VideoProcessor;
 class InputImage
 {
     /** Content TYPE */
-    const WEBP_MIME_TYPE = 'image/webp';
-    const JPEG_MIME_TYPE = 'image/jpeg';
-    const PNG_MIME_TYPE = 'image/png';
-    const GIF_MIME_TYPE = 'image/gif';
-    const PDF_MIME_TYPE = 'application/pdf';
+    public const WEBP_MIME_TYPE = 'image/webp';
+    public const JPEG_MIME_TYPE = 'image/jpeg';
+    public const PNG_MIME_TYPE = 'image/png';
+    public const GIF_MIME_TYPE = 'image/gif';
+    public const PDF_MIME_TYPE = 'application/pdf';
 
     /** @var OptionsBag */
     protected $optionsBag;
@@ -81,19 +81,18 @@ class InputImage
 
         $opts = [
             'http' =>
-                [
-                    'header' => $this->optionsBag->appParameters()->parameterByKey('header_extra_options'),
-                    'method' => 'GET',
-                    'max_redirects' => '0',
-                ],
+            [
+                'header' => $this->optionsBag->appParameters()->parameterByKey('header_extra_options'),
+                'method' => 'GET',
+                'max_redirects' => '0',
+            ],
         ];
         $context = stream_context_create($opts);
 
-        if (!$stream = @fopen($this->sourceImageUrl, 'r', false, $context)
-        ) {
+        if (!$stream = @fopen($this->sourceImageUrl, 'r', false, $context)) {
             throw  new ReadFileException(
                 'Error occurred while trying to read the file Url : '
-                .$this->sourceImageUrl
+                    . $this->sourceImageUrl
             );
         }
         $content = stream_get_contents($stream);
@@ -180,7 +179,7 @@ class InputImage
         return $this->sourceImageMimeType() == self::PDF_MIME_TYPE;
     }
 
-     /**
+    /**
      * @return bool
      */
     public function isInputGif(): bool

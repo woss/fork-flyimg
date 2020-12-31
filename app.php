@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__ . '/constants.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\ExceptionHandler;
@@ -9,11 +10,11 @@ use Symfony\Component\Routing\RouteCollection;
 $app = new Silex\Application();
 
 /** @var \Core\Entity\AppParameters $app['params'] */
-$app['params'] = new \Core\Entity\AppParameters(__DIR__.'/config/parameters.yml');
+$app['params'] = new \Core\Entity\AppParameters(__DIR__ . '/config/parameters.yml');
 
 
 $app['env'] = $_ENV['env'] ?: 'dev';
-$exceptionHandlerFunction = function (\Exception $e) {
+$exceptionHandlerFunction = function (\Exception $e): void {
     $out = fopen('php://stdout', 'w');
     fputs(
         $out,
@@ -30,14 +31,6 @@ if ('test' !== $app['env']) {
     $app->error($exceptionHandlerFunction);
 }
 
-/**
- * Define Constants && Load parameters files
- */
-define('UPLOAD_WEB_DIR', 'uploads/');
-define('UPLOAD_DIR', __DIR__.'/web/'.UPLOAD_WEB_DIR);
-define('TMP_DIR', __DIR__.'/var/tmp/');
-define('ROOT_DIR', __DIR__);
-
 if (!is_dir(UPLOAD_DIR)) {
     mkdir(UPLOAD_DIR, 0777, true);
 }
@@ -52,7 +45,7 @@ $routesResolver = new \Core\Resolver\RoutesResolver();
 $app['routes'] = $app->extend(
     'routes',
     function (RouteCollection $routes) use ($routesResolver) {
-        return $routesResolver->parseRoutesFromYamlFile($routes, __DIR__.'/config/routes.yml');
+        return $routesResolver->parseRoutesFromYamlFile($routes, __DIR__ . '/config/routes.yml');
     }
 );
 
@@ -86,7 +79,7 @@ $app['resolver'] = function (\Silex\Application $app) {
  *
  * @return \Core\Handler\ImageHandler
  */
-$app['image.handler'] = function (\Silex\Application $app) {
+$app['image.handler'] = function (\Silex\Application $app): \Core\Handler\ImageHandler {
     return new \Core\Handler\ImageHandler(
         $app['flysystems']['upload_dir'],
         $app['params']

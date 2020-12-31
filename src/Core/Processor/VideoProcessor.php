@@ -26,7 +26,7 @@ class VideoProcessor extends Processor
     {
         $time = $optionsBag->get('time');
         $tmpTime = str_replace(['.', ':'], '', $time);
-        $videoSourceImagePath = $sourceImagePath.'-'.$tmpTime;
+        $videoSourceImagePath = $sourceImagePath . '-' . $tmpTime;
 
         if (file_exists($videoSourceImagePath) && !$optionsBag->get('refresh')) {
             return $videoSourceImagePath;

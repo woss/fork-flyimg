@@ -100,7 +100,7 @@ class ImageMetaInfoTest extends BaseTest
     public function testFileReadException()
     {
         $this->expectException(ExecFailedException::class);
-        $image = new ImageMetaInfo(self::PNG_TEST_IMAGE.'--fail');
+        $image = new ImageMetaInfo(self::PNG_TEST_IMAGE . '--fail');
         $image->colorBitDepth();
     }
 
