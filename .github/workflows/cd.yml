@@ -68,11 +68,11 @@ jobs:
             flyimg/flyimg-build:latest
             flyimg/flyimg-build:${{ needs.create_tag.outputs.new_tag }}
   
-  deploy-demo:
-    name: Deploy to Demo Server
+  deploy_demo:
+    name: Deploy to Demo oi.flyimg.io
     runs-on: ubuntu-18.04
     steps:
-    - name: Deploy new version of flyimg
+    - name: Deploy new version of Flyimg to the demo server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.FLYIMG_DEMO_HOST }}
