@@ -6,6 +6,7 @@ RUN apt update && \
     ghostscript \
     ffmpeg \
     --no-install-recommends && \
+    pip3 install pillow && \
     rm -rf /var/lib/apt/lists/*
 
 COPY .    /var/www/html
