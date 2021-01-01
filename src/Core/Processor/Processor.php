@@ -26,6 +26,9 @@ class Processor
     /** FaceDetect bin path */
     public const FACEDETECT_COMMAND = '/usr/local/bin/facedetect';
 
+    /** Smart Crop script */
+    public const SMARTCROP_COMMAND = '/usr/bin/python3 /var/www/html/python/smartcrop.py';
+
     /** Ffmpeg bin path */
     public const FFMPEG_COMMAND = '/usr/bin/ffmpeg';
 
