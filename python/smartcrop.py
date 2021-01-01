@@ -3,12 +3,11 @@
 # From Repo: https://github.com/smartcrop/smartcrop.py
 
 import argparse
-import json
 import math
 import sys
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image
 from PIL.ImageFilter import Kernel
 
 
@@ -97,8 +96,7 @@ class SmartCrop(object):
         edge_image = self.detect_edge(cie_image)
         skin_image = self.detect_skin(cie_array, image)
         saturation_image = self.detect_saturation(cie_array, image)
-        analyse_image = Image.merge(
-            "RGB", [skin_image, edge_image, saturation_image])
+        analyse_image = Image.merge("RGB", [skin_image, edge_image, saturation_image])
 
         del edge_image
         del skin_image
@@ -127,10 +125,10 @@ class SmartCrop(object):
         )
 
         for crop in crops:
-            crop['score'] = self.score(score_image, crop)
-            if crop['score']['total'] > top_score:
+            crop["score"] = self.score(score_image, crop)
+            if crop["score"]["total"] > top_score:
                 top_crop = crop
-                top_score = crop['score']['total']
+                top_score = crop["score"]["total"]
 
         return {"analyse_image": analyse_image, "crops": crops, "top_crop": top_crop}
 
@@ -160,9 +158,10 @@ class SmartCrop(object):
             if prescale_size < 1:
                 image = image.copy()
                 image.thumbnail(
-                    (int(image.size[0] * prescale_size),
-                     int(image.size[1] * prescale_size),
-                     ),
+                    (
+                        int(image.size[0] * prescale_size),
+                        int(image.size[1] * prescale_size),
+                    ),
                     Image.ANTIALIAS,
                 )
                 crop_width = int(math.floor(crop_width * prescale_size))
@@ -236,14 +235,15 @@ class SmartCrop(object):
         mask = (
             (saturation_data > threshold)
             & (cie_array >= self.saturation_brightness_min * 255)
-            & (cie_array <= self.saturation_brightness_max * 255))
+            & (cie_array <= self.saturation_brightness_max * 255)
+        )
 
         saturation_data[~mask] = 0
         saturation_data[mask] = (saturation_data[mask] - threshold) * (
             255 / (1 - threshold)
         )
 
-        return Image.fromarray(saturation_data.astype('uint8'))
+        return Image.fromarray(saturation_data.astype("uint8"))
 
     def detect_skin(self, cie_array, source_image):
         r, g, b = source_image.split()
@@ -262,10 +262,10 @@ class SmartCrop(object):
         mask = (
             (skin > self.skin_threshold)
             & (cie_array >= self.skin_brightness_min * 255)
-            & (cie_array <= self.skin_brightness_max * 255))
+            & (cie_array <= self.skin_brightness_max * 255)
+        )
 
-        skin_data = (skin - self.skin_threshold) * \
-            (255 / (1 - self.skin_threshold))
+        skin_data = (skin - self.skin_threshold) * (255 / (1 - self.skin_threshold))
 
         skin_data[~mask] = 0
 
@@ -280,8 +280,8 @@ class SmartCrop(object):
         ):
             return self.outside_importance
 
-        x = (x - crop['x']) / crop['width']
-        y = (y - crop['y']) / crop['height']
+        x = (x - crop["x"]) / crop["width"]
+        y = (y - crop["y"]) / crop["height"]
         px, py = abs(0.5 - x) * 2, abs(0.5 - y) * 2
 
         # distance from edge
@@ -319,15 +319,14 @@ class SmartCrop(object):
                 importance = self.importance(crop, x, y)
                 detail = target_data[p][1] / 255
                 score["skin"] += (
-                    target_data[p][0] / 255 *
-                    (detail + self.skin_bias) *
-                    importance
+                    target_data[p][0] / 255 * (detail + self.skin_bias) * importance
                 )
                 score["detail"] += detail * importance
                 score["saturation"] += (
-                    target_data[p][2] / 255 *
-                    (detail + self.saturation_bias) *
-                    importance
+                    target_data[p][2]
+                    / 255
+                    * (detail + self.saturation_bias)
+                    * importance
                 )
         score["total"] = (
             score["detail"] * self.detail_weight
@@ -339,8 +338,8 @@ class SmartCrop(object):
 
 def parse_argument():
     parser = argparse.ArgumentParser()
-    parser.add_argument("inputfile", metavar="INPUT_FILE",
-                        help="Input image file")
+    parser.add_argument("inputfile", metavar="INPUT_FILE", help="Input image file")
+
 
     parser.add_argument(
         "--width", dest="width", type=int, default=100, help="Crop width"
