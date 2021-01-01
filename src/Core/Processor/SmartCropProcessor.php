@@ -24,7 +24,7 @@ class SmartCropProcessor extends Processor
         $smartCropCmd = new Command(self::SMARTCROP_COMMAND);
         $smartCropCmd->addArgument($outputImage->getOutputImagePath());
         $output = $this->execute($smartCropCmd);
-        
+
         if (!empty($output)) {
             $geometry = $output[0];
             $cropCmd = new Command(self::IM_CONVERT_COMMAND);
