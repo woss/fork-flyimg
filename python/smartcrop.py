@@ -338,12 +338,15 @@ class SmartCrop(object):
 
 def parse_argument():
     parser = argparse.ArgumentParser()
-
     parser.add_argument("inputfile", metavar="INPUT_FILE", help="Input image file")
-    parser.add_argument("--width", dest="width", type=int, default=100, help="Crop width")
-    parser.add_argument("--height", dest="height", type=int, default=100, help="Crop height")
-
+    parser.add_argument(
+        "--width", dest="width", type=int, default=100, help="Crop width"
+    )
+    parser.add_argument(
+        "--height", dest="height", type=int, default=100, help="Crop height"
+    )
     return parser.parse_args()
+
 
 def main():
     options = parse_argument()
