@@ -25,6 +25,9 @@ class BaseTest extends TestCase
     public const EXTRACT_TEST_IMAGE = __DIR__ . '/../testImages/extract-original.jpg';
     public const EXTRACT_TEST_IMAGE_RESULT = __DIR__ . '/../testImages/extract-result.jpg';
 
+    public const SMART_CROP_TEST_IMAGE = __DIR__ . '/../testImages/smart_crop.jpg';
+    public const EMART_CROP_TEST_IMAGE_RESULT = __DIR__ . '/../testImages/smart_crop_restult.jpg';
+
     public const OPTION_URL = 'w_200,h_100,c_1,bg_#999999,rz_1,sc_50,r_-45,unsh_0.25x0.25+8+0.065,ett_100x80,fb_1,rf_1';
     public const CROP_OPTION_URL = 'w_200,h_100,c_1,rf_1';
     public const GIF_OPTION_URL = 'w_100,h_100,rf_1';
