@@ -43,6 +43,7 @@ class OutputImageTest extends BaseTest
             'scale' => '50',
             'sampling-factor' => '1x1',
             'refresh' => '1',
+            'smart-crop' => 0,
             'extent' => '100x80',
             'preserve-aspect-ratio' => 1,
             'preserve-natural-size' => 1,

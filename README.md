@@ -88,6 +88,24 @@ Change the first part of the path from `upload` to `path`, like so:
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
+## Smart Crop
+
+- Image: `https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+- Width: 500
+- Smart Crop: `smc_1`
+
+**Without Smart Crop**
+
+`https://oi.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+
+![lago_ranco](https://oi.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
+
+**With Smart Crop Enabled**
+
+`https://oi.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+
+![lago_ranco](https://oi.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
+
 ## Get a PDF page image to fit dimensions
 
 - PDF: `https://oi.flyimg.io/lighthouses.pdf`
@@ -286,6 +304,16 @@ _Description:_ When both width and height are set, this allows the image to be c
 
 `c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://m0.cl/t/butterfly-3000.jpg`
 
+### `smc` : smart crop
+
+`bool`  
+_Default:_ `false`  
+_Description:_ Smart cropping feature, uses python script to determine coordinates
+
+**example:`smc_1`**
+
+`smc_1,w_500` : `https://oi.flyimg.io/upload/upload/smc_1,w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+
 ### `g` : gravity
 
 `string`  
@@ -345,7 +373,7 @@ _Description:_ Sets the target page of the PDF. If not set, the default is page 
 
 **example:`pg_2`**
 
-`pg_2` : `https://oi.flyimg.io/upload/pg_2/https://oi.flyimg.io/lighthouses.pdf`
+`pg_2` : `https://oi.flyimg.io/upload/pg_2/https://mudawn.com/lighthouses.pdf`
 
 ## Video options
 
@@ -359,13 +387,13 @@ _Description:_ Sets the frame capture time duration point in the video. If not s
 
 **example:`tm_00:00:05`**
 
-`tm_00:00:05` : `https://oi.flyimg.io/upload/tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
+`tm_00:00:05` : `https://oi.flyimg.io/upload/tm_00:00:05/https://mudawn.com/big_buck_bunny_720p_2mb.mp4`
 
 You can also use a shorter syntax for the first 60 seconds.
 
 **example:`tm_10`**
 
-`tm_10` : `https://oi.flyimg.io/upload/tm_10/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4`
+`tm_10` : `https://oi.flyimg.io/upload/tm_10/https://mudawn.com/big_buck_bunny_720p_2mb.mp4`
 
 ## Face Detection options
 

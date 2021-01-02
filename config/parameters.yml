@@ -62,6 +62,7 @@ options_keys:
   sc: scale
   sf: sampling-factor
   rf: refresh
+  smc: smart-crop
   ett: extent
   par: preserve-aspect-ratio
   pns: preserve-natural-size
@@ -98,6 +99,7 @@ default_options:
   scale: null
   sampling-factor: 1x1
   refresh: false
+  smart-crop: false
   extent: null
   preserve-aspect-ratio: 1
   preserve-natural-size: 1
