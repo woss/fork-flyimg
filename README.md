@@ -94,14 +94,16 @@ Change the first part of the path from `upload` to `path`, like so:
 - Width: 500
 - Smart Crop: `smc_1`
 
-*Without Smart Crop*
+**Without Smart Crop**
 
 `https://oi.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+
 ![lago_ranco](https://oi.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
 
-*With Smart Crop Enabled*
+**With Smart Crop Enabled**
 
 `https://oi.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+
 ![lago_ranco](https://oi.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
 
 ## Get a PDF page image to fit dimensions
