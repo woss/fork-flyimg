@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+# Credit:
 # Author: https://github.com/davidfischer-ch
 # From Repo: https://github.com/smartcrop/smartcrop.py
+# We did smal changes in order to adapt to our needs
 
 import argparse
 import math
@@ -40,7 +42,7 @@ class SmartCrop(object):
         self,
         detail_weight=0.2,
         edge_radius=0.4,
-        edge_weight=0,
+        edge_weight=-10,
         outside_importance=-0.5,
         rule_of_thirds=True,
         saturation_bias=0.2,
@@ -48,7 +50,7 @@ class SmartCrop(object):
         saturation_brightness_min=0.05,
         saturation_threshold=0.4,
         saturation_weight=0.3,
-        score_down_sample=8,
+        score_down_sample=1,
         skin_bias=0.01,
         skin_brightness_max=1,
         skin_brightness_min=0.2,
