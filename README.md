@@ -108,14 +108,14 @@ Change the first part of the path from `upload` to `path`, like so:
 
 ## Get a PDF page image to fit dimensions
 
-- PDF: `https://oi.flyimg.io/lighthouses.pdf`
+- PDF: `http://mudawn.com/ighthouses.pdf`
 - Width: 200
 - Height: 200
 - Page: `pg_1`
 
-`https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pdf`
+`https://oi.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/ighthouses.pdf`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/https://oi.flyimg.io/lighthouses.pdf)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/ighthouses.pdf)
 
 ## Get a video image to fit dimensions from a time duration point
 
@@ -394,7 +394,7 @@ _Description:_ Sets the target page of the PDF. If not set, the default is page 
 
 **example:`pg_2`**
 
-`pg_2` : `https://oi.flyimg.io/upload/pg_2/https://mudawn.com/lighthouses.pdf`
+`pg_2` : `https://oi.flyimg.io/upload/pg_2/http://mudawn.com/lighthouses.pdf`
 
 ## Video options
 
@@ -408,13 +408,13 @@ _Description:_ Sets the frame capture time duration point in the video. If not s
 
 **example:`tm_00:00:05`**
 
-`tm_00:00:05` : `https://oi.flyimg.io/upload/tm_00:00:05/https://mudawn.com/big_buck_bunny_720p_2mb.mp4`
+`tm_00:00:05` : `https://oi.flyimg.io/upload/tm_00:00:05/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
 
 You can also use a shorter syntax for the first 60 seconds.
 
 **example:`tm_10`**
 
-`tm_10` : `https://oi.flyimg.io/upload/tm_10/https://mudawn.com/big_buck_bunny_720p_2mb.mp4`
+`tm_10` : `https://oi.flyimg.io/upload/tm_10/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
 
 ## Face Detection options
 
