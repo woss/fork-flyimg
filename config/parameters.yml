@@ -75,6 +75,8 @@ options_keys:
   p2y: extract-bottom-y
   pg: page_number
   tm: time
+  clsp: colorspace
+  mnchr: monochrome
 
 #Default options values
 default_options:
@@ -112,3 +114,5 @@ default_options:
   extract-bottom-y: null
   page_number: 1
   time: '00:00:01'
+  colorspace: 'sRGB'
+  monochrome: null

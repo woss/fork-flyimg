@@ -78,7 +78,12 @@ class ImageProcessor extends Processor
         $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo);
 
         $command->addArgument($this->calculateSize());
-        $command->addArgument('-colorspace', 'sRGB');
+
+        $command->addArgument('-colorspace', $outputImage->extractKey('colorspace'));
+
+        if (!empty($outputImage->extractKey('monochrome'))) {
+            $command->addArgument('-monochrome');
+        }
 
         $command->addArgument($this->checkForwardedOptions());
 
