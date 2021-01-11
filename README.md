@@ -128,6 +128,17 @@ Change the first part of the path from `upload` to `path`, like so:
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://oi.flyimg.io/big_buck_bunny_720p_2mb.mp4)
 
+## Converting to Colorspace Gray
+
+- Image: `https://m0.cl/t/butterfly-3000.jpg`
+- Width: 400
+- Colorspace: `clsp_Gray`
+
+`https://oi.flyimg.io/upload/w_400,clsp_Gray/https://m0.cl/t/butterfly-3000.jpg`
+
+![lago_ranco](https://oi.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
+
+
 # Table of Contents
 
 - [Requirements](#requirements)
