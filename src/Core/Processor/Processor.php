@@ -43,7 +43,7 @@ class Processor
      */
     public function execute(Command $command): array
     {
-        exec($command, $output, $code);
+        exec($command . ' 2>&1', $output, $code);
         if (count($output) === 0) {
             $outputError = $code;
         } else {
@@ -52,8 +52,8 @@ class Processor
 
         if ($code !== 0) {
             throw new ExecFailedException(
-                "Command failed. The exit code: " .
-                    $outputError . "<br>The last line of output: " .
+                "Command failed.\nThe exit code: " .
+                    $outputError . "\nThe last line of output: " .
                     $command
             );
         }
