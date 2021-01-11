@@ -138,6 +138,16 @@ Change the first part of the path from `upload` to `path`, like so:
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
 
+## Converting to Monochrome
+
+- Image: `https://m0.cl/t/butterfly-3000.jpg`
+- Width: 400
+- Monochrome: `mnchr_1`
+
+`https://oi.flyimg.io/upload/w_400,mnchr_1/https://m0.cl/t/butterfly-3000.jpg`
+
+![lago_ranco](https://oi.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://m0.cl/t/butterfly-3000.jpg)
+
 
 # Table of Contents
 
