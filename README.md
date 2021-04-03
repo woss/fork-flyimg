@@ -1,3 +1,5 @@
+# Flyimg
+
 <p align="center"><a href="http://flyimg.io" target="_blank">
     <img alt="Flyimglogo" src="https://raw.githubusercontent.com/flyimg/graphic-assets/main/logo/raster/flyimg-logo-rgb.png" width="300">
 </a></p>
@@ -11,8 +13,6 @@
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="License" src="https://poser.pugx.org/flyimg/flyimg/license.svg"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="Latest Stable Version]" src="https://poser.pugx.org/flyimg/flyimg/v/stable.svg"></a>
 </p>
-
-# Flyimg
 
 Image resizing, cropping and compression on the fly with the impressive [MozJPEG](http://calendar.perfplanet.com/2014/mozjpeg-3-0) compression algorithm. One Docker container to build your own Cloudinary-like service.
 
