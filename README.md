@@ -521,7 +521,7 @@ docker exec flyimg vendor/bin/phpunit --coverage-html build/html
 ## Technology stack
 
 - Server: nginx
-- Application: [Silex](http://silex.sensiolabs.org/) , a PHP micro-framework.
+- Application: [Silex](http://silex.sensiolabs.org/), a PHP micro-framework.
 - Image manipulation: ImageMagick
 - JPEG encoder: MozJpeg
 - Storage: [Flysystem](http://flysystem.thephpleague.com/)
@@ -539,7 +539,7 @@ Currently, only the **local** and **S3** are implemented as Storage Provider in 
 
 See [benchmark.sh](https://github.com/flyimg/flyimg/blob/main/benchmark.sh) for more details.
 
-Requires: **Vegeta**[http://github.com/tsenart/vegeta](http://github.com/tsenart/vegeta)
+Requires: [Vegeta](http://github.com/tsenart/vegeta)
 
 ```sh
 ./benchmark.sh
