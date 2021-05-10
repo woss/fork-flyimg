@@ -84,7 +84,7 @@ class InputImage
             [
                 'header' => $this->optionsBag->appParameters()->parameterByKey('header_extra_options'),
                 'method' => 'GET',
-                'max_redirects' => '1',
+                'max_redirects' => '5',
             ],
         ];
         $context = stream_context_create($opts);
