@@ -19,7 +19,7 @@ class AppParameters
     public function __construct(string $paramFilePath)
     {
         if (!file_exists($paramFilePath)) {
-            throw new AppException('Parameter file not found at : '.$paramFilePath);
+            throw new AppException('Parameter file not found at : ' . $paramFilePath);
         }
         $this->parameters = yaml_parse(file_get_contents($paramFilePath));
     }

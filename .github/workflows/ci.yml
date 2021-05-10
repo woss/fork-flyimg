@@ -1,0 +1,56 @@
+name: CI
+
+# Run this workflow every time a new commit pushed to your repository
+on: [push, pull_request]
+
+jobs:
+  # Set the job key. The key is displayed as the job name
+  # when a job name is not provided
+  super-lint:
+    # Name the Job
+    name: Lint code base
+    # Set the type of machine to run on
+    runs-on: ubuntu-18.04
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-18.04 machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Runs the Super-Linter action
+      - name: Run Super-Linter
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FILTER_REGEX_EXCLUDE: .*vendor/.*|.*web/.*
+          VALIDATE_PHP_PHPSTAN: false
+          VALIDATE_PHP_PSALM: false
+          VALIDATE_JSCPD: false
+          VALIDATE_DOCKERFILE_HADOLINT: false
+
+  build-test:
+    runs-on: ubuntu-18.04
+    name: Run Unit Tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Flyimg Docker image
+        run: docker build -t flyimg .
+
+      - name: Run Flyimg container
+        run: docker run -itd -v $(pwd):/var/www/html --name flyimg flyimg
+
+      - name: Install dependencies
+        run: docker exec flyimg composer install
+
+      - name: Run Unit Tests
+        run: docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+      - uses: codecov/codecov-action@v1
+        with:
+          file: build/logs/clover.xml
+          flags: unittests
+          fail_ci_if_error: true

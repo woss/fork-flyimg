@@ -26,11 +26,14 @@ class Processor
     /** FaceDetect bin path */
     public const FACEDETECT_COMMAND = '/usr/local/bin/facedetect';
 
+    /** Smart Crop script */
+    public const SMARTCROP_COMMAND = '/usr/bin/python3 /var/www/html/python/smartcrop.py';
+
     /** Ffmpeg bin path */
     public const FFMPEG_COMMAND = '/usr/bin/ffmpeg';
 
     /** OutputImage options excluded from IM command */
-    const EXCLUDED_IM_OPTIONS = ['quality', 'mozjpeg', 'refresh', 'webp-lossless'];
+    public const EXCLUDED_IM_OPTIONS = ['quality', 'mozjpeg', 'refresh', 'webp-lossless'];
 
     /**
      * @param Command $command
@@ -40,7 +43,7 @@ class Processor
      */
     public function execute(Command $command): array
     {
-        exec($command, $output, $code);
+        exec($command . ' 2>&1', $output, $code);
         if (count($output) === 0) {
             $outputError = $code;
         } else {
@@ -49,9 +52,9 @@ class Processor
 
         if ($code !== 0) {
             throw new ExecFailedException(
-                "Command failed. The exit code: ".
-                $outputError."<br>The last line of output: ".
-                $command
+                "Command failed.\nThe exit code: " .
+                    $outputError . "\nThe last line of output: " .
+                    $command
             );
         }
 

@@ -8,6 +8,7 @@ use Core\Entity\OptionsBag;
 use Core\Entity\Image\OutputImage;
 use Core\Processor\ExtractProcessor;
 use Core\Processor\FaceDetectProcessor;
+use Core\Processor\SmartCropProcessor;
 use Core\Processor\ImageProcessor;
 use League\Flysystem\Filesystem;
 
@@ -25,6 +26,9 @@ class ImageHandler
 
     /** @var ExtractProcessor */
     protected $extractProcessor;
+
+    /** @var SmartCropProcessor */
+    protected $smartCropProcessor;
 
     /** @var SecurityHandler */
     protected $securityHandler;
@@ -49,6 +53,7 @@ class ImageHandler
         $this->imageProcessor = new ImageProcessor();
         $this->faceDetectProcessor = new FaceDetectProcessor();
         $this->extractProcessor = new ExtractProcessor();
+        $this->smartCropProcessor = new SmartCropProcessor();
         $this->securityHandler = new SecurityHandler($appParameters);
     }
 
@@ -117,6 +122,20 @@ class ImageHandler
      *
      * @throws \Exception
      */
+    protected function smartCropProcess(OutputImage $outputImage): void
+    {
+        $smartCrop = $outputImage->extractKey('smart-crop');
+
+        if ($smartCrop && !$outputImage->isOutputGif()) {
+            $this->smartCropProcessor->smartCrop($outputImage);
+        }
+    }
+
+    /**
+     * @param OutputImage $outputImage
+     *
+     * @throws \Exception
+     */
     protected function faceDetectionProcess(OutputImage $outputImage): void
     {
         $faceCrop = $outputImage->extractKey('face-crop');
@@ -146,7 +165,10 @@ class ImageHandler
         }
 
         $outputImage = $this->imageProcessor()->processNewImage($outputImage);
-        
+
+        // Check if Smart Crop enabled
+        $this->smartCropProcess($outputImage);
+
         //Check Face Detection options
         $this->faceDetectionProcess($outputImage);
 

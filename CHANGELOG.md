@@ -1,202 +1,317 @@
-## Change Log
+# Changelog
 
-### 1.1.7 (2020/12/28 19:28 +00:00)
-- [#273](https://github.com/flyimg/flyimg/pull/273) Update Changelog (@sadok-f)
-- [#272](https://github.com/flyimg/flyimg/pull/272) Downgrade Github action to v5 (@sadok-f)
-- [#271](https://github.com/flyimg/flyimg/pull/271) add empty tag_prefix for Github actions (@sadok-f)
-- [#270](https://github.com/flyimg/flyimg/pull/270) Add new github action to release tag closes #269 (@sadok-f)
-- [#268](https://github.com/flyimg/flyimg/pull/268) Add CodeCov Repport, closes #267 (@sadok-f)
-- [#266](https://github.com/flyimg/flyimg/pull/266) Add Last-Modified headers tag, closes #261 (@sadok-f)
-- [#262](https://github.com/flyimg/flyimg/pull/262) Bump symfony/http-kernel from 4.4.1 to 4.4.13 (@dependabot[bot])
-- [#254](https://github.com/flyimg/flyimg/pull/254) Bump symfony/http-foundation from 4.4.1 to 4.4.7 (@dependabot[bot])
+## [1.1.22](https://github.com/flyimg/flyimg/tree/1.1.22) (2020-12-31)
 
-### 1.1.6 (2020/02/12 09:19 +00:00)
-- [#252](https://github.com/flyimg/flyimg/pull/252) Update CHANGELOG file, closes #251 (@sadok-f)
-- [#250](https://github.com/flyimg/flyimg/pull/250) Update changelog file closes #249 (@sadok-f)
-- [#247](https://github.com/flyimg/flyimg/pull/247) Updated demo source links (@louisl)
-- [#246](https://github.com/flyimg/flyimg/pull/246) Louisl/feature/movie support (@louisl)
-- [#245](https://github.com/flyimg/flyimg/pull/245) Updated readme for PDF and video (@louisl)
-- [#244](https://github.com/flyimg/flyimg/pull/244) Louisl/feature/movie support, closes #243 (@sadok-f, @louisl)
-- [#240](https://github.com/flyimg/flyimg/pull/240) Update composer, fixes #239 (@sadok-f)
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.21...1.1.22)
 
-### 1.1.5 (2019/12/03 09:37 +00:00)
-- [#238](https://github.com/flyimg/flyimg/pull/238) Add changelogs for the new release (@sadok-f)
-- [#237](https://github.com/flyimg/flyimg/pull/237) Fixing FaceDetect not working, closes #236 (@sadok-f)
-- [#233](https://github.com/flyimg/flyimg/pull/233) Update Readme: add Google Cloud Run description, closes #227 (@sadok-f)
-- [#232](https://github.com/flyimg/flyimg/pull/232) Add ?git_repo to cloud-run-button (@ahmetb)
-- [#231](https://github.com/flyimg/flyimg/pull/231) Use new deploy redirector (@jamesward)
-- [#230](https://github.com/flyimg/flyimg/pull/230) Update the dockerfile to use the latest base image 1.1.0, closes #229 (@sadok-f)
-- [#228](https://github.com/flyimg/flyimg/pull/228) Update FUNDING.yml (@sadok-f)
-- [#224](https://github.com/flyimg/flyimg/pull/224) Add Cloud Run Button to Flyimg (@sadok-f)
-- [#222](https://github.com/flyimg/flyimg/pull/222) Refactor ExtractProcessor class, closes #221 (@sadok-f)
-- [#220](https://github.com/flyimg/flyimg/pull/220) Update CHANGELOG.md, closes #219 (@sadok-f)
+**Implemented enhancements:**
 
-### 1.1.4 (2019/08/07 05:42 +00:00)
-- [#218](https://github.com/flyimg/flyimg/pull/218) Update docker libraries and move to use tags images, closes #217 (@sadok-f)
-- [#216](https://github.com/flyimg/flyimg/pull/216) Update php minimum version to 7.1, closes #215 (@sadok-f)
-- [#214](https://github.com/flyimg/flyimg/pull/214) Fix composer install warning, closes #213 (@sadok-f)
-- [#212](https://github.com/flyimg/flyimg/pull/212) Instructions to replace default parameters file (@diego-vieira)
-- [#207](https://github.com/flyimg/flyimg/pull/207) Update CHANGELOG file, closes #206 (@sadok-f)
+- Fix Changlelog generator in github action workflow, closes \#287 [\#296](https://github.com/flyimg/flyimg/pull/296) ([sadok-f](https://github.com/sadok-f))
 
-### 1.1.3 (2019/01/09 22:15 +00:00)
-- [#205](https://github.com/flyimg/flyimg/pull/205) Updated the docs regarding blur, unsharp, and sharpen filters. Fixes #204 (@baamenabar)
-- [#203](https://github.com/flyimg/flyimg/pull/203) fix Unsharp option and add other options such as sharpen and blur (@sadok-f)
-- [#201](https://github.com/flyimg/flyimg/pull/201) New parameter to add more options to the header, fixes #200 (@sadok-f)
-- [#198](https://github.com/flyimg/flyimg/pull/198) issue-#197: Remove the Refresh option in the hash generated for output img (@sadok-f)
-- [#193](https://github.com/flyimg/flyimg/pull/193) issue-#191: mage path parameters is ignored, closes #191 (@sadok-f)
-- [#188](https://github.com/flyimg/flyimg/pull/188) issue-#187: A bug with fc and fb options, closes #187 (@sadok-f)
-- [#186](https://github.com/flyimg/flyimg/pull/186) issue-#185: Fix missing demo images on Safari browser, closes #185 (@sadok-f)
-- [#180](https://github.com/flyimg/flyimg/pull/180) issue-#159: Rework the Documentation #159 (@sadok-f)
-- [#183](https://github.com/flyimg/flyimg/pull/183) issue-#176: Update CodeClimate Test Reporter ID #176 (@sadok-f)
-- [#182](https://github.com/flyimg/flyimg/pull/182) issue-#176: Update CodeClimate Test Reporter ID #176 (@sadok-f)
-- [#181](https://github.com/flyimg/flyimg/pull/181) issue-#176: Update CodeClimate Test Reporter ID #176 (@sadok-f)
-- [#178](https://github.com/flyimg/flyimg/pull/178) issue-#176: Update CodeClimate Test Reporter ID #176 (@sadok-f)
-- [#177](https://github.com/flyimg/flyimg/pull/177) issue-#176: Update CodeClimate Test Reporter ID , closes #176 (@sadok-f)
-- [#175](https://github.com/flyimg/flyimg/pull/175) issue-#171: Missing Test coverage in CodeClimate, closes #171 (@sadok-f)
-- [#174](https://github.com/flyimg/flyimg/pull/174) issue-#171: iMissing Test coverage in CodeClimate , closes #171 (@sadok-f)
-- [#173](https://github.com/flyimg/flyimg/pull/173) Missing Test coverage in CodeClimate, closes #171 (@sadok-f)
-- [#172](https://github.com/flyimg/flyimg/pull/172) issue-#171: Missing Test coverage in CodeClimate, fixes #171 (@sadok-f)
+## [1.1.21](https://github.com/flyimg/flyimg/tree/1.1.21) (2020-12-31)
 
-### 1.1.2 (2018/08/03 16:49 +00:00)
-- [#170](https://github.com/flyimg/flyimg/pull/170) issue-#169: Output auto problem, closes #169 (@sadok-f)
-- [#166](https://github.com/flyimg/flyimg/pull/166) Update README.md (@ankush981)
-- [#165](https://github.com/flyimg/flyimg/pull/165) Changed the domain where the source sample images are hosted. (@baamenabar)
-- [#164](https://github.com/flyimg/flyimg/pull/164) Fix the JetBrains typo in the docs, closes #163 (@sadok-f)
-- [#162](https://github.com/flyimg/flyimg/pull/162) Add Jetbrains Support Issue #161 (@sadok-f)
-- [#156](https://github.com/flyimg/flyimg/pull/156) issue-#155: Fix Signature Generation, undefined method named `getSecu… (@sadok-f)
-- [#153](https://github.com/flyimg/flyimg/pull/153) issue-#152: Fix Codeclimate issues closes #152 (@sadok-f)
-- [#150](https://github.com/flyimg/flyimg/pull/150) [issue-#149] Fix warning from SL insight, closes #149 (@sadok-f)
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.20...1.1.21)
 
-### 1.1.1 (2017/11/06 17:02 +00:00)
-- [#147](https://github.com/flyimg/flyimg/pull/147) [issue-#145] Fix the background color missing, closes #145 (@sadok-f)
+**Implemented enhancements:**
 
-### 1.1.0 (2017/10/29 10:14 +00:00)
-- [#144](https://github.com/flyimg/flyimg/pull/144) [issue-#109] Update docs about the new feature image extraction, (@sadok-f)
-- [#143](https://github.com/flyimg/flyimg/pull/143) [issue-#142] Create Response Entity, closes #142 (@sadok-f)
-- [#141](https://github.com/flyimg/flyimg/pull/141) "rebuild" was missing it's "d". (@tlongren)
-- [#140](https://github.com/flyimg/flyimg/pull/140) [issue-#101] add strict-origin instead of origin, closes #101 (@sadok-f)
-- [#139](https://github.com/flyimg/flyimg/pull/139) [issue-#101] Add Missing Headers, closes#101 (@sadok-f)
+- Fix Changlelog generator in github action workflow, fixes issue\#287 [\#295](https://github.com/flyimg/flyimg/pull/295) ([sadok-f](https://github.com/sadok-f))
+- Add new workflow for github release action, closes \#287 [\#294](https://github.com/flyimg/flyimg/pull/294) ([sadok-f](https://github.com/sadok-f))
 
-### 1.0.1 (2017/10/25 15:32 +00:00)
-- [#138](https://github.com/flyimg/flyimg/pull/138) [issue-#137] Fix the rotate issue, closes #137 (@sadok-f)
-- [#136](https://github.com/flyimg/flyimg/pull/136) Replace getters and setters names with meaning names, closes #135 (@sadok-f)
-- [#134](https://github.com/flyimg/flyimg/pull/134) Refactor part 3: replace list function with [] (new in php7.1), close… (@sadok-f)
-- [#130](https://github.com/flyimg/flyimg/pull/130) Image Processor geometry refactor, added more tests. (@flyimg)
-- [#124](https://github.com/flyimg/flyimg/pull/124) [WIP]: Added more cases for the tests. Fixes #115. Added Image Info to the source image …
- 
- Alright! I'm done with this PR, I have more tests, but they are failing and I need to fix the functionallity. I'll do that in another PR. I've done enough here. And all works same as before.
- 
- We do need to fix all cases for the image identification (minor bugs there).
- 
- Also need to create an abstract Executor class for the command line executions and binary paths. (@flyimg)
-- [#128](https://github.com/flyimg/flyimg/pull/128) Move url docs to https, closes #127 (@sadok-f)
-- [#126](https://github.com/flyimg/flyimg/pull/126) Add Community links (Github and Twitter) (@sadok-f)
-- [#123](https://github.com/flyimg/flyimg/pull/123) Fix SensioLabsInsight warning, closes #122 (@sadok-f)
-- [#121](https://github.com/flyimg/flyimg/pull/121) Add Changelog file, closes #120 (@sadok-f)
-- [#119](https://github.com/flyimg/flyimg/pull/119) Refactor part 2: Move array params to separate classes, closes #118 (@sadok-f)
-- [#117](https://github.com/flyimg/flyimg/pull/117) WIP: Add tests for geometry calculations. This fixes #116 (@flyimg)
-- [#113](https://github.com/flyimg/flyimg/pull/113) Refactor: Clarified and separated logic for output file extensions, closes #114 (@baamenabar)
-- [#112](https://github.com/flyimg/flyimg/pull/112) Docs signature generation (@sadok-f)
-- [#104](https://github.com/flyimg/flyimg/pull/104) [WIP]Add signature generation: Closes #96 (@sadok-f)
-- [#111](https://github.com/flyimg/flyimg/pull/111) Add more unit test to cover extract images, closes #110 (@sadok-f)
-- [#108](https://github.com/flyimg/flyimg/pull/108) Fix failed unit test Fixed #107 (@sadok-f)
-- [#105](https://github.com/flyimg/flyimg/pull/105) Added option to extract part of an image (@WybrenKoelmans)
-- [#103](https://github.com/flyimg/flyimg/pull/103) Closes #102 (@sadok-f)
-- [#100](https://github.com/flyimg/flyimg/pull/100) Improve logging output, remove access.log from output (@sadok-f)
-- [#98](https://github.com/flyimg/flyimg/pull/98) Replace Symonfy Yaml component with php pecl yaml (@sadok-f)
-- [#97](https://github.com/flyimg/flyimg/pull/97) Add --optimize-autoloader to composer install in case of benchmark (@sadok-f)
-- [#93](https://github.com/flyimg/flyimg/pull/93) Add Xdebug Documentation (@sadok-f)
-- [#91](https://github.com/flyimg/flyimg/pull/91) Update Readme: fix typo (@sadok-f)
-- [#90](https://github.com/flyimg/flyimg/pull/90) Updatedocs (@sadok-f, @baamenabar)
-- [#58](https://github.com/flyimg/flyimg/pull/58) Update docs, I'm separating the content in the readme and resorting URL parameters. (@baamenabar)
-- [#89](https://github.com/flyimg/flyimg/pull/89) Improve current architecture #64 (@sadok-f)
-- [#87](https://github.com/flyimg/flyimg/pull/87) More badges (@sadok-f)
-- [#85](https://github.com/flyimg/flyimg/pull/85) Remove ParserTrait usage, improve the code (@sadok-f)
-- [#83](https://github.com/flyimg/flyimg/pull/83) Update Readme (@sadok-f)
-- [#82](https://github.com/flyimg/flyimg/pull/82) update readme (@sadok-f)
-- [#81](https://github.com/flyimg/flyimg/pull/81) Fix Code Climate warning (@sadok-f)
-- [#79](https://github.com/flyimg/flyimg/pull/79) Add more unittest (@sadok-f)
-- [#78](https://github.com/flyimg/flyimg/pull/78) Fix issue : PHP Fatal error: Uncaught exception 'Exception' with mess… (@sadok-f)
-- [#77](https://github.com/flyimg/flyimg/pull/77) Update composer [phpunittest] (@sadok-f)
-- [#73](https://github.com/flyimg/flyimg/pull/73) Increase code coverage unit test + Update readme (@sadok-f)
-- [#72](https://github.com/flyimg/flyimg/pull/72) Add more UnitTest in order to increase the code coverage (@sadok-f)
-- [#71](https://github.com/flyimg/flyimg/pull/71) Add More Unit test cover WebTestCases
- #42 (@sadok-f)
+## [1.1.20](https://github.com/flyimg/flyimg/tree/1.1.20) (2020-12-31)
 
-### 1.0.0 (2017/06/30 16:12 +00:00)
-- [#70](https://github.com/flyimg/flyimg/pull/70) Optimization part 1 (@sadok-f)
-- [#69](https://github.com/flyimg/flyimg/pull/69) Add travis-ci test coverage (@sadok-f)
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.19...1.1.20)
 
-### 0.2.0 (2017/06/30 12:10 +00:00)
-- [#68](https://github.com/flyimg/flyimg/pull/68) Add  test coverage (@sadok-f)
+## [1.1.19](https://github.com/flyimg/flyimg/tree/1.1.19) (2020-12-31)
 
-### 0.1.9 (2017/06/30 10:46 +00:00)
-- [#67](https://github.com/flyimg/flyimg/pull/67) Add travis ci test coverage (@sadok-f)
-- [#66](https://github.com/flyimg/flyimg/pull/66) Add travis ci test coverage (@sadok-f)
-- [#63](https://github.com/flyimg/flyimg/pull/63) Create CODE_OF_CONDUCT.md (@sadok-f)
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.18...1.1.19)
 
-### 0.1.8 (2017/06/27 05:09 +00:00)
-- [#62](https://github.com/flyimg/flyimg/pull/62) Refactor: Performance, structure and code improvement (@sadok-f)
+**Implemented enhancements:**
 
-### 0.1.7 (2017/06/21 14:27 +00:00)
-- [#60](https://github.com/flyimg/flyimg/pull/60) Activating Open Collective (@xdamman)
+- create new workflow for github release, closes \#287 [\#293](https://github.com/flyimg/flyimg/pull/293) ([sadok-f](https://github.com/sadok-f))
 
-### 0.1.6 (2017/03/28 05:56 +00:00)
-- [#57](https://github.com/flyimg/flyimg/pull/57) Allow to serve WebP if explicitly requested
- 
- I need this to keep working on other branch, so I'll be a dick and just merge it without approval. If there is anything you don't like we can revert, no problem. (@baamenabar)
-- [#56](https://github.com/flyimg/flyimg/pull/56) Update docs (@sadok-f)
-- [#55](https://github.com/flyimg/flyimg/pull/55) Move phpunit to require-dev section (@sadok-f)
-- [#53](https://github.com/flyimg/flyimg/pull/53) Remove Twig from the repo. Clean clean clean! (@sadok-f)
+## [1.1.18](https://github.com/flyimg/flyimg/tree/1.1.18) (2020-12-31)
 
-### 0.1.4 (2017/03/07 22:32 +00:00)
-- [#51](https://github.com/flyimg/flyimg/pull/51) Refactor part 1 (@sadok-f)
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.17...1.1.18)
 
-### 0.1.3 (2017/02/18 11:27 +00:00)
-- [#50](https://github.com/flyimg/flyimg/pull/50) Add gif support to flyimg (@sadok-f)
+**Implemented enhancements:**
 
-### 0.1.2 (2017/02/09 21:22 +00:00)
-- [#45](https://github.com/flyimg/flyimg/pull/45) Downgrade to Twig 1.3, refactor and cleanup (@sadok-f)
+- Fix Changelog generator in Github Action [\#287](https://github.com/flyimg/flyimg/issues/287)
+- Fixing changelog generator in github actions, closes \#287 [\#292](https://github.com/flyimg/flyimg/pull/292) ([sadok-f](https://github.com/sadok-f))
+- Fixing changelog generator in github actions, closes \#287 [\#291](https://github.com/flyimg/flyimg/pull/291) ([sadok-f](https://github.com/sadok-f))
+- Fixing changelog generator in github actions, closes \#287 [\#290](https://github.com/flyimg/flyimg/pull/290) ([sadok-f](https://github.com/sadok-f))
+- Fixing changelog generator step in github action, fixes \#287 [\#289](https://github.com/flyimg/flyimg/pull/289) ([sadok-f](https://github.com/sadok-f))
+- Fix Changelog generator action step, fixes \#287 [\#288](https://github.com/flyimg/flyimg/pull/288) ([sadok-f](https://github.com/sadok-f))
 
-### 0.1.0 (2017/02/07 18:08 +00:00)
-- [#43](https://github.com/flyimg/flyimg/pull/43) Add path action to default controller to return the full path of processed image (@sadok-f)
-- [#42](https://github.com/flyimg/flyimg/pull/42) More unittests (@sadok-f)
-- [#41](https://github.com/flyimg/flyimg/pull/41) Add support to output png images in case source file is png (@sadok-f)
-- [#40](https://github.com/flyimg/flyimg/pull/40) Fixing small typos in the readme and adding another demo image. (@flyimg)
-- [#39](https://github.com/flyimg/flyimg/pull/39) Updated the README. Better structure and updated information. (@flyimg)
-- [#36](https://github.com/flyimg/flyimg/pull/36) Make Homepage helpful, add Twig as tmpl engine (@sadok-f)
-- [#33](https://github.com/flyimg/flyimg/pull/33) Add WebP Format Support (@sadok-f)
-- [#31](https://github.com/flyimg/flyimg/pull/31) Add PHPCS to the repo (@sadok-f)
-- [#29](https://github.com/flyimg/flyimg/pull/29) Update Travis yml file (@sadok-f)
-- [#26](https://github.com/flyimg/flyimg/pull/26) add more UnitTest (@sadok-f)
-- [#28](https://github.com/flyimg/flyimg/pull/28) Put back exception response for forbidden domains. (@flyimg)
-- [#27](https://github.com/flyimg/flyimg/pull/27) New favicon (@flyimg)
-- [#20](https://github.com/flyimg/flyimg/pull/20) Fix the concurrency issue (@sadok-f)
-- [#18](https://github.com/flyimg/flyimg/pull/18) Basic cache headers for images (@flyimg)
-- [#17](https://github.com/flyimg/flyimg/pull/17) Refactor Image Manager , create Image Entity (@sadok-f)
-- [#16](https://github.com/flyimg/flyimg/pull/16) Add Blurring faces logic (@sadok-f)
-- [#15](https://github.com/flyimg/flyimg/pull/15) Add crop detection logic (@sadok-f)
-- [#14](https://github.com/flyimg/flyimg/pull/14) Removed unnecesary old folders (@flyimg)
-- [#12](https://github.com/flyimg/flyimg/pull/12) Calculations update (@baamenabar)
-- [#9](https://github.com/flyimg/flyimg/pull/9) pulling from upstream again (@sadok-f)
-- [#8](https://github.com/flyimg/flyimg/pull/8) update lates changes in upstream (@sadok-f)
-- [#7](https://github.com/flyimg/flyimg/pull/7) pull from upstream (@sadok-f, @baamenabar)
-- [#11](https://github.com/flyimg/flyimg/pull/11) Fly image/one docker file rewrite (@sadok-f, @baamenabar)
-- [#6](https://github.com/flyimg/flyimg/pull/6) pull from upstram (@sadok-f)
-- [#5](https://github.com/flyimg/flyimg/pull/5) pull upstream (@baamenabar)
-- [#5](https://github.com/flyimg/flyimg/pull/5) Log folder path with extra whitespace in the string (@baamenabar)
-- [#5](https://github.com/flyimg/flyimg/pull/5) Log folder path with extra whitespace in the string (@baamenabar)
-- [#4](https://github.com/flyimg/flyimg/pull/4) pull from upstream (@sadok-f)
-- [#4](https://github.com/flyimg/flyimg/pull/4) pull from upstream (@sadok-f)
-- [#4](https://github.com/flyimg/flyimg/pull/4) Added mention to silex and removed relative path mistake (@baamenabar)
-- [#4](https://github.com/flyimg/flyimg/pull/4) Added mention to silex and removed relative path mistake (@baamenabar)
-- [#3](https://github.com/flyimg/flyimg/pull/3) Update readme with more descriptive intro and setup instructions (@baamenabar)
-- [#3](https://github.com/flyimg/flyimg/pull/3) Update readme with more descriptive intro and setup instructions (@baamenabar)
-- [#3](https://github.com/flyimg/flyimg/pull/3) Update the readme with more detailed setup instructions (@baamenabar)
-- [#3](https://github.com/flyimg/flyimg/pull/3) Update the readme with more detailed setup instructions (@baamenabar)
-- [#2](https://github.com/flyimg/flyimg/pull/2) merge from upstream (@sadok-f)
-- [#2](https://github.com/flyimg/flyimg/pull/2) merge from upstream (@sadok-f)
-- [#1](https://github.com/flyimg/flyimg/pull/1) pulling upstream (@sadok-f)
-- [#1](https://github.com/flyimg/flyimg/pull/1) pulling upstream (@sadok-f)
-- [#2](https://github.com/flyimg/flyimg/pull/2) Update READ.me (@baamenabar)
-- [#2](https://github.com/flyimg/flyimg/pull/2) Update READ.me (@baamenabar)
+## [1.1.17](https://github.com/flyimg/flyimg/tree/1.1.17) (2020-12-31)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.16...1.1.17)
+
+**Implemented enhancements:**
+
+- Fix deployment step in github action, closes \#280 [\#286](https://github.com/flyimg/flyimg/pull/286) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.16](https://github.com/flyimg/flyimg/tree/1.1.16) (2020-12-31)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.15...1.1.16)
+
+**Implemented enhancements:**
+
+- Fix deployment action, closes \#280 [\#285](https://github.com/flyimg/flyimg/pull/285) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.15](https://github.com/flyimg/flyimg/tree/1.1.15) (2020-12-31)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.14...1.1.15)
+
+**Implemented enhancements:**
+
+- Implement Continuous Deployment \(CD\) for flyimg [\#280](https://github.com/flyimg/flyimg/issues/280)
+- Fix deployment action, closes \#280 [\#284](https://github.com/flyimg/flyimg/pull/284) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.14](https://github.com/flyimg/flyimg/tree/1.1.14) (2020-12-31)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.13...1.1.14)
+
+**Implemented enhancements:**
+
+- Add deploy to demo server as part of CD, closes \#280 [\#283](https://github.com/flyimg/flyimg/pull/283) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.13](https://github.com/flyimg/flyimg/tree/1.1.13) (2020-12-31)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.12...1.1.13)
+
+**Implemented enhancements:**
+
+- Add code checkout step [\#282](https://github.com/flyimg/flyimg/pull/282) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.12](https://github.com/flyimg/flyimg/tree/1.1.12) (2020-12-31)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.11...1.1.12)
+
+**Implemented enhancements:**
+
+- Add Docker build/push action when create new release, closes \#280 [\#281](https://github.com/flyimg/flyimg/pull/281) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.11](https://github.com/flyimg/flyimg/tree/1.1.11) (2020-12-31)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.10...1.1.11)
+
+**Implemented enhancements:**
+
+- Replace Travis-ci by Github Actions [\#279](https://github.com/flyimg/flyimg/pull/279) ([sadok-f](https://github.com/sadok-f))
+
+**Closed issues:**
+
+- Travis-CI issue [\#257](https://github.com/flyimg/flyimg/issues/257)
+
+## [1.1.10](https://github.com/flyimg/flyimg/tree/1.1.10) (2020-12-29)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.9...1.1.10)
+
+**Implemented enhancements:**
+
+- Move to main branch [\#277](https://github.com/flyimg/flyimg/issues/277)
+- Update release branch to main [\#278](https://github.com/flyimg/flyimg/pull/278) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.9](https://github.com/flyimg/flyimg/tree/1.1.9) (2020-12-28)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.8...1.1.9)
+
+**Implemented enhancements:**
+
+- Add Generate ChangeLog to github action [\#275](https://github.com/flyimg/flyimg/pull/275) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.8](https://github.com/flyimg/flyimg/tree/1.1.8) (2020-12-28)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.7...1.1.8)
+
+**Implemented enhancements:**
+
+- Update changelog [\#274](https://github.com/flyimg/flyimg/pull/274) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.7](https://github.com/flyimg/flyimg/tree/1.1.7) (2020-12-28)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.6...1.1.7)
+
+**Implemented enhancements:**
+
+- Add Github Action to create new Tag/Release [\#269](https://github.com/flyimg/flyimg/issues/269)
+- Add Codecov Report [\#267](https://github.com/flyimg/flyimg/issues/267)
+- Downgrade Github action to v5 [\#272](https://github.com/flyimg/flyimg/pull/272) ([sadok-f](https://github.com/sadok-f))
+- add empty tag\_prefix for Github actions [\#271](https://github.com/flyimg/flyimg/pull/271) ([sadok-f](https://github.com/sadok-f))
+- Add new github action to release tag closes \#269 [\#270](https://github.com/flyimg/flyimg/pull/270) ([sadok-f](https://github.com/sadok-f))
+- Add CodeCov Repport, closes \#267 [\#268](https://github.com/flyimg/flyimg/pull/268) ([sadok-f](https://github.com/sadok-f))
+- Add Last-Modified headers tag, closes \#261 [\#266](https://github.com/flyimg/flyimg/pull/266) ([sadok-f](https://github.com/sadok-f))
+
+**Closed issues:**
+
+- cache refresh [\#265](https://github.com/flyimg/flyimg/issues/265)
+- question about query parameters [\#264](https://github.com/flyimg/flyimg/issues/264)
+- Specify a cache validator [\#261](https://github.com/flyimg/flyimg/issues/261)
+
+**Merged pull requests:**
+
+- Bump symfony/http-kernel from 4.4.1 to 4.4.13 [\#262](https://github.com/flyimg/flyimg/pull/262) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump symfony/http-foundation from 4.4.1 to 4.4.7 [\#254](https://github.com/flyimg/flyimg/pull/254) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [1.1.6](https://github.com/flyimg/flyimg/tree/1.1.6) (2020-02-12)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.5...1.1.6)
+
+**Implemented enhancements:**
+
+- Update CHANGELOG.md file [\#251](https://github.com/flyimg/flyimg/issues/251)
+- Update CHANGELOG file for the new release [\#249](https://github.com/flyimg/flyimg/issues/249)
+- Question - I'm adding support for PDF's and Movies in a fork [\#241](https://github.com/flyimg/flyimg/issues/241)
+- Update composer [\#239](https://github.com/flyimg/flyimg/issues/239)
+- Update CHANGELOG file, closes \#251 [\#252](https://github.com/flyimg/flyimg/pull/252) ([sadok-f](https://github.com/sadok-f))
+- Update changelog file closes \#249 [\#250](https://github.com/flyimg/flyimg/pull/250) ([sadok-f](https://github.com/sadok-f))
+- Louisl/feature/movie support [\#246](https://github.com/flyimg/flyimg/pull/246) ([sadok-f](https://github.com/sadok-f))
+- Updated readme for PDF and video [\#245](https://github.com/flyimg/flyimg/pull/245) ([louisl](https://github.com/louisl))
+- Louisl/feature/movie support, closes \#243 [\#244](https://github.com/flyimg/flyimg/pull/244) ([sadok-f](https://github.com/sadok-f))
+- Update composer, fixes \#239 [\#240](https://github.com/flyimg/flyimg/pull/240) ([sadok-f](https://github.com/sadok-f))
+
+**Closed issues:**
+
+- slash error  [\#235](https://github.com/flyimg/flyimg/issues/235)
+
+**Merged pull requests:**
+
+- Updated demo source links [\#247](https://github.com/flyimg/flyimg/pull/247) ([louisl](https://github.com/louisl))
+
+## [1.1.5](https://github.com/flyimg/flyimg/tree/1.1.5) (2019-12-03)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.4...1.1.5)
+
+**Implemented enhancements:**
+
+- Update the dockerfile to use the latest base image 1.1.0 [\#229](https://github.com/flyimg/flyimg/issues/229)
+- Update Readme: add Google Cloud Run description [\#227](https://github.com/flyimg/flyimg/issues/227)
+- Change the default Nginx port to a variable environment  [\#225](https://github.com/flyimg/flyimg/issues/225)
+- Add Cloud Run Button to Flyimg [\#223](https://github.com/flyimg/flyimg/issues/223)
+- Refactor ExtractProcessor class [\#221](https://github.com/flyimg/flyimg/issues/221)
+- Update CHANGELOG.md [\#219](https://github.com/flyimg/flyimg/issues/219)
+- Fixing FaceDetect not working, closes \#236 [\#237](https://github.com/flyimg/flyimg/pull/237) ([sadok-f](https://github.com/sadok-f))
+- Update Readme: add Google Cloud Run description, closes \#227 [\#233](https://github.com/flyimg/flyimg/pull/233) ([sadok-f](https://github.com/sadok-f))
+- Use new deploy redirector [\#231](https://github.com/flyimg/flyimg/pull/231) ([jamesward](https://github.com/jamesward))
+- Update the dockerfile to use the latest base image 1.1.0, closes \#229 [\#230](https://github.com/flyimg/flyimg/pull/230) ([sadok-f](https://github.com/sadok-f))
+- Add Cloud Run Button to Flyimg [\#224](https://github.com/flyimg/flyimg/pull/224) ([sadok-f](https://github.com/sadok-f))
+- Refactor ExtractProcessor class, closes \#221 [\#222](https://github.com/flyimg/flyimg/pull/222) ([sadok-f](https://github.com/sadok-f))
+- Update CHANGELOG.md, closes \#219 [\#220](https://github.com/flyimg/flyimg/pull/220) ([sadok-f](https://github.com/sadok-f))
+
+**Fixed bugs:**
+
+- FaceDetect not working [\#236](https://github.com/flyimg/flyimg/issues/236)
+
+**Merged pull requests:**
+
+- Add changelogs for the new release [\#238](https://github.com/flyimg/flyimg/pull/238) ([sadok-f](https://github.com/sadok-f))
+- Add ?git\_repo to cloud-run-button [\#232](https://github.com/flyimg/flyimg/pull/232) ([ahmetb](https://github.com/ahmetb))
+- Update FUNDING.yml [\#228](https://github.com/flyimg/flyimg/pull/228) ([sadok-f](https://github.com/sadok-f))
+
+## [1.1.4](https://github.com/flyimg/flyimg/tree/1.1.4) (2019-08-07)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.3...1.1.4)
+
+**Implemented enhancements:**
+
+- Update docker libraries and move to use tags images [\#217](https://github.com/flyimg/flyimg/issues/217)
+- Update php minimum version to 7.1 [\#215](https://github.com/flyimg/flyimg/issues/215)
+- Fix composer install warning [\#213](https://github.com/flyimg/flyimg/issues/213)
+- How to specify a default domain name? [\#211](https://github.com/flyimg/flyimg/issues/211)
+- Update the CHANGELOG.md [\#206](https://github.com/flyimg/flyimg/issues/206)
+- Update docker libraries and move to use tags images, closes \#217 [\#218](https://github.com/flyimg/flyimg/pull/218) ([sadok-f](https://github.com/sadok-f))
+- Update php minimum version to 7.1, closes \#215 [\#216](https://github.com/flyimg/flyimg/pull/216) ([sadok-f](https://github.com/sadok-f))
+- Fix composer install warning, closes \#213 [\#214](https://github.com/flyimg/flyimg/pull/214) ([sadok-f](https://github.com/sadok-f))
+- Instructions to replace default parameters file [\#212](https://github.com/flyimg/flyimg/pull/212) ([diego-vieira](https://github.com/diego-vieira))
+- Update CHANGELOG file, closes \#206 [\#207](https://github.com/flyimg/flyimg/pull/207) ([sadok-f](https://github.com/sadok-f))
+
+**Closed issues:**
+
+- Update the sharpen and unsharp docs. [\#204](https://github.com/flyimg/flyimg/issues/204)
+
+## [1.1.3](https://github.com/flyimg/flyimg/tree/1.1.3) (2019-01-09)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.2...1.1.3)
+
+**Implemented enhancements:**
+
+- Unsharp option doesn't work [\#202](https://github.com/flyimg/flyimg/issues/202)
+- Missing User-Agent header to get images [\#200](https://github.com/flyimg/flyimg/issues/200)
+- fix Unsharp option and add other options such as sharpen and blur [\#203](https://github.com/flyimg/flyimg/pull/203) ([sadok-f](https://github.com/sadok-f))
+- New parameter to add more options to the header, fixes \#200 [\#201](https://github.com/flyimg/flyimg/pull/201) ([sadok-f](https://github.com/sadok-f))
+- issue-\#197: Remove the Refresh option in the hash generated for output img [\#198](https://github.com/flyimg/flyimg/pull/198) ([sadok-f](https://github.com/sadok-f))
+- issue-\#191: mage path parameters is ignored, closes \#191 [\#193](https://github.com/flyimg/flyimg/pull/193) ([sadok-f](https://github.com/sadok-f))
+- issue-\#185: Fix missing demo images on Safari browser, closes \#185 [\#186](https://github.com/flyimg/flyimg/pull/186) ([sadok-f](https://github.com/sadok-f))
+- issue-\#176: Update CodeClimate Test Reporter ID \#176 [\#183](https://github.com/flyimg/flyimg/pull/183) ([sadok-f](https://github.com/sadok-f))
+- issue-\#176: Update CodeClimate Test Reporter ID \#176 [\#182](https://github.com/flyimg/flyimg/pull/182) ([sadok-f](https://github.com/sadok-f))
+- issue-\#176: Update CodeClimate Test Reporter ID \#176 [\#181](https://github.com/flyimg/flyimg/pull/181) ([sadok-f](https://github.com/sadok-f))
+
+**Fixed bugs:**
+
+- Refresh option should be removed from the hashed string for the generated image [\#197](https://github.com/flyimg/flyimg/issues/197)
+- A bug with fc and fb options [\#187](https://github.com/flyimg/flyimg/issues/187)
+- issue-\#187: A bug with fc and fb options, closes \#187 [\#188](https://github.com/flyimg/flyimg/pull/188) ([sadok-f](https://github.com/sadok-f))
+
+**Merged pull requests:**
+
+- Updated the docs regarding blur, unsharp, and sharpen filters. Fixes \#204 [\#205](https://github.com/flyimg/flyimg/pull/205) ([baamenabar](https://github.com/baamenabar))
+
+## [1.1.2](https://github.com/flyimg/flyimg/tree/1.1.2) (2018-08-03)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.1...1.1.2)
+
+## [1.1.1](https://github.com/flyimg/flyimg/tree/1.1.1) (2017-11-06)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.1.0...1.1.1)
+
+## [1.1.0](https://github.com/flyimg/flyimg/tree/1.1.0) (2017-10-29)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.0.1...1.1.0)
+
+## [1.0.1](https://github.com/flyimg/flyimg/tree/1.0.1) (2017-10-25)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/1.0.0...1.0.1)
+
+## [1.0.0](https://github.com/flyimg/flyimg/tree/1.0.0) (2017-06-30)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.2.0...1.0.0)
+
+## [0.2.0](https://github.com/flyimg/flyimg/tree/0.2.0) (2017-06-30)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.1.9...0.2.0)
+
+## [0.1.9](https://github.com/flyimg/flyimg/tree/0.1.9) (2017-06-30)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.1.8...0.1.9)
+
+## [0.1.8](https://github.com/flyimg/flyimg/tree/0.1.8) (2017-06-27)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.1.7...0.1.8)
+
+## [0.1.7](https://github.com/flyimg/flyimg/tree/0.1.7) (2017-06-21)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.1.6...0.1.7)
+
+## [0.1.6](https://github.com/flyimg/flyimg/tree/0.1.6) (2017-03-28)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.1.5...0.1.6)
+
+## [0.1.5](https://github.com/flyimg/flyimg/tree/0.1.5) (2017-03-08)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.1.4...0.1.5)
+
+## [0.1.4](https://github.com/flyimg/flyimg/tree/0.1.4) (2017-03-07)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.1.3...0.1.4)
+
+## [0.1.3](https://github.com/flyimg/flyimg/tree/0.1.3) (2017-02-18)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/0.1.2...0.1.3)
+
+## [0.1.2](https://github.com/flyimg/flyimg/tree/0.1.2) (2017-02-09)
+
+[Full Changelog](https://github.com/flyimg/flyimg/compare/b8b0881092b435f456f87f06d11a219810f897eb...0.1.2)
+
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*

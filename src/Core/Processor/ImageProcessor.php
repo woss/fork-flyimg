@@ -72,13 +72,18 @@ class ImageProcessor extends Processor
         }
 
         $pdfPageNo = $outputImage->getInputImage()->isInputPdf() ?
-                        '['.($outputImage->extractKey('page_number') - 1).']' :
-                        '';
+            '[' . ($outputImage->extractKey('page_number') - 1) . ']' :
+            '';
 
-        $command->addArgument($this->getSourceImagePath($outputImage).$pdfPageNo);
+        $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo);
 
         $command->addArgument($this->calculateSize());
-        $command->addArgument('-colorspace', 'sRGB');
+
+        $command->addArgument('-colorspace', $outputImage->extractKey('colorspace'));
+
+        if (!empty($outputImage->extractKey('monochrome'))) {
+            $command->addArgument('-monochrome');
+        }
 
         $command->addArgument($this->checkForwardedOptions());
 

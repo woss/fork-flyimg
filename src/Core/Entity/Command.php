@@ -31,7 +31,7 @@ class Command
     public function addArgument(string $argument, string $value = '')
     {
         if (!empty($value)) {
-            $argument .= ' '.escapeshellarg($value);
+            $argument .= ' ' . escapeshellarg($value);
         }
 
         $this->arguments[] = $argument;
@@ -42,6 +42,6 @@ class Command
      */
     public function __toString()
     {
-        return $this->command.' '.implode(' ', $this->arguments);
+        return $this->command . ' ' . implode(' ', $this->arguments);
     }
 }
