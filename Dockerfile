@@ -1,6 +1,6 @@
-FROM flyimg/base-image:1.1.0
+FROM flyimg/base-image:1.2.1
 
-# Install other file processors.
+# Install other file processors
 RUN apt update && \
     apt install -y \
     ghostscript \

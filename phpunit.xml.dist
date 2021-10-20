@@ -11,6 +11,7 @@
     <php>
         <env name="HOSTNAME_URL" value=""/>
         <env name="env" value="test" />
+        <env name="XDEBUG_MODE" value="coverage" />
     </php>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
