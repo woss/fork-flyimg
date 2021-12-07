@@ -64,7 +64,17 @@ class Response extends BaseResponse
             $this->headers->set('im-command', $image->getCommandString());
         }
 
-        $this->headers->set('Last-Modified', gmdate("D, d M Y H:i:s T", $this->storageFileSystem['storage_handler']->getTimestamp($outputImageName)));
+        $this->addLastModifiedHeader($outputImageName);
+    }
+
+    /**
+     * Add Security Headers
+     */
+    protected function addLastModifiedHeader($outputImageName): void
+    {
+        $storageHandler = $this->storageFileSystem['storage_handler'];
+        $lastModified = gmdate("D, d M Y H:i:s T", $storageHandler->getTimestamp($outputImageName));
+        $this->headers->set('Last-Modified', $lastModified);
     }
 
     /**
