@@ -14,21 +14,21 @@ class Response extends BaseResponse
 {
     /** @var ImageHandler */
     protected $imageHandler;
-    /** @var string */
-    protected $filePathResolver;
+    /** @var Pimple\Container*/
+    protected $storageFileSystem;
     /** @var int */
     protected $maxAge;
 
     /**
      * Response constructor.
      *
-     * @param $filePathResolver
      * @param $imageHandler
+     * @param $storageFileSystem
      * @param $maxAge
      */
-    public function __construct($imageHandler, $filePathResolver, $maxAge)
+    public function __construct($imageHandler, $storageFileSystem, $maxAge)
     {
-        $this->filePathResolver = $filePathResolver;
+        $this->storageFileSystem = $storageFileSystem;
         $this->imageHandler = $imageHandler;
         $this->maxAge = $maxAge;
         parent::__construct();
@@ -42,8 +42,9 @@ class Response extends BaseResponse
      */
     protected function generateHeaders(OutputImage $image)
     {
+        $outputImageName = $image->getOutputImageName();
         $this->headers->set('Content-Type', $this->imageHandler->responseContentType($image));
-        $this->headers->set('Content-Disposition', sprintf('inline;filename="%s"', $image->getOutputImageName()));
+        $this->headers->set('Content-Disposition', sprintf('inline;filename="%s"', $outputImageName));
 
 
         $expireDate = new \DateTime();
@@ -63,18 +64,7 @@ class Response extends BaseResponse
             $this->headers->set('im-command', $image->getCommandString());
         }
 
-        $this->headers->set('Last-Modified', $this->getLastModifiedDate($image));
-    }
-
-    /**
-     * Get Last modified Date
-     */
-    protected function getLastModifiedDate(OutputImage $image): string
-    {
-        $imagePath =  UPLOAD_DIR . $image->getOutputImageName();
-        $lastModifiedGmt = filemtime($imagePath);
-
-        return gmdate("D, d M Y H:i:s T", $lastModifiedGmt);
+        $this->headers->set('Last-Modified', gmdate("D, d M Y H:i:s T", $this->storageFileSystem['storage_handler']->getTimestamp($outputImageName)));
     }
 
     /**
@@ -107,7 +97,7 @@ class Response extends BaseResponse
      */
     public function generatePathResponse(OutputImage $image): void
     {
-        $imagePath = sprintf($this->filePathResolver, $image->getOutputImageName());
+        $imagePath = sprintf($this->storageFileSystem['file_path_resolver'], $image->getOutputImageName());
         $this->setContent($imagePath);
         $image->removeOutputImage();
     }

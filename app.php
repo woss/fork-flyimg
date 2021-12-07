@@ -81,7 +81,7 @@ $app['resolver'] = function (\Silex\Application $app) {
  */
 $app['image.handler'] = function (\Silex\Application $app): \Core\Handler\ImageHandler {
     return new \Core\Handler\ImageHandler(
-        $app['flysystems']['upload_dir'],
+        $app['flysystems']['storage_handler'],
         $app['params']
     );
 };
