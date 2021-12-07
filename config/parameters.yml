@@ -26,15 +26,15 @@ whitelist_domains:
 # Default storage system is local, to use use AWS S3, change this param to s3
 storage_system: local
 
-# Number of threads for Imagemagick to use
-thread: 1
-
 #In case storage_system: s3, you need to add those AWS S3 parameters:
 aws_s3:
   access_id: ""
   secret_key: ""
-  region: ""
+  region: "eu-central-1"
   bucket_name: ""
+
+# Number of threads for Imagemagick to use
+thread: 1
 
 #Extra options for the header sent to source image server, as some servers requires the User-Agent.
 header_extra_options: 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2) Gecko/20110201'

@@ -54,7 +54,7 @@ class S3StorageProvider implements ServiceProviderInterface
             new FlysystemServiceProvider(),
             [
                 'flysystem.filesystems' => [
-                    'upload_dir' => [
+                    'storage_handler' => [
                         'adapter' => 'League\Flysystem\AwsS3v3\AwsS3Adapter',
                         'args' => [$s3Client, $s3Params['bucket_name']],
                     ],
