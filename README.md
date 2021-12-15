@@ -21,8 +21,8 @@ Image resizing, cropping and compression on the fly with the impressive [MozJPEG
 You pass the image URL and a set of keys with options, like size or compression. Flyimg will fetch the image, convert it, store it, cache it and serve it. The next time the request comes, it will serve the cached version.
 
 ```html
-<!-- https://mudawn.com/butterfly-3000.jpg -->
-<img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://mudawn.com/butterfly-3000.jpg">
+<!-- https://mudawn.com/assets/butterfly-3000.jpg -->
+<img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://mudawn.com/assets/butterfly-3000.jpg">
 ```
 
 ## Cloud Run Button
@@ -34,14 +34,14 @@ Flyimg can be deployed to GCP as a serverless container in one click with Cloud 
 
 ### Get an image to fill exact dimensions
 
-- Image: `https://mudawn.com/butterfly-3000.jpg`
+- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
 - Width: 300
 - Height: 250
 - Crop if necesary: `c_1`
 
-`https://oi.flyimg.io/upload/w_300,h_250,c_1/https://mudawn.com/butterfly-3000.jpg`
+`https://oi.flyimg.io/upload/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 This will serve the image.
 
@@ -49,44 +49,44 @@ This will serve the image.
 
 Change the first part of the path from `upload` to `path`, like so:
 
-`https://oi.flyimg.io/path/w_300,h_250,c_1/https://mudawn.com/butterfly-3000.jpg` will output in the body of the response:
+`https://oi.flyimg.io/path/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg` will output in the body of the response:
 
 `http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg`
 
 ### Get an image to fit maximum dimensions
 
-- Image: `https://mudawn.com/butterfly-3000.jpg`
+- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
 - Width: 300
 - Height: 250
 - Note that we ommit the crop parameter
 
-`https://oi.flyimg.io/upload/w_300,h_250/https://mudawn.com/butterfly-3000.jpg`
+`https://oi.flyimg.io/upload/w_300,h_250/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,o_jpg/https://mudawn.com/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_300,h_250,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### Crop to a square and rotate 90 degrees clockwise
 
-- Image: `https://mudawn.com/butterfly-3000.jpg`
+- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
 - Width: 200
 - Height: 200
 - Crop: `c_1`
 - Rotate: 90
 
-`https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://mudawn.com/butterfly-3000.jpg`
+`https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90,o_jpg/https://mudawn.com/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,r_90,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### Get an image with exact dimensions and low quality
 
-- Image: `https://mudawn.com/butterfly-3000.jpg`
+- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
 - Width: 200
 - Height: 200
 - Crop: `c_1`
 - Quality: 30
 
-`https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://mudawn.com/butterfly-3000.jpg`
+`https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://mudawn.com/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### Smart Crop
 
@@ -130,23 +130,23 @@ Change the first part of the path from `upload` to `path`, like so:
 
 ### Converting to Colorspace Gray
 
-- Image: `https://mudawn.com/butterfly-3000.jpg`
+- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
 - Width: 400
 - Colorspace: `clsp_Gray`
 
-`https://oi.flyimg.io/upload/w_400,clsp_Gray/https://mudawn.com/butterfly-3000.jpg`
+`https://oi.flyimg.io/upload/w_400,clsp_Gray/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://mudawn.com/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### Converting to Monochrome
 
-- Image: `https://mudawn.com/butterfly-3000.jpg`
+- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
 - Width: 400
 - Monochrome: `mnchr_1`
 
-`https://oi.flyimg.io/upload/w_400,mnchr_1/https://mudawn.com/butterfly-3000.jpg`
+`https://oi.flyimg.io/upload/w_400,mnchr_1/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://mudawn.com/butterfly-3000.jpg)
+![lago_ranco](https://oi.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 
 ## Table of Contents
@@ -261,9 +261,9 @@ The above command will make the Dockerfile run supervisord command which launche
 
 You can navigate to your machine's IP in port 8080 (ex: `http://127.0.0.1:8080/` ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors at this stage it's most likely that composer has not finished installing or skipped something.
 
-You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://mudawn.com/butterfly-3000.jpg`
+You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90,o_jpg/https://mudawn.com/butterfly-3000.jpg)
+![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 **It's working!**
 
@@ -294,7 +294,7 @@ _Description:_ Sets the target width of the image. If not set, width will be cal
 
 **example:`w_100`**
 
-`w_100` : `https://oi.flyimg.io/upload/w_100/https://mudawn.com/butterfly-3000.jpg`
+`w_100` : `https://oi.flyimg.io/upload/w_100/https://mudawn.com/assets/butterfly-3000.jpg`
 
 #### `h` : height
 
@@ -304,7 +304,7 @@ _Description:_ Sets the target height of the image. If not set, height will be c
 
 **example:`h_100`**
 
-`h_100` : `https://oi.flyimg.io/upload/h_100/https://mudawn.com/butterfly-3000.jpg`
+`h_100` : `https://oi.flyimg.io/upload/h_100/https://mudawn.com/assets/butterfly-3000.jpg`
 
 #### Using width AND height
 
@@ -313,7 +313,7 @@ By default setting width and height together, works like defining a rectangle th
 
 By default; width, height, or both will **not scale up** an image that is smaller than the defined dimensions.
 
-`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://mudawn.com/butterfly-3000.jpg`
+`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://mudawn.com/assets/butterfly-3000.jpg`
 
 ### `c` : crop
 
@@ -323,7 +323,7 @@ _Description:_ When both width and height are set, this allows the image to be c
 
 **example:`c_1`**
 
-`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://mudawn.com/butterfly-3000.jpg`
+`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://mudawn.com/assets/butterfly-3000.jpg`
 
 #### `smc` : smart crop
 
@@ -352,7 +352,7 @@ _Description:_ Apply image rotation (using shear operations) to the image.
 
 **example: `r_90`, `r_-180`,...**
 
-`r_45` : `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://mudawn.com/butterfly-3000.jpg`
+`r_45` : `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://mudawn.com/assets/butterfly-3000.jpg`
 
 #### `o` : output
 
@@ -370,9 +370,9 @@ _Description:_ Sets the compression level for the output image. Your best result
 
 **example:`q_100`,`q_75`,...**
 
-`q_30` : `https://oi.flyimg.io/upload/q_30/https://mudawn.com/butterfly-3000.jpg`
+`q_30` : `https://oi.flyimg.io/upload/q_30/https://mudawn.com/assets/butterfly-3000.jpg`
 
-`q_100` : `https://oi.flyimg.io/upload/q_100/https://mudawn.com/butterfly-3000.jpg`
+`q_100` : `https://oi.flyimg.io/upload/q_100/https://mudawn.com/assets/butterfly-3000.jpg`
 
 #### Refresh or re-fetch source image
 
@@ -486,7 +486,7 @@ Than any request to Fyimg app will throw an error unless it's encrypted.
 To generate the encrypted url you need to run this command:
 
 ```sh
-docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://mudawn.com/butterfly-3000.jpg
+docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://mudawn.com/assets/butterfly-3000.jpg
 ```
 
 it'll return something like this:
@@ -580,7 +580,7 @@ Status Codes  [code:count]             200:500
 
 [https://oi.flyimg.io](https://oi.flyimg.io)
 
-![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/butterfly-3000.jpg)
+![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ## Roadmap
 
