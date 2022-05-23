@@ -36,6 +36,7 @@ class OutputImageTest extends BaseTest
             'crop' => '1',
             'background' => '#999999',
             'strip' => 1,
+            'auto-orient' => 0,
             'resize' => '1',
             'gravity' => 'Center',
             'filter' => 'Lanczos',

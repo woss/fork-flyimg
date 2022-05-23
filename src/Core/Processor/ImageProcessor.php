@@ -88,8 +88,12 @@ class ImageProcessor extends Processor
         $command->addArgument($this->checkForwardedOptions());
 
         //Strip is added internally by ImageMagick when using -thumbnail
-        if (!empty($outputImage->extractKey('strip'))) {
-            $command->addArgument("-strip");
+        $withoutValueOptions = ['strip', 'auto-orient'];
+
+        foreach ($withoutValueOptions as $option) {
+            if (!empty($this->options->getOption($option))) {
+                $command->addArgument("-" . $option);
+            }
         }
 
         if (!empty($outputImage->extractKey('thread'))) {
