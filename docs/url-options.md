@@ -194,6 +194,14 @@ _Description:_ removes exif data and additional color profile. Leaving your imag
 
 **example:`st_1`**
 
+### `ao` : auto-orient
+
+`int`
+_Default:_ `0`
+_Description:_ Adjusts an image so that its orientation is suitable for viewing (i.e. top-left orientation).
+
+**example:`ao_1`**
+
 ### `rz` : resize
 
 `int` _Default:_ `null`

@@ -7,31 +7,31 @@ debug: true
 header_cache_days: 365
 
 #options separator
-options_separator: ","
+options_separator: ','
 
 #Security: Signature generation
 # security key
-security_key: ""
+security_key: ''
 # secret Initialization vector(IV)
-security_iv: ""
+security_iv: ''
 
 # restrict domains, false by default
 restricted_domains: false
 
 # if restricted_domains is enabled, put whitelist domains here
 whitelist_domains:
-    - domain-1.com
-    - domain-2.com
+  - domain-1.com
+  - domain-2.com
 
 # Default storage system is local, to use use AWS S3, change this param to s3
 storage_system: local
 
 #In case storage_system: s3, you need to add those AWS S3 parameters:
 aws_s3:
-  access_id: ""
-  secret_key: ""
-  region: "eu-central-1"
-  bucket_name: ""
+  access_id: ''
+  secret_key: ''
+  region: 'eu-central-1'
+  bucket_name: ''
 
 # Number of threads for Imagemagick to use
 thread: 1
@@ -55,6 +55,7 @@ options_keys:
   c: crop
   bg: background
   st: strip
+  ao: auto-orient
   rz: resize
   g: gravity
   f: filter
@@ -94,6 +95,7 @@ default_options:
   crop: null
   background: null
   strip: 1
+  auto-orient: 0
   resize: null
   gravity: Center
   filter: Lanczos
