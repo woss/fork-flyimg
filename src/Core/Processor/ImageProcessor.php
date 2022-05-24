@@ -306,6 +306,9 @@ class ImageProcessor extends Processor
         foreach ($forwardedOptions as $option) {
             if (!empty($this->options->getOption($option))) {
                 $command->addArgument("-" . $option, $this->options->getOption($option));
+                if($option == 'background'){
+                    $command->addArgument("-alpha remove -alpha off");
+                }
             }
         }
 
