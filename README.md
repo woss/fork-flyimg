@@ -26,6 +26,8 @@ You pass the image URL and a set of keys with options, like size or compression.
 />
 ```
 
+![Flyimg-demo](https://oi.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg)
+
 ## Cloud Run Button
 
 Flyimg can be deployed to GCP as a serverless container in one click with Cloud Run Button:
@@ -115,8 +117,6 @@ You can navigate to your machine's IP in port 8080 (ex: `http://127.0.0.1:8080/`
 
 You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
-
 **It's working!**
 
 This is fetching an image from Mozilla, resizing it, saving it and serving it.
@@ -158,7 +158,7 @@ A special thanks to JetBrains for supporting our project with their [open source
 
 ## Contributors
 
-This project exists thanks to all the people who contribute.
+This project exists thanks to all the people who contributed to it.
 <a href="https://github.com/flyimg/flyimg/graphs/contributors"><img src="https://opencollective.com/flyimg/contributors.svg?width=890" /></a>
 
 ## Backers & Sponsors
