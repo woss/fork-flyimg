@@ -140,9 +140,7 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 
 [https://oi.flyimg.io](https://oi.flyimg.io)
 
-```
-https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg
-```
+`https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg`
 
 ![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
