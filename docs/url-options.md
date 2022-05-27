@@ -334,6 +334,40 @@ _Description:_ If set to 0 and if the source image is smaller than the target di
 _Default:_ `0`
 _Description:_ ...
 
+### PDF options
+
+Requires `ghostscript` installation in the Dockerfile.
+
+#### `pg` : page number
+
+`int`  
+_Default:_ 1  
+_Description:_ Sets the target page of the PDF. If not set, the default is page 1.
+
+**example:`pg_2`**
+
+`pg_2` : `https://oi.flyimg.io/upload/pg_2/http://mudawn.com/lighthouses.pdf`
+
+### Video options
+
+Requires `ffmpeg` installation in the Dockerfile.
+
+#### `tm` : time
+
+`string`  
+_Default:_ `00:00:01`  
+_Description:_ Sets the frame capture time duration point in the video. If not set, the default is 1 second. The format is `HH:MM:SS` OR `SS`
+
+**example:`tm_00:00:05`**
+
+`tm_00:00:05` : `https://oi.flyimg.io/upload/tm_00:00:05/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
+
+You can also use a shorter syntax for the first 60 seconds.
+
+**example:`tm_10`**
+
+`tm_10` : `https://oi.flyimg.io/upload/tm_10/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
+
 ---
 
 ## process-type: _upload_ or _path_

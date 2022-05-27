@@ -29,9 +29,118 @@ You pass the image URL and a set of keys with options, like size or compression.
 ## Cloud Run Button
 
 Flyimg can be deployed to GCP as a serverless container in one click with Cloud Run Button:
-<a href="https://deploy.cloud.run/"><img src="https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git" alt="Run on Google Cloud" style="width:180px;margin-top:10px;"/></a>
+<a href="https://deploy.cloud.run/"><img src="https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git" alt="Run on Google Cloud" style="width:180px;margin-top:20px;"/></a>
+
+## Requirements
+
+You will need to have **Docker** on your machine. Optionally you can use Docker machine to create a virtual environment. We have tested on **Mac**, **Windows** and **Ubuntu**.
+
+## Installation [Deployment mode]
+
+Pull the docker image
+
+```bash
+docker pull flyimg/flyimg-build
+```
+
+Start the container
+
+```bash
+docker run -itd -p 8080:80 flyimg/flyimg-build
+```
+
+To use custom parameters, make a copy of [parameters.yml](https://github.com/flyimg/flyimg/blob/main/config/parameters.yml) to your current directory. Update to suit your needs and run the command with volume parameter to replace the original parameters file.
+
+```bash
+docker run -itd -p 8080:80 -v $(pwd)/parameters.yml:/var/www/html/config/parameters.yml flyimg/flyimg-build
+```
+
+Check [how to provision the application](#how-to-provision-the-application-on)
+
+## Installation [Development Mode]
+
+You can spin up your own working server in 10 minutes using the provision scripts for [AWS Elastic Beanstalk](https://github.com/flyimg/Elastic-Beanstalk-provision) or the [DigitalOcean Ubuntu Droplets](https://github.com/flyimg/DigitalOcean-provision) <small>(more environments to come)</small>. For other environments or if you want to tweak and play in your machine before rolling out, read along...
+
+### Installation
+
+You can use `git` or `composer` for the first step.
+
+#### with git
+
+```sh
+git clone https://github.com/flyimg/flyimg.git
+```
+
+#### with composer
+
+Create the project with `composer create` .
+
+```sh
+composer create-project flyimg/flyimg
+```
+
+**CD into the folder** and to build the docker image by running:
+
+```sh
+docker build -t flyimg .
+```
+
+This will download and build the main image, It will take a few minutes. If you get some sort of error related to files not found by apt-get or similar, try this same command again.
+
+**IMPORTANT!** If you cloned the project, only for the first time, you need to run `composer install` **inside** the container:
+
+```sh
+docker exec -it flyimg composer install
+```
+
+Again, it will take a few minutes to download the dependencies. Same as before, if you get some errors you should try running `composer install` again.
+
+Then run the container:
+
+```sh
+docker run -itd -p 8080:80 -v $(pwd):/var/www/html --name flyimg flyimg
+```
+
+For Fish shell users:
+
+```sh
+docker run -itd -p 8080:80 -v $PWD:/var/www/html --name flyimg flyimg
+```
+
+The above command will make the Dockerfile run supervisord command which launches 2 processes: **nginx** and **php-fpm** and starts listening on port 8080.
+
+## Testing Flyimg service
+
+You can navigate to your machine's IP in port 8080 (ex: `http://127.0.0.1:8080/` ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors at this stage it's most likely that composer has not finished installing or skipped something.
+
+You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://mudawn.com/assets/butterfly-3000.jpg`
+
+![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+
+**It's working!**
+
+This is fetching an image from Mozilla, resizing it, saving it and serving it.
+
+### Full Documentation
+
+Full documentation available here **[Application Options Document](docs/full-documentation.md)**
+
+## How to transform images
+
+You go to your server URL`http://imgs.kitty.com` and append `/upload/`; after that you can pass these options below, followed by an underscore and a value `w_250,q_50` Options are separated by coma (configurable to other separator).
+
+After the options put the source of your image, it can be relative to your server or absolute: `/https://my.storage.io/imgs/pretty-kitten.jpg`
+
+So to get a pretty kitten at 250 pixels wide, with 50% compression, you would write.
+`<img src="http://imgs.kitty.com/upload/w_250,q_50/https://my.storage.io/imgs/pretty-kitten.jpg">`
 
 ## Basic Usage Examples
+
+You can see the full list of options configurable by URL params, **with examples**, in the [URL-Options document](docs/url-options.md)
+
+We put a lot of defaults in place to prevent distortion, bad quality, weird cropping and unwanted padding.
+
+The most common URL options are:
 
 ### Get an image to fill exact dimensions
 
@@ -149,163 +258,6 @@ Change the first part of the path from `upload` to `path`, like so:
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
-## Table of Contents
-
-- [Requirements](#requirements)
-- [Installation [Deployment mode]](#installation-deployment-mode)
-- [Installation [Development Mode]](#installation-development-mode)
-  - [Installation](#installation)
-    - [with git](#with-git)
-    - [with composer](#with-composer)
-- [Testing Flyimg service](#testing-flyimg-service)
-- [How to transform images](#how-to-transform-images)
-- [Basic Option details](#basic-option-details)
-- [Full Option details](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md)
-- [Application Server Options](#server-options)
-- [Security: Restricting Source Domains](#security-restricting-source-domains)
-- [Security: Signature Generation](#security-signature-generation)
-- [Run Unit Tests](#run-unit-tests)
-- [How to Provision the application on](#how-to-provision-the-application-on)
-- [Technology stack](#technology-stack)
-  - [Abstract storage with Flysystem](#abstract-storage-with-flysystem)
-- [Benchmark](#benchmark)
-- [Enable Xdebug](https://github.com/flyimg/flyimg/blob/main/docs/enabling-xdebug.md)
-- [Demo Application running](#demo-application-running)
-- [Roadmap](#roadmap)
-- [Community](#community)
-- [Supporters](#supporters)
-- [Contributors](#contributors)
-- [Backers](#backers)
-- [Sponsors](#sponsors)
-- [License](#license)
-
-## Requirements
-
-You will need to have **Docker** on your machine. Optionally you can use Docker machine to create a virtual environment. We have tested on **Mac**, **Windows** and **Ubuntu**.
-
-## Installation [Deployment mode]
-
-Pull the docker image
-
-```bash
-docker pull flyimg/flyimg-build
-```
-
-Start the container
-
-```bash
-docker run -itd -p 8080:80 flyimg/flyimg-build
-```
-
-To use custom parameters, make a copy of [parameters.yml](https://github.com/flyimg/flyimg/blob/main/config/parameters.yml) to your current directory. Update to suit your needs and run the command with volume parameter to replace the original parameters file.
-
-```bash
-docker run -itd -p 8080:80 -v $(pwd)/parameters.yml:/var/www/html/config/parameters.yml flyimg/flyimg-build
-```
-
-Check [how to provision the application](#how-to-provision-the-application-on)
-
-## Installation [Development Mode]
-
-You can spin up your own working server in 10 minutes using the provision scripts for [AWS Elastic Beanstalk](https://github.com/flyimg/Elastic-Beanstalk-provision) or the [DigitalOcean Ubuntu Droplets](https://github.com/flyimg/DigitalOcean-provision) <small>(more environments to come)</small>. For other environments or if you want to tweak and play in your machine before rolling out, read along...
-
-### Installation
-
-You can use `git` or `composer` for the first step.
-
-#### with git
-
-```sh
-git clone https://github.com/flyimg/flyimg.git
-```
-
-#### with composer
-
-Create the project with `composer create` .
-
-```sh
-composer create-project flyimg/flyimg
-```
-
-**CD into the folder** and to build the docker image by running:
-
-```sh
-docker build -t flyimg .
-```
-
-This will download and build the main image, It will take a few minutes. If you get some sort of error related to files not found by apt-get or similar, try this same command again.
-
-**IMPORTANT!** If you cloned the project, only for the first time, you need to run `composer install` **inside** the container:
-
-```sh
-docker exec -it flyimg composer install
-```
-
-Again, it will take a few minutes to download the dependencies. Same as before, if you get some errors you should try running `composer install` again.
-
-Then run the container:
-
-```sh
-docker run -itd -p 8080:80 -v $(pwd):/var/www/html --name flyimg flyimg
-```
-
-For Fish shell users:
-
-```sh
-docker run -itd -p 8080:80 -v $PWD:/var/www/html --name flyimg flyimg
-```
-
-The above command will make the Dockerfile run supervisord command which launches 2 processes: **nginx** and **php-fpm** and starts listening on port 8080.
-
-## Testing Flyimg service
-
-You can navigate to your machine's IP in port 8080 (ex: `http://127.0.0.1:8080/` ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors at this stage it's most likely that composer has not finished installing or skipped something.
-
-You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://mudawn.com/assets/butterfly-3000.jpg`
-
-![ff-logo](https://oi.flyimg.io/upload/w_130,h_113,q_90,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
-
-**It's working!**
-
-This is fetching an image from Mozilla, resizing it, saving it and serving it.
-
-## How to transform images
-
-You go to your server URL`http://imgs.kitty.com` and append `/upload/`; after that you can pass these options below, followed by an underscore and a value `w_250,q_50` Options are separated by coma (configurable to other separator).
-
-After the options put the source of your image, it can be relative to your server or absolute: `/https://my.storage.io/imgs/pretty-kitten.jpg`
-
-So to get a pretty kitten at 250 pixels wide, with 50% compression, you would write.
-`<img src="http://imgs.kitty.com/upload/w_250,q_50/https://my.storage.io/imgs/pretty-kitten.jpg">`
-
-### Basic Option details
-
-You can see the full list of options configurable by URL params, **with examples**, in the [URL-Options document](docs/url-options.md)
-
-We put a lot of defaults in place to prevent distortion, bad quality, weird cropping and unwanted padding.
-
-The most common URL options are:
-
-### `w` : width
-
-`int`  
-_Default:_ `null`  
-_Description:_ Sets the target width of the image. If not set, width will be calculated in order to keep aspect ratio.
-
-**example:`w_100`**
-
-`w_100` : `https://oi.flyimg.io/upload/w_100/https://mudawn.com/assets/butterfly-3000.jpg`
-
-#### `h` : height
-
-`int`  
-_Default:_ `null`  
-_Description:_ Sets the target height of the image. If not set, height will be calculated in order to keep aspect ratio.
-
-**example:`h_100`**
-
-`h_100` : `https://oi.flyimg.io/upload/h_100/https://mudawn.com/assets/butterfly-3000.jpg`
-
 #### Using width AND height
 
 **example:`h_300,w_300`**  
@@ -314,16 +266,6 @@ By default setting width and height together, works like defining a rectangle th
 By default; width, height, or both will **not scale up** an image that is smaller than the defined dimensions.
 
 `h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://mudawn.com/assets/butterfly-3000.jpg`
-
-### `c` : crop
-
-`bool`  
-_Default:_ `false`  
-_Description:_ When both width and height are set, this allows the image to be cropped so it fills the **width x height** area.
-
-**example:`c_1`**
-
-`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://mudawn.com/assets/butterfly-3000.jpg`
 
 #### `smc` : smart crop
 
@@ -334,15 +276,6 @@ _Description:_ Smart cropping feature, uses python script to determine coordinat
 **example:`smc_1`**
 
 `smc_1,w_500` : `https://oi.flyimg.io/upload/upload/smc_1,w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
-
-#### `g` : gravity
-
-`string`  
-_Default:_ `Center`  
-_Description:_ When crop is applied, changing the gravity will define which part of the image is kept inside the crop area.
-The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `East`, `SouthWest`, `South`, `SouthEast`.
-
-**example:`g_West`**
 
 #### `r` : rotate
 
@@ -381,40 +314,6 @@ _Default:_ `false`
 _Description:_ When this parameter is 1, it will force a re-request of the original image and run it through the transformations and compression again. It will delete the local cached copy.
 
 **example:`rf_1`**
-
-### PDF options
-
-Requires `ghostscript` installation in the Dockerfile.
-
-#### `pg` : page number
-
-`int`  
-_Default:_ 1  
-_Description:_ Sets the target page of the PDF. If not set, the default is page 1.
-
-**example:`pg_2`**
-
-`pg_2` : `https://oi.flyimg.io/upload/pg_2/http://mudawn.com/lighthouses.pdf`
-
-### Video options
-
-Requires `ffmpeg` installation in the Dockerfile.
-
-#### `tm` : time
-
-`string`  
-_Default:_ `00:00:01`  
-_Description:_ Sets the frame capture time duration point in the video. If not set, the default is 1 second. The format is `HH:MM:SS` OR `SS`
-
-**example:`tm_00:00:05`**
-
-`tm_00:00:05` : `https://oi.flyimg.io/upload/tm_00:00:05/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
-
-You can also use a shorter syntax for the first 60 seconds.
-
-**example:`tm_10`**
-
-`tm_10` : `https://oi.flyimg.io/upload/tm_10/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
 
 ### Face Detection options
 
@@ -456,143 +355,11 @@ _Description:_ Apply blur effect on faces in a given image
 
 ---
 
-### Server Options
-
-There are some easy to setup server configurations in the `config/parameters.yml` file, you can see the full list of options and server configurations in the **[Application Options Document](docs/application-options.md)**
-
-### Security: Restricting Source Domains
-
-Restricted domains disabled by default. This means that you can fetch a resource from any URL. To enable the domain restriction, change in config/parameters.yml
-
-```yml
-restricted_domains: true
-```
-
-After enabling, you need to put the white listed domains
-
-```yml
-whitelist_domains:
-  - www.domain-1.org
-  - www.domain-2.org
-```
-
-### Security: Signature Generation
-
-Based on this [RFC](https://github.com/flyimg/flyimg/issues/96) Signature Generation was added to Flyimg in order to avoid DDOS attacks.
-
-First you need to edit `security_key` and `security_iv` in parameters.yml file and add a proper values.
-Than any request to Fyimg app will throw an error unless it's encrypted.
-
-To generate the encrypted url you need to run this command:
-
-```sh
-docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://mudawn.com/assets/butterfly-3000.jpg
-```
-
-it'll return something like this:
-
-```sh
-Hashed request: TGQ1WWRKVGUrZUpoNmJMc2RMUENPL2t6ZDJkWkdOejlkM0p0U0F3WTgxOU5IMzF3U3R0d2V4b3dqbG52cFRTSFZDcmhrY1JnaGZYOHJ3V0NpZDNNRmc9PQ==
-```
-
-Now you can request the image throw this new url:
-
-```html
-http://localhost:8080/upload/TGQ1WWRKVGUrZUpoNmJMc2RMUENPL2t6ZDJkWkdOejlkM0p0U0F3WTgxOU5IMzF3U3R0d2V4b3dqbG52cFRTSFZDcmhrY1JnaGZYOHJ3V0NpZDNNRmc9PQ==
-```
-
-### Run Unit Tests
-
-```sh
-docker exec flyimg vendor/bin/phpunit
-```
-
-Generate Html Code Coverage
-
-```sh
-docker exec flyimg vendor/bin/phpunit --coverage-html build/html
-```
-
-### How to Provision the application on
-
-- [DigitalOcean](https://github.com/flyimg/DigitalOcean-provision)
-- [AWS Elastic-Beanstalk](https://github.com/flyimg/Elastic-Beanstalk-provision)
-
-## Technology stack
-
-- Server: nginx
-- Application: [Silex](http://silex.sensiolabs.org/), a PHP micro-framework.
-- Image manipulation: ImageMagick
-- JPEG encoder: MozJpeg
-- Storage: [Flysystem](http://flysystem.thephpleague.com/)
-- Containerisation: Docker
-
-### Abstract storage with Flysystem
-
-Storage files based on [Flysystem](http://flysystem.thephpleague.com/) which is `a filesystem abstraction allows you to easily swap out a local filesystem for a remote one. Technical debt is reduced as is the chance of vendor lock-in.`
-
-Default storage is Local, but you can use other Adapters like AWS S3, Azure, FTP, DropBox, ...
-
-Currently, only the **local** and **S3** are implemented as Storage Provider in Flyimg application, but you can add your specific one easily in `src/Core/Provider/StorageProvider.php`. Check an [example for AWS S3 here](https://github.com/flyimg/flyimg/blob/main/docs/application-options.md#using-aws-s3-as-storage-provider).
-
-## Benchmark
-
-See [benchmark.sh](https://github.com/flyimg/flyimg/blob/main/benchmark.sh) for more details.
-
-Requires: [Vegeta](http://github.com/tsenart/vegeta)
-
-```sh
-./benchmark.sh
-```
-
-Latest Results:
-
-```sh
-Crop http://localhost:8080/upload/w_200,h_200,c_1/Rovinj-Croatia.jpg
-Requests      [total, rate]            500, 50.10
-Duration      [total, attack, wait]    9.991377689s, 9.97999997s, 11.377719ms
-Latencies     [mean, 50, 95, 99, max]  19.402096ms, 12.844271ms, 54.65001ms, 96.276948ms, 135.597203ms
-Bytes In      [total, mean]            5337500, 10675.00
-Bytes Out     [total, mean]            0, 0.00
-Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:500
-
-Resize http://localhost:8080/upload/w_200,h_200,rz_1/Rovinj-Croatia.jpg
-Requests      [total, rate]            500, 50.10
-Duration      [total, attack, wait]    9.992435445s, 9.979999871s, 12.435574ms
-Latencies     [mean, 50, 95, 99, max]  16.676093ms, 12.376525ms, 49.676187ms, 97.354697ms, 127.14737ms
-Bytes In      [total, mean]            3879500, 7759.00
-Bytes Out     [total, mean]            0, 0.00
-Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:500
-
-Rotate http://localhost:8080/upload/r_-45,w_400,h_400/Rovinj-Croatia.jpg
-Requests      [total, rate]            500, 50.10
-Duration      [total, attack, wait]    9.992650741s, 9.979999937s, 12.650804ms
-Latencies     [mean, 50, 95, 99, max]  13.634143ms, 11.587252ms, 26.873827ms, 50.446923ms, 68.222253ms
-Bytes In      [total, mean]            17609000, 35218.00
-Bytes Out     [total, mean]            0, 0.00
-Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:500
-```
-
 ## Demo Application running
 
 [https://oi.flyimg.io](https://oi.flyimg.io)
 
 ![resize-test](https://oi.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
-
-## Roadmap
-
-- [x] Benchmark the application.
-- [ ] Decouple the core logic from Silex in order to make it portable.
-- [ ] Add overlays functionality (Text on top of the image)
-- [ ] Storage auto-mapping
-- [ ] Add support for FLIFF, BPG and JPEG2000
-
-## Generate CHANGELOG
-
-`github-changes -o flyimg -r flyimg -a -k GITHUB-TOKEN --only-pulls --use-commit-body`
 
 ## Community
 
@@ -609,16 +376,11 @@ A special thanks to JetBrains for supporting our project with their [open source
 This project exists thanks to all the people who contribute.
 <a href="https://github.com/flyimg/flyimg/graphs/contributors"><img src="https://opencollective.com/flyimg/contributors.svg?width=890" /></a>
 
-## Backers
+## Backers & Sponsors
 
-Thank you to all our backers! [[Become a backer](https://opencollective.com/flyimg#backer)]
+Support us with a monthly donation and help us continue our activities.[[opencollective.com](https://opencollective.com/flyimg)]
 
-<a href="https://opencollective.com/flyimg#backers" target="_blank"><img src="https://opencollective.com/flyimg/backers.svg?width=890"></a>
-
-## Sponsors
-
-Thank you to all our sponsors! (please ask your company to also support this open source project by [becoming a sponsor](https://opencollective.com/flyimg#sponsor))
-
+<a href="https://opencollective.com/flyimg" target="_blank"><img src="https://opencollective.com/flyimg/backers.svg?width=890"></a>
 <a href="https://opencollective.com/flyimg/sponsor/0/website" target="_blank"><img src="https://opencollective.com/flyimg/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/flyimg/sponsor/1/website" target="_blank"><img src="https://opencollective.com/flyimg/sponsor/1/avatar.svg"></a>
 <a href="https://opencollective.com/flyimg/sponsor/2/website" target="_blank"><img src="https://opencollective.com/flyimg/sponsor/2/avatar.svg"></a>
