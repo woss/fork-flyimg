@@ -9,7 +9,6 @@
 <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/flyimg/sponsors/badge.svg"></a>
 <a href="https://github.com/flyimg/flyimg/actions?query=workflow%3ACI"><img alt="Build Status" src="https://github.com/flyimg/flyimg/workflows/CI/badge.svg?branch=main"></a>
 <a href="https://codecov.io/gh/flyimg/flyimg"><img alt="Codecov" src="https://codecov.io/gh/flyimg/flyimg/branch/main/graph/badge.svg?token=jgryCuAGjF"></a>
-<a href="https://insight.sensiolabs.com/projects/89b18390-ac79-4c3e-bf6c-92cd9993e8d3"><img alt="SensioLabsInsight" src="https://insight.sensiolabs.com/projects/89b18390-ac79-4c3e-bf6c-92cd9993e8d3/mini.png"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="License" src="https://poser.pugx.org/flyimg/flyimg/license.svg"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="Latest Stable Version]" src="https://poser.pugx.org/flyimg/flyimg/v/stable.svg"></a>
 </p>
@@ -22,13 +21,15 @@ You pass the image URL and a set of keys with options, like size or compression.
 
 ```html
 <!-- https://mudawn.com/assets/butterfly-3000.jpg -->
-<img src="https://www.myservice.io/upload/w_333,h_333,q_90/https://mudawn.com/assets/butterfly-3000.jpg">
+<img
+  src="https://www.myservice.io/upload/w_333,h_333,q_90/https://mudawn.com/assets/butterfly-3000.jpg"
+/>
 ```
 
 ## Cloud Run Button
 
 Flyimg can be deployed to GCP as a serverless container in one click with Cloud Run Button:
-[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git)](https://deploy.cloud.run)
+<a href="https://deploy.cloud.run/"><img src="https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git" alt="Run on Google Cloud" style="width:180px;margin-top:10px;"/></a>
 
 ## Basic Usage Examples
 
@@ -147,7 +148,6 @@ Change the first part of the path from `upload` to `path`, like so:
 `https://oi.flyimg.io/upload/w_400,mnchr_1/https://mudawn.com/assets/butterfly-3000.jpg`
 
 ![lago_ranco](https://oi.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
-
 
 ## Table of Contents
 
@@ -602,7 +602,7 @@ Status Codes  [code:count]             200:500
 
 A special thanks to JetBrains for supporting our project with their [open source license program](https://www.jetbrains.com/buy/opensource/).
 
-![Jetbrains](https://oi.flyimg.io/upload/w_300,o_jpg/jetbrains-variant-3.png)
+![Jetbrains](https://oi.flyimg.io/upload/w_150/https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)
 
 ## Contributors
 
