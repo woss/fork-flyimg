@@ -109,25 +109,25 @@ Change the first part of the path from `upload` to `path`, like so:
 
 ### Get a PDF page image to fit dimensions
 
-- PDF: `http://mudawn.com/lighthouses.pdf`
+- PDF: `http://mudawn.com/assets/lighthouses.pdf`
 - Width: 200
 - Height: 200
 - Page: `pg_1`
 
-`https://oi.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/lighthouses.pdf`
+`https://oi.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/lighthouses.pdf)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf)
 
 ### Get a video image to fit dimensions from a time duration point
 
-- Video: `http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
+- Video: `http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
 - Width: 200
 - Height: 200
 - Time: `tm_00:00:05`
 
-`https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
+`https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
 
-![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/big_buck_bunny_720p_2mb.mp4)
+![lago_ranco](https://oi.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4)
 
 ### Converting to Colorspace Gray
 
