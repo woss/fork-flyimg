@@ -6,7 +6,7 @@ on:
 jobs:
   create_tag:
     name: Create new Tag and Release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     outputs:
       new_tag: ${{ steps.tag_version.outputs.new_tag }}
     steps:
@@ -38,7 +38,7 @@ jobs:
 
   docker_publish:
     name: Docker Build and Push
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     needs: create_tag
     outputs:
       new_tag: ${{ needs.create_tag.outputs.new_tag }}
@@ -71,7 +71,7 @@ jobs:
 
   deploy_demo:
     name: Deploy to Demo oi.flyimg.io
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     needs: docker_publish
     steps:
       - name: Deploy new version of Flyimg to the demo server
