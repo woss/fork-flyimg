@@ -148,7 +148,7 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 
 - Follow us on [GitHub][1], [Twitter][2] and [LinkedIn][3].
 
-### Adopters
+## Adopters
 
 See the [ADOPTERS.md](ADOPTERS.md) file for a list of companies / organisations that are using Flyimg.
 
