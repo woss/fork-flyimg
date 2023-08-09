@@ -22,11 +22,11 @@ You pass the image URL and a set of keys with options, like size or compression.
 ```html
 <!-- https://mudawn.com/assets/butterfly-3000.jpg -->
 <img
-  src="https://demo.fluimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg"
+  src="https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg"
 />
 ```
 
-![Flyimg-demo](https://demo.fluimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg)
+![Flyimg-demo](https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ## Cloud Run Button
 
@@ -138,11 +138,11 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 
 ## Demo Application running
 
-[https://demo.fluimg.io](https://demo.fluimg.io)
+[https://demo.flyimg.io](https://demo.flyimg.io)
 
-`https://demo.fluimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![resize-test](https://demo.fluimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![resize-test](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ## Community
 
@@ -156,7 +156,7 @@ See the [ADOPTERS.md](ADOPTERS.md) file for a list of companies / organisations 
 
 A special thanks to JetBrains for supporting our project with their [open source license program](https://www.jetbrains.com/buy/opensource/).
 
-![Jetbrains](https://demo.fluimg.io/upload/w_150/https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)
+![Jetbrains](https://demo.flyimg.io/upload/w_150/https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)
 
 ## Contributors
 

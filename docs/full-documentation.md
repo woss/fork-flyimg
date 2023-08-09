@@ -13,9 +13,9 @@ The most common URL options are:
 - Height: 250
 - Crop if necesary: `c_1`
 
-`https://demo.fluimg.io/upload/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![lago_ranco](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 This will serve the image.
 
@@ -23,7 +23,7 @@ This will serve the image.
 
 Change the first part of the path from `upload` to `path`, like so:
 
-`https://demo.fluimg.io/path/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg` will output in the body of the response:
+`https://demo.flyimg.io/path/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg` will output in the body of the response:
 
 `http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg`
 
@@ -34,9 +34,9 @@ Change the first part of the path from `upload` to `path`, like so:
 - Height: 250
 - Note that we ommit the crop parameter
 
-`https://demo.fluimg.io/upload/w_300,h_250/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_300,h_250/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_300,h_250,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![lago_ranco](https://demo.flyimg.io/upload/w_300,h_250,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ## Crop to a square and rotate 90 degrees clockwise
 
@@ -46,9 +46,9 @@ Change the first part of the path from `upload` to `path`, like so:
 - Crop: `c_1`
 - Rotate: 90
 
-`https://demo.fluimg.io/upload/w_200,h_200,c_1,r_90/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_200,h_200,c_1,r_90/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_200,h_200,c_1,r_90,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,c_1,r_90,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ## Get an image with exact dimensions and low quality
 
@@ -58,9 +58,9 @@ Change the first part of the path from `upload` to `path`, like so:
 - Crop: `c_1`
 - Quality: 30
 
-`https://demo.fluimg.io/upload/w_200,h_200,c_1,q_30/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_200,h_200,c_1,q_30/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,c_1,q_30,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ## Smart Crop
 
@@ -70,15 +70,15 @@ Change the first part of the path from `upload` to `path`, like so:
 
 **Without Smart Crop**
 
-`https://demo.fluimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+`https://demo.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
+![lago_ranco](https://demo.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
 
 **With Smart Crop Enabled**
 
-`https://demo.fluimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+`https://demo.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
+![lago_ranco](https://demo.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
 
 ## Get a PDF page image to fit dimensions
 
@@ -87,9 +87,9 @@ Change the first part of the path from `upload` to `path`, like so:
 - Height: 200
 - Page: `pg_1`
 
-`https://demo.fluimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf`
+`https://demo.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf)
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf)
 
 ## Get a video image to fit dimensions from a time duration point
 
@@ -98,9 +98,9 @@ Change the first part of the path from `upload` to `path`, like so:
 - Height: 200
 - Time: `tm_00:00:05`
 
-`https://demo.fluimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
+`https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4)
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4)
 
 ## Converting to Colorspace Gray
 
@@ -108,9 +108,9 @@ Change the first part of the path from `upload` to `path`, like so:
 - Width: 400
 - Colorspace: `clsp_Gray`
 
-`https://demo.fluimg.io/upload/w_400,clsp_Gray/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_400,clsp_Gray/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_400,clsp_Gray,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![lago_ranco](https://demo.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ## Converting to Monochrome
 
@@ -118,9 +118,9 @@ Change the first part of the path from `upload` to `path`, like so:
 - Width: 400
 - Monochrome: `mnchr_1`
 
-`https://demo.fluimg.io/upload/w_400,mnchr_1/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_400,mnchr_1/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![lago_ranco](https://demo.fluimg.io/upload/w_400,mnchr_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![lago_ranco](https://demo.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ## Using width AND height
 
@@ -129,7 +129,7 @@ By default setting width and height together, works like defining a rectangle th
 
 By default; width, height, or both will **not scale up** an image that is smaller than the defined dimensions.
 
-`h_300,w_300` : `https://demo.fluimg.io/upload/h_300,w_300/https://mudawn.com/assets/butterfly-3000.jpg`
+`h_300,w_300` : `https://demo.flyimg.io/upload/h_300,w_300/https://mudawn.com/assets/butterfly-3000.jpg`
 
 ## `smc` : smart crop
 
@@ -139,7 +139,7 @@ _Description:_ Smart cropping feature, uses python script to determine coordinat
 
 **example:`smc_1`**
 
-`smc_1,w_500` : `https://demo.fluimg.io/upload/upload/smc_1,w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+`smc_1,w_500` : `https://demo.flyimg.io/upload/upload/smc_1,w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
 
 ## `r` : rotate
 
@@ -149,7 +149,7 @@ _Description:_ Apply image rotation (using shear operations) to the image.
 
 **example: `r_90`, `r_-180`,...**
 
-`r_45` : `https://demo.fluimg.io/upload/r_-45,w_400,h_400/https://mudawn.com/assets/butterfly-3000.jpg`
+`r_45` : `https://demo.flyimg.io/upload/r_-45,w_400,h_400/https://mudawn.com/assets/butterfly-3000.jpg`
 
 ## `o` : output
 
@@ -167,9 +167,9 @@ _Description:_ Sets the compression level for the output image. Your best result
 
 **example:`q_100`,`q_75`,...**
 
-`q_30` : `https://demo.fluimg.io/upload/q_30/https://mudawn.com/assets/butterfly-3000.jpg`
+`q_30` : `https://demo.flyimg.io/upload/q_30/https://mudawn.com/assets/butterfly-3000.jpg`
 
-`q_100` : `https://demo.fluimg.io/upload/q_100/https://mudawn.com/assets/butterfly-3000.jpg`
+`q_100` : `https://demo.flyimg.io/upload/q_100/https://mudawn.com/assets/butterfly-3000.jpg`
 
 ## Refresh or re-fetch source image
 
@@ -189,9 +189,9 @@ _Description:_ Using [facedetect](https://github.com/wavexx/facedetect) reposito
 
 **example:`fc_1`**
 
-`fc_1` : `https://demo.fluimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+`fc_1` : `https://demo.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fc_1](https://demo.fluimg.io/upload/fc_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fc_1](https://demo.flyimg.io/upload/fc_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ## `fcp` : face-crop-position
 
@@ -201,9 +201,9 @@ _Description:_ When using the Face crop option and when the image contain more t
 
 **example:`fcp_1`,`fcp_0`,...**
 
-`fcp_2` : `https://demo.fluimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
+`fcp_2` : `https://demo.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fcp_2](https://demo.fluimg.io/upload/fc_1,fcp_2,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fcp_2](https://demo.flyimg.io/upload/fc_1,fcp_2,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ## `fb` : face-blur
 
@@ -213,9 +213,9 @@ _Description:_ Apply blur effect on faces in a given image
 
 **example:`fb_1`**
 
-`fb_1` : `https://demo.fluimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+`fb_1` : `https://demo.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fb_1](https://demo.fluimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fb_1](https://demo.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ## Server Options
 
