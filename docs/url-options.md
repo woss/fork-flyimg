@@ -13,7 +13,7 @@ https://server.address.io/process-type/image_options/path_to_image
 for example:
 
 ```html
-https://oi.flyimg.io/upload/w_500/https://mudawn.com/assets/butterfly-3000.jpg
+https://demo.flyimg.io/upload/w_500/https://mudawn.com/assets/butterfly-3000.jpg
 ```
 
 Explanation from end-to-begining
@@ -45,9 +45,9 @@ _Description:_ Sets the target width of the image. If not set, width will be cal
 
 **example:`w_100`**
 
-`w_100` : `https://oi.flyimg.io/upload/w_100/https://mudawn.com/assets/butterfly-3000.jpg`
+`w_100` : `https://demo.flyimg.io/upload/w_100/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![w_100](https://oi.flyimg.io/upload/w_100,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![w_100](https://demo.flyimg.io/upload/w_100,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### `h` : height
 
@@ -57,9 +57,9 @@ _Description:_ Sets the target height of the image. If not set, height will be c
 
 **example:`h_100`**
 
-`h_100` : `https://oi.flyimg.io/upload/h_100/https://mudawn.com/assets/butterfly-3000.jpg`
+`h_100` : `https://demo.flyimg.io/upload/h_100/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![h_100](https://oi.flyimg.io/upload/h_100,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![h_100](https://demo.flyimg.io/upload/h_100,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### Using width AND height
 
@@ -72,9 +72,9 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 <!-- in the future put example images here-->
 
-`h_300,w_300` : `https://oi.flyimg.io/upload/h_300,w_300/https://mudawn.com/assets/butterfly-3000.jpg`
+`h_300,w_300` : `https://demo.flyimg.io/upload/h_300,w_300/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![h_300,w_300](https://oi.flyimg.io/upload/h_300,w_300,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![h_300,w_300](https://demo.flyimg.io/upload/h_300,w_300,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### `c` : crop
 
@@ -84,9 +84,9 @@ _Description:_ When both width and height are set, this allows the image to be c
 
 **example:`c_1`**
 
-`c_1,h_400,w_400` : `https://oi.flyimg.io/upload/c_1,h_400,w_400/https://mudawn.com/assets/butterfly-3000.jpg`
+`c_1,h_400,w_400` : `https://demo.flyimg.io/upload/c_1,h_400,w_400/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![c_1,h_400,w_400](https://oi.flyimg.io/upload/c_1,h_400,w_400,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![c_1,h_400,w_400](https://demo.flyimg.io/upload/c_1,h_400,w_400,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### `g` : gravity
 
@@ -105,9 +105,9 @@ _Description:_ Apply image rotation (using shear operations) to the image.
 
 **example: `r_90`, `r_-180`,...**
 
-`r_45` : `https://oi.flyimg.io/upload/r_-45,w_400,h_400/https://mudawn.com/assets/butterfly-3000.jpg`
+`r_45` : `https://demo.flyimg.io/upload/r_-45,w_400,h_400/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![r_45](https://oi.flyimg.io/upload/r_-45,w_400,h_400,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![r_45](https://demo.flyimg.io/upload/r_-45,w_400,h_400,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ---
 
@@ -131,13 +131,13 @@ _Description:_ Sets the compression level for the output image. Your best result
 
 **example:`q_100`,`q_75`,...**
 
-`q_30` : `https://oi.flyimg.io/upload/q_20,w_600/https://mudawn.com/assets/butterfly-3000.jpg`
+`q_30` : `https://demo.flyimg.io/upload/q_20,w_600/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![q_30](https://oi.flyimg.io/upload/q_20,w_600,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![q_30](https://demo.flyimg.io/upload/q_20,w_600,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
-`q_100` : `https://oi.flyimg.io/upload/q_100,w_600/https://mudawn.com/assets/butterfly-3000.jpg`
+`q_100` : `https://demo.flyimg.io/upload/q_100,w_600/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![q_100](https://oi.flyimg.io/upload/q_100,w_600,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![q_100](https://demo.flyimg.io/upload/q_100,w_600,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### `webpl` : webp-lossless
 
@@ -182,9 +182,9 @@ For the hex code, the hash `#` character should be replaced by `%23`
   [...] -background "rgb(255,120,100)" ...
 ```
 
-`https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://mudawn.com/assets/butterfly-3000.jpg`
 
-![bg_red](https://oi.flyimg.io/upload/r_45,w_400,h_400,bg_red,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![bg_red](https://demo.flyimg.io/upload/r_45,w_400,h_400,bg_red,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### `st` : strip
 
@@ -264,9 +264,9 @@ _Description:_ Using [facedetect](https://github.com/wavexx/facedetect) reposito
 
 **example:`fc_1`**
 
-`fc_1` : `https://oi.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+`fc_1` : `https://demo.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fc_1](https://oi.flyimg.io/upload/fc_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fc_1](https://demo.flyimg.io/upload/fc_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fcp` : face-crop-position
 
@@ -276,9 +276,9 @@ _Description:_ When using the Face crop option and when the image contain more t
 
 **example:`fcp_1`,`fcp_0`,...**
 
-`fcp_2` : `https://oi.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
+`fcp_2` : `https://demo.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fcp_2](https://oi.flyimg.io/upload/fc_1,fcp_2,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fcp_2](https://demo.flyimg.io/upload/fc_1,fcp_2,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `fb` : face-blur
 
@@ -288,9 +288,9 @@ _Description:_ Apply blur effect on faces in a given image
 
 **example:`fb_1`**
 
-`fb_1` : `https://oi.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
+`fb_1` : `https://demo.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg`
 
-![fb_1](https://oi.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
+![fb_1](https://demo.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
 ### `e` : extract
 
@@ -346,7 +346,7 @@ _Description:_ Sets the target page of the PDF. If not set, the default is page 
 
 **example:`pg_2`**
 
-`pg_2` : `https://oi.flyimg.io/upload/pg_2/http://mudawn.com/lighthouses.pdf`
+`pg_2` : `https://demo.flyimg.io/upload/pg_2/http://mudawn.com/lighthouses.pdf`
 
 ### Video options
 
@@ -360,13 +360,13 @@ _Description:_ Sets the frame capture time duration point in the video. If not s
 
 **example:`tm_00:00:05`**
 
-`tm_00:00:05` : `https://oi.flyimg.io/upload/tm_00:00:05/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
+`tm_00:00:05` : `https://demo.flyimg.io/upload/tm_00:00:05/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
 
 You can also use a shorter syntax for the first 60 seconds.
 
 **example:`tm_10`**
 
-`tm_10` : `https://oi.flyimg.io/upload/tm_10/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
+`tm_10` : `https://demo.flyimg.io/upload/tm_10/http://mudawn.com/big_buck_bunny_720p_2mb.mp4`
 
 ---
 

@@ -70,7 +70,7 @@ jobs:
             flyimg/flyimg-build:${{ needs.create_tag.outputs.new_tag }}
 
   deploy_demo:
-    name: Deploy to Demo oi.flyimg.io
+    name: Deploy to Demo demo.flyimg.io
     runs-on: ubuntu-latest
     needs: docker_publish
     steps:
