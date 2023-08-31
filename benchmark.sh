@@ -34,6 +34,8 @@ run() {
 
 # run benchmark
 run "Crop" "w_200,h_200,c_1"
+run "Simple Resize" "w_200,h_200"
+run "Simple Resize with refresh" "w_200,h_200,rf_1"
 run "Resize" "w_200,h_200,rz_1"
 run "Rotate" "r_-45,w_400,h_400"
 
