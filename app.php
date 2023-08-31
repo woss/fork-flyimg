@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/constants.php';
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/constants.php';
 
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\ExceptionHandler;
