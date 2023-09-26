@@ -6,6 +6,7 @@ use Core\Entity\OptionsBag;
 use Core\Exception\ReadFileException;
 use Core\Entity\ImageMetaInfo;
 use Core\Processor\VideoProcessor;
+use Symfony\Component\HttpFoundation\Request;
 
 class InputImage
 {
@@ -75,14 +76,32 @@ class InputImage
      */
     protected function saveToTemporaryFile()
     {
-        if (file_exists($this->sourceImagePath) && !$this->optionsBag->get('refresh')) {
+        $header = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
+        $refresh = $this->optionsBag->get('refresh');
+        $forwardRequestHeaders = (array) $this->optionsBag
+            ->appParameters()
+            ->parameterByKey('forward_request_headers', []);
+        if (!empty($forwardRequestHeaders)) {
+            $requestHeaders = Request::createFromGlobals()->headers;
+            foreach ($forwardRequestHeaders as $name) {
+                if ($requestHeaders->has($name)) {
+                    $value = $requestHeaders->get($name);
+                    $header .= "\r\n$name: $value";
+                    if ('Authorization' === $name) {
+                        $this->sourceImagePath .= md5($value);
+                    }
+                }
+            }
+        }
+
+        if (file_exists($this->sourceImagePath) && !$refresh) {
             return;
         }
 
         $opts = [
             'http' =>
             [
-                'header' => $this->optionsBag->appParameters()->parameterByKey('header_extra_options'),
+                'header' => $header,
                 'method' => 'GET',
                 'max_redirects' => '5',
             ],
