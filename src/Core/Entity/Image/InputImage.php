@@ -78,7 +78,9 @@ class InputImage
     {
         $header = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
         $refresh = $this->optionsBag->get('refresh');
-        $forwardRequestHeaders = (array) $this->optionsBag->appParameters()->parameterByKey('forward_request_headers', []);
+        $forwardRequestHeaders = (array) $this->optionsBag
+            ->appParameters()
+            ->parameterByKey('forward_request_headers', []);
         if (!empty($forwardRequestHeaders)) {
             $requestHeaders = Request::createFromGlobals()->headers;
             foreach ($forwardRequestHeaders as $name) {
