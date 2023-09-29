@@ -1,4 +1,4 @@
-# Flyimg Changelog:
+# Flyimg Changelog
 
 ## [1.1.57](https://github.com/flyimg/flyimg/compare/1.1.56...1.1.57) (2023-09-29)
 
