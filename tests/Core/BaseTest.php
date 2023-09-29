@@ -6,7 +6,7 @@ use Core\Entity\Image\OutputImage;
 use Core\Handler\ImageHandler;
 use PHPUnit\Framework\TestCase;
 use Silex\Application;
-use Symfony\Component\HttpKernel\Client;
+use Symfony\Component\HttpKernel\HttpKernelBrowser;
 
 class BaseTest extends TestCase
 {
@@ -99,14 +99,14 @@ class BaseTest extends TestCase
 
     /**
      * @param array $server
-     * @return Client
+     * @return HttpKernelBrowser
      */
-    public function createClient(array $server = [])
+    public function createClient(array $server = []): HttpKernelBrowser
     {
         if (!class_exists('Symfony\Component\BrowserKit\Client')) {
-            throw new \LogicException('Component "symfony/browser-kit" is required by WebTestCase.'.PHP_EOL.'Run composer require symfony/browser-kit');
+            throw new \LogicException('"symfony/browser-kit" is required by WebTestCase');
         }
 
-        return new Client($this->app, $server);
+        return new HttpKernelBrowser($this->app, $server);
     }
 }
