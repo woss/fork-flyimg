@@ -4,17 +4,16 @@ namespace Core\StorageProvider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
-use WyriHaximus\SliFly\FlysystemServiceProvider;
 
 /**
  * Storage class to manage Storage provider from FlySystem
  *
- * Class StorageProvider
- * @package Core\Provider
+ * Class LocalStorageProvider
+ * @package Core\StorageProvider
  */
 class LocalStorageProvider implements ServiceProviderInterface
 {
-    /**
+     /**
      * Registers services on the given app.
      * This method should only be used to configure services and parameters.
      * It should not get services.

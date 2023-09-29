@@ -13,12 +13,12 @@ use Core\Exception\ExecFailedException;
 class Processor
 {
     /** MozJPEG bin path */
-    public const MOZJPEG_COMMAND = '/opt/mozjpeg/bin/cjpeg';
+    public const MOZJPEG_COMMAND = '/opt/mozjpeg/cjpeg';
 
     /** ImageMagick bin path*/
-    public const IM_CONVERT_COMMAND = '/usr/bin/convert';
-    public const IM_IDENTITY_COMMAND = '/usr/bin/identify';
-    public const IM_MOGRIFY_COMMAND = '/usr/bin/mogrify';
+    public const IM_CONVERT_COMMAND = '/usr/local/bin/convert';
+    public const IM_IDENTITY_COMMAND = '/usr/local/bin/identify';
+    public const IM_MOGRIFY_COMMAND = '/usr/local/bin/mogrify';
 
     /** CWEBP bin path */
     public const CWEBP_COMMAND = '/usr/bin/cwebp';

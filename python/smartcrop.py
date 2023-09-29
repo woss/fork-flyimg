@@ -110,7 +110,7 @@ class SmartCrop(object):
                 int(math.ceil(image.size[0] / self.score_down_sample)),
                 int(math.ceil(image.size[1] / self.score_down_sample)),
             ),
-            Image.ANTIALIAS,
+            Image.LANCZOS,
         )
 
         top_crop = None
@@ -164,7 +164,7 @@ class SmartCrop(object):
                         int(image.size[0] * prescale_size),
                         int(image.size[1] * prescale_size),
                     ),
-                    Image.ANTIALIAS,
+                    Image.LANCZOS,
                 )
                 crop_width = int(math.floor(crop_width * prescale_size))
                 crop_height = int(math.floor(crop_height * prescale_size))

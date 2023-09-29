@@ -6,6 +6,7 @@ use Core\Entity\Image\OutputImage;
 use Core\Handler\ImageHandler;
 use PHPUnit\Framework\TestCase;
 use Silex\Application;
+use Symfony\Component\HttpKernel\Client;
 
 class BaseTest extends TestCase
 {
@@ -50,7 +51,7 @@ class BaseTest extends TestCase
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->app = $this->createApplication();
         $this->imageHandler = $this->app['image.handler'];
@@ -59,7 +60,7 @@ class BaseTest extends TestCase
     /**
      *
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->imageHandler);
         unset($this->app);
@@ -94,5 +95,18 @@ class BaseTest extends TestCase
     public function testApplicationInstance()
     {
         $this->assertInstanceOf('Silex\Application', $this->app);
+    }
+
+    /**
+     * @param array $server
+     * @return Client
+     */
+    public function createClient(array $server = [])
+    {
+        if (!class_exists('Symfony\Component\BrowserKit\Client')) {
+            throw new \LogicException('Component "symfony/browser-kit" is required by WebTestCase.'.PHP_EOL.'Run composer require symfony/browser-kit');
+        }
+
+        return new Client($this->app, $server);
     }
 }

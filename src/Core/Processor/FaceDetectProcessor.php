@@ -65,10 +65,8 @@ class FaceDetectProcessor extends Processor
                 [$geometryX, $geometryY, $geometryW, $geometryH] = $geometry;
 
                 $blurCmd = new Command(self::IM_MOGRIFY_COMMAND);
-                $blurCmd->addArgument("-gravity", "NorthWest");
                 $blurCmd->addArgument("-region", "{$geometryW}x{$geometryH}+{$geometryX}+{$geometryY}");
-                $blurCmd->addArgument("-scale", "10%");
-                $blurCmd->addArgument("-scale", "1000%");
+                $blurCmd->addArgument("-blur", "0x12");
                 $blurCmd->addArgument($outputImage->getOutputImagePath());
                 $this->execute($blurCmd);
             }

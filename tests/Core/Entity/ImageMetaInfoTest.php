@@ -27,7 +27,7 @@ class ImageMetaInfoTest extends BaseTest
     /**
      * @return array
      */
-    public function mimeTypeDataProvider(): array
+    public static function mimeTypeDataProvider(): array
     {
         return [
             [self::JPG_TEST_IMAGE, InputImage::JPEG_MIME_TYPE],
@@ -107,7 +107,7 @@ class ImageMetaInfoTest extends BaseTest
     /**
      * @return array
      */
-    public function fileInfoProvider(): array
+    public static function fileInfoProvider(): array
     {
         return [
             [
@@ -116,7 +116,7 @@ class ImageMetaInfoTest extends BaseTest
                 '300x300+0+0',
                 '8-bit',
                 'sRGB',
-                '5.3KB',
+                '5301B',
                 [
                     'width' => '300',
                     'height' => '300',
@@ -141,7 +141,7 @@ class ImageMetaInfoTest extends BaseTest
                 '256x256+0+0',
                 '8-bit',
                 'sRGB',
-                '2.44KB',
+                '2438B',
                 [
                     'width' => '256',
                     'height' => '256',
