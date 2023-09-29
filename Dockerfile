@@ -1,4 +1,4 @@
-FROM base-8.2
+FROM flyimg/base-image:1.3.0
 
 # Install other file processors
 RUN apt update && \
