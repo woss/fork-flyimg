@@ -15,7 +15,7 @@
     [
       "@semantic-release/changelog",
       {
-        "changelogTitle": "Flyimg"
+        "changelogTitle": "# Flyimg Changelog:"
       }
     ],
     [
