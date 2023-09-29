@@ -1,7 +1,6 @@
-Flyimg
+# Flyimg Changelog
 
 ## [1.1.57](https://github.com/flyimg/flyimg/compare/1.1.56...1.1.57) (2023-09-29)
-
 
 ### Bug Fixes
 
@@ -11,7 +10,6 @@ Flyimg
 * use PAT in github action cd workflow ([e7f4da0](https://github.com/flyimg/flyimg/commit/e7f4da0c1370300482c61799108179d107f78f45))
 * use Semantic-release for releasing and tagging ([9befb19](https://github.com/flyimg/flyimg/commit/9befb19b77c41fafa2c0a75e84946df3b8c55e07))
 
-# Changelog
 
 ## [1.1.22](https://github.com/flyimg/flyimg/tree/1.1.22) (2020-12-31)
 
