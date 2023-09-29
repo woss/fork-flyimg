@@ -1,3 +1,16 @@
+Flyimg
+
+## [1.1.57](https://github.com/flyimg/flyimg/compare/1.1.56...1.1.57) (2023-09-29)
+
+
+### Bug Fixes
+
+* add missing .releaserc file ([b5b8cad](https://github.com/flyimg/flyimg/commit/b5b8cad74881a8278652ba027b085499a87e375e))
+* add tagFormat option for semantic-release ([1cb796f](https://github.com/flyimg/flyimg/commit/1cb796f8bde355de3d96f186aa92300b71972ca4))
+* update Github token variable enviroment, closes [#363](https://github.com/flyimg/flyimg/issues/363) ([8b8d10a](https://github.com/flyimg/flyimg/commit/8b8d10a82ad5724f46b142ed0a58134d6e45157f))
+* use PAT in github action cd workflow ([e7f4da0](https://github.com/flyimg/flyimg/commit/e7f4da0c1370300482c61799108179d107f78f45))
+* use Semantic-release for releasing and tagging ([9befb19](https://github.com/flyimg/flyimg/commit/9befb19b77c41fafa2c0a75e84946df3b8c55e07))
+
 # Changelog
 
 ## [1.1.22](https://github.com/flyimg/flyimg/tree/1.1.22) (2020-12-31)
