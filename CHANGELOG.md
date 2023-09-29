@@ -2,7 +2,6 @@
 
 ## [1.1.58](https://github.com/flyimg/flyimg/compare/1.1.57...1.1.58) (2023-09-29)
 
-
 ### Bug Fixes
 
 * add set to add a  github release ([511dea9](https://github.com/flyimg/flyimg/commit/511dea943cba6cfe8f5f4ae3d273f97174d43c5a))
@@ -12,7 +11,7 @@
 
 ## [1.1.57](https://github.com/flyimg/flyimg/compare/1.1.56...1.1.57) (2023-09-29)
 
-### Bug Fixes
+### Bug Fixes (2023-09-29)
 
 * add missing .releaserc file ([b5b8cad](https://github.com/flyimg/flyimg/commit/b5b8cad74881a8278652ba027b085499a87e375e))
 * add tagFormat option for semantic-release ([1cb796f](https://github.com/flyimg/flyimg/commit/1cb796f8bde355de3d96f186aa92300b71972ca4))
