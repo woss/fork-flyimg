@@ -1,5 +1,15 @@
 # Flyimg Changelog
 
+## [1.1.58](https://github.com/flyimg/flyimg/compare/1.1.57...1.1.58) (2023-09-29)
+
+
+### Bug Fixes
+
+* add set to add a  github release ([511dea9](https://github.com/flyimg/flyimg/commit/511dea943cba6cfe8f5f4ae3d273f97174d43c5a))
+* adding release-note publisher ([e18af03](https://github.com/flyimg/flyimg/commit/e18af03c0beb0bd5782e564f8faef035db345122))
+* fix changelog file header ([055b7e8](https://github.com/flyimg/flyimg/commit/055b7e85d4003fbcb4519a71be32eed45b52270b))
+* fix Changelog title ([2f15f35](https://github.com/flyimg/flyimg/commit/2f15f3584f1a921f5bdc192e2b15d7359da8ae14))
+
 ## [1.1.57](https://github.com/flyimg/flyimg/compare/1.1.56...1.1.57) (2023-09-29)
 
 ### Bug Fixes
