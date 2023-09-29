@@ -1,4 +1,3 @@
-# Changelog
 
 ## [1.1.22](https://github.com/flyimg/flyimg/tree/1.1.22) (2020-12-31)
 
