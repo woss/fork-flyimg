@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+# [1.2.0](https://github.com/flyimg/flyimg/compare/1.1.58...1.2.0) (2023-10-02)
+
+
+### Features
+
+* update code to work on php8 and imagemagick 7 ([86a1dc4](https://github.com/flyimg/flyimg/commit/86a1dc4602ad000d6b78cf939477010ca92a2854))
+
 ## [1.1.58](https://github.com/flyimg/flyimg/compare/1.1.57...1.1.58) (2023-09-29)
 
 ### Bug Fixes
