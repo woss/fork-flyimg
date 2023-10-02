@@ -1,6 +1,6 @@
 # Flyimg Changelog
 
-# [1.2.0](https://github.com/flyimg/flyimg/compare/1.1.58...1.2.0) (2023-10-02)
+## [1.2.0](https://github.com/flyimg/flyimg/compare/1.1.58...1.2.0) (2023-10-02)
 
 
 ### Features
