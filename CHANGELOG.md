@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.2.1](https://github.com/flyimg/flyimg/compare/1.2.0...1.2.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* fix missing variable env. to get the next release version ([6fa51ce](https://github.com/flyimg/flyimg/commit/6fa51ce01e27dda258442b9acb179b8f956d7458))
+
 ## [1.2.0](https://github.com/flyimg/flyimg/compare/1.1.58...1.2.0) (2023-10-02)
 
 
