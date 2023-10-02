@@ -33,7 +33,7 @@ class ProcessorTest extends TestCase
         $this->expectException(ExecFailedException::class);
         $processor = new Processor();
         $command = new Command(Processor::IM_CONVERT_COMMAND);
-        $command->addArgument('--invalid-option');
+        $command->addArgument('--invalid-option invalid');
         $output = $processor->execute($command);
         $this->assertNotEmpty($output);
     }

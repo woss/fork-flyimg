@@ -4,20 +4,20 @@ namespace TestsCore\Resolver;
 
 use Core\Exception\InvalidArgumentException;
 use Silex\Application;
-use Silex\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
+use Tests\Core\BaseTest;
 
 /**
  * Class ControllerResolverTests
  */
-class ControllerResolverTests extends WebTestCase
+class ControllerResolverTests extends BaseTest
 {
     /**
      *
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->app);
     }

@@ -9,12 +9,12 @@ use Silex\WebTestCase;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Tests\Core\BaseTest;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends BaseTest
 {
     /**
      *
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->app);
     }

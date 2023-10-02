@@ -60,7 +60,7 @@ class S3StorageProviderTest extends BaseTest
         );
 
         $this->app->register(new S3StorageProvider());
-        $this->assertContains('https://s3', $this->app['flysystems']['file_path_resolver']);
+        $this->assertStringContainsString('https://s3', $this->app['flysystems']['file_path_resolver']);
     }
 
     /**

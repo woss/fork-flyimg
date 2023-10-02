@@ -25,7 +25,7 @@ class ImageProcessorTest extends BaseTest
 
     /**
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->imageProcessor = $this->imageHandler->imageProcessor();
@@ -71,7 +71,7 @@ class ImageProcessorTest extends BaseTest
      * The key is the test name, the items in the array are:
      * [options, expected output size, source image path]
      */
-    public function shrinkProvider(): array
+    public static function shrinkProvider(): array
     {
         $resizingTests = [
             'Resize to width square' =>
@@ -138,7 +138,7 @@ class ImageProcessorTest extends BaseTest
             ['w_300,h_150,c_1', '300x150', self::PNG_TEST_PORTRAIT_IMAGE],
         ];
 
-        return $this->addOutputExtensionsToTests($resizingTests);
+        return self::addOutputExtensionsToTests($resizingTests);
     }
 
     /**
@@ -148,9 +148,9 @@ class ImageProcessorTest extends BaseTest
      * The key is the test name, the items in the array are:
      * [options, expected output size, source image path]
      */
-    public function expandProvider(): array
+    public static function expandProvider(): array
     {
-        return $this->addOutputExtensionsToTests(
+        return self::addOutputExtensionsToTests(
             array_merge(
                 [
                     'Expand to width square' =>
@@ -217,7 +217,7 @@ class ImageProcessorTest extends BaseTest
                     ['w_600,h_300,c_1', '200x300', self::PNG_TEST_SMALL_PORTRAIT_IMAGE],
 
                 ],
-                $this->partialCropTestProvider()
+                self::partialCropTestProvider()
             )
         );
     }
@@ -226,7 +226,7 @@ class ImageProcessorTest extends BaseTest
      * Test partial crops without expanding
      * @return array
      */
-    protected function partialCropTestProvider(): array
+    protected static function partialCropTestProvider(): array
     {
         return [
             'Expand and partial crop to square a landscape' =>
@@ -264,7 +264,7 @@ class ImageProcessorTest extends BaseTest
      * @param array $transformationsList
      * @return array
      */
-    protected function addOutputExtensionsToTests(array $transformationsList): array
+    protected static function addOutputExtensionsToTests(array $transformationsList): array
     {
         $tests = [];
 

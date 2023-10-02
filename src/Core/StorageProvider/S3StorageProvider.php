@@ -6,7 +6,6 @@ use Aws\S3\S3Client;
 use Core\Exception\MissingParamsException;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
-use WyriHaximus\SliFly\FlysystemServiceProvider;
 
 /**
  * Storage class to manage Storage provider from FlySystem

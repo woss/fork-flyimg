@@ -3,16 +3,17 @@
 namespace Tests\Core\Controller;
 
 use Core\Controller\CoreController;
-use Silex\WebTestCase;
+//use Silex\WebTestCase;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
+use Tests\Core\BaseTest;
 
-class CoreControllerTest extends WebTestCase
+class CoreControllerTest extends BaseTest
 {
     /**
      *
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->app);
     }
