@@ -4,7 +4,6 @@ namespace Core\Entity;
 
 class OptionsBag
 {
-
     /** @var AppParameters */
     protected $appParameters;
 
