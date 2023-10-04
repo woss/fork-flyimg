@@ -17,4 +17,4 @@ RUN usermod -u 1000 www-data && \
     chown -R www-data:www-data var/  web/uploads/ && \
     chmod 777 -R var/  web/uploads/
 
-#RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader
