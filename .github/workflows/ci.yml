@@ -1,3 +1,4 @@
+---
 name: CI
 
 # Run this workflow every time a new commit pushed to your repository
@@ -27,6 +28,7 @@ jobs:
           VALIDATE_PHP_PHPSTAN: false
           VALIDATE_PHP_PSALM: false
           VALIDATE_MARKDOWN: false
+          VALIDATE_NATURAL_LANGUAGE: false
           VALIDATE_JSCPD: false
           VALIDATE_DOCKERFILE_HADOLINT: false
 
@@ -42,7 +44,7 @@ jobs:
         run: docker build -t flyimg .
 
       - name: Run Flyimg container
-        run: docker run -itd -v $(pwd):/var/www/html --name flyimg flyimg
+        run: docker run -itd -v "$(pwd)":/var/www/html --name flyimg flyimg
 
       - name: Install dependencies
         run: docker exec flyimg composer install

@@ -1,6 +1,6 @@
 # Enabling Xdebug
 
-## On Mac OS
+## On macOS
 
 - Create an alias for localhost network
 
@@ -34,9 +34,9 @@ xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini'
 docker exec flyimg supervisorctl restart php7-fpm
 ```
 
-## PHPStorm
+## PhpStorm
 
 - Add new server with name `Xdebug`, Host: `localhost`, Port: `80`, Debuger: `Xdebug`
-- Use Path mapping and map the local file path with the path on the server (/var/www/html)
+- Use Path mapping and map the local file path with the path on the server `/var/www/html`
 - Add new PHP Remote Debug with Server: `Xdebug`, ide key (session id): `PHPSTORM`
 - Add Breakpoints to test

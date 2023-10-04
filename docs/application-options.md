@@ -43,7 +43,7 @@ _Defaults to:_
     - domain-2.com
 ```
 
-_Description:_ If `restricted_domains` is enabled, put your whitelisted domains in this list, subdomains are also ok. For the [Digital Ocean Provisioning Script](https://github.com/flyimg/DigitalOcean-provision) you can set the restricted domains at the droplet provisioning step.
+_Description:_ If `restricted_domains` is enabled, put your whitelisted domains in this list, subdomains are also OK. For the [Digital Ocean Provisioning Script](https://github.com/flyimg/DigitalOcean-provision) you can set the restricted domains at the droplet provisioning step.
 
 ### storage_system
 
