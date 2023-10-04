@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.2.2](https://github.com/flyimg/flyimg/compare/1.2.1...1.2.2) (2023-10-04)
+
+
+### Bug Fixes
+
+* fix missing composer install cmd ([d8a2073](https://github.com/flyimg/flyimg/commit/d8a207328bdfd881ee49e15252ea2622b934b4fc))
+
 ## [1.2.1](https://github.com/flyimg/flyimg/compare/1.2.0...1.2.1) (2023-10-02)
 
 
