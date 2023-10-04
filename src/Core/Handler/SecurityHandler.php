@@ -11,7 +11,6 @@ use Core\Exception\SecurityException;
  */
 class SecurityHandler
 {
-
     public const ENCRYPT_METHOD = "AES-256-CBC";
 
     /** @var AppParameters */

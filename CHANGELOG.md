@@ -18,7 +18,7 @@
 
 ### Bug Fixes
 
-* add set to add a  github release ([511dea9](https://github.com/flyimg/flyimg/commit/511dea943cba6cfe8f5f4ae3d273f97174d43c5a))
+* add set to add a  GitHub release ([511dea9](https://github.com/flyimg/flyimg/commit/511dea943cba6cfe8f5f4ae3d273f97174d43c5a))
 * adding release-note publisher ([e18af03](https://github.com/flyimg/flyimg/commit/e18af03c0beb0bd5782e564f8faef035db345122))
 * fix changelog file header ([055b7e8](https://github.com/flyimg/flyimg/commit/055b7e85d4003fbcb4519a71be32eed45b52270b))
 * fix Changelog title ([2f15f35](https://github.com/flyimg/flyimg/commit/2f15f3584f1a921f5bdc192e2b15d7359da8ae14))
@@ -30,7 +30,7 @@
 * add missing .releaserc file ([b5b8cad](https://github.com/flyimg/flyimg/commit/b5b8cad74881a8278652ba027b085499a87e375e))
 * add tagFormat option for semantic-release ([1cb796f](https://github.com/flyimg/flyimg/commit/1cb796f8bde355de3d96f186aa92300b71972ca4))
 * update Github token variable enviroment, closes [#363](https://github.com/flyimg/flyimg/issues/363) ([8b8d10a](https://github.com/flyimg/flyimg/commit/8b8d10a82ad5724f46b142ed0a58134d6e45157f))
-* use PAT in github action cd workflow ([e7f4da0](https://github.com/flyimg/flyimg/commit/e7f4da0c1370300482c61799108179d107f78f45))
+* use PAT in GitHub action cd workflow ([e7f4da0](https://github.com/flyimg/flyimg/commit/e7f4da0c1370300482c61799108179d107f78f45))
 * use Semantic-release for releasing and tagging ([9befb19](https://github.com/flyimg/flyimg/commit/9befb19b77c41fafa2c0a75e84946df3b8c55e07))
 
 
@@ -40,7 +40,7 @@
 
 **Implemented enhancements:**
 
-- Fix Changlelog generator in github action workflow, closes \#287 [\#296](https://github.com/flyimg/flyimg/pull/296) ([sadok-f](https://github.com/sadok-f))
+- Fix Changlelog generator in GitHub action workflow, closes \#287 [\#296](https://github.com/flyimg/flyimg/pull/296) ([sadok-f](https://github.com/sadok-f))
 
 ## [1.1.21](https://github.com/flyimg/flyimg/tree/1.1.21) (2020-12-31)
 
@@ -48,8 +48,8 @@
 
 **Implemented enhancements:**
 
-- Fix Changlelog generator in github action workflow, fixes issue\#287 [\#295](https://github.com/flyimg/flyimg/pull/295) ([sadok-f](https://github.com/sadok-f))
-- Add new workflow for github release action, closes \#287 [\#294](https://github.com/flyimg/flyimg/pull/294) ([sadok-f](https://github.com/sadok-f))
+- Fix Changlelog generator in GitHub action workflow, fixes issue\#287 [\#295](https://github.com/flyimg/flyimg/pull/295) ([sadok-f](https://github.com/sadok-f))
+- Add new workflow for GitHub release action, closes \#287 [\#294](https://github.com/flyimg/flyimg/pull/294) ([sadok-f](https://github.com/sadok-f))
 
 ## [1.1.20](https://github.com/flyimg/flyimg/tree/1.1.20) (2020-12-31)
 
@@ -61,7 +61,7 @@
 
 **Implemented enhancements:**
 
-- create new workflow for github release, closes \#287 [\#293](https://github.com/flyimg/flyimg/pull/293) ([sadok-f](https://github.com/sadok-f))
+- create new workflow for GitHub release, closes \#287 [\#293](https://github.com/flyimg/flyimg/pull/293) ([sadok-f](https://github.com/sadok-f))
 
 ## [1.1.18](https://github.com/flyimg/flyimg/tree/1.1.18) (2020-12-31)
 
@@ -70,10 +70,10 @@
 **Implemented enhancements:**
 
 - Fix Changelog generator in Github Action [\#287](https://github.com/flyimg/flyimg/issues/287)
-- Fixing changelog generator in github actions, closes \#287 [\#292](https://github.com/flyimg/flyimg/pull/292) ([sadok-f](https://github.com/sadok-f))
-- Fixing changelog generator in github actions, closes \#287 [\#291](https://github.com/flyimg/flyimg/pull/291) ([sadok-f](https://github.com/sadok-f))
-- Fixing changelog generator in github actions, closes \#287 [\#290](https://github.com/flyimg/flyimg/pull/290) ([sadok-f](https://github.com/sadok-f))
-- Fixing changelog generator step in github action, fixes \#287 [\#289](https://github.com/flyimg/flyimg/pull/289) ([sadok-f](https://github.com/sadok-f))
+- Fixing changelog generator in GitHub actions, closes \#287 [\#292](https://github.com/flyimg/flyimg/pull/292) ([sadok-f](https://github.com/sadok-f))
+- Fixing changelog generator in GitHub actions, closes \#287 [\#291](https://github.com/flyimg/flyimg/pull/291) ([sadok-f](https://github.com/sadok-f))
+- Fixing changelog generator in GitHub actions, closes \#287 [\#290](https://github.com/flyimg/flyimg/pull/290) ([sadok-f](https://github.com/sadok-f))
+- Fixing changelog generator step in GitHub action, fixes \#287 [\#289](https://github.com/flyimg/flyimg/pull/289) ([sadok-f](https://github.com/sadok-f))
 - Fix Changelog generator action step, fixes \#287 [\#288](https://github.com/flyimg/flyimg/pull/288) ([sadok-f](https://github.com/sadok-f))
 
 ## [1.1.17](https://github.com/flyimg/flyimg/tree/1.1.17) (2020-12-31)
@@ -82,7 +82,7 @@
 
 **Implemented enhancements:**
 
-- Fix deployment step in github action, closes \#280 [\#286](https://github.com/flyimg/flyimg/pull/286) ([sadok-f](https://github.com/sadok-f))
+- Fix deployment step in GitHub action, closes \#280 [\#286](https://github.com/flyimg/flyimg/pull/286) ([sadok-f](https://github.com/sadok-f))
 
 ## [1.1.16](https://github.com/flyimg/flyimg/tree/1.1.16) (2020-12-31)
 
@@ -152,7 +152,7 @@
 
 **Implemented enhancements:**
 
-- Add Generate ChangeLog to github action [\#275](https://github.com/flyimg/flyimg/pull/275) ([sadok-f](https://github.com/sadok-f))
+- Add Generate ChangeLog to GitHub action [\#275](https://github.com/flyimg/flyimg/pull/275) ([sadok-f](https://github.com/sadok-f))
 
 ## [1.1.8](https://github.com/flyimg/flyimg/tree/1.1.8) (2020-12-28)
 
@@ -172,7 +172,7 @@
 - Add Codecov Report [\#267](https://github.com/flyimg/flyimg/issues/267)
 - Downgrade Github action to v5 [\#272](https://github.com/flyimg/flyimg/pull/272) ([sadok-f](https://github.com/sadok-f))
 - add empty tag\_prefix for Github actions [\#271](https://github.com/flyimg/flyimg/pull/271) ([sadok-f](https://github.com/sadok-f))
-- Add new github action to release tag closes \#269 [\#270](https://github.com/flyimg/flyimg/pull/270) ([sadok-f](https://github.com/sadok-f))
+- Add new GitHub action to release tag closes \#269 [\#270](https://github.com/flyimg/flyimg/pull/270) ([sadok-f](https://github.com/sadok-f))
 - Add CodeCov Repport, closes \#267 [\#268](https://github.com/flyimg/flyimg/pull/268) ([sadok-f](https://github.com/sadok-f))
 - Add Last-Modified headers tag, closes \#261 [\#266](https://github.com/flyimg/flyimg/pull/266) ([sadok-f](https://github.com/sadok-f))
 

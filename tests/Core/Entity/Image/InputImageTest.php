@@ -12,7 +12,6 @@ use Tests\Core\BaseTest;
  */
 class InputImageTest extends BaseTest
 {
-
     /**
      * Test SaveToTemporaryFileException
      */

@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ProcessorTest extends TestCase
 {
-
     /**
      * @throws \Exception
      */

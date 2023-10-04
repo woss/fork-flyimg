@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 class CoreController
 {
-
     /**
      * @param Application $app
      */
