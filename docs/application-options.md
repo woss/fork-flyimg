@@ -4,11 +4,6 @@
 
 Here are the app options you can configure with the [config/parameters.yml](https://github.com/flyimg/flyimg/blob/main/config/parameters.yml) these options operate at runtime, you don't need to rebuild the container or restart any service, all requests<sup><a name="footnote1">1</a></sup> will check this config.
 
-### application_name
-
-_Defaults to:_ `Flyimg.io`
-_Description:_ Seems to do nothing, I propose to delete it.
-
 ### debug
 
 _Defaults to:_ `true`
@@ -44,6 +39,12 @@ _Defaults to:_
 ```
 
 _Description:_ If `restricted_domains` is enabled, put your whitelisted domains in this list, subdomains are also OK. For the [Digital Ocean Provisioning Script](https://github.com/flyimg/DigitalOcean-provision) you can set the restricted domains at the droplet provisioning step.
+
+### disable_cache
+
+_Defaults to:_ `false`
+_Description:_ When set to true the generated image will be deleted from the cache in web/upload and served directly in the response
+
 
 ### storage_system
 
