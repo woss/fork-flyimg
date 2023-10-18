@@ -18,7 +18,7 @@ class CoreController
         $this->response = new Response(
             $this->app['image.handler'],
             $this->app['flysystems'],
-            $this->app['params']->parameterByKey('header_cache_days')
+            $this->app['params']
         );
     }
 

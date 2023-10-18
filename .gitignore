@@ -4,6 +4,7 @@
 /build/
 /xdebug/
 /web/uploads
+.phpunit.cache/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
