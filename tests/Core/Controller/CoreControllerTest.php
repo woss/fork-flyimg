@@ -35,7 +35,7 @@ class CoreControllerTest extends BaseTest
     {
         $this->expectException(FileNotFoundException::class);
         $coreController = new CoreController($this->app);
-        $coreController->render('notExitfile');
+        $coreController->render('notExistFile');
     }
 
     /**

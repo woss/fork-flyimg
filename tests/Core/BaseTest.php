@@ -3,6 +3,7 @@
 namespace Tests\Core;
 
 use Core\Entity\Image\OutputImage;
+use Core\Entity\Response;
 use Core\Handler\ImageHandler;
 use PHPUnit\Framework\TestCase;
 use Silex\Application;
@@ -44,6 +45,11 @@ class BaseTest extends TestCase
     protected $imageHandler = null;
 
     /**
+     * @var Response
+     */
+    protected $response = null;
+
+    /**
      * @var array
      */
     protected $generatedImage = [];
@@ -55,6 +61,11 @@ class BaseTest extends TestCase
     {
         $this->app = $this->createApplication();
         $this->imageHandler = $this->app['image.handler'];
+        $this->response = new Response(
+            $this->app['image.handler'],
+            $this->app['flysystems'],
+            $this->app['params']
+        );
     }
 
     /**

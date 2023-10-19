@@ -14,23 +14,23 @@ class Response extends BaseResponse
 {
     /** @var ImageHandler */
     protected $imageHandler;
-    /** @var Pimple\Container*/
+    /** @var Pimple\Container */
     protected $storageFileSystem;
-    /** @var int */
-    protected $maxAge;
+    /** @var AppParameters */
+    protected $appParameters;
 
     /**
      * Response constructor.
      *
      * @param $imageHandler
      * @param $storageFileSystem
-     * @param $maxAge
+     * @param $appParameters
      */
-    public function __construct($imageHandler, $storageFileSystem, $maxAge)
+    public function __construct($imageHandler, $storageFileSystem, $appParameters)
     {
         $this->storageFileSystem = $storageFileSystem;
         $this->imageHandler = $imageHandler;
-        $this->maxAge = $maxAge;
+        $this->appParameters = $appParameters;
         parent::__construct();
         $this->addSecurityHeaders();
     }
@@ -50,7 +50,7 @@ class Response extends BaseResponse
         $expireDate = new \DateTime();
         $expireDate->add(new \DateInterval('P1Y'));
         $this->setExpires($expireDate);
-        $longCacheTime = 3600 * 24 * ((int)$this->maxAge);
+        $longCacheTime = 3600 * 24 * (int)$this->appParameters->parameterByKey('header_cache_days');
 
         $this->setMaxAge($longCacheTime);
         $this->setSharedMaxAge($longCacheTime);
@@ -98,6 +98,11 @@ class Response extends BaseResponse
     {
         $this->setContent($image->getOutputImageContent());
         $this->generateHeaders($image);
+        // if cache is disabled, then remove the generated image and return the image in the response
+        if ($this->appParameters->parameterByKey('disable_cache')) {
+            $image->removeGeneratedImage();
+        }
+
         $image->removeOutputImage();
     }
 

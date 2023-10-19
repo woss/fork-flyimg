@@ -164,13 +164,24 @@ class OutputImage
     }
 
     /**
+     * Remove Generated Image
+     */
+    public function removeGeneratedImage()
+    {
+        $generatedImage = sprintf("%s%s", UPLOAD_DIR, $this->getOutputImageName());
+        if (file_exists($generatedImage)) {
+            unlink($generatedImage);
+        }
+    }
+
+    /**
      * Generate files name + files path
      */
     protected function generateFilesName()
     {
         $hashedOptions = $this->inputImage->optionsBag();
         $this->outputImageName = $hashedOptions->hashedOptionsAsString($this->inputImage->sourceImageUrl());
-        $this->outputImagePath = TMP_DIR . $this->outputImageName;
+        $this->outputImagePath = sprintf("%s%s", TMP_DIR, $this->outputImageName);
 
         if ($hashedOptions->get('refresh')) {
             $this->outputImagePath .= uniqid("-", true);
@@ -202,7 +213,7 @@ class OutputImage
     /**
      * given a mime-type this returns the extension associated to it
      *
-     * @param  string $mimeType mime-type
+     * @param string $mimeType mime-type
      *
      * @return string extension OR jpeg as default
      */
