@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.2.3](https://github.com/flyimg/flyimg/compare/1.2.2...1.2.3) (2023-10-19)
+
+
+### Bug Fixes
+
+* add disable cache option ([59600ae](https://github.com/flyimg/flyimg/commit/59600ae1c833e98bd87f5b8f6403965666857cdc))
+
 ## [1.2.2](https://github.com/flyimg/flyimg/compare/1.2.1...1.2.2) (2023-10-04)
 
 
