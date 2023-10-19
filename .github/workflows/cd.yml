@@ -87,6 +87,7 @@ jobs:
         with:
           host: ${{ secrets.FLYIMG_DEMO_HOST }}
           username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
+          port: ${{ secrets.FLYIMG_DEMO_PORT }}
           key: ${{ secrets.FLYIMG_DEMO_KEY }}
           script: |
             bash -c "docker rm -f flyimg &>/dev/null"
