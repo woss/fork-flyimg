@@ -90,5 +90,6 @@ jobs:
           port: ${{ secrets.FLYIMG_DEMO_PORT }}
           key: ${{ secrets.FLYIMG_DEMO_KEY }}
           script: |
-            bash -c "docker rm -f flyimg &>/dev/null"
-            docker run -itd -p 8080:80 --name flyimg flyimg/flyimg-build:${{ needs.docker_publish.outputs.new_tag_version }}
+            cd /home/deployer/
+            bash -c "sed 's/VERSION/${{ needs.docker_publish.outputs.new_tag_version }}/g' compose.yaml.tpl > compose.yaml"
+            bash -c "docker compose up -d"
