@@ -1,9 +1,10 @@
-const dynamicImage = document.getElementById('dynamicImage');
-const loadingSpinner = document.getElementById('loadingSpinner');
+const generatedImage = document.getElementById('generated-image');
+const loadingSpinner = document.getElementById('loading-spinner');
+const dynamicInputFields = document.getElementById('dynamic-input-fields');
+
 
 const isEmpty = str => !str.trim().length;
 const addInput = () => {
-    const dynamicInputFields = document.getElementById('dynamicInputFields');
     const inputField = document.createElement('div');
     inputField.className = 'form-group';
     inputField.innerHTML = `
@@ -81,28 +82,26 @@ const addInput = () => {
 };
 
 const removeInput = button => {
-    const dynamicInputFields = document.getElementById('dynamicInputFields');
     dynamicInputFields.removeChild(button.closest('.form-group'));
 };
 
 
 const refreshImage = () => {
-    let imgUrl = document.getElementById('imageUrl')
-    let imageUrlValidation = document.getElementById('imageUrlValidation')
-    let noOptionsDiv = document.getElementById('noOptionsDiv');
+    let sourceImage = document.getElementById('source-image')
+    let sourceImageValidation = document.getElementById('source-image-validation')
+    let errorOptions = document.getElementById('error-options');
 
-    if (isEmpty(imgUrl.value)) {
-        imgUrl.setAttribute('class', 'form-control is-invalid');
-        imageUrlValidation.style.display = 'block';
+    if (isEmpty(sourceImage.value)) {
+        sourceImage.setAttribute('class', 'form-control is-invalid');
+        sourceImageValidation.style.display = 'block';
         return;
     }
 
     //option-value
-    imageUrlValidation.style.display = 'none';
-    noOptionsDiv.style.display = 'none';
-    imgUrl.setAttribute('class', 'form-control is-valid');
+    sourceImageValidation.style.display = 'none';
+    errorOptions.style.display = 'none';
+    sourceImage.setAttribute('class', 'form-control is-valid');
 
-    const dynamicInputFields = document.getElementById('dynamicInputFields');
     const inputs = dynamicInputFields.querySelectorAll('.input-group');
 
     // Combine input values to form the image parameters
@@ -124,31 +123,31 @@ const refreshImage = () => {
     // Concatenate parameters with commas and append to the base URL
     let params = imageParams.slice(0, -1);
     if (!params) {
-        noOptionsDiv.style.display = 'block';
+        errorOptions.style.display = 'block';
         return;
     }
 
-    const imageUrl = baseUrl + params + '/' + imgUrl.value; // Remove the trailing comma
-    document.getElementById('generatedUrl').innerHTML = imageUrl;
+    const imageUrl = baseUrl + params + '/' + sourceImage.value; // Remove the trailing comma
+    document.getElementById('generated-url').innerHTML = imageUrl;
 
     showLoading();
     // Set the image source
 
-    dynamicImage.onload = hideLoading; // Hide loading spinner on image load
-    dynamicImage.src = imageUrl;
+    generatedImage.onload = hideLoading; // Hide loading spinner on image load
+    generatedImage.src = imageUrl;
 
 };
 
 const showLoading = () => {
     // Display loading spinner
     loadingSpinner.style.display = 'block';
-    dynamicImage.style.display = 'none';
+    generatedImage.style.display = 'none';
 };
 
 const hideLoading = () => {
     // Hide loading spinner
     loadingSpinner.style.display = 'none';
-    dynamicImage.style.display = 'block';
+    generatedImage.style.display = 'block';
 };
 
 
@@ -164,9 +163,9 @@ const hideLoading = () => {
         addInput();
     }, false);
 
-    let copyBtn = document.getElementById('copyBtn');
+    let copyBtn = document.getElementById('copy-btn');
     copyBtn.addEventListener("click", function () {
-        let copyText = document.getElementById("generatedUrl");
+        let copyText = document.getElementById("generated-url");
         // Copy the text inside the text field
         navigator.clipboard.writeText(copyText.innerHTML);
     }, false);

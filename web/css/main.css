@@ -36,7 +36,7 @@ body {
     text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 }
 
-#loadingSpinner, #dynamicImage, #noOptionsDiv{
+#loading-spinner, #generated-image, #error-options{
     display: none;
 }
 .btn-clipboard {

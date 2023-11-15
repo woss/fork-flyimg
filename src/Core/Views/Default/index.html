@@ -49,19 +49,19 @@
             <hr>
             <div class="row  g-3">
                 <!-- Loading spinner -->
-                <div id="loadingSpinner" class="spinner-border text-info" role="status">
+                <div id="loading-spinner" class="spinner-border text-info" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
                 <div class="img-thumbnail">
-                    <img src="" alt="Dynamic Image" id="dynamicImage" class="img-fluid">
+                    <img src="https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png" alt="Dynamic Image" id="generated-image" class="img-fluid">
                 </div>
             </div>
             <hr>
             <div class="row  g-3">
                 <div class="col-md">
                     <div class="p-2 bg-info bg-opacity-10 border border-info rounded">
-                        <div id="generatedUrl" class="align-"></div>
-                        <button id="copyBtn" type="button" class="d-flex ms-auto btn-clipboard"
+                        <div id="generated-url" class="align-"></div>
+                        <button id="copy-btn" type="button" class="d-flex ms-auto btn-clipboard"
                                 aria-label="Copy to clipboard"
                                 data-bs-original-title="Copy to clipboard">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
@@ -73,10 +73,10 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="imageUrl" class="form-label">Enter the image URL</label>
-                    <input type="text" class="form-control" id="imageUrl" placeholder="Enter image URL"
+                    <label for="source-image" class="form-label">Enter the image URL</label>
+                    <input type="text" class="form-control" id="source-image" placeholder="Enter image URL"
                            value="https://mudawn.com/assets/butterfly-3000.jpg">
-                    <div id="imageUrlValidation" class="invalid-feedback">
+                    <div id="source-image-validation" class="invalid-feedback">
                         Please enter an Image URL.
                     </div>
                 </div>
@@ -85,12 +85,12 @@
                         Add Image Option
                     </button>
                     <hr>
-                    <div class="alert alert-danger" role="alert" id="noOptionsDiv">
+                    <div class="alert alert-danger" role="alert" id="error-options">
                         Please add at least one option.
                     </div>
                 </div>
                 <!-- Dynamic input fields will be added here -->
-                <div id="dynamicInputFields"></div>
+                <div id="dynamic-input-fields"></div>
 
                 <button type="button" class="btn btn-primary mt-3" id="refresh-btn">Refresh
                     Image
