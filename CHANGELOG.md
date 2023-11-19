@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.2.4](https://github.com/flyimg/flyimg/compare/1.2.3...1.2.4) (2023-11-19)
+
+
+### Bug Fixes
+
+* add dev deployment workflow ([b6d1436](https://github.com/flyimg/flyimg/commit/b6d143618cd1a145b0cef55edbffcbbd2ea04126))
+* fixing the wrong definition for the pdf page number, add descriptions for the URL image options for the new Demo page ([8231c6d](https://github.com/flyimg/flyimg/commit/8231c6dfc24ae2711d6732a1b9604efa90b8adf7))
+
 ## [1.2.3](https://github.com/flyimg/flyimg/compare/1.2.2...1.2.3) (2023-10-19)
 
 
