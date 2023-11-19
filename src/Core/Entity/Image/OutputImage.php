@@ -54,7 +54,7 @@ class OutputImage
         $this->outputImageExtension = $this->generateFileExtension();
         $this->outputImagePath .= '.' . $this->outputImageExtension;
         if ($this->inputImage->isInputPdf()) {
-            $this->outputImageName .= '-' . $inputImage->optionsBag()->get('page_number');
+            $this->outputImageName .= '-' . $inputImage->optionsBag()->get('pdf-page-number');
         }
 
         if ($this->isInputMovie()) {

@@ -1,78 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-
-    <title>Flyimg App</title>
-
+    <title>Flyimg Demo</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/css/main.css" crossorigin="anonymous">
     <link href="css/main.css" rel="stylesheet">
 </head>
-
 <body>
+<div class="site-wrapper container-md">
+    <div class="cover-container">
+        <div class="inner cover">
+            <div class="inner cover">
+                <hr>
+                <p>
+                    <img alt="Flyimg"
+                         src="/upload/w_300/https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png">
+                </p>
+                <h2 id="hello-from-flyimg">Hello from Flyimg</h2>
 
-    <div class="site-wrapper">
+                <h3 id="image-title">The image above (logo) has been served using Flyimg.
+                </h3>
 
-        <div class="site-wrapper-inner">
+                <p>how? Calling the source in the <code>&lt;img&gt;</code> like this:</p>
 
-            <div class="cover-container">
+                <code>/upload/w_300/https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png</code>
 
-                <div class="masthead clearfix">
-                    <div class="inner">
-                        <h3 class="masthead-brand">Flyimg App</h3>
-
-                    </div>
-                </div>
-
-                <div class="inner cover">
-                    <p>
-                        <img alt="Flyimg" src="/upload/w_300/https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png">
-                    </p>
-                    <h2 id="hello-from-flyimg">Hello from Flyimg</h2>
-
-                    <h3 id="image-title">The image above (logo) has been served using Flyimg.
-                    </h3>
-
-                    <p>how? Calling the source in the <code>&lt;img&gt;</code> like this:</p>
-
-                    <code>/upload/w_300/https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png</code>
-
-                    <p>It got transformed from the original file which was 6000px wide!</p>
-                    <p>Now, on the server, there is a cached version of this transformed image. There is no need to do the transformation again next time someone requests this image.</p>
-                    <p>The best of all is that you get <em>Moz-jpeg</em> compression by default on all your JPEGs.</p>
+                <p>It got transformed from the original file which was 6000px wide!</p>
+                <p>Now, on the server, there is a cached version of this transformed image. There is no need to do the
+                    transformation again next time someone requests this image.</p>
+                <p>The best of all is that you get <em>Moz-jpeg</em> compression by default on all your JPEGs.</p>
 
 
-                    <h2 id="transformations">Transformations</h2>
+                <h3 id="transformations">Transformations</h3>
 
-                    <p>You can do many different transformations to you images, like: <strong>quality</strong>,
-                        <strong>face-crop</strong>, <strong>face-blur</strong>, <strong>width</strong>,
-                        <strong>height</strong>,
-                        <strong>crop</strong>, <strong>background</strong>, <strong>rotate</strong>, <strong>scale</strong>, amongst many others.</p>
-
-
-                    <p><a href="https://github.com/flyimg/flyimg" target="_blank">Check the docs for more info</a>.</p>
-                    <p>Happy imaging!</p>
-                </div>
-
-                <div class="mastfoot">
-                    <div class="inner">
-                        <p><a href="https://flyimg.io" target="_blank">Flyimg.io</a></p>
-                    </div>
-                </div>
-
+                <p>You can do many different transformations to you images, like: <strong>quality</strong>,
+                    <strong>face-crop</strong>, <strong>face-blur</strong>, <strong>width</strong>,
+                    <strong>height</strong>,
+                    <strong>crop</strong>, <strong>background</strong>, <strong>rotate</strong>, <strong>scale</strong>,
+                    amongst many others.</p>
             </div>
+            <h1>Try it now !</h1>
+            <br>
+            <hr>
+            <div class="row  g-3">
+                <!-- Loading spinner -->
+                <div id="loading-spinner" class="spinner-border text-info" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="img-thumbnail">
+                    <img src="https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png"
+                         alt="Dynamic Image" id="generated-image" class="img-fluid">
+                </div>
+            </div>
+            <hr>
+            <div class="row  g-3">
+                <div class="col-md">
+                    <div class="p-2 bg-info bg-opacity-10 border border-info rounded">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div id="generated-url" class="align"></div>
+                            </div>
+                            <div class="col-sm-1">
+                                <button id="copy-btn" type="button" class="d-flex ms-auto btn-clipboard"
+                                        aria-label="Copy to clipboard"
+                                        data-bs-original-title="Copy to clipboard">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-clipboard" viewBox="0 0 16 16">
+                                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
+                                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="source-image" class="form-label">Enter the image URL</label>
+                    <input type="text" class="form-control" id="source-image" placeholder="Enter image URL"
+                           value="https://mudawn.com/assets/butterfly-3000.jpg">
+                    <div id="source-image-validation" class="invalid-feedback">
+                        Please enter an Image URL.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="button" id="add-btn">
+                        Add Image Option
+                    </button>
+                    <hr>
+                    <div class="alert alert-danger" role="alert" id="error-options">
+                        Please add at least one option.
+                    </div>
+                </div>
+                <!-- Dynamic input fields will be added here -->
+                <div id="dynamic-input-fields"></div>
 
+                <button type="button" class="btn btn-primary mt-3" id="refresh-btn">Refresh
+                    Image
+                </button>
+            </div>
+            <hr/>
+            <p><a href="https://github.com/flyimg/flyimg" target="_blank">Check the docs for more info</a>.</p>
+            <p>Happy imaging!</p>
         </div>
 
     </div>
 
+</div>
+<!--<script src="/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="/js/main.js"></script>
 </body>
 
 </html>
