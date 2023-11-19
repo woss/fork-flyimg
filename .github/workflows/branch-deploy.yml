@@ -1,0 +1,43 @@
+---
+name: "branch deploy demo"
+
+# The workflow will execute on new comments on pull requests - example: ".deploy" as a comment
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  pull-requests: write
+  deployments: write
+  contents: write
+  checks: read
+
+
+jobs:
+  dev:
+    if: ${{ github.event.issue.pull_request }} # only run on pull request comments (no need to run on issue comments)
+    runs-on: ubuntu-latest
+    steps:
+      # Execute IssueOps branch deployment logic, hooray!
+      # This will be used to "gate" all future steps below and conditionally trigger steps/deployments
+      - uses: github/branch-deploy@v8.1.1 # replace X.X.X with the version you want to use
+        id: branch-deploy # it is critical you have an id here so you can reference the outputs of this step
+        with:
+          trigger: ".deploy" # the trigger phrase to look for in the comment on the pull request
+
+      # Run your deployment logic for your project here - examples seen below
+
+      - name: Deploy to dev environment
+        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.FLYIMG_DEMO_HOST }}
+          username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
+          port: ${{ secrets.FLYIMG_DEMO_PORT }}
+          key: ${{ secrets.FLYIMG_DEMO_KEY }}
+          script: |
+            cd /home/deployer/dev.flyimg.io/
+            bash -c "git fetch && git pull && git checkout main"
+            bash -c "git checkout ${{ steps.branch-deploy.outputs.ref }}"
+            bash -c "docker build -t dev-branch ."
+            bash -c "docker run -itd -p 8090:80 -v $PWD:/var/www/html --name flyimg-dev dev-branch"
