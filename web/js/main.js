@@ -1,6 +1,8 @@
 const generatedImage = document.getElementById('generated-image');
 const loadingSpinner = document.getElementById('loading-spinner');
 const dynamicInputFields = document.getElementById('dynamic-input-fields');
+let sourceImageValidation = document.getElementById('source-image-validation')
+
 
 
 const isEmpty = str => !str.trim().length;
@@ -88,11 +90,11 @@ const removeInput = button => {
 
 const refreshImage = () => {
     let sourceImage = document.getElementById('source-image')
-    let sourceImageValidation = document.getElementById('source-image-validation')
     let errorOptions = document.getElementById('error-options');
 
     if (isEmpty(sourceImage.value)) {
         sourceImage.setAttribute('class', 'form-control is-invalid');
+        sourceImageValidation.innerHTML = 'Please enter an Image URL.'
         sourceImageValidation.style.display = 'block';
         return;
     }
@@ -134,8 +136,16 @@ const refreshImage = () => {
     // Set the image source
 
     generatedImage.onload = hideLoading; // Hide loading spinner on image load
+    generatedImage.onerror = errorWhileLoading; // Hide loading spinner on image load
     generatedImage.src = imageUrl;
 
+};
+
+const errorWhileLoading = () => {
+    // Display loading spinner
+    loadingSpinner.style.display = 'none';
+    sourceImageValidation.style.display = 'block';
+    sourceImageValidation.innerHTML = 'Error while leading the generated image'
 };
 
 const showLoading = () => {
