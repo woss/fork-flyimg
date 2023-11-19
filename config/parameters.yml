@@ -79,7 +79,7 @@ options_keys:
   p1y: extract-top-y
   p2x: extract-bottom-x
   p2y: extract-bottom-y
-  pg: page_number
+  pdfp: pdf-page-number
   tm: time
   clsp: colorspace
   mnchr: monochrome
@@ -119,7 +119,7 @@ default_options:
   extract-top-y: null
   extract-bottom-x: null
   extract-bottom-y: null
-  page_number: 1
+  pdf-page-number: 1
   time: '00:00:01'
   colorspace: 'sRGB'
   monochrome: null

@@ -72,7 +72,7 @@ class ImageProcessor extends Processor
         }
 
         $pdfPageNo = $outputImage->getInputImage()->isInputPdf() ?
-            '[' . ($outputImage->extractKey('page_number') - 1) . ']' :
+            '[' . ($outputImage->extractKey('pdf-page-number') - 1) . ']' :
             '';
 
         $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo);

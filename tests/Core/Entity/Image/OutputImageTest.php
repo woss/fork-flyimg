@@ -55,7 +55,7 @@ class OutputImageTest extends BaseTest
             'extract-top-y' => null,
             'extract-bottom-x' => null,
             'extract-bottom-y' => null,
-            'page_number' => 1,
+            'pdf-page-number' => 1,
             'time' => '00:00:01',
             'colorspace' =>  'sRGB',
             'monochrome' => null,

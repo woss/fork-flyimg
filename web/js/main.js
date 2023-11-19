@@ -17,37 +17,36 @@ const addInput = () => {
                 <select class="form-control">
                     <option value="q" data-bs-example="Default 90, Example: 80">quality</option>
                     <option value="o" data-bs-example="Default auto, possible value auto | input | png | webp | jpg">output</option>
-                    <option value="rf" data-bs-example="It will force a re-request of the original image, default 0, possible value 1">refresh</option>
+                    <option value="rf" data-bs-example="It will force a re-request of the original image, default 0 , to enable it 1">refresh</option>
                     <option value="unsh" data-bs-example="Sharpens an image, usage {radius}x{sigma}[+gain][+threshold], examples: 0x6 | 0.25x0.25+8+0.065 ">unsharp</option>
                     <option value="sh" data-bs-example="Use a Gaussian operator of the given radius and standard deviation (sigma), usage {radius}x{sigma}, example: 3 | 0x5">sharpen</option>
-                    <option value="fc" data-bs-example="Crop a face from given image, default 0, possible value 1">face-crop</option>
+                    <option value="fc" data-bs-example="Crop a face from given image, default 0 , to enable it 1">face-crop</option>
                     <option value="fcp" data-bs-example="Can be used combined with Face Crop option, you can specify which face you want get cropped in case of multi faces, example 2">face-crop-position</option>
-                    <option value="fb" data-bs-example="Apply blur effect on faces in a given image, default 0, possible value 1 ">face-blur</option>
+                    <option value="fb" data-bs-example="Apply blur effect on faces in a given image, default 0 , to enable it 1 ">face-blur</option>
                     <option value="w" data-bs-example="Sets the target width of the image. If not set, width will be calculated in order to keep aspect ratio.">width</option>
                     <option value="h" data-bs-example="Sets the target height of the image. If not set, height will be calculated in order to keep aspect ratio.">height</option>
-                    <option value="c" data-bs-example="When both width and height are set, this allows the image to be cropped so it fills the width x height area, default 0, possible value 1">crop</option>
+                    <option value="c" data-bs-example="When both width and height are set, this allows the image to be cropped so it fills the width x height area, default 0 , to enable it 1">crop</option>
                     <option value="bg" data-bs-example="Sets the background of the canvas for the cases where padding is added to the images. It supports hex, css color names, rgb. Only css color names are supported without quotation marks. For the hex code, the hash # character should be replaced by %23, example bg_red,bg_%23ff4455,bg_rgb(255,120,100)">background</option>
-                    <option value="st" data-bs-example="Removes exif data and additional color profile. Leaving your image with the default sRGB color profile, default 0, possible value 1 ">strip</option>
-                    <option value="ao" data-bs-example="Adjusts an image so that its orientation is suitable for viewing (i.e. top-left orientation), default 0, possible value 1">auto-orient</option>
-                    <option value="rz" data-bs-example="The alternative resizing method to -thumbnail, default 0, possible value 1">resize</option>
+                    <option value="st" data-bs-example="Removes exif data and additional color profile. Leaving your image with the default sRGB color profile, default 0 , to enable it 1 ">strip</option>
+                    <option value="ao" data-bs-example="Adjusts an image so that its orientation is suitable for viewing (i.e. top-left orientation), default 0 , to enable it 1">auto-orient</option>
+                    <option value="rz" data-bs-example="The alternative resizing method to -thumbnail, default 0 , to enable it 1">resize</option>
                     <option value="g" data-bs-example="When crop is applied, changing the gravity will define which part of the image is kept inside the crop area. The basic options are: NorthWest, North, NorthEast, West, Center, East, SouthWest, South, SouthEast.">gravity</option>
                     <option value="f" data-bs-example="Resizing algorithm, default Lanczos, possible value Triangle (Triangle is a smoother lighter option)">filter</option>
                     <option value="r" data-bs-example="Apply image rotation (using shear operations) to the image, default 0, possible value 90 | 45">rotate</option>
-                    <option value="sc" data-bs-example="The -scale resize operator is a simplified, faster form of the resize command. Useful for fast exact scaling of pixels, default 0, possible value 1">scale</option>
+                    <option value="sc" data-bs-example="The -scale resize operator is a simplified, faster form of the resize command. Useful for fast exact scaling of pixels, default 0 , to enable it 1">scale</option>
                     <option value="e" data-bs-example="Extract and crop an image with given the x/y coordinates of each booth top and bottom.">extract</option>
-                    <option value="p1x" data-bs-example="Extract and crop an image with given the x/y coordinates of each booth top and bottom.">extract-top-x</option>
-                    <option value="p1y" data-bs-example="Extract and crop an image with given the x/y coordinates of each booth top and bottom.">extract-top-y</option>
-                    <option value="p2x" data-bs-example="Extract and crop an image with given the x/y coordinates of each booth top and bottom.">xtract-bottom-x</option>
-                    <option value="p2y" data-bs-example="Extract and crop an image with given the x/y coordinates of each booth top and bottom.">xtract-bottom-y</option>
-                    <option value="sf" data-bs-example="//TODO">sampling-factor</option>
-                    <option value="smc" data-bs-example="//TODO"">smart-crop</option>
-                    <option value="ett" data-bs-example="//TODO"">extent</option>
+                    <option value="p1x" data-bs-example="The Point's 1 x coordinates of the Extract option">extract-top-x</option>
+                    <option value="p1y" data-bs-example="The Point's 1 y coordinates of the Extract option">extract-top-y</option>
+                    <option value="p2x" data-bs-example="The Point's 2 x coordinates of the Extract option">extract-bottom-x</option>
+                    <option value="p2y" data-bs-example="The Point's 2 y coordinates of the Extract option">extract-bottom-y</option>
+                    <option value="sf" data-bs-example="This option specifies the sampling factors to be used by the JPEG encoder for chroma downsampling. If this option is omitted, the JPEG library will use its own default values, default 0 to enable it 1">sampling-factor</option>
+                    <option value="smc" data-bs-example="This option automatically identifies and extracts the most visually compelling region from an image, default 0 , to enable it 1">smart-crop</option>
+                    <option value="ett" data-bs-example="Set the image size and offset, default Null, example values 4:3 | 800x600">extent</option>
                     <option value="par" data-bs-example="If set to 0, when passing width and height to an image, the image will be distorted to fill the size of the rectangle defined by width and height, default 1 ">preserve-aspect-ratio</option>
-                    <option value="pns" data-bs-example="f set to 0 and if the source image is smaller than the target dimensions, the image will be stretched to the target size, defaukt 1 ">preserve-natural-size</option>
-                    <option value="webpl" data-bs-example="//TODO"">webp-lossless</option>
-                    <option value="gf" data-bs-example="//TODO"">gif-frame</option>
-
-                    <option value="pg" data-bs-example="//TODO"">page_number</option>
+                    <option value="pns" data-bs-example="f set to 0 and if the source image is smaller than the target dimensions, the image will be stretched to the target size, default 1 ">preserve-natural-size</option>
+                    <option value="webpl" data-bs-example="If output is set to webp, it will default to lossy compression, but if you want lossless webp encoding you have to set it to 1, default 0">webp-lossless</option>
+                    <option value="gf" data-bs-example="When supplying a Gif image, you can choose which frame to generate the output image from, default 0, possible values the frame number : 1 , 3 , 10,..">gif-frame</option>
+                    <option value="pdfp" data-bs-example="When supplying a PDF as input, you can specify a which page number to generate the image from, default 1, possible values one the pdf pages number.">pdf-page-number</option>
                     <option value="tm" data-bs-example="Get a video image to fit dimensions from a time duration point, Possible value 00:00:05 ">time</option>
                     <option value="clsp" data-bs-example="Converting to Colorspace Gray, Possible value Gray">colorspace</option>
                     <option value="mnchr" data-bs-example="Converting to Monochrome, Possible value 1">monochrome</option>
