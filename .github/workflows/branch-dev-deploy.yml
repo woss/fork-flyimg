@@ -1,5 +1,5 @@
 ---
-name: "branch deploy demo"
+name: "deploy branch to dev"
 
 # The workflow will execute on new comments on pull requests - example: ".deploy" as a comment
 on:
