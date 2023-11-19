@@ -11,28 +11,18 @@ The most common URL options are:
 - Image: `https://mudawn.com/assets/butterfly-3000.jpg`
 - Width: 300
 - Height: 250
-- Crop if necesary: `c_1`
+- Crop if necessary: `c_1`
 
 `https://demo.flyimg.io/upload/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg`
 
 ![lago_ranco](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
-
-This will serve the image.
-
-## Get the path to the generated image instead of serving it
-
-Change the first part of the path from `upload` to `path`, like so:
-
-`https://demo.flyimg.io/path/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg` will output in the body of the response:
-
-`http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg`
 
 ## Get an image to fit maximum dimensions
 
 - Image: `https://mudawn.com/assets/butterfly-3000.jpg`
 - Width: 300
 - Height: 250
-- Note that we ommit the crop parameter
+- Note that we omit the crop parameter
 
 `https://demo.flyimg.io/upload/w_300,h_250/https://mudawn.com/assets/butterfly-3000.jpg`
 
@@ -217,6 +207,14 @@ _Description:_ Apply blur effect on faces in a given image
 
 ![fb_1](https://demo.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
+## Get the path to the generated image instead of serving it
+
+Change the first part of the path from `upload` to `path`, like so:
+
+`https://demo.flyimg.io/path/w_300,h_250,c_1/https://mudawn.com/assets/butterfly-3000.jpg` will output in the body of the response:
+
+`http://localhost:8080/uploads/752d2124eef87b3112779618c96468da.jpg`
+
 ## Server Options
 
 There are some easy to setup server configurations in the `config/parameters.yml` file, you can see the full list of options and server configurations in the **[Application Options Document](application-options.md)**
@@ -279,14 +277,6 @@ docker exec flyimg vendor/bin/phpunit --coverage-html build/html
 - [DigitalOcean](https://github.com/flyimg/DigitalOcean-provision)
 - [AWS Elastic-Beanstalk](https://github.com/flyimg/Elastic-Beanstalk-provision)
 
-## Technology stack
-
-- Server: nginx
-- Application: [Silex](http://silex.sensiolabs.org/), a PHP micro-framework.
-- Image manipulation: ImageMagick
-- JPEG encoder: MozJpeg
-- Storage: [Flysystem](http://flysystem.thephpleague.com/)
-- Containerisation: Docker
 
 ## Abstract storage with Flysystem
 
@@ -336,15 +326,3 @@ Bytes Out     [total, mean]            0, 0.00
 Success       [ratio]                  100.00%
 Status Codes  [code:count]             200:500
 ```
-
-## Roadmap
-
-- [x] Benchmark the application.
-- [ ] Decouple the core logic from Silex in order to make it portable.
-- [ ] Add overlays functionality (Text on top of the image)
-- [ ] Storage auto-mapping
-- [ ] Add support for FLIFF, BPG and JPEG2000
-
-## Generate CHANGELOG
-
-`github-changes -o flyimg -r flyimg -a -k GITHUB-TOKEN --only-pulls --use-commit-body`

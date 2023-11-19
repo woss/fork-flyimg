@@ -16,7 +16,7 @@ for example:
 https://demo.flyimg.io/upload/w_500/https://mudawn.com/assets/butterfly-3000.jpg
 ```
 
-Explanation from end-to-begining
+Explanation:
 
 ## path_to_image
 
@@ -33,7 +33,7 @@ Here you set all the transformations and output settings you want to apply to th
 Most of these options are ImageMagick flags, many can get pretty advanced, use the [ImageMagick docs](http://www.imagemagick.org/script/command-line-options.php).
 We put a lot of defaults in place to prevent distortion, bad quality, weird cropping and unwanted paddings.
 
-The script **does a lot of sanitizing** of the parameters, so many options will not work or have to be carefullly escaped. Priority is given to safety and eas of use.
+The script **does a lot of sanitizing** of the parameters, so many options will not work or have to be carefully escaped. Priority is given to safety and eas of use.
 
 ## Basic geometry
 
@@ -80,7 +80,7 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 `bool`
 _Default:_ `false`
-_Description:_ When both width and height are set, this allows the image to be cropped so it fills the **width x height** area.
+_Description:_ When both width and height are set, this allows the image to be cropped, so it fills the **width x height** area.
 
 **example:`c_1`**
 
@@ -154,13 +154,13 @@ _Description:_ If output is set to webp, it will default to lossy compression, b
 ### `rf` : refresh
 
 _Default:_ `false`
-_Description:_ When this parameter is 1, it will force a re-request of the original image and run it throught the transformations and compression again. It will delete the local cached copy.
+_Description:_ When this parameter is 1, it will force a re-request of the original image and run it through the transformations and compression again. It will delete the local cached copy.
 
 **example:`rf_1`**
 
 The nginx server will send headers to prevent caching of this request.
 
-It will also send headers with the command done on the image + info returned by the command identity from Imagemagik.
+It will also send headers with the command done on the image + info returned by the command identity from Imagemagick.
 
 ---
 
@@ -374,7 +374,7 @@ You can also use a shorter syntax for the first 60 seconds.
 
 There are 2 main proceses you can do for images.
 
-The first: **upload**, grabs an image from a URL, transforms it, saves it, and serves it, as an image, with all the apropiate headers.
+The first: **upload**, grabs an image from a URL, transforms it, saves it, and serves it, as an image, with all the appropriate headers.
 
 The second: **path**, grabs an image from a URL, transforms it, saves it, and returns the absolute path to the image as a string, in the body of the response.
 
