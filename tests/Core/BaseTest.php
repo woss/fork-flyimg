@@ -114,10 +114,6 @@ class BaseTest extends TestCase
      */
     public function createClient(array $server = []): HttpKernelBrowser
     {
-        if (!class_exists('Symfony\Component\BrowserKit\Client')) {
-            throw new \LogicException('"symfony/browser-kit" is required by WebTestCase');
-        }
-
         return new HttpKernelBrowser($this->app, $server);
     }
 }
