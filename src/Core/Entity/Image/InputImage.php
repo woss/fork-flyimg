@@ -2,9 +2,9 @@
 
 namespace Core\Entity\Image;
 
+use Core\Entity\ImageMetaInfo;
 use Core\Entity\OptionsBag;
 use Core\Exception\ReadFileException;
-use Core\Entity\ImageMetaInfo;
 use Core\Processor\VideoProcessor;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -39,7 +39,7 @@ class InputImage
      * InputImage constructor.
      *
      * @param OptionsBag $optionsBag
-     * @param string     $sourceImageUrl
+     * @param string $sourceImageUrl
      *
      * @throws \Exception
      */
@@ -78,7 +78,7 @@ class InputImage
     {
         $header = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
         $refresh = $this->optionsBag->get('refresh');
-        $forwardRequestHeaders = (array) $this->optionsBag
+        $forwardRequestHeaders = (array)$this->optionsBag
             ->appParameters()
             ->parameterByKey('forward_request_headers', []);
         if (!empty($forwardRequestHeaders)) {
@@ -100,18 +100,18 @@ class InputImage
 
         $opts = [
             'http' =>
-            [
-                'header' => $header,
-                'method' => 'GET',
-                'max_redirects' => '5',
-            ],
+                [
+                    'header' => $header,
+                    'method' => 'GET',
+                    'max_redirects' => '5',
+                ],
         ];
         $context = stream_context_create($opts);
 
         if (!$stream = @fopen($this->sourceImageUrl, 'r', false, $context)) {
             throw  new ReadFileException(
                 'Error occurred while trying to read the file Url : '
-                    . $this->sourceImageUrl
+                . $this->sourceImageUrl . ', error : ' . implode(',', error_get_last())
             );
         }
         $content = stream_get_contents($stream);
