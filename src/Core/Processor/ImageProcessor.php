@@ -198,17 +198,17 @@ class ImageProcessor extends Processor
         if (is_executable(self::CWEBP_COMMAND) && $outputImage->isOutputWebP()) {
             $lossLess = $outputImage->extractKey('webp-lossless') ? 'true' : 'false';
             $parameter = "-quality " . escapeshellarg($quality) .
-                " -define webp:lossless=" . $lossLess . " " . escapeshellarg($outputImage->getOutputImagePath());
+                " -define webp:lossless=" . $lossLess . " " . escapeshellarg($outputImage->getOutputTmpPath());
         } elseif (is_executable(self::MOZJPEG_COMMAND) && $outputImage->isOutputMozJpeg()) {
             /** MozJpeg compression */
             $parameter = "TGA:- | " . escapeshellarg(self::MOZJPEG_COMMAND)
                 . " -quality " . escapeshellarg($quality)
-                . " -outfile " . escapeshellarg($outputImage->getOutputImagePath())
+                . " -outfile " . escapeshellarg($outputImage->getOutputTmpPath())
                 . " -targa";
         } else {
             /** default ImageMagick compression */
             $parameter = "-quality " . escapeshellarg($quality) .
-                " " . escapeshellarg($outputImage->getOutputImagePath());
+                " " . escapeshellarg($outputImage->getOutputTmpPath());
         }
 
         return $parameter;

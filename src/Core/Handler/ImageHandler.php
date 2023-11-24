@@ -174,7 +174,7 @@ class ImageHandler
 
         $this->filesystem->write(
             $outputImage->getOutputImageName(),
-            stream_get_contents(fopen($outputImage->getOutputImagePath(), 'r'))
+            stream_get_contents(fopen($outputImage->getOutputTmpPath(), 'r'))
         );
 
         return $outputImage;

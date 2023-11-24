@@ -26,7 +26,7 @@ class OutputImage
     protected $outputImageName;
 
     /** @var string */
-    protected $outputImagePath;
+    protected $outputTmpPath;
 
     /** @var string */
     protected $outputImageExtension;
@@ -52,7 +52,7 @@ class OutputImage
         $this->inputImage = $inputImage;
         $this->generateFilesName();
         $this->outputImageExtension = $this->generateFileExtension();
-        $this->outputImagePath .= '.' . $this->outputImageExtension;
+        $this->outputTmpPath .= '.' . $this->outputImageExtension;
         if ($this->inputImage->isInputPdf()) {
             $this->outputImageName .= '-' . $inputImage->optionsBag()->get('pdf-page-number');
         }
@@ -108,9 +108,17 @@ class OutputImage
     /**
      * @return string
      */
-    public function getOutputImagePath(): string
+    public function getOutputTmpPath(): string
     {
-        return $this->outputImagePath;
+        return $this->outputTmpPath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOutputGeneratedPath(): string
+    {
+        return sprintf("%s%s", UPLOAD_DIR, $this->getOutputImageName());
     }
 
     /**
@@ -158,8 +166,8 @@ class OutputImage
      */
     public function removeOutputImage()
     {
-        if (file_exists($this->getOutputImagePath())) {
-            unlink($this->getOutputImagePath());
+        if (file_exists($this->getOutputTmpPath())) {
+            unlink($this->getOutputTmpPath());
         }
     }
 
@@ -168,7 +176,7 @@ class OutputImage
      */
     public function removeGeneratedImage()
     {
-        $generatedImage = sprintf("%s%s", UPLOAD_DIR, $this->getOutputImageName());
+        $generatedImage = $this->getOutputGeneratedPath();
         if (file_exists($generatedImage)) {
             unlink($generatedImage);
         }
@@ -181,10 +189,10 @@ class OutputImage
     {
         $hashedOptions = $this->inputImage->optionsBag();
         $this->outputImageName = $hashedOptions->hashedOptionsAsString($this->inputImage->sourceImageUrl());
-        $this->outputImagePath = sprintf("%s%s", TMP_DIR, $this->outputImageName);
+        $this->outputTmpPath = sprintf("%s%s", TMP_DIR, $this->outputImageName);
 
         if ($hashedOptions->get('refresh')) {
-            $this->outputImagePath .= uniqid("-", true);
+            $this->outputTmpPath .= uniqid("-", true);
         }
     }
 
