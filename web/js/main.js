@@ -97,8 +97,9 @@ const refreshImage = () => {
     let errorOptions = document.getElementById('error-options');
 
     sourceImage.src = sourceImageInput.value;
-    await sleep(1000);
-    getImageInformation(sourceImage, 'source-image-caption');
+    setTimeout(function () {
+        getImageInformation(sourceImage, 'source-image-caption');
+    }, 500);
 
     if (isEmpty(sourceImageInput.value)) {
         sourceImageInput.setAttribute('class', 'form-control is-invalid');
