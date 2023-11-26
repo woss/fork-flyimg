@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.2.5](https://github.com/flyimg/flyimg/compare/1.2.4...1.2.5) (2023-11-26)
+
+
+### Bug Fixes
+
+* add Content-Length header ([a569e3f](https://github.com/flyimg/flyimg/commit/a569e3f66a0b29953ffc695e9362a633136469c2))
+* fix dev branch deployment step ([34b714e](https://github.com/flyimg/flyimg/commit/34b714e8fe7bef2ae38c635b6047e0497b76bdc9))
+
 ## [1.2.4](https://github.com/flyimg/flyimg/compare/1.2.3...1.2.4) (2023-11-19)
 
 
