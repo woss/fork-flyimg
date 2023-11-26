@@ -89,6 +89,7 @@ jobs:
           username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
           port: ${{ secrets.FLYIMG_DEMO_PORT }}
           key: ${{ secrets.FLYIMG_DEMO_KEY }}
+          command_timeout: 20m
           script: |
             cd /home/deployer/
             bash -c "sed 's/VERSION/${{ needs.docker_publish.outputs.new_tag_version }}/g' compose.yaml.tpl > compose.yaml"
