@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.2.6](https://github.com/flyimg/flyimg/compare/1.2.5...1.2.6) (2023-11-26)
+
+
+### Bug Fixes
+
+* fix CD workflow command timeout issue ([7cdca15](https://github.com/flyimg/flyimg/commit/7cdca15540cfa74694ca5a6e27fb5dd6314e31f1))
+
 ## [1.2.5](https://github.com/flyimg/flyimg/compare/1.2.4...1.2.5) (2023-11-26)
 
 
