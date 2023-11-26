@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.2.7](https://github.com/flyimg/flyimg/compare/1.2.6...1.2.7) (2023-11-26)
+
+
+### Bug Fixes
+
+* fix the demo page js error ([87ffe8c](https://github.com/flyimg/flyimg/commit/87ffe8c1041456c0aa49eb977b3dd6961fcd3395))
+
 ## [1.2.6](https://github.com/flyimg/flyimg/compare/1.2.5...1.2.6) (2023-11-26)
 
 
