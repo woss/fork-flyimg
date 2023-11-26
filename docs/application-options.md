@@ -85,8 +85,6 @@ aws_s3:
   bucket_name: "s3-bucket-name"
 ```
 
-The rest of the options are pased to the URL, check the [URL option keys document](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md) .
-
 ## Footnotes
 
 1. All request will check your settings at `config/parameters.yml` but if you are heavily requests caching before the application, there will not affect the response, but if you are caching responses you already knew that ;)

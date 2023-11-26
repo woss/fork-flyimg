@@ -96,7 +96,7 @@ class OutputImageTest extends BaseTest
         $this->generatedImage[] = $image;
 
         $this->assertEquals($image2->getOutputImageName(), $image->getOutputImageName());
-        $this->assertNotEquals($image2->getOutputImagePath(), $image->getOutputImagePath());
+        $this->assertNotEquals($image2->getOutputTmpPath(), $image->getOutputTmpPath());
     }
 
     /**

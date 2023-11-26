@@ -71,7 +71,7 @@ class Processor
     public function imageIdentityInformation(OutputImage $image): string
     {
         $identityCmd = new Command(self::IM_IDENTITY_COMMAND);
-        $identityCmd->addArgument($image->getOutputImagePath());
+        $identityCmd->addArgument($image->getOutputTmpPath());
         $output = $this->execute($identityCmd);
 
         return !empty($output[0]) ? $output[0] : "";

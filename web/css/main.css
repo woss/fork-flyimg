@@ -36,9 +36,10 @@ body {
     text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 }
 
-#loading-spinner, #generated-image, #error-options{
+#loading-spinner, #generated-image-div, #error-options, #source-image-caption {
     display: none;
 }
+
 .btn-clipboard {
     display: block;
     padding: 0.5em;
@@ -49,4 +50,7 @@ body {
     border-radius: 0.25rem;
 }
 
+#dynamic-input-fields .input-group div {
+    margin: 5px 5px;
+}
 

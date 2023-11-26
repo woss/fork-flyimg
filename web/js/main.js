@@ -1,15 +1,15 @@
 const generatedImage = document.getElementById('generated-image');
+const generatedImageDiv = document.getElementById('generated-image-div');
 const loadingSpinner = document.getElementById('loading-spinner');
 const dynamicInputFields = document.getElementById('dynamic-input-fields');
 let sourceImageValidation = document.getElementById('source-image-validation')
 
 
-
 const isEmpty = str => !str.trim().length;
 const addInput = () => {
-    const inputField = document.createElement('div');
-    inputField.className = 'form-group';
-    inputField.innerHTML = `
+    const htmlDivElement = document.createElement('div');
+    htmlDivElement.className = 'form-group';
+    htmlDivElement.innerHTML = `
         <hr/>
         <div class="input-group row">
             <div class="col-md-1">
@@ -17,8 +17,8 @@ const addInput = () => {
             </div>
             <div class="col-md-2">
                 <select class="form-control">
-                    <option value="q" data-bs-example="Default 90, Example: 80">quality</option>
-                    <option value="o" data-bs-example="Default auto, possible value auto | input | png | webp | jpg">output</option>
+                    <option value="q" data-bs-example="Controls the output quality of generated image, valid values are in the range 0 – 100, default is 90.">quality</option>
+                    <option value="o" data-bs-example="The output format to convert the image to, default auto, possible value auto | input | png | webp | jpg">output</option>
                     <option value="rf" data-bs-example="It will force a re-request of the original image, default 0 , to enable it 1">refresh</option>
                     <option value="unsh" data-bs-example="Sharpens an image, usage {radius}x{sigma}[+gain][+threshold], examples: 0x6 | 0.25x0.25+8+0.065 ">unsharp</option>
                     <option value="sh" data-bs-example="Use a Gaussian operator of the given radius and standard deviation (sigma), usage {radius}x{sigma}, example: 3 | 0x5">sharpen</option>
@@ -49,9 +49,9 @@ const addInput = () => {
                     <option value="webpl" data-bs-example="If output is set to webp, it will default to lossy compression, but if you want lossless webp encoding you have to set it to 1, default 0">webp-lossless</option>
                     <option value="gf" data-bs-example="When supplying a Gif image, you can choose which frame to generate the output image from, default 0, possible values the frame number : 1 , 3 , 10,..">gif-frame</option>
                     <option value="pdfp" data-bs-example="When supplying a PDF as input, you can specify a which page number to generate the image from, default 1, possible values one the pdf pages number.">pdf-page-number</option>
-                    <option value="tm" data-bs-example="Get a video image to fit dimensions from a time duration point, Possible value 00:00:05 ">time</option>
-                    <option value="clsp" data-bs-example="Converting to Colorspace Gray, Possible value Gray">colorspace</option>
-                    <option value="mnchr" data-bs-example="Converting to Monochrome, Possible value 1">monochrome</option>
+                    <option value="tm" data-bs-example="Get a video image to fit dimensions from a time duration point, possible value 00:00:05 ">time</option>
+                    <option value="clsp" data-bs-example="Converting to Colorspace Gray, possible value Gray">colorspace</option>
+                    <option value="mnchr" data-bs-example="Converting to Monochrome, possible value 1">monochrome</option>
                 </select>
             </div>
             <div class="col-md-2">
@@ -69,16 +69,19 @@ const addInput = () => {
             </div>
         </div>
     `;
-    dynamicInputFields.appendChild(inputField);
-    let deleteBtn = inputField.querySelector('button')
+    dynamicInputFields.appendChild(htmlDivElement);
+    let deleteBtn = htmlDivElement.querySelector('button')
+    let inputField = htmlDivElement.querySelector('input')
     deleteBtn.addEventListener('click', function () {
         removeInput(this);
     }, false);
-    let selectInput = inputField.querySelector('select')
-    let exampleBox = inputField.querySelector('div.example-info')
+    let selectInput = htmlDivElement.querySelector('select')
+    let exampleBox = htmlDivElement.querySelector('div.example-info')
 
+    inputField.focus();
     selectInput.addEventListener('change', function () {
         exampleBox.innerHTML = this.querySelector('option:checked').getAttribute('data-bs-example')
+        inputField.focus();
     }, false);
 
 };
@@ -89,11 +92,16 @@ const removeInput = button => {
 
 
 const refreshImage = () => {
-    let sourceImage = document.getElementById('source-image')
+    let sourceImageInput = document.getElementById('source-image-input');
+    let sourceImage = document.getElementById('source-image');
     let errorOptions = document.getElementById('error-options');
 
-    if (isEmpty(sourceImage.value)) {
-        sourceImage.setAttribute('class', 'form-control is-invalid');
+    sourceImage.src = sourceImageInput.value;
+    await sleep(1000);
+    getImageInformation(sourceImage, 'source-image-caption');
+
+    if (isEmpty(sourceImageInput.value)) {
+        sourceImageInput.setAttribute('class', 'form-control is-invalid');
         sourceImageValidation.innerHTML = 'Please enter an Image URL.'
         sourceImageValidation.style.display = 'block';
         return;
@@ -102,7 +110,7 @@ const refreshImage = () => {
     //option-value
     sourceImageValidation.style.display = 'none';
     errorOptions.style.display = 'none';
-    sourceImage.setAttribute('class', 'form-control is-valid');
+    sourceImageInput.setAttribute('class', 'form-control is-valid');
 
     const inputs = dynamicInputFields.querySelectorAll('.input-group');
 
@@ -129,7 +137,7 @@ const refreshImage = () => {
         return;
     }
 
-    const imageUrl = baseUrl + params + '/' + sourceImage.value; // Remove the trailing comma
+    const imageUrl = baseUrl + params + '/' + sourceImageInput.value; // Remove the trailing comma
     document.getElementById('generated-url').innerHTML = imageUrl;
 
     showLoading();
@@ -151,15 +159,44 @@ const errorWhileLoading = () => {
 const showLoading = () => {
     // Display loading spinner
     loadingSpinner.style.display = 'block';
-    generatedImage.style.display = 'none';
+    generatedImageDiv.style.display = 'none';
+};
+const getImageInformation = (imageSrc, destinationDiv) => {
+    let desElement = document.getElementById(destinationDiv)
+    desElement.style.display = 'block';
+    let imgDimension = 'Dimensions: ' + imageSrc.naturalWidth + 'x' + imageSrc.naturalHeight;
+    let imgSize = '';
+    let xhr = new XMLHttpRequest();
+    xhr.open('HEAD', imageSrc.src, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                let size = formatBytes(xhr.getResponseHeader('Content-Length'));
+                imgSize = '<br>Size: ' + size;
+            }
+        }
+        desElement.innerHTML = imgDimension + imgSize
+    };
+    xhr.send(null);
 };
 
 const hideLoading = () => {
-    // Hide loading spinner
     loadingSpinner.style.display = 'none';
-    generatedImage.style.display = 'block';
+    generatedImageDiv.style.display = 'block';
+    getImageInformation(generatedImage, 'generated-image-caption');
 };
 
+const formatBytes = (bytes, decimals = 2) => {
+    if (!+bytes) return '0 Bytes'
+
+    const k = 1024
+    const dm = decimals < 0 ? 0 : decimals
+    const sizes = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+};
 
 // self executing function here
 (function () {

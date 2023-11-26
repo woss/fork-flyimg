@@ -25,7 +25,7 @@ class FaceDetectProcessor extends Processor
             return;
         }
         $faceDetectCmd = new Command(self::FACEDETECT_COMMAND);
-        $faceDetectCmd->addArgument($outputImage->getOutputImagePath());
+        $faceDetectCmd->addArgument($outputImage->getOutputTmpPath());
         $output = $this->execute($faceDetectCmd);
         if (empty($output[$faceCropPosition])) {
             return;
@@ -34,9 +34,9 @@ class FaceDetectProcessor extends Processor
         if (count($geometry) == 4) {
             [$geometryX, $geometryY, $geometryW, $geometryH] = $geometry;
             $cropCmd = new Command(self::IM_CONVERT_COMMAND);
-            $cropCmd->addArgument($outputImage->getOutputImagePath());
+            $cropCmd->addArgument($outputImage->getOutputTmpPath());
             $cropCmd->addArgument("-crop", "{$geometryW}x{$geometryH}+{$geometryX}+{$geometryY}");
-            $cropCmd->addArgument($outputImage->getOutputImagePath());
+            $cropCmd->addArgument($outputImage->getOutputTmpPath());
             $this->execute($cropCmd);
         }
     }
@@ -54,7 +54,7 @@ class FaceDetectProcessor extends Processor
             return;
         }
         $faceDetectCmd = new Command(self::FACEDETECT_COMMAND);
-        $faceDetectCmd->addArgument($outputImage->getOutputImagePath());
+        $faceDetectCmd->addArgument($outputImage->getOutputTmpPath());
         $output = $this->execute($faceDetectCmd);
         if (empty($output)) {
             return;
@@ -67,7 +67,7 @@ class FaceDetectProcessor extends Processor
                 $blurCmd = new Command(self::IM_MOGRIFY_COMMAND);
                 $blurCmd->addArgument("-region", "{$geometryW}x{$geometryH}+{$geometryX}+{$geometryY}");
                 $blurCmd->addArgument("-blur", "0x12");
-                $blurCmd->addArgument($outputImage->getOutputImagePath());
+                $blurCmd->addArgument($outputImage->getOutputTmpPath());
                 $this->execute($blurCmd);
             }
         }
