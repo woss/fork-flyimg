@@ -37,6 +37,7 @@ jobs:
           username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
           port: ${{ secrets.FLYIMG_DEMO_PORT }}
           key: ${{ secrets.FLYIMG_DEMO_KEY }}
+          command_timeout: 20m
           script: |
             cd /home/deployer/dev.flyimg.io/
             bash -c "git checkout . && git fetch && git pull && git checkout main"
