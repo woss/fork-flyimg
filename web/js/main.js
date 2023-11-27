@@ -2,8 +2,8 @@ const generatedImage = document.getElementById('generated-image');
 const generatedImageDiv = document.getElementById('generated-image-div');
 const loadingSpinner = document.getElementById('loading-spinner');
 const dynamicInputFields = document.getElementById('dynamic-input-fields');
-let sourceImageValidation = document.getElementById('source-image-validation')
-
+let sourceImageValidation = document.getElementById('source-image-validation');
+let sourceImage = document.getElementById('source-image');
 
 const isEmpty = str => !str.trim().length;
 const addInput = () => {
@@ -93,13 +93,12 @@ const removeInput = button => {
 
 const refreshImage = () => {
     let sourceImageInput = document.getElementById('source-image-input');
-    let sourceImage = document.getElementById('source-image');
     let errorOptions = document.getElementById('error-options');
 
     sourceImage.src = sourceImageInput.value;
-    setTimeout(function () {
-        getImageInformation(sourceImage, 'source-image-caption');
-    }, 500);
+    // setTimeout(function () {
+    //     getImageInformation(sourceImage, 'source-image-caption');
+    // }, 500);
 
     if (isEmpty(sourceImageInput.value)) {
         sourceImageInput.setAttribute('class', 'form-control is-invalid');
@@ -162,21 +161,25 @@ const showLoading = () => {
     loadingSpinner.style.display = 'block';
     generatedImageDiv.style.display = 'none';
 };
-const getImageInformation = (imageSrc, destinationDiv) => {
-    let desElement = document.getElementById(destinationDiv)
-    desElement.style.display = 'block';
-    let imgDimension = 'Dimensions: ' + imageSrc.naturalWidth + 'x' + imageSrc.naturalHeight;
-    let imgSize = '';
+const getImageInformation = () => {
+    let sourceElement = document.getElementById('source-image-caption')
+    let generatedElement = document.getElementById('generated-image-caption')
+    sourceElement.style.display = 'block';
+    generatedElement.style.display = 'block';
+    let sourceDimension = 'Dimensions: ' + sourceImage.naturalWidth + 'x' + sourceImage.naturalHeight;
+    let generateDimension = 'Dimensions: ' + generatedImage.naturalWidth + 'x' + generatedImage.naturalHeight;
+    let sourceSize, generatedSize = '';
     let xhr = new XMLHttpRequest();
-    xhr.open('HEAD', imageSrc.src, true);
+    xhr.open('HEAD', generatedImage.src, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                let size = formatBytes(xhr.getResponseHeader('Content-Length'));
-                imgSize = '<br>Size: ' + size;
+                generatedSize = '<br>Size: ' + formatBytes(xhr.getResponseHeader('Content-Length'));
+                sourceSize = '<br>Size: ' + formatBytes(xhr.getResponseHeader('Source-Content-Length'));
             }
         }
-        desElement.innerHTML = imgDimension + imgSize
+        sourceElement.innerHTML = sourceDimension + sourceSize
+        generatedElement.innerHTML = generateDimension + generatedSize
     };
     xhr.send(null);
 };
@@ -184,7 +187,9 @@ const getImageInformation = (imageSrc, destinationDiv) => {
 const hideLoading = () => {
     loadingSpinner.style.display = 'none';
     generatedImageDiv.style.display = 'block';
-    getImageInformation(generatedImage, 'generated-image-caption');
+    setTimeout(function () {
+        getImageInformation();
+    }, 500);
 };
 
 const formatBytes = (bytes, decimals = 2) => {
