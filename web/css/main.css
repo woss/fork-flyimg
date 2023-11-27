@@ -36,8 +36,16 @@ body {
     text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 }
 
-#loading-spinner, #generated-image-div, #error-options, #source-image-caption {
+#loading-spinner,
+#generated-image-div,
+#error-options,
+#source-image-caption,
+#generated-url {
     display: none;
+}
+
+#error-options {
+    margin: 10px 0;
 }
 
 .btn-clipboard {

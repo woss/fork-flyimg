@@ -96,9 +96,6 @@ const refreshImage = () => {
     let errorOptions = document.getElementById('error-options');
 
     sourceImage.src = sourceImageInput.value;
-    // setTimeout(function () {
-    //     getImageInformation(sourceImage, 'source-image-caption');
-    // }, 500);
 
     if (isEmpty(sourceImageInput.value)) {
         sourceImageInput.setAttribute('class', 'form-control is-invalid');
@@ -141,10 +138,9 @@ const refreshImage = () => {
     document.getElementById('generated-url').innerHTML = imageUrl;
 
     showLoading();
-    // Set the image source
 
-    generatedImage.onload = hideLoading; // Hide loading spinner on image load
-    generatedImage.onerror = errorWhileLoading; // Hide loading spinner on image load
+    generatedImage.onload = hideLoading;
+    generatedImage.onerror = errorWhileLoading;
     generatedImage.src = imageUrl;
 
 };
@@ -221,6 +217,7 @@ const formatBytes = (bytes, decimals = 2) => {
         let copyText = document.getElementById("generated-url");
         // Copy the text inside the text field
         navigator.clipboard.writeText(copyText.innerHTML);
+        copyText.style.display = 'block';
     }, false);
 
 })();
