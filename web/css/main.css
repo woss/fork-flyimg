@@ -40,7 +40,7 @@ body {
 #generated-image-div,
 #error-options,
 #source-image-caption,
-#generated-url {
+#generated-url-container {
     display: none;
 }
 

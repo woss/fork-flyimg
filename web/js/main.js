@@ -136,6 +136,7 @@ const refreshImage = () => {
 
     const imageUrl = baseUrl + params + '/' + sourceImageInput.value; // Remove the trailing comma
     document.getElementById('generated-url').innerHTML = imageUrl;
+    document.getElementById('generated-url-container').style.display = 'block';
 
     showLoading();
 
@@ -217,7 +218,6 @@ const formatBytes = (bytes, decimals = 2) => {
         let copyText = document.getElementById("generated-url");
         // Copy the text inside the text field
         navigator.clipboard.writeText(copyText.innerHTML);
-        copyText.style.display = 'block';
     }, false);
 
 })();
