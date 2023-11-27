@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.2.8](https://github.com/flyimg/flyimg/compare/1.2.7...1.2.8) (2023-11-27)
+
+
+### Bug Fixes
+
+* fixing the demo page style ([2c93f15](https://github.com/flyimg/flyimg/commit/2c93f154f8411e6c6f4913304d0769dc0120f1ca))
+* improve the demo page style and elements ([8da103f](https://github.com/flyimg/flyimg/commit/8da103f3fcbdf717f85d19506a52f51486d6d77a))
+
 ## [1.2.7](https://github.com/flyimg/flyimg/compare/1.2.6...1.2.7) (2023-11-26)
 
 
