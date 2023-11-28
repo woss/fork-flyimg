@@ -44,6 +44,10 @@ body {
     display: none;
 }
 
+#generated-url {
+    overflow-wrap: anywhere;
+}
+
 #error-options {
     margin: 10px 0;
 }
