@@ -1,7 +1,7 @@
 # Flyimg
 
-<p align="center"><a href="http://flyimg.io" target="_blank">
-    <img alt="Flyimglogo" src="https://raw.githubusercontent.com/flyimg/graphic-assets/main/logo/raster/flyimg-logo-rgb.png" width="300">
+<p align="center"><a href="https://flyimg.io" target="_blank">
+    <img alt="Flyimg" src="https://raw.githubusercontent.com/flyimg/graphic-assets/main/logo/raster/flyimg-logo-rgb.png" width="300">
 </a></p>
 
 <p align="center">
@@ -28,9 +28,15 @@ You pass the image URL and a set of keys with options, like size or compression.
 
 ![Flyimg-demo](https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg)
 
+## Demo
+Check out our demo page where you can test and review Flying's features:
+
+[https://demo.flyimg.io/](https://demo.flyimg.io)
+
 ## Cloud Run Button
 
 Flyimg can be deployed to GCP as a serverless container in one click with Cloud Run Button:
+
 <a href="https://deploy.cloud.run/" target="_blank"><img src="https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git" alt="Run on Google Cloud" style="width:180px;margin-top:20px;"/></a>
 
 ## Requirements

@@ -48,7 +48,7 @@ class Response extends BaseResponse
         $this->headers->set('Source-Content-Length', filesize($image->getInputImage()->sourceImagePath()));
         $this->headers->set('Source-Content-Type', $image->getInputImage()->sourceImageMimeType());
         $this->headers->set('Content-Disposition', sprintf('inline;filename="%s"', $outputImageName));
-        
+
         $expireDate = new \DateTime();
         $expireDate->add(new \DateInterval('P1Y'));
         $this->setExpires($expireDate);
