@@ -52,6 +52,10 @@ body {
     margin: 10px 0;
 }
 
+#url-info{
+    margin: 0 10px;
+}
+
 .btn-clipboard {
     display: block;
     padding: 0.5em;

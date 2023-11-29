@@ -224,4 +224,6 @@ const formatBytes = (bytes, decimals = 2) => {
         navigator.clipboard.writeText(copyText.innerHTML);
     }, false);
 
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 })();
