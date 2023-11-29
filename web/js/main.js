@@ -95,7 +95,7 @@ const refreshImage = () => {
     let sourceImageInput = document.getElementById('source-image-input');
     let errorOptions = document.getElementById('error-options');
 
-    sourceImage.src = sourceImageInput.value;
+    sourceImage.src = decodeURIComponent(sourceImageInput.value);
 
     if (isEmpty(sourceImageInput.value)) {
         sourceImageInput.setAttribute('class', 'form-control is-invalid');
@@ -165,18 +165,22 @@ const getImageInformation = () => {
     generatedElement.style.display = 'block';
     let sourceDimension = 'Dimensions: ' + sourceImage.naturalWidth + 'x' + sourceImage.naturalHeight;
     let generateDimension = 'Dimensions: ' + generatedImage.naturalWidth + 'x' + generatedImage.naturalHeight;
-    let sourceSize, generatedSize = '';
+    let sourceSize, generatedSize, sourceType, generatedType = '';
     let xhr = new XMLHttpRequest();
     xhr.open('HEAD', generatedImage.src, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
+                //Generated image
                 generatedSize = '<br>Size: ' + formatBytes(xhr.getResponseHeader('Content-Length'));
+                generatedType = '<br>Content-Type: ' + xhr.getResponseHeader('Content-Type');
+                //Source image
                 sourceSize = '<br>Size: ' + formatBytes(xhr.getResponseHeader('Source-Content-Length'));
+                sourceType = '<br>Content-Type: ' + xhr.getResponseHeader('Source-Content-Type');
             }
         }
-        sourceElement.innerHTML = sourceDimension + sourceSize
-        generatedElement.innerHTML = generateDimension + generatedSize
+        sourceElement.innerHTML = sourceDimension + sourceSize + sourceType
+        generatedElement.innerHTML = generateDimension + generatedSize + generatedType
     };
     xhr.send(null);
 };
@@ -220,4 +224,6 @@ const formatBytes = (bytes, decimals = 2) => {
         navigator.clipboard.writeText(copyText.innerHTML);
     }, false);
 
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 })();

@@ -44,8 +44,16 @@ body {
     display: none;
 }
 
+#generated-url {
+    overflow-wrap: anywhere;
+}
+
 #error-options {
     margin: 10px 0;
+}
+
+#url-info{
+    margin: 0 10px;
 }
 
 .btn-clipboard {
