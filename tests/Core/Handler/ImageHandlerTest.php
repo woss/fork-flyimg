@@ -38,7 +38,7 @@ class ImageHandlerTest extends BaseTest
      */
     public function testProcessAvifFromPng()
     {
-        $image = $this->imageHandler->processImage(parent::OPTION_URL . ',o_avif', parent::PNG_TEST_IMAGE);
+        $image = $this->imageHandler->processImage(parent::CROP_OPTION_URL . ',o_avif', parent::PNG_TEST_IMAGE);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
         $this->assertEquals(InputImage::AVIF_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
