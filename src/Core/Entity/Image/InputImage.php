@@ -15,6 +15,7 @@ class InputImage
     public const JPEG_MIME_TYPE = 'image/jpeg';
     public const PNG_MIME_TYPE = 'image/png';
     public const GIF_MIME_TYPE = 'image/gif';
+    public const AVIF_MIME_TYPE = 'image/avif';
     public const PDF_MIME_TYPE = 'application/pdf';
 
     /** @var OptionsBag */
@@ -101,6 +102,7 @@ class InputImage
         $opts = [
             'http' =>
                 [
+                    'timeout' => $this->optionsBag->appParameters()->parameterByKey('source_image_request_timeout'),
                     'header' => $header,
                     'method' => 'GET',
                     'max_redirects' => '5',
