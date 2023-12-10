@@ -212,8 +212,12 @@ class OutputImage
             return self::EXT_WEBP;
         }
 
-        if ($requestedOutput == self::EXT_INPUT || $requestedOutput == self::EXT_AUTO) {
+        if ($requestedOutput == self::EXT_INPUT) {
             return $this->extensionByMimeType($this->inputImage->sourceImageMimeType());
+        }
+
+        if ($requestedOutput == self::EXT_AUTO) {
+            return self::EXT_JPG;
         }
 
         if (!in_array($requestedOutput, $this->allowedOutExtensions)) {
