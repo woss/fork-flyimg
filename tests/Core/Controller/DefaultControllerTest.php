@@ -41,12 +41,23 @@ class DefaultControllerTest extends BaseTest
     }
 
     /**
-     *
+     * @return void
      */
     public function testUploadActionWebp()
     {
         $client = static::createClient();
         $client->request('GET', 'upload/o_webp/' . BaseTest::PNG_TEST_IMAGE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /**
+     * @return void
+     */
+    public function testUploadActionAvif()
+    {
+        $client = static::createClient();
+        $client->request('GET', 'upload/o_avif/' . BaseTest::AVIF_TEST_IMAGE);
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());
     }

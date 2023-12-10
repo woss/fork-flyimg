@@ -21,6 +21,8 @@ class ImageHandlerTest extends BaseTest
     }
 
     /**
+     * @return void
+     * @throws \Exception
      */
     public function testProcessWebpFromPng()
     {
@@ -28,6 +30,18 @@ class ImageHandlerTest extends BaseTest
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
         $this->assertEquals(InputImage::WEBP_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    public function testProcessAvifFromPng()
+    {
+        $image = $this->imageHandler->processImage(parent::OPTION_URL . ',o_avif', parent::PNG_TEST_IMAGE);
+        $this->generatedImage[] = $image;
+        $this->assertFileExists($image->getOutputTmpPath());
+        $this->assertEquals(InputImage::AVIF_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
     }
 
     /**
