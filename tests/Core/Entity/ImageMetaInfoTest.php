@@ -80,9 +80,8 @@ class ImageMetaInfoTest extends BaseTest
         string $expectedBitDepth,
         string $expectedColorProfile,
         string $expectedFileWeight,
-        array  $expectedDimensions
-    )
-    {
+        array $expectedDimensions
+    ){
         $image = new ImageMetaInfo($testImagePath);
         $this->assertEquals($expectedFormat, $image->format());
         $this->assertEquals($expectedCanvas, $image->canvas());
