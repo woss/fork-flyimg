@@ -14,6 +14,7 @@ class BaseTest extends TestCase
     public const JPG_TEST_IMAGE = __DIR__ . '/../testImages/square.jpg';
     public const PNG_TEST_IMAGE = __DIR__ . '/../testImages/square.png';
     public const WEBP_TEST_IMAGE = __DIR__ . '/../testImages/square.webp';
+    public const AVIF_TEST_IMAGE = __DIR__ . '/../testImages/fox.avif';
     public const GIF_TEST_IMAGE = __DIR__ . '/../testImages/animated.gif';
 
     public const MOVIE_TEST_FILE = __DIR__ . '/../testImages/SampleVideo_1280x720_2mb.mp4';

@@ -2,8 +2,8 @@
 
 namespace Tests\Core\Entity;
 
-use Core\Entity\ImageMetaInfo;
 use Core\Entity\Image\InputImage;
+use Core\Entity\ImageMetaInfo;
 use Core\Exception\ExecFailedException;
 use Tests\Core\BaseTest;
 
@@ -34,6 +34,7 @@ class ImageMetaInfoTest extends BaseTest
             [self::GIF_TEST_IMAGE, InputImage::GIF_MIME_TYPE],
             [self::PNG_TEST_IMAGE, InputImage::PNG_MIME_TYPE],
             [self::WEBP_TEST_IMAGE, InputImage::WEBP_MIME_TYPE],
+            [self::AVIF_TEST_IMAGE, InputImage::AVIF_MIME_TYPE],
         ];
     }
 
@@ -68,7 +69,7 @@ class ImageMetaInfoTest extends BaseTest
      * @param string $expectedBitDepth
      * @param string $expectedColorProfile
      * @param string $expectedFileWeight
-     * @param array  $expectedDimensions
+     * @param array $expectedDimensions
      *
      * @dataProvider fileInfoProvider
      */
@@ -79,8 +80,9 @@ class ImageMetaInfoTest extends BaseTest
         string $expectedBitDepth,
         string $expectedColorProfile,
         string $expectedFileWeight,
-        array $expectedDimensions
-    ) {
+        array  $expectedDimensions
+    )
+    {
         $image = new ImageMetaInfo($testImagePath);
         $this->assertEquals($expectedFormat, $image->format());
         $this->assertEquals($expectedCanvas, $image->canvas());
@@ -122,7 +124,18 @@ class ImageMetaInfoTest extends BaseTest
                     'height' => '300',
                 ],
             ],
-            // this test is broken, the expected color profile should be `sRGB 128c`
+            [
+                self::AVIF_TEST_IMAGE,
+                'AVIF',
+                '1204x800+0+0',
+                '12-bit',
+                'sRGB',
+                '98800B',
+                [
+                    'width' => '1204',
+                    'height' => '800',
+                ],
+            ],
             [
                 self::GIF_TEST_IMAGE,
                 'GIF',
@@ -147,14 +160,13 @@ class ImageMetaInfoTest extends BaseTest
                     'height' => '256',
                 ],
             ],
-            // this test is broken, the expected color depth should be `8-bit TrueColor`
             [
                 self::WEBP_TEST_IMAGE,
-                'PAM',
+                'WEBP',
                 '100x100+0+0',
                 '8-bit',
-                'TrueColor',
                 'sRGB',
+                '706B',
                 [
                     'width' => '100',
                     'height' => '100',
