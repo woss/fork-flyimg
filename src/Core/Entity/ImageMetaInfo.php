@@ -6,25 +6,25 @@ use Core\Exception\ExecFailedException;
 use Core\Processor\Processor;
 
 /**
- * Fetches and stores image properties like mimetype, bit depth, weight and dimensions.
+ * Fetches and stores image properties like mimetype, bits depth, weight and dimensions.
  */
 class ImageMetaInfo
 {
     public const IMAGE_PROP_FILE_FORMAT = 'format';
     public const IMAGE_PROP_DIMENSIONS = 'dimensions';
-    public const IMAGE_PROP_CANVAS_COORD = 'canvas';
+    public const IMAGE_PROP_CANVAS_COORDS = 'canvas';
     public const IMAGE_PROP_COLOR_DEPTH = 'colorDepth';
     public const IMAGE_PROP_COLOR_PROFILE = 'colorProfile';
     public const IMAGE_PROP_FILE_WEIGHT = 'weight';
 
     /** @var string */
-    protected $imagePath;
+    protected string $imagePath;
 
     /** @var string */
-    protected $imageMimeType;
+    protected string $imageMimeType;
 
     /** @var array Associative array that holds basic image info. Consider in the future create an imageInfo class. */
-    protected $imageInfo;
+    protected array $imageInfo;
 
     /**
      * ImageMetaInfo constructor.
@@ -76,7 +76,7 @@ class ImageMetaInfo
      */
     public function canvas(): string
     {
-        return $this->info()[self::IMAGE_PROP_CANVAS_COORD];
+        return $this->info()[self::IMAGE_PROP_CANVAS_COORDS];
     }
 
     /**
@@ -150,19 +150,17 @@ class ImageMetaInfo
             $outputError = implode(PHP_EOL, $output);
         }
 
-        if ($code !== 0) {
+        if (0 !== $code) {
             throw new ExecFailedException(
                 "Command failed. The exit code: " .
-                    $outputError . "<br>The last line of output: " .
-                    $commandStr
+                $outputError . "<br>The last line of output: " .
+                $commandStr
             );
         }
 
         $output = $this->sanitizeWebPOutput($output);
 
-        $imageDetails = $this->parseImageInfoResponse($output);
-
-        return $imageDetails;
+        return $this->parseImageInfoResponse($output);
     }
 
     /**
@@ -187,7 +185,7 @@ class ImageMetaInfo
     }
 
     /**
-     * Parses the default output of imagemagik identify command
+     * Parses the default output of imagemagick identify command
      * To fix in the near future: currently the bit depth is incomplete for WebP and color profile for GIF
      *
      * @param  array $output the STDOUT from executing an identify command
@@ -201,7 +199,7 @@ class ImageMetaInfo
         return [
             self::IMAGE_PROP_FILE_FORMAT => $output[1],
             self::IMAGE_PROP_DIMENSIONS => $output[2],
-            self::IMAGE_PROP_CANVAS_COORD => $output[3],
+            self::IMAGE_PROP_CANVAS_COORDS => $output[3],
             self::IMAGE_PROP_COLOR_DEPTH => $output[4],
             self::IMAGE_PROP_COLOR_PROFILE => $output[5],
             self::IMAGE_PROP_FILE_WEIGHT => $output[6],
