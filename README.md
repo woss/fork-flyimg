@@ -13,7 +13,11 @@
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="Latest Stable Version]" src="https://poser.pugx.org/flyimg/flyimg/v/stable.svg"></a>
 </p>
 
-Image resizing, cropping and compression on the fly with the impressive [MozJPEG](http://calendar.perfplanet.com/2014/mozjpeg-3-0) compression algorithm. One Docker container to build your own Cloudinary-like service.
+The Flyimg project is a Dockerized application that allows you to resize, crop, and compress images on the fly.  One Docker container to build your own Cloudinary-like service.
+
+By default, Flyimg generates the **AVIF** image format (when the browser supports it)  which provides superior compression compared to other formats.
+
+Additionally, Flyimg also generates the **WebP** format, along with the impressive **MozJPEG** compression algorithm to optimize images, other formats are supported also such as **PNG** and **GIF**.
 
 ## Fetch an image from anywhere; resize, compress, cache and serve...<small> and serve, and serve, and serve...</small>
 
