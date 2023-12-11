@@ -42,7 +42,7 @@ source_image_request_timeout: 5
 disable_cache: false
 
 # When supported by the browser, AVIF format will be served as default output
-enable_avif: false
+enable_avif: true
 
 # When supported by the browser, Webp format will be served as default output (after checking AVIF support)
 enable_webp: true
