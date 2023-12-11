@@ -51,7 +51,7 @@ class ImageHandlerTest extends BaseTest
      */
     public function testProcessAutoFromPngToGenerateAvif()
     {
-        $_SERVER['HTTP_ACCEPT'] = 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8';
+        $_SERVER['HTTP_ACCEPT'] = 'image/avif';
         $image = $this->imageHandler->processImage(parent::CROP_OPTION_URL . ',o_auto', parent::PNG_TEST_IMAGE);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
@@ -64,7 +64,7 @@ class ImageHandlerTest extends BaseTest
      */
     public function testProcessAutoFromPngToGenerateWebp()
     {
-        $_SERVER['HTTP_ACCEPT'] = 'image/webp,image/apng,image/*,*/*;q=0.8';
+        $_SERVER['HTTP_ACCEPT'] = 'image/webp';
         $image = $this->imageHandler->processImage(parent::CROP_OPTION_URL . ',o_auto', parent::PNG_TEST_IMAGE);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
@@ -81,6 +81,30 @@ class ImageHandlerTest extends BaseTest
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
         $this->assertEquals(InputImage::PNG_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    public function testProcessInputFromJpeg()
+    {
+        $image = $this->imageHandler->processImage(parent::CROP_OPTION_URL . ',o_input', parent::JPG_TEST_IMAGE);
+        $this->generatedImage[] = $image;
+        $this->assertFileExists($image->getOutputTmpPath());
+        $this->assertEquals(InputImage::JPEG_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    public function testProcessInputFromGif()
+    {
+        $image = $this->imageHandler->processImage(parent::CROP_OPTION_URL . ',o_input', parent::GIF_TEST_IMAGE);
+        $this->generatedImage[] = $image;
+        $this->assertFileExists($image->getOutputTmpPath());
+        $this->assertEquals(InputImage::GIF_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
     }
 
     /**
