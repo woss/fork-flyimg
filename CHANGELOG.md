@@ -1,5 +1,19 @@
 # Flyimg Changelog
 
+# [1.3.0](https://github.com/flyimg/flyimg/compare/1.2.9...1.3.0) (2023-12-11)
+
+
+### Bug Fixes
+
+* fix avif test case ([141a2c4](https://github.com/flyimg/flyimg/commit/141a2c49b78a78b5a6e540acb54f6dabb13c8b88))
+* fixing the timeout issue when loading source image ([06c6746](https://github.com/flyimg/flyimg/commit/06c6746073be2bcdc5f7b528a64425222559c6f2))
+
+
+### Features
+
+* add AVIF support ([b56b758](https://github.com/flyimg/flyimg/commit/b56b7586edb7741ce3650f6d62c40dfece80d557))
+* use latest docker base image to add AVIF support ([3f13454](https://github.com/flyimg/flyimg/commit/3f13454701d03033a2181b501ca88e5fce057cb1))
+
 ## [1.2.9](https://github.com/flyimg/flyimg/compare/1.2.8...1.2.9) (2023-11-29)
 
 
