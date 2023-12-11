@@ -49,12 +49,38 @@ class ImageHandlerTest extends BaseTest
      * @return void
      * @throws \Exception
      */
-    public function testProcessAutoFromPng()
+    public function testProcessAutoFromPngToGenerateAvif()
     {
+        $_SERVER['HTTP_ACCEPT'] = 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8';
         $image = $this->imageHandler->processImage(parent::CROP_OPTION_URL . ',o_auto', parent::PNG_TEST_IMAGE);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
-        $this->assertEquals(InputImage::JPEG_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
+        $this->assertEquals(InputImage::AVIF_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    public function testProcessAutoFromPngToGenerateWebp()
+    {
+        $_SERVER['HTTP_ACCEPT'] = 'image/webp,image/apng,image/*,*/*;q=0.8';
+        $image = $this->imageHandler->processImage(parent::CROP_OPTION_URL . ',o_auto', parent::PNG_TEST_IMAGE);
+        $this->generatedImage[] = $image;
+        $this->assertFileExists($image->getOutputTmpPath());
+        $this->assertEquals(InputImage::WEBP_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    public function testProcessInputFromPng()
+    {
+        $image = $this->imageHandler->processImage(parent::CROP_OPTION_URL . ',o_input', parent::PNG_TEST_IMAGE);
+        $this->generatedImage[] = $image;
+        $this->assertFileExists($image->getOutputTmpPath());
+        $this->assertEquals(InputImage::PNG_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
     }
 
     /**
