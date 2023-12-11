@@ -62,4 +62,4 @@ jobs:
         with:
           file: build/logs/clover.xml
           flags: unittests
-          fail_ci_if_error: true
+          fail_ci_if_error: false
