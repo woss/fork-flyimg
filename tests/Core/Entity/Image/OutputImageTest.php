@@ -22,7 +22,6 @@ class OutputImageTest extends BaseTest
          * add or remove a URL option in the config/parametesr.yml file.
          */
         $expectedParseArray = [
-            'mozjpeg' => 1,
             'quality' => 90,
             'output' => 'auto',
             'unsharp' => '0.25x0.25+8+0.065',

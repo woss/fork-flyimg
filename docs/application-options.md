@@ -6,13 +6,18 @@ Here are the app options you can configure with the [config/parameters.yml](http
 
 ### debug
 
-_Defaults to:_ `true`
+_Defaults to:_ `false`
 _Description:_ Enables debug mode, currently is used only for the tests, so there's no harm in leaving it as it is.
 
-### auto_webp_enabled
+### enable_avif
 
-_Defaults to:_ `false`
-_Description:_ Serve WebP automatically to Browsers supporting it. You can always request an image in webP format pasing the `o=webp` [URL option key](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md).
+_Defaults to:_ `true`
+_Description:_ Serve AVIF automatically to Browsers supporting it. You can always request an image in Avif format passing the `o_avif` [URL option key](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md).
+
+### enable_webp
+
+_Defaults to:_ `true`
+_Description:_ Serve WebP automatically to Browsers supporting it. You can always request an image in webP format passing the `o_webp` [URL option key](https://github.com/flyimg/flyimg/blob/main/docs/url-options.md).
 
 ### header_cache_days
 

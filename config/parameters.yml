@@ -1,23 +1,23 @@
 ---
-#debug
+# Debug
 debug: false
 
-#Number of days for header cache expires `max_age`
+# Number of days for header cache expires `max_age`
 header_cache_days: 365
 
-#options separator
+# Options separator
 options_separator: ','
 
-#Security: Signature generation
-# security key
+# Security: Signature generation
+# Security key
 security_key: ''
-# secret Initialization vector(IV)
+# Secret Initialization vector(IV)
 security_iv: ''
 
-# restrict domains, false by default
+# Restrict domains, false by default
 restricted_domains: false
 
-# if restricted_domains is enabled, put whitelist domains here
+# If restricted_domains is enabled, put whitelist domains here
 whitelist_domains:
   - domain-1.com
   - domain-2.com
@@ -25,7 +25,7 @@ whitelist_domains:
 # Default storage system is local, to use use AWS S3, change this param to s3
 storage_system: local
 
-#In case storage_system: s3, you need to add those AWS S3 parameters:
+# In case storage_system: s3, you need to add those AWS S3 parameters:
 aws_s3:
   access_id: ''
   secret_key: ''
@@ -35,18 +35,26 @@ aws_s3:
 # Number of threads for Imagemagick to use
 thread: 1
 
-# when set to true the generated image will be deleted from the cache in web/upload and served directly in the response
+# Read source image timeout in seconds
+source_image_request_timeout: 5
+
+# When set to true the generated image will be deleted from the cache in web/upload and served directly in the response
 disable_cache: false
 
-#Extra options for the header sent to source image server, as some servers requires the User-Agent.
+# When supported by the browser, AVIF format will be served as default output
+enable_avif: true
+
+# When supported by the browser, Webp format will be served as default output (after checking AVIF support)
+enable_webp: true
+
+# Extra options for the header sent to source image server, as some servers requires the User-Agent.
 header_extra_options: 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2) Gecko/20110201'
 
-#List of request header to forward to source image server (example Authorization)
+# List of request header to forward to source image server (example Authorization)
 forward_request_headers: []
 
-#Keys used in url to match options. Ex: q_80,w_200,h_100
+# Keys used in url to match options. Ex: q_80,w_200,h_100
 options_keys:
-  moz: mozjpeg
   q: quality
   o: output
   unsh: unsharp
@@ -84,9 +92,8 @@ options_keys:
   clsp: colorspace
   mnchr: monochrome
 
-#Default options values
+# Default options values
 default_options:
-  mozjpeg: 1
   quality: 90
   output: auto
   unsharp: null

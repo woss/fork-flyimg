@@ -1,13 +1,4 @@
-FROM flyimg/base-image:1.3.0
-
-# Install other file processors
-RUN apt update && \
-    apt install -y \
-    ghostscript \
-    ffmpeg \
-    --no-install-recommends && \
-    pip3 install pillow && \
-    rm -rf /var/lib/apt/lists/*
+FROM flyimg/base-image:1.4.0
 
 COPY .    /var/www/html
 

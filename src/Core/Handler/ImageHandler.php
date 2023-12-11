@@ -4,12 +4,12 @@ namespace Core\Handler;
 
 use Core\Entity\AppParameters;
 use Core\Entity\Image\InputImage;
-use Core\Entity\OptionsBag;
 use Core\Entity\Image\OutputImage;
+use Core\Entity\OptionsBag;
 use Core\Processor\ExtractProcessor;
 use Core\Processor\FaceDetectProcessor;
-use Core\Processor\SmartCropProcessor;
 use Core\Processor\ImageProcessor;
+use Core\Processor\SmartCropProcessor;
 use League\Flysystem\Filesystem;
 
 /**
@@ -42,7 +42,7 @@ class ImageHandler
     /**
      * ImageHandler constructor.
      *
-     * @param Filesystem    $filesystem
+     * @param Filesystem $filesystem
      * @param AppParameters $appParameters
      */
     public function __construct(Filesystem $filesystem, AppParameters $appParameters)
@@ -197,6 +197,9 @@ class ImageHandler
      */
     public function responseContentType(OutputImage $outputImage): string
     {
+        if ($outputImage->getOutputImageExtension() == OutputImage::EXT_AVIF) {
+            return InputImage::AVIF_MIME_TYPE;
+        }
         if ($outputImage->getOutputImageExtension() == OutputImage::EXT_WEBP) {
             return InputImage::WEBP_MIME_TYPE;
         }

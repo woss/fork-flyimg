@@ -67,10 +67,6 @@ class ImageProcessor extends Processor
     {
         $command = new Command(self::IM_CONVERT_COMMAND);
 
-        if ($outputImage->getInputImage()->isInputGif()) {
-            $command->addArgument('-coalesce');
-        }
-
         $pdfPageNo = $outputImage->getInputImage()->isInputPdf() ?
             '[' . ($outputImage->extractKey('pdf-page-number') - 1) . ']' :
             '';
@@ -194,8 +190,10 @@ class ImageProcessor extends Processor
     {
         $quality = $outputImage->extractKey('quality');
 
-        /** WebP format */
-        if (is_executable(self::CWEBP_COMMAND) && $outputImage->isOutputWebP()) {
+        if ($outputImage->isOutputAvif()) {
+            $parameter = "-define heic:speed=2 -quality " . escapeshellarg($quality) .
+                " " . escapeshellarg($outputImage->getOutputTmpPath());
+        } elseif (is_executable(self::CWEBP_COMMAND) && $outputImage->isOutputWebP()) {
             $lossLess = $outputImage->extractKey('webp-lossless') ? 'true' : 'false';
             $parameter = "-quality " . escapeshellarg($quality) .
                 " -define webp:lossless=" . $lossLess . " " . escapeshellarg($outputImage->getOutputTmpPath());

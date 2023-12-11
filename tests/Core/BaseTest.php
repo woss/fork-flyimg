@@ -14,6 +14,7 @@ class BaseTest extends TestCase
     public const JPG_TEST_IMAGE = __DIR__ . '/../testImages/square.jpg';
     public const PNG_TEST_IMAGE = __DIR__ . '/../testImages/square.png';
     public const WEBP_TEST_IMAGE = __DIR__ . '/../testImages/square.webp';
+    public const AVIF_TEST_IMAGE = __DIR__ . '/../testImages/fox.avif';
     public const GIF_TEST_IMAGE = __DIR__ . '/../testImages/animated.gif';
 
     public const MOVIE_TEST_FILE = __DIR__ . '/../testImages/SampleVideo_1280x720_2mb.mp4';
@@ -32,7 +33,7 @@ class BaseTest extends TestCase
 
     public const OPTION_URL = 'w_200,h_100,c_1,bg_#999999,rz_1,sc_50,r_-45,unsh_0.25x0.25+8+0.065,ett_100x80,fb_1,rf_1';
     public const CROP_OPTION_URL = 'w_200,h_100,c_1,rf_1';
-    public const GIF_OPTION_URL = 'w_100,h_100,rf_1';
+    public const GIF_OPTION_URL = 'w_100,h_100,rf_1,o_gif';
 
     /**
      * @var Application

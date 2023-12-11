@@ -18,6 +18,7 @@ class OutputImage
     public const EXT_WEBP = 'webp';
     public const EXT_JPG = 'jpg';
     public const EXT_GIF = 'gif';
+    public const EXT_AVIF = 'avif';
 
     /** @var InputImage */
     protected $inputImage;
@@ -38,7 +39,7 @@ class OutputImage
     protected $commandString;
 
     /** @var array list of the supported output extensions */
-    protected $allowedOutExtensions = [self::EXT_PNG, self::EXT_JPG, self::EXT_GIF, self::EXT_WEBP];
+    protected $allowedOutExtensions = [self::EXT_PNG, self::EXT_JPG, self::EXT_GIF, self::EXT_WEBP, self::EXT_AVIF];
 
     /**
      * OutputImage constructor.
@@ -203,12 +204,20 @@ class OutputImage
     {
         $requestedOutput = $this->extractKey('output');
 
+        if ($requestedOutput == self::EXT_AUTO && $this->isAvifBrowserSupported()) {
+            return self::EXT_AVIF;
+        }
+
         if ($requestedOutput == self::EXT_AUTO && $this->isWebPBrowserSupported()) {
             return self::EXT_WEBP;
         }
 
-        if ($requestedOutput == self::EXT_INPUT || $requestedOutput == self::EXT_AUTO) {
+        if ($requestedOutput == self::EXT_INPUT) {
             return $this->extensionByMimeType($this->inputImage->sourceImageMimeType());
+        }
+
+        if ($requestedOutput == self::EXT_AUTO) {
+            return self::EXT_JPG;
         }
 
         if (!in_array($requestedOutput, $this->allowedOutExtensions)) {
@@ -232,6 +241,7 @@ class OutputImage
             InputImage::WEBP_MIME_TYPE => self::EXT_WEBP,
             InputImage::JPEG_MIME_TYPE => self::EXT_JPG,
             InputImage::GIF_MIME_TYPE => self::EXT_GIF,
+            InputImage::AVIF_MIME_TYPE => self::EXT_AVIF,
             InputImage::PDF_MIME_TYPE => self::EXT_JPG,
         ];
 
@@ -249,6 +259,14 @@ class OutputImage
     public function isOutputWebP(): bool
     {
         return $this->outputImageExtension == self::EXT_WEBP;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOutputAvif(): bool
+    {
+        return $this->outputImageExtension == self::EXT_AVIF;
     }
 
     /**
@@ -272,8 +290,7 @@ class OutputImage
      */
     public function isOutputMozJpeg(): bool
     {
-        return $this->extractKey('mozjpeg') == 1 &&
-            (!$this->isOutputPng() || $this->outputImageExtension == self::EXT_JPG) &&
+        return (!$this->isOutputPng() || $this->outputImageExtension == self::EXT_JPG) &&
             (!$this->isOutputGif());
     }
 
@@ -283,6 +300,19 @@ class OutputImage
      */
     public function isWebPBrowserSupported(): bool
     {
-        return in_array(InputImage::WEBP_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes());
+        return in_array(InputImage::WEBP_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes())
+            &&
+            $this->inputImage->optionsBag()->appParameters()->parameterByKey('enable_webp');
+    }
+
+    /**
+     * This just checks if the browser requesting the asset explicitly supports Avif
+     * @return boolean
+     */
+    public function isAvifBrowserSupported(): bool
+    {
+        return in_array(InputImage::AVIF_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes())
+            &&
+            $this->inputImage->optionsBag()->appParameters()->parameterByKey('enable_avif');
     }
 }

@@ -16,7 +16,7 @@ class Processor
     public const MOZJPEG_COMMAND = '/opt/mozjpeg/cjpeg';
 
     /** ImageMagick bin path*/
-    public const IM_CONVERT_COMMAND = '/usr/local/bin/convert';
+    public const IM_CONVERT_COMMAND = '/usr/local/bin/magick';
     public const IM_IDENTITY_COMMAND = '/usr/local/bin/identify';
     public const IM_MOGRIFY_COMMAND = '/usr/local/bin/mogrify';
 
