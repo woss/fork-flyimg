@@ -29,7 +29,9 @@ class S3StorageProvider implements ServiceProviderInterface
 
         $this->registerS3ServiceProvider($app, $s3Params);
         $app['flysystems']['file_path_resolver'] = function () use ($s3Params) {
-            return sprintf('https://s3.%s.amazonaws.com/%s/', $s3Params['region'], $s3Params['bucket_name']) . '%s';
+            return isset($s3Params['endpoint'])
+                ? sprintf($s3Params['endpoint'] . '/%s/', $s3Params['endpoint'], $s3Params['bucket_name']) . '%s'
+                : sprintf('https://s3.%s.amazonaws.com/%s/', $s3Params['region'], $s3Params['bucket_name']) . '%s';
         };
     }
 
@@ -41,13 +43,19 @@ class S3StorageProvider implements ServiceProviderInterface
      */
     protected function registerS3ServiceProvider(Container $app, array $s3Params): Container
     {
-        $s3Client = new S3Client(
-            [
-                'credentials' => ['key' => $s3Params['access_id'], 'secret' => $s3Params['secret_key']],
-                'region' => $s3Params['region'],
-                'version' => 'latest',
-            ]
-        );
+        $clientParams = [
+            'credentials' => [
+                'key' => $s3Params['access_id'],
+                'secret' => $s3Params['secret_key'],
+            ],
+            'region' => $s3Params['region'],
+            'version' => 'latest',
+        ];
+
+        // Support for third party S3 compatible services
+        if (isset($s3Params['endpoint'])) {
+            $clientParams['endpoint'] = $s3Params['endpoint'];
+        }
 
         $app->register(
             new FlysystemServiceProvider(),
@@ -55,7 +63,10 @@ class S3StorageProvider implements ServiceProviderInterface
                 'flysystem.filesystems' => [
                     'storage_handler' => [
                         'adapter' => 'League\Flysystem\AwsS3v3\AwsS3Adapter',
-                        'args' => [$s3Client, $s3Params['bucket_name']],
+                        'args' => [
+                            new S3Client($clientParams),
+                            $s3Params['bucket_name'],
+                        ],
                     ],
                 ],
             ]
