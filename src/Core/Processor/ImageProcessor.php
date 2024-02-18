@@ -192,7 +192,7 @@ class ImageProcessor extends Processor
 
         if ($outputImage->isOutputAvif()) {
             $heicSpeed = $outputImage->getInputImage()->optionsBag()->appParameters()->parameterByKey('heic_speed');
-            $parameter = "-define heic:speed=".$heicSpeed." -quality " . escapeshellarg($quality) .
+            $parameter = "-define heic:speed=" . $heicSpeed . " -quality " . escapeshellarg($quality) .
                 " " . escapeshellarg($outputImage->getOutputTmpPath());
         } elseif (is_executable(self::CWEBP_COMMAND) && $outputImage->isOutputWebP()) {
             $lossLess = $outputImage->extractKey('webp-lossless') ? 'true' : 'false';
