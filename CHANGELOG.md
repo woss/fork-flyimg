@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.3.1](https://github.com/flyimg/flyimg/compare/1.3.0...1.3.1) (2024-02-18)
+
+
+### Bug Fixes
+
+* Fix the default value for heic_speed to 8 and make it variable in the config file ([25e7cdd](https://github.com/flyimg/flyimg/commit/25e7cdda5b5df75d1fd9a6816cc764c9f4760693))
+* fixing issue with s3 storage system, closing [#325](https://github.com/flyimg/flyimg/issues/325) ([bdb59a0](https://github.com/flyimg/flyimg/commit/bdb59a06ea82eee9c250e7c165e4ccf87b12d42d))
+
 # [1.3.0](https://github.com/flyimg/flyimg/compare/1.2.9...1.3.0) (2023-12-11)
 
 
