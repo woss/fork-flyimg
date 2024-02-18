@@ -22,7 +22,7 @@ whitelist_domains:
   - domain-1.com
   - domain-2.com
 
-# Default storage system is local, to use use AWS S3, change this param to s3
+# Default storage system is local, to use AWS S3, change this param to s3
 storage_system: local
 
 # In case storage_system: s3, you need to add those AWS S3 parameters:
@@ -34,6 +34,9 @@ aws_s3:
 
 # Number of threads for Imagemagick to use
 thread: 1
+
+# For Avif format: conversion speed parameter for the HEIF library.
+heic_speed: 8
 
 # Read source image timeout in seconds
 source_image_request_timeout: 5
