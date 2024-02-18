@@ -44,7 +44,7 @@ class Response extends BaseResponse
     {
         $outputImageName = $image->getOutputImageName();
         $this->headers->set('Content-Type', $this->imageHandler->responseContentType($image));
-        $this->headers->set('Content-Length', filesize($image->getOutputGeneratedPath()));
+        $this->headers->set('Content-Length', $this->getOutputImageSize($image));
         $this->headers->set('Source-Content-Length', filesize($image->getInputImage()->sourceImagePath()));
         $this->headers->set('Source-Content-Type', $image->getInputImage()->sourceImageMimeType());
         $this->headers->set('Content-Disposition', sprintf('inline;filename="%s"', $outputImageName));
@@ -117,5 +117,14 @@ class Response extends BaseResponse
         $imagePath = sprintf($this->storageFileSystem['file_path_resolver'], $image->getOutputImageName());
         $this->setContent($imagePath);
         $image->removeOutputImage();
+    }
+
+    /**
+     * @param OutputImage $image
+     * @return string
+     */
+    private function getOutputImageSize(OutputImage $image): string
+    {
+        return $this->storageFileSystem['storage_handler']->getSize($image->getOutputImageName());
     }
 }
