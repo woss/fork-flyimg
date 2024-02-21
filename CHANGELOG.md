@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.3.2](https://github.com/flyimg/flyimg/compare/1.3.1...1.3.2) (2024-02-21)
+
+
+### Bug Fixes
+
+* fixing facedetect issue for AVIF format images ([543ef80](https://github.com/flyimg/flyimg/commit/543ef80344827dc4a3695aca974ca544826870ff))
+
 ## [1.3.1](https://github.com/flyimg/flyimg/compare/1.3.0...1.3.1) (2024-02-18)
 
 
