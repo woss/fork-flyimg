@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.3.4](https://github.com/flyimg/flyimg/compare/1.3.3...1.3.4) (2024-02-25)
+
+
+### Bug Fixes
+
+* fixing Multi-platform image with GitHub Actions ([ce62db0](https://github.com/flyimg/flyimg/commit/ce62db07607989d63af0e08dd4366b0a691b55b3))
+
 ## [1.3.3](https://github.com/flyimg/flyimg/compare/1.3.2...1.3.3) (2024-02-25)
 
 
