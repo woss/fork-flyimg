@@ -117,7 +117,8 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
-  merge:
+  manifest:
+    name: Create manifest list + push to Docker Hub
     runs-on: ubuntu-latest
     needs:
       - docker_publish
@@ -153,7 +154,7 @@ jobs:
         name: Create manifest list and push
         working-directory: /tmp/digests
         run: |
-          docker buildx imagetools create "$(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON")" \
+          docker buildx imagetools create "$(jq -cr '.tags | map(\"-t \" + .) | join(\" \")' <<< "$DOCKER_METADATA_OUTPUT_JSON")" \
             "$(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)"
       -
         name: Inspect image
@@ -163,7 +164,7 @@ jobs:
   deploy_demo:
     name: Deploy to Demo demo.flyimg.io
     runs-on: ubuntu-latest
-    needs: merge
+    needs: manifest
     steps:
       - name: Deploy new version of Flyimg to the demo server
         uses: appleboy/ssh-action@master
@@ -175,5 +176,5 @@ jobs:
           command_timeout: 20m
           script: |
             cd /home/deployer/
-            bash -c "sed 's/VERSION/${{ needs.merge.outputs.new_tag_version }}/g' compose.yaml.tpl > compose.yaml"
+            bash -c "sed 's/VERSION/${{ needs.manifest.outputs.new_tag_version }}/g' compose.yaml.tpl > compose.yaml"
             bash -c "docker compose up -d"
