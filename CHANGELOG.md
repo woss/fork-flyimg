@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.3.7](https://github.com/flyimg/flyimg/compare/1.3.6...1.3.7) (2024-02-25)
+
+
+### Bug Fixes
+
+* fixing missing PLATFORM_PAIR for the articat upload (Github Action CD) ([84b55ff](https://github.com/flyimg/flyimg/commit/84b55ffdb3cc5902208d968c6998cc6b2de48c14))
+
 ## [1.3.6](https://github.com/flyimg/flyimg/compare/1.3.5...1.3.6) (2024-02-25)
 
 
