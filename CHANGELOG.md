@@ -1,5 +1,19 @@
 # Flyimg Changelog
 
+## [1.3.6](https://github.com/flyimg/flyimg/compare/1.3.5...1.3.6) (2024-02-25)
+
+
+### Bug Fixes
+
+* fixing the REGISTRY_IMAGE tags ([eb3d09b](https://github.com/flyimg/flyimg/commit/eb3d09b989a43330ce14741189a743b282b7c6c9))
+
+## [1.3.5](https://github.com/flyimg/flyimg/compare/1.3.4...1.3.5) (2024-02-25)
+
+
+### Bug Fixes
+
+* fixing the base image path ([954ff76](https://github.com/flyimg/flyimg/commit/954ff767a03fa48388ab8683d1d24418bb25db76))
+
 ## [1.3.4](https://github.com/flyimg/flyimg/compare/1.3.3...1.3.4) (2024-02-25)
 
 
