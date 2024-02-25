@@ -58,7 +58,7 @@ jobs:
       - name: Run Unit Tests
         run: docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v4
         with:
           file: build/logs/clover.xml
           flags: unittests
