@@ -176,5 +176,5 @@ jobs:
           command_timeout: 20m
           script: |
             cd /home/deployer/
-            bash -c "sed 's/VERSION/${{ needs.merge.outputs.new_tag_version }}/g' compose.yaml.tpl > compose.yaml"
+            bash -c "sed 's/VERSION/${{ needs.manifest.outputs.new_tag_version }}/g' compose.yaml.tpl > compose.yaml"
             bash -c "docker compose up -d"
