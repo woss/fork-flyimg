@@ -50,6 +50,14 @@ jobs:
     name: Docker Build and Push
     outputs:
       new_tag_version: ${{ needs.release.outputs.new_tag_version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux/amd64
+          - linux/arm/v6
+          - linux/arm/v7
+          - linux/arm64
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
@@ -72,6 +80,7 @@ jobs:
         with:
           push: true
           context: .
+          platforms: ${{ matrix.platform }}
           file: ./Dockerfile
           tags: |
             flyimg/flyimg-build:latest
