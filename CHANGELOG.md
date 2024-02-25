@@ -1,40 +1,5 @@
 # Flyimg Changelog
 
-## [1.3.7](https://github.com/flyimg/flyimg/compare/1.3.6...1.3.7) (2024-02-25)
-
-
-### Bug Fixes
-
-* fixing missing PLATFORM_PAIR for the articat upload (Github Action CD) ([84b55ff](https://github.com/flyimg/flyimg/commit/84b55ffdb3cc5902208d968c6998cc6b2de48c14))
-
-## [1.3.6](https://github.com/flyimg/flyimg/compare/1.3.5...1.3.6) (2024-02-25)
-
-
-### Bug Fixes
-
-* fixing the REGISTRY_IMAGE tags ([eb3d09b](https://github.com/flyimg/flyimg/commit/eb3d09b989a43330ce14741189a743b282b7c6c9))
-
-## [1.3.5](https://github.com/flyimg/flyimg/compare/1.3.4...1.3.5) (2024-02-25)
-
-
-### Bug Fixes
-
-* fixing the base image path ([954ff76](https://github.com/flyimg/flyimg/commit/954ff767a03fa48388ab8683d1d24418bb25db76))
-
-## [1.3.4](https://github.com/flyimg/flyimg/compare/1.3.3...1.3.4) (2024-02-25)
-
-
-### Bug Fixes
-
-* fixing Multi-platform image with GitHub Actions ([ce62db0](https://github.com/flyimg/flyimg/commit/ce62db07607989d63af0e08dd4366b0a691b55b3))
-
-## [1.3.3](https://github.com/flyimg/flyimg/compare/1.3.2...1.3.3) (2024-02-25)
-
-
-### Bug Fixes
-
-* add Multi-platform image with GitHub Actions, [#414](https://github.com/flyimg/flyimg/issues/414) ([2ab0d07](https://github.com/flyimg/flyimg/commit/2ab0d078e3f8c8eedfb8af682d075bcd7526bb6a))
-
 ## [1.3.2](https://github.com/flyimg/flyimg/compare/1.3.1...1.3.2) (2024-02-21)
 
 
