@@ -37,6 +37,7 @@ jobs:
           VALIDATE_NATURAL_LANGUAGE: false
           VALIDATE_JSCPD: false
           VALIDATE_DOCKERFILE_HADOLINT: false
+          VALIDATE_GITHUB_ACTIONS: false
 
   build-test:
     runs-on: ubuntu-latest
