@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.3.4](https://github.com/flyimg/flyimg/compare/1.3.3...1.3.4) (2024-02-27)
+
+
+### Bug Fixes
+
+* adding linux/arm64/v8 architecture ([53c4006](https://github.com/flyimg/flyimg/commit/53c400672269d6492b91c482438cf5da1f189226))
+
 ## [1.3.3](https://github.com/flyimg/flyimg/compare/1.3.2...1.3.3) (2024-02-26)
 
 
