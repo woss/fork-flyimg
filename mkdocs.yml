@@ -70,6 +70,7 @@ nav:
   - Welcome: index.md
   - Get Started:
     - Install: install.md
+    - Helm Chart: helm-chart.md
     - Basic Usage: basic-usage.md
   - Docs:
     - Configuration: configuration.md
