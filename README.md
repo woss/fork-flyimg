@@ -167,7 +167,7 @@ See the [ADOPTERS.md](ADOPTERS.md) file for a list of companies / organisations 
 
 A special thanks to JetBrains for supporting our project with their [open source license program](https://www.jetbrains.com/buy/opensource/).
 
-![Jetbrains](https://demo.flyimg.io/upload/w_150/https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)
+![Jetbrains](https://demo.flyimg.io/upload/w_200/https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png)
 
 ## Contributors
 

@@ -23,10 +23,10 @@ if [ "$ENABLE_CLEANUP" == "false" ]; then
   exit 0
 fi
 
-# Exiting when $TMP_DIR does not exist
+# Create directory $TMP_DIR if it doesn't exist
 if [ ! -d "$TMP_DIR" ]; then
-  echo "Directory $TMP_DIR does not exist. Exiting."
-  exit 0
+  echo "Directory $TMP_DIR does not exist. creating..."
+  mkdir -p "$TMP_DIR"
 fi
 
 CRON_INTERVAL=$(grep -E '^cronjob_cleanup_interval:' "$YAML_FILE" | cut -d' ' -f2- | tr -d '"')
