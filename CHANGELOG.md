@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.4.11](https://github.com/flyimg/flyimg/compare/1.4.10...1.4.11) (2024-09-12)
+
+
+### Bug Fixes
+
+* fix CHANGELOG entries ([19e9104](https://github.com/flyimg/flyimg/commit/19e9104d1fb9428e764ef4438da586e8157818f1))
+* fix Version and Changelog file ([be0bfeb](https://github.com/flyimg/flyimg/commit/be0bfeb2773371b119d57366fd91cfc9a61aba33))
+
 ##  [1.4.10][Cleanup] (2024-09-12)
 
 
