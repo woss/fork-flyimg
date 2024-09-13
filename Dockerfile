@@ -4,7 +4,7 @@ COPY .    /var/www/html
 
 #add www-data + mdkdir var folder
 RUN usermod -u 1000 www-data && \
-    mkdir -p /var/www/html/var web/uploads/.tmb var/cache/ var/log/ && \
+    mkdir -p /var/www/html/var/tmp web/uploads/.tmb && \
     chown -R www-data:www-data var/  web/uploads/ && \
     chmod 777 -R var/  web/uploads/
 
