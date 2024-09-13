@@ -27,6 +27,7 @@ fi
 if [ ! -d "$TMP_DIR" ]; then
   echo "Directory $TMP_DIR does not exist. creating..."
   mkdir -p "$TMP_DIR"
+  chown -R www-data:www-data "$TMP_DIR"
 fi
 
 CRON_INTERVAL=$(grep -E '^cronjob_cleanup_interval:' "$YAML_FILE" | cut -d' ' -f2- | tr -d '"')
