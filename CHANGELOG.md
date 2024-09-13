@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.4.12](https://github.com/flyimg/flyimg/compare/1.4.11...1.4.12) (2024-09-13)
+
+
+### Bug Fixes
+
+* fix the issue of tmp folder permission, closes [#506](https://github.com/flyimg/flyimg/issues/506) ([0ed831d](https://github.com/flyimg/flyimg/commit/0ed831d9f250593569ec243ccec2f518267d6f22))
+
 ## [1.4.11](https://github.com/flyimg/flyimg/compare/1.4.10...1.4.11) (2024-09-12)
 
 
