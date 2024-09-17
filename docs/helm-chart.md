@@ -12,7 +12,6 @@ This section provides the steps to install the Flyimg Helm chart using Helm.
 First, add the Flyimg Helm chart repository to Helm:
 
 ```sh
-
 helm repo add flyimg https://charts.flyimg.io
 helm repo update
 ```

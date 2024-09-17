@@ -47,24 +47,11 @@ Check out our demo page where you can test and review Flying's features:
 [https://demo.flyimg.io/](https://demo.flyimg.io) :material-cursor-default-click-outline:{ .beat }
 </div>
 
-## Star History
-
-<a href="https://star-history.com/#flyimg/flyimg&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date" />
- </picture>
-</a>
-
-
 ## Cloud Run Button
 
 Flyimg can be deployed to GCP as a serverless container in one click with Cloud Run Button:
 
 <a href="https://deploy.cloud.run/" target="_blank"><img src="https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git" alt="Run on Google Cloud" style="width:180px;margin-top:20px;"/></a>
-
-
 
 ## How to transform images
 
@@ -84,6 +71,16 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 `https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg`
 
 ![resize-test](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+
+## Star History
+
+<a href="https://star-history.com/#flyimg/flyimg&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date" />
+ </picture>
+</a>
 
 ## Community
 

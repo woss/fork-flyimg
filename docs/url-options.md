@@ -346,15 +346,18 @@ _Description:_ ...
 
 Requires `ghostscript` installation in the Dockerfile.
 
-#### `pg` : page number
+#### `pdfp` : page number
 
 `int`  
 _Default:_ 1  
 _Description:_ Sets the target page of the PDF. If not set, the default is page 1.
 
-**example:`pg_2`**
+**example:`pdfp_2`**
 
-`pg_2` : `https://demo.flyimg.io/upload/pg_2/https://mudawn.com/assets/lighthouses.pdf`
+`pdfp_2` : `https://demo.flyimg.io/upload/pdfp_2,w_300/https://mudawn.com/assets/lighthouses.pdf`
+
+![pdfp_2](https://demo.flyimg.io/upload/pdfp_2,w_300/https://mudawn.com/assets/lighthouses.pdf)
+
 
 ### Video options
 
