@@ -135,6 +135,7 @@ class ImageProcessor extends Processor
         $command = [];
         $command[] = $this->getResizeOperator();
         $command[] = $this->getDimensions() . '^';
+        $command[] = '-background none';
         $command[] = '-gravity ' . $this->options->getOption('gravity');
         $command[] = '-extent ' . $this->getDimensions();
 
