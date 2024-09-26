@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.4.13](https://github.com/flyimg/flyimg/compare/1.4.12...1.4.13) (2024-09-26)
+
+
+### Bug Fixes
+
+* fixing Cropping Image Changes Transparent Background To Solid Color, related to [#514](https://github.com/flyimg/flyimg/issues/514) ([753df2b](https://github.com/flyimg/flyimg/commit/753df2b38b61b333998864f2ea013a6e6b9ff8c2))
+
 ## [1.4.12](https://github.com/flyimg/flyimg/compare/1.4.11...1.4.12) (2024-09-13)
 
 
