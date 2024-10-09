@@ -39,6 +39,9 @@ class ResponseTest extends BaseTest
         $image2 = $this->imageHandler->processImage('w_100,h_250,rf_1', parent::REMOTE_IMAGE_WITH_ARGS_2);
         $this->response->generateImageResponse($image1);
         $this->response->generateImageResponse($image2);
-        $this->assertNotEquals($this->app['flysystems']['storage_handler']->checksum($image1->getOutputImageName()), $this->app['flysystems']['storage_handler']->checksum($image2->getOutputImageName()));
+        $this->assertNotEquals(
+            $this->app['flysystems']['storage_handler']->checksum($image1->getOutputImageName()), 
+            $this->app['flysystems']['storage_handler']->checksum($image2->getOutputImageName())
+        );
     }
 }
