@@ -40,7 +40,7 @@ class ResponseTest extends BaseTest
         $this->response->generateImageResponse($image1);
         $this->response->generateImageResponse($image2);
         $this->assertNotEquals(
-            $this->app['flysystems']['storage_handler']->checksum($image1->getOutputImageName()), 
+            $this->app['flysystems']['storage_handler']->checksum($image1->getOutputImageName()),
             $this->app['flysystems']['storage_handler']->checksum($image2->getOutputImageName())
         );
     }
