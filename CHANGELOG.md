@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.4.14](https://github.com/flyimg/flyimg/compare/1.4.13...1.4.14) (2024-10-09)
+
+
+### Bug Fixes
+
+* fix Same image content returned for different image URLs when loading within short timeframe, closes [#522](https://github.com/flyimg/flyimg/issues/522) ([632d790](https://github.com/flyimg/flyimg/commit/632d790392ecbabbe8d0e90ef6a0d72806d751c6))
+* fixing linting error ([35774da](https://github.com/flyimg/flyimg/commit/35774daffc30e9cad20481ccf65d34258ac264a0))
+
 ## [1.4.13](https://github.com/flyimg/flyimg/compare/1.4.12...1.4.13) (2024-09-26)
 
 
