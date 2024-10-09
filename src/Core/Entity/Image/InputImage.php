@@ -49,7 +49,7 @@ class InputImage
         $this->optionsBag = $optionsBag;
         $this->sourceImageUrl = $sourceImageUrl;
 
-        $this->sourceImagePath = $optionsBag->hashOriginalImageUrl($this->sourceImageUrl);
+        $this->sourceImagePath =  TMP_DIR . 'original-' . md5($this->sourceImageUrl);
         $this->saveToTemporaryFile();
 
         $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);
