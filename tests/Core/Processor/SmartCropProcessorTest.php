@@ -17,7 +17,7 @@ class SmartCropProcessorTest extends BaseTest
     {
         $image = $this->imageHandler->processImage('smc_1,rf_1,o_jpg', parent::SMART_CROP_TEST_IMAGE);
         $filesize = filesize($image->getOutputTmpPath());
-        $filesize2 = filesize(parent::EMART_CROP_TEST_IMAGE_RESULT);
+        $filesize2 = filesize(parent::SMART_CROP_TEST_IMAGE_RESULT);
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
         $this->assertEquals($filesize, $filesize2);

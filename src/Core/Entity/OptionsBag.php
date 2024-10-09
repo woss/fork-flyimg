@@ -63,30 +63,13 @@ class OptionsBag
      */
     public function hashedOptionsAsString(string $imageUrl): string
     {
-        // to ignore extra image parameters
-        $parsedImageUrl = preg_replace('/\\?.*/', '', $imageUrl);
-
         // Remove rf from the generated image
         $keys = $this->asArray();
         if (!empty($keys['refresh']) && $keys['refresh'] == 1) {
             $keys['refresh'] = null;
         }
 
-        return md5(implode('.', $keys) . $parsedImageUrl);
-    }
-
-    /**
-     * Return a hashed string based on original image URL
-     *
-     * @param string $imageUrl
-     *
-     * @return string
-     */
-    public function hashOriginalImageUrl(string $imageUrl): string
-    {
-        $parsedImageUrl = preg_replace('/\\?.*/', '', $imageUrl);
-
-        return TMP_DIR . 'original-' . md5($parsedImageUrl);
+        return md5(implode('.', $keys) . $imageUrl);
     }
 
     /**
