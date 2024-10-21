@@ -68,8 +68,10 @@ jobs:
           platform="${{ matrix.platform }}"
           echo "PLATFORM_PAIR=${platform//\//-}" >> "$GITHUB_ENV"
 
-      - name: Code Checkout
+      - name: Code Checkout for Docker build
         uses: actions/checkout@v4
+        with:
+          ref: 'main'
 
       - name: Docker meta
         id: meta
