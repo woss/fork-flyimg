@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.4.15](https://github.com/flyimg/flyimg/compare/1.4.14...1.4.15) (2024-10-21)
+
+
+### Bug Fixes
+
+* fix incorrect version shown in footer, closes [#528](https://github.com/flyimg/flyimg/issues/528) ([011a017](https://github.com/flyimg/flyimg/commit/011a0170ae36e3d33bfaa5835f91fec46936a9fd))
+
 ## [1.4.14](https://github.com/flyimg/flyimg/compare/1.4.13...1.4.14) (2024-10-09)
 
 
