@@ -90,7 +90,7 @@ class S3StorageProvider implements ServiceProviderInterface
                             new S3Client($clientParams),
                             urlencode($s3Params['bucket_name']),
                             $s3Params['path_prefix'] ?? '',
-                            new PortableVisibilityConverter(Visibility::{$s3Params['visibility'] ?? 'PRIVATE'})
+                            new PortableVisibilityConverter(Visibility::class . '::' . ($s3Params['visibility'] ?? 'PRIVATE'))
                         ],
                     ],
                 ],
