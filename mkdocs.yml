@@ -75,6 +75,7 @@ nav:
   - Docs:
     - Configuration: configuration.md
     - URL Options: url-options.md
+    - Storage Options: storage-options.md
     - Security: security.md
     - Benchmark: benchmark.md
     - Unit Tests: unit-tests.md

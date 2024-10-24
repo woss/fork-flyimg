@@ -1,6 +1,9 @@
 ---
 # Debug
-debug: true
+debug: false
+
+# Log level: possible values are: debug, info, notice, warning, error
+log_level: error
 
 # Home page title
 home_page_title: Flyimg
@@ -41,6 +44,9 @@ aws_s3:
   secret_key: ''
   region: 'eu-central-1'
   bucket_name: ''
+  # path_prefix: '' # optional
+  #visibility: 'PRIVATE' # options: PUBLIC or PRIVATE
+  #endpoint: 'https://%s.s3.%s.amazonaws.com/' # optional for third party S3 compatible services, the format is https://<bucket-name>.s3.<region>.amazonaws.com/
 
 # Number of threads for Imagemagick to use
 thread: 1

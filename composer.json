@@ -18,20 +18,15 @@
             "name": "Sadok Ferjani",
             "email": "sadoknet@gmail.com",
             "homepage": "http://sadokferjani.me",
-            "role": "Developer"
-        },
-        {
-            "name": "Agustín Amenabar",
-            "email": "baamenabar@gmail.com",
-            "homepage": "http://code.medula.cl",
-            "role": "Developer"
+            "role": "Maintainer"
         }
     ],
     "require": {
         "php": ">=7.4",
         "silex/silex": "2.*",
         "league/flysystem": "^3.0",
-        "league/flysystem-aws-s3-v3": "^3.0"
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "monolog/monolog": "^3.7"
     },
     "require-dev": {
         "phpunit/phpunit": "11.*",

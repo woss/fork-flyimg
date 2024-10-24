@@ -36,6 +36,8 @@ class ExtractProcessor extends Processor
         $extractCmd->addArgument($inputImage->sourceImagePath());
         $extractCmd->addArgument(" -crop", "{$geometryW}x{$geometryH}+{$topLeftX}+{$topLeftY}");
         $extractCmd->addArgument($inputImage->sourceImagePath());
+        $this->logger->info('sourceImageUrl: ' . $inputImage->sourceImageUrl());
+        $this->logger->info('ExtractCommand: ' . $extractCmd);
         $this->execute($extractCmd);
     }
 }

@@ -43,6 +43,7 @@ class VideoProcessor extends Processor
         $cmd->addArgument($videoSourceImagePath);
         $cmd->addArgument('-hide_banner');
         $cmd->addArgument('-loglevel', 'error');
+        $this->logger->info('VideoProcessorCommand: ' . $cmd);
 
         $this->execute($cmd);
 
