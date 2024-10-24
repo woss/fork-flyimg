@@ -5,6 +5,7 @@ namespace Core\Processor;
 use Core\Entity\Command;
 use Core\Entity\Image\OutputImage;
 use Core\Exception\ExecFailedException;
+use Monolog\Registry;
 
 /**
  * Class Processor
@@ -36,29 +37,54 @@ class Processor
     public const EXCLUDED_IM_OPTIONS = ['quality', 'mozjpeg', 'refresh', 'webp-lossless'];
 
     /**
+     * @var Logger
+     */
+    protected $logger;
+
+    /**
+     * @param Logger $logger
+     */
+    public function __construct()
+    {
+        $this->logger = Registry::getInstance('flyimg');
+    }
+
+    /**
      * @param Command $command
      *
      * @return array
      * @throws \Exception
      */
     public function execute(Command $command): array
-    {
-        exec($command . ' 2>&1', $output, $code);
-        if (count($output) === 0) {
-            $outputError = $code;
+    {        
+        $descriptorspec = [
+            0 => ["pipe", "r"],  // stdin
+            1 => ["pipe", "w"],  // stdout
+            2 => ["pipe", "w"]   // stderr
+        ];
+        
+        $process = proc_open($command, $descriptorspec, $pipes);
+        
+        if (is_resource($process)) {
+            $output = stream_get_contents($pipes[1]);
+            $errorOutput = stream_get_contents($pipes[2]);
+
+            fclose($pipes[1]);
+            fclose($pipes[2]);
+
+            $return_value = proc_close($process);
+
+            if ($return_value !== 0) {
+                throw new ExecFailedException(
+                    "Error output: $errorOutput\n" .
+                    "Command: $command"
+                );
+            }
         } else {
-            $outputError = implode(PHP_EOL, $output);
+            throw new ExecFailedException("Failed to initiate the process.");
         }
-
-        if ($code !== 0) {
-            throw new ExecFailedException(
-                "Command failed.\nThe exit code: " .
-                    $outputError . "\nThe last line of output: " .
-                    $command
-            );
-        }
-
-        return $output;
+        
+        return explode(PHP_EOL, $output);
     }
 
     /**

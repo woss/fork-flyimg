@@ -9,6 +9,11 @@ Here are the app options you can configure with the [config/parameters.yml](http
 _Defaults to:_ `false`
 _Description:_ Enables debug mode, currently is used only for the tests, so there's no harm in leaving it as it is.
 
+### log_level
+
+_Defaults to:_ `error`
+_Description:_ Log level, possible values are: debug, info, notice, warning, error
+
 ### enable_cronjob_cleanup
 
 _Defaults to:_ `true`

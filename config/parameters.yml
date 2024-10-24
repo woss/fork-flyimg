@@ -1,6 +1,9 @@
 ---
 # Debug
-debug: true
+debug: false
+
+# Log level: possible values are: debug, info, notice, warning, error
+log_level: error
 
 # Home page title
 home_page_title: Flyimg

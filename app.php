@@ -6,37 +6,43 @@ require_once __DIR__ . '/constants.php';
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\ExceptionHandler;
 use Symfony\Component\Routing\RouteCollection;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Registry;
 
 $app = new Silex\Application();
 
 /** @var \Core\Entity\AppParameters $app['params'] */
 $app['params'] = new \Core\Entity\AppParameters(__DIR__ . '/config/parameters.yml');
 
+/** Logging via Monolog settings */
+$logLevel = $app['params']->parameterByKey('log_level');
+$logger = new Logger('flyimg');
+$logger->pushHandler(new StreamHandler('php://stdout', $logLevel));
+Registry::addLogger($logger);
+$app['logger'] = $logger;
 
-$app['env'] = $_ENV['env'] ?? 'dev';
-$exceptionHandlerFunction = function (\Exception $e): void {
-    $out = fopen('php://stdout', 'w');
-    fputs(
-        $out,
-        "Message: {$e->getMessage()} \nFile: {$e->getFile()}\nLine: {$e->getLine()}\nTrace: {$e->getTraceAsString()}"
+$exceptionHandlerFunction = function (\Exception $e) use ($app): void {
+    $request = $app['request_stack']->getCurrentRequest();
+    $app['logger']->error(
+        '',
+        [
+            'error' => $e->getMessage(),
+            'uri' => is_null($request) ? '' : $request->getUri(),
+            'user_agent' => is_null($request) ? '' : $request->headers->get('User-Agent'),
+            'file' => $e->getFile() . ':' . $e->getLine()
+        ]
     );
-    fclose($out);
 };
+
+if (!isset($_ENV['env']) || $_ENV['env'] !== 'test') {
+    $app->error($exceptionHandlerFunction);
+}
 
 ErrorHandler::register();
 $exceptionHandler = ExceptionHandler::register($app['params']->parameterByKey('debug'));
 $exceptionHandler->setHandler($exceptionHandlerFunction);
 
-if ('test' !== $app['env']) {
-    $app->error($exceptionHandlerFunction);
-}
-
-if (!is_dir(UPLOAD_DIR)) {
-    mkdir(UPLOAD_DIR, 0777, true);
-}
-if (!is_dir(TMP_DIR)) {
-    mkdir(TMP_DIR, 0777, true);
-}
 
 /**
  * Routes
@@ -50,7 +56,6 @@ $app['routes'] = $app->extend(
 );
 
 /** Register Storage provider */
-
 switch ($app['params']->parameterByKey('storage_system')) {
     case 's3':
         $app->register(new \Core\StorageProvider\S3StorageProvider());
