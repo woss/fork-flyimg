@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/constants.php';
 
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\ExceptionHandler;
@@ -9,13 +8,39 @@ use Symfony\Component\Routing\RouteCollection;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Registry;
+use Silex\Application;
 
-$app = new Silex\Application();
+/**
+ * Define constants
+ */
+define('ROOT_DIR', __DIR__);
+define('UPLOAD_WEB_DIR', 'uploads/');
+define('UPLOAD_DIR', __DIR__ . '/web/' . UPLOAD_WEB_DIR);
+define('TMP_DIR', __DIR__ . '/var/tmp/');
 
-/** @var \Core\Entity\AppParameters $app['params'] */
+/**
+ * Create directories if they don't exist
+ */
+if (!is_dir(UPLOAD_DIR)) {
+    mkdir(UPLOAD_DIR, 0777, true);
+}
+if (!is_dir(TMP_DIR)) {
+    mkdir(TMP_DIR, 0777, true);
+    }
+
+/**
+ * Create Silex application
+ */
+$app = new Application();
+
+/**
+ * Load application parameters
+ */
 $app['params'] = new \Core\Entity\AppParameters(__DIR__ . '/config/parameters.yml');
 
-/** Logging via Monolog settings */
+/**
+ * Logging via Monolog settings
+ */
 $logLevel = $app['params']->parameterByKey('log_level');
 $logger = new Logger('flyimg');
 $logger->pushHandler(new StreamHandler('php://stdout', $logLevel));
@@ -39,10 +64,12 @@ if (!isset($_ENV['env']) || $_ENV['env'] !== 'test') {
     $app->error($exceptionHandlerFunction);
 }
 
+/**
+ * Register error handler
+ */
 ErrorHandler::register();
 $exceptionHandler = ExceptionHandler::register($app['params']->parameterByKey('debug'));
 $exceptionHandler->setHandler($exceptionHandlerFunction);
-
 
 /**
  * Routes
@@ -55,7 +82,9 @@ $app['routes'] = $app->extend(
     }
 );
 
-/** Register Storage provider */
+/**
+ * Register Storage provider
+ */
 switch ($app['params']->parameterByKey('storage_system')) {
     case 's3':
         $app->register(new \Core\StorageProvider\S3StorageProvider());
@@ -100,7 +129,9 @@ if (!empty($argv[1]) && !empty($argv[2]) && $argv[1] == 'encrypt') {
     return;
 }
 
-/** debug conf */
+/**
+ * Debug configuration
+ */
 $app['debug'] = $app['params']->parameterByKey('debug');
 
 return $app;

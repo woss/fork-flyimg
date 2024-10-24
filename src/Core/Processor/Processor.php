@@ -56,15 +56,15 @@ class Processor
      * @throws \Exception
      */
     public function execute(Command $command): array
-    {        
+    {
         $descriptorspec = [
             0 => ["pipe", "r"],  // stdin
             1 => ["pipe", "w"],  // stdout
             2 => ["pipe", "w"]   // stderr
         ];
-        
+
         $process = proc_open($command, $descriptorspec, $pipes);
-        
+
         if (is_resource($process)) {
             $output = stream_get_contents($pipes[1]);
             $errorOutput = stream_get_contents($pipes[2]);
@@ -83,7 +83,7 @@ class Processor
         } else {
             throw new ExecFailedException("Failed to initiate the process.");
         }
-        
+
         return explode(PHP_EOL, $output);
     }
 
