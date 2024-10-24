@@ -1,5 +1,27 @@
 # Flyimg Changelog
 
+# [1.5.0](https://github.com/flyimg/flyimg/compare/1.4.15...1.5.0) (2024-10-24)
+
+
+### Bug Fixes
+
+* add S3 storage optional parameters, update docs ([930dfe5](https://github.com/flyimg/flyimg/commit/930dfe587d330e0e167f323f3f2cd5301b8ae120))
+* fix linting ([3c1b53a](https://github.com/flyimg/flyimg/commit/3c1b53a5c1a8f2e35a6c3e7f5c6fe4092f96da29))
+* fix linting errors ([e79ed9a](https://github.com/flyimg/flyimg/commit/e79ed9a02b440732864d4d183419652a6ad613ff))
+* fix linting errors ([182a019](https://github.com/flyimg/flyimg/commit/182a019809f4a176456e33c1b8a3b5ff6e5d7263))
+* fix linting errors ([5114989](https://github.com/flyimg/flyimg/commit/5114989c058abd16bf93fb49b6d60aa1fb5b85c2))
+* fix linting errors and extract constants into a separate file ([dd24926](https://github.com/flyimg/flyimg/commit/dd24926d43aadee7192b05b112d89e00e34eba1b))
+* fix linting errors for the s3 storage ([ef65ead](https://github.com/flyimg/flyimg/commit/ef65eadaed72317e3f4c5899a2134c85943a8e64))
+* fix missing include statement ([e679f38](https://github.com/flyimg/flyimg/commit/e679f38e98874f583fc172d7123f322642a8a9cd))
+* fixing linting errors ([b2c6fd9](https://github.com/flyimg/flyimg/commit/b2c6fd9634fecd7c35153a6c6bb28deda461962d))
+* fixing linting errors ([feec80b](https://github.com/flyimg/flyimg/commit/feec80bffdf89754d27e30e371f58b6665e05581))
+* update documentation regarding s3 storage, related to [#533](https://github.com/flyimg/flyimg/issues/533) ([28a31b9](https://github.com/flyimg/flyimg/commit/28a31b9b36b11219781b51d7c5e6484cc0003ee6))
+
+
+### Features
+
+* adapt monologo as logging output and add log_level option, update docs, related to [#530](https://github.com/flyimg/flyimg/issues/530) ([ce3536d](https://github.com/flyimg/flyimg/commit/ce3536d604e886765d889e00d3ad52197320f2fb))
+
 ## [1.4.15](https://github.com/flyimg/flyimg/compare/1.4.14...1.4.15) (2024-10-21)
 
 
