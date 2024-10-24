@@ -32,8 +32,10 @@ class S3StorageProvider implements ServiceProviderInterface
         $app['flysystems']['file_path_resolver'] = function () use ($s3Params) {
             $pathPrefix = !empty($s3Params['path_prefix']) ? $s3Params['path_prefix'] . '/' : '';
             $pathResolver = isset($s3Params['endpoint']) && !empty($s3Params['endpoint'])
-                ? sprintf($s3Params['endpoint'], $s3Params['bucket_name'], $s3Params['region']) . $pathPrefix . '%s'
-                : sprintf('https://%s.s3.%s.amazonaws.com/', $s3Params['bucket_name'], $s3Params['region']) . $pathPrefix . '%s';
+                ? sprintf($s3Params['endpoint'], $s3Params['bucket_name'], $s3Params['region']) 
+                . $pathPrefix . '%s'
+                : sprintf('https://%s.s3.%s.amazonaws.com/', $s3Params['bucket_name'], $s3Params['region']) 
+                . $pathPrefix . '%s';
             return $pathResolver;
         };
     }
@@ -87,7 +89,7 @@ class S3StorageProvider implements ServiceProviderInterface
                         'args' => [
                             new S3Client($clientParams),
                             urlencode($s3Params['bucket_name']),
-                            $s3Params['path_prefix']?? '',
+                            $s3Params['path_prefix'] ?? '',
                             new PortableVisibilityConverter(
                                 Visibility::{$s3Params['visibility'] ?? 'PRIVATE'}
                             )
