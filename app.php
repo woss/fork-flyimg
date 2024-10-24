@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\ExceptionHandler;
@@ -11,14 +12,6 @@ use Monolog\Registry;
 use Silex\Application;
 
 /**
- * Define constants
- */
-define('ROOT_DIR', __DIR__);
-define('UPLOAD_WEB_DIR', 'uploads/');
-define('UPLOAD_DIR', __DIR__ . '/web/' . UPLOAD_WEB_DIR);
-define('TMP_DIR', __DIR__ . '/var/tmp/');
-
-/**
  * Create directories if they don't exist
  */
 if (!is_dir(UPLOAD_DIR)) {
@@ -26,7 +19,7 @@ if (!is_dir(UPLOAD_DIR)) {
 }
 if (!is_dir(TMP_DIR)) {
     mkdir(TMP_DIR, 0777, true);
-    }
+}
 
 /**
  * Create Silex application
