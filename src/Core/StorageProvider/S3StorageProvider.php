@@ -6,6 +6,8 @@ use Aws\S3\S3Client;
 use Core\Exception\MissingParamsException;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
+use League\Flysystem\AwsS3V3\PortableVisibilityConverter;
+use League\Flysystem\Visibility;
 
 /**
  * Storage class to manage Storage provider from FlySystem
@@ -23,16 +25,33 @@ class S3StorageProvider implements ServiceProviderInterface
     public function register(Container $app)
     {
         $s3Params = $app['params']->parameterByKey('aws_s3');
-        if (in_array("", $s3Params)) {
-            throw new MissingParamsException("One of AWS S3 parameters in empty ! ");
-        }
+        $requiredParams = ['access_id', 'secret_key', 'bucket_name', 'region'];
+        $this->validateRequiredParams($s3Params, $requiredParams);
 
         $this->registerS3ServiceProvider($app, $s3Params);
         $app['flysystems']['file_path_resolver'] = function () use ($s3Params) {
-            return isset($s3Params['endpoint'])
-                ? sprintf($s3Params['endpoint'], $s3Params['bucket_name'], $s3Params['region']) . '%s'
-                : sprintf('https://%s.s3.%s.amazonaws.com/', $s3Params['bucket_name'], $s3Params['region']) . '%s';
+            $pathPrefix = !empty($s3Params['path_prefix']) ? $s3Params['path_prefix'] . '/' : '';
+            $pathResolver = isset($s3Params['endpoint']) && !empty($s3Params['endpoint'])
+                ? sprintf($s3Params['endpoint'], $s3Params['bucket_name'], $s3Params['region']) . $pathPrefix . '%s'
+                : sprintf('https://%s.s3.%s.amazonaws.com/', $s3Params['bucket_name'], $s3Params['region']) . $pathPrefix . '%s';
+            return $pathResolver;
         };
+    }
+
+    /**
+     * Validates that all required parameters are present in the S3 configuration.
+     *
+     * @param array $s3Params The S3 configuration parameters.
+     * @param array $requiredParams The list of required parameter keys.
+     * @throws MissingParamsException If any required parameter is missing.
+     */
+    private function validateRequiredParams(array $s3Params, array $requiredParams): void
+    {
+        foreach ($requiredParams as $param) {
+            if (!isset($s3Params[$param]) || empty($s3Params[$param])) {
+                throw new MissingParamsException("Parameter '$param' is required for S3 configuration.");
+            }
+        }
     }
 
     /**
@@ -68,6 +87,10 @@ class S3StorageProvider implements ServiceProviderInterface
                         'args' => [
                             new S3Client($clientParams),
                             urlencode($s3Params['bucket_name']),
+                            $s3Params['path_prefix']?? '',
+                            new PortableVisibilityConverter(
+                                Visibility::{$s3Params['visibility'] ?? 'PRIVATE'}
+                            )
                         ],
                     ],
                 ],

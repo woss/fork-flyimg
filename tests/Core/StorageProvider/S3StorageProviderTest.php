@@ -56,6 +56,8 @@ class S3StorageProviderTest extends BaseTest
                 'secret_key' => 'xxxxx',
                 'region' => 'xxxxx',
                 'bucket_name' => 'xxxxx',
+                'path_prefix' => 'xxxxx',
+                'visibility' => 'PRIVATE',
             ]
         );
 
@@ -78,7 +80,7 @@ class S3StorageProviderTest extends BaseTest
                 'access_id' => 'xxxxx',
                 'secret_key' => '',
                 'region' => '',
-                'bucket_name' => '',
+                'bucket_name' => ''
             ]
         );
         $this->app->register(new S3StorageProvider());
