@@ -3,14 +3,14 @@
 require_once __DIR__ . '/constants.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Symfony\Component\Debug\ErrorHandler;
-use Symfony\Component\Debug\ExceptionHandler;
+use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
+use Symfony\Component\ErrorHandler\ErrorHandler;
 use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\HttpFoundation\Response;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Registry;
 use Silex\Application;
-
 /**
  * Create directories if they don't exist
  */
@@ -35,12 +35,10 @@ $app['params'] = new \Core\Entity\AppParameters(__DIR__ . '/config/parameters.ym
  * Logging via Monolog settings
  */
 $logLevel = $app['params']->parameterByKey('log_level');
-$logger = new Logger('flyimg');
-$logger->pushHandler(new StreamHandler('php://stdout', $logLevel));
-Registry::addLogger($logger);
-$app['logger'] = $logger;
+$logger = new Core\Entity\Logger('flyimg', $logLevel);
+$app['logger'] = $logger->getLogger();
 
-$exceptionHandlerFunction = function (\Exception $e) use ($app): void {
+$exceptionHandlerFunction = function (\Exception $e) use ($app): Response {
     $request = $app['request_stack']->getCurrentRequest();
     $app['logger']->error(
         '',
@@ -51,18 +49,29 @@ $exceptionHandlerFunction = function (\Exception $e) use ($app): void {
             'file' => $e->getFile() . ':' . $e->getLine()
         ]
     );
+    $htmlErrorHandler = new HtmlErrorRenderer($app['params']->parameterByKey('debug'));
+    return new Response($htmlErrorHandler->render($e)->getAsString(), 500);
 };
 
 if (!isset($_ENV['env']) || $_ENV['env'] !== 'test') {
     $app->error($exceptionHandlerFunction);
 }
 
-/**
- * Register error handler
- */
-ErrorHandler::register();
-$exceptionHandler = ExceptionHandler::register($app['params']->parameterByKey('debug'));
-$exceptionHandler->setHandler($exceptionHandlerFunction);
+// ErrorHandler::call(function () use ($app): Response {
+//     $e = new \Exception('Test error');
+//     $request = $app['request_stack']->getCurrentRequest();
+//     $app['logger']->error(
+//         '',
+//         [
+//             'error' => $e->getMessage(),
+//             'uri' => is_null($request) ? '' : $request->getUri(),
+//             'user_agent' => is_null($request) ? '' : $request->headers->get('User-Agent'),
+//             'file' => $e->getFile() . ':' . $e->getLine()
+//         ]
+//     );
+//     $htmlErrorHandler = new HtmlErrorRenderer($app['params']->parameterByKey('debug'));
+//     return new Response($htmlErrorHandler->render($e)->getAsString(), 500);
+// });
 
 /**
  * Routes
