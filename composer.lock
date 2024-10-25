@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85c7b1f5a0ac1c3b9379724eb24f076b",
+    "content-hash": "256dee96bc9bce0a8fbde056e1136494",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -160,16 +160,16 @@
         },
         {
             "name": "flyimg/silex",
-            "version": "0.0.1",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/flyimg/Silex.git",
-                "reference": "6c03965c8aad41acd3b274d274b645da8d46f329"
+                "reference": "0359b67a5d8824845226f231d77ee54fcb6bcf9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flyimg/Silex/zipball/6c03965c8aad41acd3b274d274b645da8d46f329",
-                "reference": "6c03965c8aad41acd3b274d274b645da8d46f329",
+                "url": "https://api.github.com/repos/flyimg/Silex/zipball/0359b67a5d8824845226f231d77ee54fcb6bcf9b",
+                "reference": "0359b67a5d8824845226f231d77ee54fcb6bcf9b",
                 "shasum": ""
             },
             "require": {
@@ -187,6 +187,7 @@
             "require-dev": {
                 "symfony/phpunit-bridge": "^7.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -210,9 +211,9 @@
             ],
             "support": {
                 "issues": "https://github.com/flyimg/Silex/issues",
-                "source": "https://github.com/flyimg/Silex/tree/0.0.1"
+                "source": "https://github.com/flyimg/Silex/tree/main"
             },
-            "time": "2024-10-25T09:22:19+00:00"
+            "time": "2024-10-25T09:48:29+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -4224,7 +4225,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "flyimg/silex": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
