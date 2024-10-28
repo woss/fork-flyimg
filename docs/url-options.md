@@ -105,6 +105,51 @@ The basic options are: `NorthWest`, `North`, `NorthEast`, `West`, `Center`, `Eas
 
 **example:`g_West`**
 
+### `t` : text
+
+`string`
+_Default:_ `null`
+_Description:_ Add text to the image (watermark).
+Use the gravity option `g` to define where the text will be placed.
+
+**example:`t_Hello`**
+
+### `tc` : text-color
+
+`string`
+_Default:_ `white`
+_Description:_ Set the color of the text.
+For the hex code, the hash `#` character should be replaced by `%23`
+
+**example:`tc_%23ff4455`, `tc_red`**
+
+### `ts` : text-size
+
+`int`
+_Default:_ `12`
+_Description:_ Set the size of the text.
+
+**example:`ts_24`**
+
+### `ts` : text-size
+
+`int`
+_Default:_ `12`
+_Description:_ Set the size of the text.
+
+**example:`ts_24`**
+
+### `tbg` : text-bg
+
+`string`
+_Default:_ `null`
+_Description:_ Set the background color of the text.
+For the hex code, the hash `#` character should be replaced by `%23`
+
+**example:`tbg_%23ff4455`, `tbg_red`**
+
+![t_by%20Flyimg,tc_%23bcc7c9,ts_24,tbg_%234f8400,g_SouthEast](https://demo.flyimg.io/upload/w_600,t_by%20Flyimg,tc_%23bcc7c9,ts_24,tbg_%234f8400,g_SouthEast,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+
 ### `r` : rotate
 
 `string`
