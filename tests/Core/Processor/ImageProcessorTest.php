@@ -285,7 +285,7 @@ class ImageProcessorTest extends BaseTest
     public function testTextAnnotation()
     {
         $image = $this->imageHandler->processImage(
-            'o_jpg,rf_1,g_Center,tbg_yellow,t_by Flyimg,tc_#306a1d,ts_32', 
+            'o_jpg,rf_1,g_Center,tbg_yellow,t_by Flyimg,tc_#306a1d,ts_32',
             self::EXTRACT_TEST_IMAGE
         );
         $filesize = filesize($image->getOutputTmpPath());
