@@ -148,7 +148,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 **example:`tbg_%23ff4455`, `tbg_red`**
 
-![t_by%20Flyimg,tc_%23bcc7c9,ts_24,tbg_%234f8400,g_SouthEast](https://demo.flyimg.io/upload/w_600,t_by%20Flyimg,tc_%23bcc7c9,ts_24,tbg_%234f8400,g_SouthEast,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![t_by%20Flyimg,tc_%23bcc7c9,ts_44,tbg_%234f8400,g_SouthEast](https://demo.flyimg.io/upload/w_600,t_by%20Flyimg,tc_%23bcc7c9,ts_44,tbg_%234f8400,g_SouthEast,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
 
 ### `r` : rotate
 

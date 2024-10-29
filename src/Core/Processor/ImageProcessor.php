@@ -331,7 +331,6 @@ class ImageProcessor extends Processor
             $command->addArgument("-fill", $this->options->getOption('text-color'))
                 ->addArgument("-pointsize", $this->options->getOption('text-size'))
                 ->addArgument("-annotate +0+0 ", $this->options->getOption('text'));
-            
         }
 
         return $command;
