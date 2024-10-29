@@ -47,7 +47,7 @@ $exceptionHandlerFunction = function (\Exception $e) use ($app): Response {
             'file' => $e->getFile() . ':' . $e->getLine(),
             'uri' => is_null($request) ? '' : $request->getUri(),
             'user_agent' => is_null($request) ? '' : $request->headers->get('User-Agent'),
-            'remote_addr' => is_null($request) ? '' : $request->getClientIp(),
+            'http_client_ip' => is_null($request) ? '' : $request->headers->get('X-Real-IP'),
         ]
     );
     $htmlErrorHandler = new HtmlErrorRenderer($app['params']->parameterByKey('debug'));
