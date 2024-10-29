@@ -20,6 +20,7 @@ class ImageProcessorTest extends BaseTest
     public const PNG_TEST_SMALL_SQUARE_IMAGE = __DIR__ . '/../../testImages/square-opaque-200.png';
     public const PNG_TEST_SMALL_LANDSCAPE_IMAGE = __DIR__ . '/../../testImages/landscape-color-squares-300x200.png';
     public const PNG_TEST_SMALL_PORTRAIT_IMAGE = __DIR__ . '/../../testImages/portrait-color-squares-200x300.png';
+    public const TEST_IMAGE_WITH_TEXT_RESULT = __DIR__ . '/../../testImages/image-with-text-result.jpg';
     public const OUTPUT_EXTENSIONS = ['png', 'jpg', 'webp', 'gif'];
 
     protected $imageProcessor;
@@ -276,5 +277,18 @@ class ImageProcessorTest extends BaseTest
         $imgInfo = new ImageMetaInfo($filePath);
 
         return $imgInfo->info();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testTextAnnotation()
+    {
+        $image = $this->imageHandler->processImage('o_jpg,rf_1,g_Center,tbg_yellow,t_by Flyimg,tc_#306a1d,ts_32', self::EXTRACT_TEST_IMAGE);
+        $filesize = filesize($image->getOutputTmpPath());
+        $filesize2 = filesize(self::TEST_IMAGE_WITH_TEXT_RESULT);
+        $this->generatedImage[] = $image;
+        $this->assertFileExists($image->getOutputTmpPath());
+        $this->assertEquals($filesize, $filesize2);
     }
 }
