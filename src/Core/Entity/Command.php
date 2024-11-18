@@ -35,6 +35,8 @@ class Command
         }
 
         $this->arguments[] = $argument;
+
+        return $this;
     }
 
     /**

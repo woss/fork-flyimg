@@ -73,17 +73,16 @@ class ImageProcessor extends Processor
             '[' . ($outputImage->extractKey('pdf-page-number') - 1) . ']' :
             '';
 
-        $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo);
-
-        $command->addArgument($this->calculateSize());
-
-        $command->addArgument('-colorspace', $outputImage->extractKey('colorspace'));
+        $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo)
+            ->addArgument($this->calculateSize())
+            ->addArgument('-colorspace', $outputImage->extractKey('colorspace'));
 
         if (!empty($outputImage->extractKey('monochrome'))) {
             $command->addArgument('-monochrome');
         }
 
         $command->addArgument($this->checkForwardedOptions());
+        $command->addArgument($this->addTextAnnotation());
 
         //Strip is added internally by ImageMagick when using -thumbnail
         $withoutValueOptions = ['strip', 'auto-orient'];
@@ -138,7 +137,6 @@ class ImageProcessor extends Processor
         $command[] = $this->getResizeOperator();
         $command[] = $this->getDimensions() . '^';
         $command[] = '-background none';
-        $command[] = '-gravity ' . $this->options->getOption('gravity');
         $command[] = '-extent ' . $this->getDimensions();
 
         return implode(' ', $command);
@@ -303,7 +301,7 @@ class ImageProcessor extends Processor
     private function checkForwardedOptions(): string
     {
         $command = new Command("");
-        $forwardedOptions = ['background', 'rotate', 'unsharp', 'sharpen', 'blur', 'filter'];
+        $forwardedOptions = ['background', 'rotate', 'unsharp', 'sharpen', 'blur', 'filter', 'gravity'];
 
         foreach ($forwardedOptions as $option) {
             if (!empty($this->options->getOption($option))) {
@@ -312,6 +310,27 @@ class ImageProcessor extends Processor
                     $command->addArgument("-alpha remove -alpha off");
                 }
             }
+        }
+
+        return $command;
+    }
+
+    /**
+     * Add text annotation to the image
+     *
+     * @return string
+     */
+    private function addTextAnnotation(): string
+    {
+        $command = new Command("");
+
+        if (!empty($this->options->getOption('text'))) {
+            if (!empty($this->options->getOption('text-bg'))) {
+                $command->addArgument("-undercolor", $this->options->getOption('text-bg'));
+            }
+            $command->addArgument("-fill", $this->options->getOption('text-color'))
+                ->addArgument("-pointsize", $this->options->getOption('text-size'))
+                ->addArgument("-annotate +0+0 ", $this->options->getOption('text'));
         }
 
         return $command;

@@ -32,7 +32,7 @@ class ControllerResolver extends BaseControllerResolver
      * @return mixed A PHP callable
      * @throws InvalidArgumentException
      */
-    protected function createController($controller)
+    protected function createController($controller): callable
     {
         if (false === strpos($controller, '::')) {
             throw new InvalidArgumentException(sprintf('Unable to find controller "%s".', $controller));
