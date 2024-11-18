@@ -345,6 +345,96 @@ _Description:_ Apply blur effect on faces in a given image
 
 ![fb_1](https://demo.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg)
 
+### `smc` : smart-crop
+
+`int`
+_Default:_ `0`
+_Description:_ Use smart crop to get the best possible crop of the image.
+
+**example:`smc_1`**
+
+- Image: `https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+- Width: 500
+- Smart Crop: `smc_1`
+
+**Without Smart Crop**
+
+`https://demo.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+
+![lago_ranco](https://demo.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
+
+**With Smart Crop Enabled**
+
+`https://demo.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg`
+
+![lago_ranco](https://demo.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
+
+### `pg` : pdf-page
+
+`int`
+_Default:_ `1`
+_Description:_ Sets the target page of the PDF. If not set, the default is page 1.
+
+**example:`pg_1`**
+
+- PDF: `http://mudawn.com/assets/lighthouses.pdf`
+- Width: 200
+- Height: 200
+- Page: `pg_1`
+
+`https://demo.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf`
+
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf)
+
+### `tm` : video-time
+
+`string`
+_Default:_ `00:00:01`
+_Description:_ Sets the frame capture time duration point in the video. If not set, the default is 1 second. The format is `HH:MM:SS` OR `SS`
+
+**example:`tm_00:00:05`**
+
+- Video: `http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
+- Width: 200
+- Height: 200
+- Time: `tm_00:00:05`
+
+`https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
+
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4)
+
+### `clsp` : colorspace
+
+`string`
+_Default:_ `null`
+_Description:_ Convert the image to a different colorspace.
+
+**example:`clsp_Gray`**
+
+- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
+- Width: 400
+- Colorspace: `clsp_Gray`
+
+`https://demo.flyimg.io/upload/w_400,clsp_Gray/https://mudawn.com/assets/butterfly-3000.jpg`
+
+![lago_ranco](https://demo.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+
+### `mnchr` : monochrome
+
+`int`
+_Default:_ `0`
+_Description:_ Convert the image to monochrome.
+
+**example:`mnchr_1`**
+
+- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
+- Width: 400
+- Monochrome: `mnchr_1`
+
+`https://demo.flyimg.io/upload/w_400,mnchr_1/https://mudawn.com/assets/butterfly-3000.jpg`
+
+![lago_ranco](https://demo.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+
 ### `e` : extract
 
 #### `p1x` : extract-top-x

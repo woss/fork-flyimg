@@ -31,15 +31,15 @@ const addInput = () => {
                     <option value="w" data-bs-example="Sets the target width of the image. If not set, width will be calculated in order to keep aspect ratio.">width</option>
                     <option value="h" data-bs-example="Sets the target height of the image. If not set, height will be calculated in order to keep aspect ratio.">height</option>
                     <option value="c" data-bs-example="When both width and height are set, this allows the image to be cropped so it fills the width x height area, default 0 , to enable it 1">crop</option>
-                    <option value="bg" data-bs-example="Sets the background of the canvas for the cases where padding is added to the images. It supports hex, css color names, rgb. Only css color names are supported without quotation marks. For the hex code, the hash # character should be replaced by %23, example bg_red,bg_%23ff4455,bg_rgb(255,120,100)">background</option>
+                    <option value="bg" data-bs-example="Sets the background of the canvas for the cases where padding is added to the images. It supports hex, css color names, rgb. Only css color names are supported without quotation marks.Example red <br>#ff4455 <br>rgb(255,120,100)">background</option>
                     <option value="st" data-bs-example="Removes exif data and additional color profile. Leaving your image with the default sRGB color profile, default 0 , to enable it 1 ">strip</option>
                     <option value="ao" data-bs-example="Adjusts an image so that its orientation is suitable for viewing (i.e. top-left orientation), default 0 , to enable it 1">auto-orient</option>
                     <option value="rz" data-bs-example="The alternative resizing method to -thumbnail, default 0 , to enable it 1">resize</option>
                     <option value="g" data-bs-example="When crop is applied, changing the gravity will define which part of the image is kept inside the crop area. The basic options are: NorthWest, North, NorthEast, West, Center, East, SouthWest, South, SouthEast.">gravity</option>
                     <option value="t" data-bs-example="Add text to the image (watermark).">text</option>
-                    <option value="tc" data-bs-example="Set the color of the text.It supports hex, css color names, rgb. Only css color names are supported without quotation marks. Example: <br>tc_red <br>tc_rgb(255,120,100)">text-color</option>
+                    <option value="tc" data-bs-example="Set the color of the text.It supports hex, css color names, rgb. Only css color names are supported without quotation marks. Example: <br>red <br>#ff4455 <br>rgb(255,120,100)">text-color</option>
                     <option value="ts" data-bs-example="Set the size of the text.">text-size</option>
-                    <option value="tbg" data-bs-example="Set the background color of the text. It supports hex, css color names, rgb. Only css color names are supported without quotation marks.<br>For the hex code, the hash # character should be replaced by %23, example: <br>tbg_red <br> tbg_%23ff4455 <br>tbg_rgb(255,120,100)">text-bg</option>
+                    <option value="tbg" data-bs-example="Set the background color of the text. It supports hex, css color names, rgb. Only css color names are supported without quotation marks. Example: <br>red <br> #ff4455 <br>rgb(255,120,100)">text-bg</option>
                     <option value="f" data-bs-example="Resizing algorithm, default Lanczos, possible value Triangle (Triangle is a smoother lighter option)">filter</option>
                     <option value="r" data-bs-example="Apply image rotation (using shear operations) to the image, default 0, possible value 90 | 45">rotate</option>
                     <option value="sc" data-bs-example="The -scale resize operator is a simplified, faster form of the resize command. Useful for fast exact scaling of pixels, default 0 , to enable it 1">scale</option>
@@ -142,7 +142,7 @@ const refreshImage = () => {
     }
 
     const imageUrl = baseUrl + params + '/' + sourceImageInput.value; // Remove the trailing comma
-    document.getElementById('generated-url').innerHTML = imageUrl;
+    document.getElementById('generated-url').textContent = imageUrl;
     document.getElementById('generated-url-container').style.display = 'block';
 
     showLoading();
