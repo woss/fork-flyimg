@@ -58,22 +58,6 @@ if (!isset($_ENV['env']) || $_ENV['env'] !== 'test') {
     $app->error($exceptionHandlerFunction);
 }
 
-// ErrorHandler::call(function () use ($app): Response {
-//     $e = new \Exception('Test error');
-//     $request = $app['request_stack']->getCurrentRequest();
-//     $app['logger']->error(
-//         '',
-//         [
-//             'error' => $e->getMessage(),
-//             'uri' => is_null($request) ? '' : $request->getUri(),
-//             'user_agent' => is_null($request) ? '' : $request->headers->get('User-Agent'),
-//             'file' => $e->getFile() . ':' . $e->getLine()
-//         ]
-//     );
-//     $htmlErrorHandler = new HtmlErrorRenderer($app['params']->parameterByKey('debug'));
-//     return new Response($htmlErrorHandler->render($e)->getAsString(), 500);
-// });
-
 /**
  * Routes
  */
