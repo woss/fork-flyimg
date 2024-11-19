@@ -6,8 +6,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SecurityException extends HttpException
 {
-    public function __construct()
+    public function __construct(string $message)
     {
-         parent::__construct(403, 'Access Denied');
+         parent::__construct(403, $message);
     }
 }
