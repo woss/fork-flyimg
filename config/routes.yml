@@ -1,15 +1,15 @@
----
 home:
-   path : /
+   path: /
    defaults: { _controller: 'Core\Controller\DefaultController::indexAction' }
 
 upload:
-   path : /upload/{options}/{imageSrc}
+   path: /upload/{options}/{imageSrc}
    defaults: { _controller: 'Core\Controller\DefaultController::uploadAction', imageSrc: '' }
    requirements:
-      imageSrc: .+
+      imageSrc: .*
+
 path:
-   path : /path/{options}/{imageSrc}
+   path: /path/{options}/{imageSrc}
    defaults: { _controller: 'Core\Controller\DefaultController::pathAction', imageSrc: '' }
    requirements:
-      imageSrc: .+
+      imageSrc: .*

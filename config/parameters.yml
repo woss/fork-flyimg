@@ -18,7 +18,8 @@ enable_cronjob_cleanup: true
 cronjob_cleanup_interval: "0 */5 * * *"
 
 # Options separator
-# When changing this value, you should change the OPTIONS_SEPARATOR value in web/js/main.js!  
+# When changing this value, you should change
+# the OPTIONS_SEPARATOR value in web/js/main.js!
 options_separator: ','
 
 # Security: Signature generation
@@ -46,7 +47,9 @@ aws_s3:
   bucket_name: ''
   # path_prefix: '' # optional
   #visibility: 'PRIVATE' # options: PUBLIC or PRIVATE
-  #endpoint: 'https://%s.s3.%s.amazonaws.com/' # optional for third party S3 compatible services, the format is https://<bucket-name>.s3.<region>.amazonaws.com/
+  #endpoint: 'https://%s.s3.%s.amazonaws.com/' # optional for third party
+  # S3 compatible services, the format is https://<bucket-name>.
+  # s3.<region>.amazonaws.com/
 
 # Number of threads for Imagemagick to use
 thread: 1
@@ -57,21 +60,26 @@ heic_speed: 8
 # Read source image timeout in seconds
 source_image_request_timeout: 5
 
-# When set to true the generated image will be deleted from the cache in web/upload and served directly in the response
+# When set to true the generated image will be deleted
+# from the cache in web/upload and served directly in the response
 disable_cache: false
 
 # When supported by the browser, AVIF format will be served as default output
 enable_avif: true
 
-# When supported by the browser, Webp format will be served as default output (after checking AVIF support)
+# When supported by the browser, Webp format will be served
+# as default output (after checking AVIF support)
 enable_webp: true
 
-# Extra options for the header sent to source image server, as some servers requires the User-Agent.
-header_extra_options: 
-  - 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2) Gecko/20110201'
+# Extra options for the header sent to source image server,
+# as some servers requires the User-Agent.
+header_extra_options:
+  - 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2)
+     Gecko/20110201'
 
-# List of request header to forward to source image server (example Authorization)
-forward_request_headers: []
+# List of request header to forward to source image server
+# (example Authorization)
+forward_request_headers: [ ]
 
 # Keys used in url to match options. Ex: q_80,w_200,h_100
 options_keys:

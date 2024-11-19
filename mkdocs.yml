@@ -1,3 +1,4 @@
+---
 site_name: Flyimg
 site_url: https://flyimg.io
 copyright: Copyright &copy; 2024 Flyimg
@@ -14,7 +15,7 @@ theme:
   favicon: assets/images/favicon.ico
 
   palette:
-     # Palette toggle for light mode
+    # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: flyimg
       primary: dark-blue
@@ -69,14 +70,14 @@ markdown_extensions:
 nav:
   - Welcome: index.md
   - Get Started:
-    - Install: install.md
-    - Helm Chart: helm-chart.md
-    - Basic Usage: basic-usage.md
+      - Install: install.md
+      - Helm Chart: helm-chart.md
+      - Basic Usage: basic-usage.md
   - Docs:
-    - Configuration: configuration.md
-    - URL Options: url-options.md
-    - Storage Options: storage-options.md
-    - Security: security.md
-    - Benchmark: benchmark.md
-    - Unit Tests: unit-tests.md
-    - Enable XDebug: enable-xdebug.md
+      - Configuration: configuration.md
+      - URL Options: url-options.md
+      - Storage Options: storage-options.md
+      - Security: security.md
+      - Benchmark: benchmark.md
+      - Unit Tests: unit-tests.md
+      - Enable XDebug: enable-xdebug.md

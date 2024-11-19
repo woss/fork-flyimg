@@ -1,7 +1,8 @@
 ---
 name: "deploy branch to dev"
 
-# The workflow will execute on new comments on pull requests - example: ".deploy" as a comment
+# The workflow will execute on new comments
+# on pull requests - example: ".deploy" as a comment
 on:
   issue_comment:
     types: [created]
@@ -16,7 +17,8 @@ permissions:
 
 jobs:
   dev:
-    if: # only run on pull request comments and very specific comment body string as defined in our branch-deploy settings
+    if: # only run on pull request comments and very specific
+        # comment body string as defined in our branch-deploy settings
       ${{ github.event.issue.pull_request &&
       (startsWith(github.event.comment.body, '.deploy') ||
       startsWith(github.event.comment.body, '.noop') ||
@@ -27,18 +29,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Execute IssueOps branch deployment logic, hooray!
-      # This will be used to "gate" all future steps below and conditionally trigger steps/deployments
+      # This will be used to "gate" all future steps below
+      # and conditionally trigger steps/deployments
       - uses: github/branch-deploy@v9
-        id: branch-deploy # it is critical you have an id here so you can reference the outputs of this step
+        id: branch-deploy # it is critical you have an id here
+                          # so you can reference the outputs of this step
         with:
-          trigger: ".deploy" # the trigger phrase to look for in the comment on the pull request
+          trigger: ".deploy" # the trigger phrase to look for
+                             # in the comment on the pull request
           environment: "dev"
           environment_urls: "dev|https://dev.flyimg.io"
 
       # Run your deployment logic for your project here - examples seen below
 
       - name: Deploy to dev environment
-        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
+        if: ${{ steps.branch-deploy.outputs.continue == 'true'
+          && steps.branch-deploy.outputs.noop != 'true' }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.FLYIMG_DEMO_HOST }}
@@ -48,9 +54,11 @@ jobs:
           command_timeout: 20m
           script: |
             cd /home/deployer/dev.flyimg.io/
-            bash -c "git checkout . && git fetch && git pull && git checkout main"
+            bash -c "git checkout . && git fetch && git pull &&
+            git checkout main"
             bash -c "git checkout ${{ steps.branch-deploy.outputs.ref }}"
             bash -c "docker build -t dev-branch ."
             bash -c "docker rm -f flyimg-dev"
-            bash -c "docker run -itd -p 8090:80 -v $PWD:/var/www/html --name flyimg-dev dev-branch"
+            bash -c "docker run -itd -p 8090:80 -v $PWD:/var/www/html
+            --name flyimg-dev dev-branch"
             bash -c "docker exec flyimg-dev composer install"
