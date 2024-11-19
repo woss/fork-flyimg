@@ -1,5 +1,24 @@
 # Flyimg Changelog
 
+# [1.6.0](https://github.com/flyimg/flyimg/compare/1.5.0...1.6.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* add remote_addr to logging ([80cef3f](https://github.com/flyimg/flyimg/commit/80cef3f4ee8fb733dbb0afd2cf925f6a3fbb4f7d))
+* add X-Real-IP header ([fdbbbfc](https://github.com/flyimg/flyimg/commit/fdbbbfc417a34b78efea77243efc9eb765c02853))
+* fix composer.lock file ([fbac5e4](https://github.com/flyimg/flyimg/commit/fbac5e40a17cbf5147f8956cc0a9f41cd0af5136))
+* fix linting errors ([246a0b8](https://github.com/flyimg/flyimg/commit/246a0b8505cfe9a73211203d3b8fc9e0d1f5a89e))
+* fixing linting error, related to [#538](https://github.com/flyimg/flyimg/issues/538) ([4f3877f](https://github.com/flyimg/flyimg/commit/4f3877fa911cc79608c826e7fa8b9028b60e8932))
+* use X-Forwarded-For to get real client ip ([18c57a7](https://github.com/flyimg/flyimg/commit/18c57a755a9283237f7a24aa1d0efe076ca7db13))
+
+
+### Features
+
+* add watermark feature and documentation ([d5dc6e5](https://github.com/flyimg/flyimg/commit/d5dc6e5e4b142f69905e9437a5b4c09dd80fe2a9))
+* replace silex/silex with flyimg/silex adaptation, which updates symfony components to the latest stable version, fixes [#535](https://github.com/flyimg/flyimg/issues/535) ([86cb7e7](https://github.com/flyimg/flyimg/commit/86cb7e711bebc804f56377a93442ea0577c162f7))
+* update Docker base image to use Nginx latest stable release ([a4d0873](https://github.com/flyimg/flyimg/commit/a4d0873a8cb7daa07b6d757325e6b4943fb310b5))
+
 # [1.5.0](https://github.com/flyimg/flyimg/compare/1.4.15...1.5.0) (2024-10-24)
 
 

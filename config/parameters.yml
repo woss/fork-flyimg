@@ -93,6 +93,10 @@ options_keys:
   g: gravity
   f: filter
   r: rotate
+  t: text
+  tc: text-color
+  ts: text-size
+  tbg: text-bg
   sc: scale
   sf: sampling-factor
   rf: refresh
@@ -129,9 +133,13 @@ default_options:
   strip: 1
   auto-orient: 0
   resize: null
-  gravity: Center
   filter: Lanczos
   rotate: null
+  text: null
+  text-color: white
+  text-size: 14
+  text-bg: null
+  gravity: Center
   scale: null
   sampling-factor: 1x1
   refresh: false
