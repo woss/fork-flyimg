@@ -8,6 +8,6 @@ class SecurityException extends HttpException
 {
     public function __construct()
     {
-         parent::__construct( 403, 'Access Denied');
+         parent::__construct(403, 'Access Denied');
     }
 }
