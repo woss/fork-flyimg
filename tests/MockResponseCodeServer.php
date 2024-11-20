@@ -7,28 +7,13 @@ include_once __DIR__ . '/../vendor/autoload.php';
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class MockResponseCodeServer
-{
-    public Request $request;
+$request = Request::createFromGlobals();
+$code = $request->query->get('code', 200);
 
-    public function __construct()
-    {
-        $this->request = Request::createFromGlobals();
-    }
+$response = new Response(
+    $code,
+    $code,
+    ['content-type' => 'text/html']
+);
 
-    public function getResponse(int $responseCode): Response
-    {
-        $response = new Response(
-            $responseCode,
-            $responseCode,
-            ['content-type' => 'text/html']
-        );
-
-        return $response;
-    }
-}
-
-$server = new MockResponseCodeServer();
-
-$code = $server->request->query->get('code', 200);
-return $server->getResponse($code)->send();
+return $response->send();
