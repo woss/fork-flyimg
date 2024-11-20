@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AppException extends HttpException
 {
-    public function __construct(string $message)
+    public function __construct(string $message = 'Internal server error')
     {
         parent::__construct(500, $message);
     }
