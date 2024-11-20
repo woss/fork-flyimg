@@ -10,7 +10,7 @@ class FileNotFoundExceptionTest extends ExceptionBaseTest
     {
         $this->expectException(FileNotFoundException::class);
         $this->expectExceptionMessage('File not found');
-        
+
         $options = 'w_100,h_100,rf_1';
         $sourceImage = 'http://localhost:8089/?code=404';
         $image = $this->imageHandler->processImage($options, $sourceImage);

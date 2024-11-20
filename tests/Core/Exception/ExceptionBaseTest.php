@@ -9,9 +9,9 @@ class ExceptionBaseTest extends BaseTest
 {
     public static function setUpBeforeClass(): void
     {
-        $process = new Process(['php', '-S', 'localhost:8089', 'tests/Core/MockResponseCodeServer.php']);
+        $process = new Process(['php', '-S', 'localhost:8089', 'tests/MockResponseCodeServer.php']);
         $process->start();
-        usleep(10000); 
+        usleep(10000);
         parent::setUpBeforeClass();
     }
 }

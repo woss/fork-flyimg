@@ -1,11 +1,13 @@
 <?php
 
-include_once __DIR__ . '/../../vendor/autoload.php';
+namespace Tests;
+
+include_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class MockServer
+class MockResponseCodeServer
 {
     public Request $request;
 
@@ -16,16 +18,17 @@ class MockServer
 
     public function getResponse(int $responseCode): Response
     {
-        $response = new Response($responseCode,
-    $responseCode,
+        $response = new Response(
+            $responseCode,
+            $responseCode,
             ['content-type' => 'text/html']
         );
-        
+
         return $response;
     }
 }
 
-$server = new MockServer();
+$server = new MockResponseCodeServer();
 
 $code = $server->request->query->get('code', 200);
 return $server->getResponse($code)->send();

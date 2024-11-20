@@ -10,7 +10,7 @@ class ServiceUnavailableExceptionTest extends ExceptionBaseTest
     {
         $this->expectException(ServiceUnavailableException::class);
         $this->expectExceptionMessage('The server is temporarily unable to process requests');
-        
+
         $options = 'w_100,h_100,rf_1';
         $sourceImage = 'http://localhost:8089/?code=503';
         $image = $this->imageHandler->processImage($options, $sourceImage);
