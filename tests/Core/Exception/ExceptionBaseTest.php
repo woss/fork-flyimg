@@ -7,8 +7,8 @@ use Symfony\Component\Process\Process;
 
 class ExceptionBaseTest extends BaseTest
 {
-     /** @var Process */
-     private static $process;
+    /** @var Process */
+    private static $process;
 
     public static function setUpBeforeClass(): void
     {
