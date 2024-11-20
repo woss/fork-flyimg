@@ -1,5 +1,17 @@
 # Flyimg Changelog
 
+## [1.6.1](https://github.com/flyimg/flyimg/compare/1.6.0...1.6.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* add more tests to cover AppException and InvalidArgumentException ([9015c52](https://github.com/flyimg/flyimg/commit/9015c523c42b5a2221782f5f21b3d099fae8caa3))
+* add UnauthorizedExceptionTest , plus fixing linting errors ([78bd848](https://github.com/flyimg/flyimg/commit/78bd848b330580a1d801cafc5bc7e563923cd3a4))
+* add UnitTests for the new Exceptions ([19dae6a](https://github.com/flyimg/flyimg/commit/19dae6a282d3f26d9853296a4ebb284a360b05ae))
+* fix Github workflow, closes [#543](https://github.com/flyimg/flyimg/issues/543) ([4e11b25](https://github.com/flyimg/flyimg/commit/4e11b25af024e0436a0e0a2b21db542dc71e1c02))
+* fix linting errors and failed unitTest ([187154b](https://github.com/flyimg/flyimg/commit/187154b4a08a1af4de365c4cb890e17bd7b1d153))
+* fix linting errors and refactor /MockResponseCodeServer code ([329e2f6](https://github.com/flyimg/flyimg/commit/329e2f6cc6e7cbf89594c609b60f2a4105b98427))
+
 # [1.6.0](https://github.com/flyimg/flyimg/compare/1.5.0...1.6.0) (2024-11-18)
 
 
