@@ -4,10 +4,10 @@ namespace Core\Entity\Image;
 
 use Core\Entity\ImageMetaInfo;
 use Core\Entity\OptionsBag;
-use Core\Exception\AccessDenied;
+use Core\Exception\AccessDeniedException;
 use Core\Exception\AppException;
-use Core\Exception\ServiceUnavailable;
-use Core\Exception\Unauthorized;
+use Core\Exception\ServiceUnavailableException;
+use Core\Exception\UnauthorizedException;
 use Core\Exception\InvalidArgumentException;
 use Core\Exception\ReadFileException;
 use Core\Processor\VideoProcessor;
@@ -167,13 +167,13 @@ class InputImage
                         case 400:
                             throw new InvalidArgumentException();
                         case 401:
-                            throw new Unauthorized();
+                            throw new UnauthorizedException();
                         case 403:
-                            throw new AccessDenied();
+                            throw new AccessDeniedException();
                         case 404:
                             throw new FileNotFoundException();
                         case 503:
-                            throw new ServiceUnavailable();
+                            throw new ServiceUnavailableException();
                         default:
                             throw new AppException();
                     }

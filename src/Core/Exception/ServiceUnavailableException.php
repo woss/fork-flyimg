@@ -4,7 +4,7 @@ namespace Core\Exception;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class ServiceUnavailable extends HttpException
+class ServiceUnavailableException extends HttpException
 {
     public function __construct($message = "The server is temporarily unable to process requests")
     {
