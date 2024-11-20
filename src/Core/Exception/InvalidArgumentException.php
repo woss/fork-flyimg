@@ -2,6 +2,12 @@
 
 namespace Core\Exception;
 
-class InvalidArgumentException extends AppException
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
+class InvalidArgumentException extends HttpException
 {
+    public function __construct($message = 'Invalid argument')
+    {
+        parent::__construct(400, $message);
+    }
 }

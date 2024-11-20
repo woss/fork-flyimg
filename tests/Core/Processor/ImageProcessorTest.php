@@ -288,10 +288,10 @@ class ImageProcessorTest extends BaseTest
             'o_jpg,rf_1,g_Center,tbg_yellow,t_by Flyimg,tc_#306a1d,ts_32',
             self::EXTRACT_TEST_IMAGE
         );
-        $filesize = filesize($image->getOutputTmpPath());
-        $filesize2 = filesize(self::TEST_IMAGE_WITH_TEXT_RESULT);
+        $filesizeCrc32 = crc32(\file_get_contents($image->getOutputTmpPath()));
+        $filesize2Crc32 = crc32(\file_get_contents(self::TEST_IMAGE_WITH_TEXT_RESULT));
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
-        $this->assertEquals($filesize, $filesize2);
+        $this->assertEquals($filesizeCrc32, $filesize2Crc32);
     }
 }

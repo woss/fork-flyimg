@@ -4,9 +4,15 @@ namespace Core\Entity\Image;
 
 use Core\Entity\ImageMetaInfo;
 use Core\Entity\OptionsBag;
+use Core\Exception\AccessDeniedException;
+use Core\Exception\AppException;
+use Core\Exception\ServiceUnavailableException;
+use Core\Exception\UnauthorizedException;
+use Core\Exception\InvalidArgumentException;
 use Core\Exception\ReadFileException;
 use Core\Processor\VideoProcessor;
 use Symfony\Component\HttpFoundation\Request;
+use Core\Exception\FileNotFoundException;
 
 class InputImage
 {
@@ -146,7 +152,7 @@ class InputImage
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);  // Allow redirects
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);  // Add custom headers
             curl_setopt($ch, CURLOPT_TIMEOUT, $this->optionsBag->appParameters()
-                        ->parameterByKey('source_image_request_timeout'));
+            ->parameterByKey('source_image_request_timeout'));
 
             $imageData = curl_exec($ch);
 
@@ -157,7 +163,20 @@ class InputImage
                 if ($httpCode == 200) {
                     file_put_contents($this->sourceImagePath, $imageData);
                 } else {
-                    throw new ReadFileException("Failed to download the image. HTTP Status Code: $httpCode");
+                    switch ($httpCode) {
+                        case 400:
+                            throw new InvalidArgumentException();
+                        case 401:
+                            throw new UnauthorizedException();
+                        case 403:
+                            throw new AccessDeniedException();
+                        case 404:
+                            throw new FileNotFoundException();
+                        case 503:
+                            throw new ServiceUnavailableException();
+                        default:
+                            throw new AppException();
+                    }
                 }
             }
             curl_close($ch);

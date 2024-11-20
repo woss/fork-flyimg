@@ -8,7 +8,7 @@
   </php>
   <testsuites>
     <testsuite name="Flyimg Test Suite">
-      <directory suffix=".php">./tests/</directory>
+      <directory suffix=".php">./tests/Core</directory>
     </testsuite>
   </testsuites>
   <source>

@@ -32,14 +32,21 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
-        run: npm install @semantic-release/git @semantic-release/changelog @iwavesmedia/semantic-release-composer -D
+        run: |
+          npm install \
+            @semantic-release/git \
+            @semantic-release/changelog \
+            @iwavesmedia/semantic-release-composer \
+            -D
 
       - name: Dry run to get the next release version
         id: tag_version
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          NEXT_TAG_VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
+          NEXT_TAG_VERSION=$(npx semantic-release --dry-run
+          | grep 'The next release version is' 
+          | sed -E 's/.* ([[:digit:].]+)$/\1/')
           echo "new_tag_version=$NEXT_TAG_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Release
@@ -102,7 +109,12 @@ jobs:
           context: .
           platforms: ${{ matrix.platform }}
           file: ./Dockerfile
-          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
+          outputs: >
+            type=image,
+            name=${{ env.REGISTRY_IMAGE }},
+            push-by-digest=true,
+            name-canonical=true,
+            push=true
       -
         name: Export digest
         run: |
@@ -155,12 +167,14 @@ jobs:
         name: Create manifest and push
         working-directory: /tmp/digests
         run: |
-          docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
+          docker buildx imagetools create $(jq -cr '.tags | map("-t " + .)
+          | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
       -
         name: Inspect image
         run: |
-          docker buildx imagetools inspect "${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}"        
+          docker buildx imagetools inspect "${{ env.REGISTRY_IMAGE }}:
+          ${{ steps.meta.outputs.version }}"        
 
   deploy_demo:
     name: Deploy to Demo demo.flyimg.io
@@ -177,5 +191,7 @@ jobs:
           command_timeout: 20m
           script: |
             cd /home/deployer/
-            bash -c "sed 's/VERSION/${{ needs.manifest.outputs.new_tag_version }}/g' flyimg-swarm.yaml.tpl > flyimg-swarm.yaml"
+            bash -c "sed 's/VERSION/
+            ${{ needs.manifest.outputs.new_tag_version }}/g'
+            flyimg-swarm.yaml.tpl > flyimg-swarm.yaml"
             bash -c "docker stack deploy -c flyimg-swarm.yaml flyimg --detach"

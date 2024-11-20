@@ -1,7 +1,8 @@
 ---
 name: CI
 
-# Run this workflow every time a new commit pushed to main branch or on pull request to main
+# Run this workflow every time a new commit pushed
+# to main branch or on pull request to main
 on:
   push:
     branches:
@@ -60,7 +61,9 @@ jobs:
         run: docker exec flyimg composer install
 
       - name: Run Unit Tests
-        run: docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+        run: |
+          docker exec flyimg vendor/bin/phpunit \
+            --coverage-clover build/logs/clover.xml
 
       - uses: codecov/codecov-action@v4
         with:
