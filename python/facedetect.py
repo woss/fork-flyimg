@@ -2,14 +2,16 @@
 # facedetect python script
 
 from __future__ import division, generators, print_function, unicode_literals
+
 import argparse
 import math
 import os
 import sys
+from typing import Dict
+
 import cv2
 import numpy as np
 from PIL import Image
-
 # try to import pillow_avif to handle AVIF images
 try:
     import pillow_avif
@@ -25,12 +27,11 @@ PROFILES = {
     'HAAR_FRONTALFACE_ALT2': 'haarcascades/haarcascade_frontalface_alt2.xml',
 }
 
-
 # Face detection class
 class FaceDetect:
     def __init__(self, data_dir: str = DATA_DIR):
         self.data_dir = data_dir
-        self.cascades = {}
+        self.cascades: Dict[str, cv2.CascadeClassifier] = {}
         self.load_cascades()
 
     def load_cascades(self) -> None:
