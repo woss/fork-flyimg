@@ -2,7 +2,7 @@
 # Credit:
 # Author: https://github.com/davidfischer-ch
 # From Repo: https://github.com/smartcrop/smartcrop.py
-# We did smal changes in order to adapt to our needs
+# Small changes were made to adapt this code to our needs
 
 import argparse
 import math
@@ -12,36 +12,20 @@ import numpy as np
 from PIL import Image
 from PIL.ImageFilter import Kernel
 
+# try to import pillow_avif to handle AVIF images
 try:
     import pillow_avif
 except ImportError:
     pass
 
 
-def saturation(image):
-    r, g, b = image.split()
-    r, g, b = np.array(r, float), np.array(g, float), np.array(b, float)
-    maximum = np.maximum(np.maximum(r, g), b)  # [0; 255]
-    minimum = np.minimum(np.minimum(r, g), b)  # [0; 255]
-    s = (maximum + minimum) / 255  # [0.0; 1.0]
-    d = (maximum - minimum) / 255  # [0.0; 1.0]
-    d[maximum == minimum] = 0  # if maximum == minimum:
-    s[maximum == minimum] = 1  # -> saturation = 0 / 1 = 0
-    mask = s > 1
-    s[mask] = 2 - d[mask]
-    return d / s  # [0.0; 1.0]
-
-
-def thirds(x):
-    """gets value in the range of [0, 1] where 0 is the center of the pictures
-    returns weight of rule of thirds [0, 1]"""
-    x = ((x + 2 / 3) % 2 * 0.5 - 0.5) * 16
-    return max(1 - x * x, 0)
-
-
 class SmartCrop(object):
 
     DEFAULT_SKIN_COLOR = [0.78, 0.57, 0.44]
+    MAX_SCALE = 1
+    MIN_SCALE = 0.9
+    SCALE_STEP = 0.1
+    STEP = 8
 
     def __init__(
         self,
@@ -80,6 +64,26 @@ class SmartCrop(object):
         self.skin_color = skin_color or self.DEFAULT_SKIN_COLOR
         self.skin_threshold = skin_threshold
         self.skin_weight = skin_weight
+
+    
+    def thirds(self, x: float) -> float:
+        """Calculate the weight of the rule of thirds."""
+        x = ((x + 2 / 3) % 2 * 0.5 - 0.5) * 16
+        return max(1 - x * x, 0)
+
+    def saturation(self, image: Image) -> np.ndarray:
+        """Calculate saturation of the image."""
+        r, g, b = image.split()
+        r, g, b = np.array(r, float), np.array(g, float), np.array(b, float)
+        maximum = np.maximum(np.maximum(r, g), b)
+        minimum = np.minimum(np.minimum(r, g), b)
+        s = (maximum + minimum) / 255
+        d = (maximum - minimum) / 255
+        d[maximum == minimum] = 0
+        s[maximum == minimum] = 1
+        mask = s > 1
+        s[mask] = 2 - d[mask]
+        return d / s
 
     def analyse(
         self,
@@ -238,7 +242,7 @@ class SmartCrop(object):
 
     def detect_saturation(self, cie_array, source_image):
         threshold = self.saturation_threshold
-        saturation_data = saturation(source_image)
+        saturation_data = self.saturation(source_image)
         mask = (
             (saturation_data > threshold)
             & (cie_array >= self.saturation_brightness_min * 255)
@@ -298,48 +302,28 @@ class SmartCrop(object):
         s = 1.41 - math.sqrt(px * px + py * py)
 
         if self.rule_of_thirds:
-            s += (max(0, s + d + 0.5) * 1.2) * (thirds(px) + thirds(py))
+            s += (max(0, s + d + 0.5) * 1.2) * (self.thirds(px) + self.thirds(py))
 
         return s + d
 
-    def score(self, target_image, crop):
-        score = {
-            "detail": 0,
-            "saturation": 0,
-            "skin": 0,
-            "total": 0,
-        }
+    def score(self, target_image: Image, crop: dict) -> dict:
+        """Calculate the score for a given crop."""
+        score = {"detail": 0, "saturation": 0, "skin": 0, "total": 0}
         target_data = target_image.getdata()
         target_width, target_height = target_image.size
 
-        down_sample = self.score_down_sample
-        inv_down_sample = 1 / down_sample
-        target_width_down_sample = target_width * down_sample
-        target_height_down_sample = target_height * down_sample
-
-        for y in range(0, target_height_down_sample, down_sample):
-            for x in range(0, target_width_down_sample, down_sample):
-                p = int(
-                    math.floor(y * inv_down_sample) * target_width
-                    + math.floor(x * inv_down_sample)
-                )
+        for y in range(0, target_height, self.score_down_sample):
+            for x in range(0, target_width, self.score_down_sample):
+                p = int(y * target_width + x)
                 importance = self.importance(crop, x, y)
                 detail = target_data[p][1] / 255
-                score["skin"] += (
-                    target_data[p][0] / 255 * (detail + self.skin_bias) * importance
-                )
+                score["skin"] += target_data[p][0] / 255 * (detail + self.skin_bias) * importance
                 score["detail"] += detail * importance
-                score["saturation"] += (
-                    target_data[p][2]
-                    / 255
-                    * (detail + self.saturation_bias)
-                    * importance
-                )
-        score["total"] = (
-            score["detail"] * self.detail_weight
-            + score["skin"] * self.skin_weight
-            + score["saturation"] * self.saturation_weight
-        ) / (crop["width"] * crop["height"])
+                score["saturation"] += target_data[p][2] / 255 * (detail + self.saturation_bias) * importance
+
+        score["total"] = (score["detail"] * self.detail_weight +
+                          score["skin"] * self.skin_weight +
+                          score["saturation"] * self.saturation_weight) / (crop["width"] * crop["height"])
         return score
 
 
