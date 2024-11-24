@@ -55,7 +55,8 @@ class FaceDetect:
         # convert avif to jpg
         if path.endswith('.avif'):
             img = Image.open(path)
-            img.save(path + '-tmp.jpg')
+            rgb_im = img.convert('RGB') 
+            rgb_im.save(path + '-tmp.jpg')
             path = path + '-tmp.jpg'
         im = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
         if im is None:
