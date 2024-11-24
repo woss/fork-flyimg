@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.6.2](https://github.com/flyimg/flyimg/compare/1.6.1...1.6.2) (2024-11-24)
+
+
+### Bug Fixes
+
+* fix cannot write mode RGBA as JPEG for avif image ([caff525](https://github.com/flyimg/flyimg/commit/caff525f1c19eb8c92ab85e990aaa382d1f81743))
+* refactor python code for the smartcrop and facedetect, remove unused features ([0049fbc](https://github.com/flyimg/flyimg/commit/0049fbcc83a42434676539e81dac1b09650c0405))
+
 ## [1.6.1](https://github.com/flyimg/flyimg/compare/1.6.0...1.6.1) (2024-11-20)
 
 
