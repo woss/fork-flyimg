@@ -7,11 +7,12 @@ import argparse
 import math
 import os
 import sys
-from typing import Dict
 
 import cv2
 import numpy as np
 from PIL import Image
+from typing import Dict
+
 # try to import pillow_avif to handle AVIF images
 try:
     import pillow_avif
