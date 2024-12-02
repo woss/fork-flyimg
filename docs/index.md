@@ -121,7 +121,7 @@ Support us with a monthly donation and help us continue our activities.[[opencol
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/flyimg/flyimg/blob/main/LICENSE) for more information.
+The AGPL-3.0 License. Please see [License File](https://github.com/flyimg/flyimg/blob/main/LICENSE) for more information.
 
 Enjoy your Flyimaging!
 
