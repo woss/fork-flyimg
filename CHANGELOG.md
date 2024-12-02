@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+# [1.7.0](https://github.com/flyimg/flyimg/compare/1.6.2...1.7.0) (2024-12-02)
+
+
+### Features
+
+* move to AGPL-3.0 ([71ceebf](https://github.com/flyimg/flyimg/commit/71ceebf3a113e7278739d19748e1e2d57408c10b))
+
 ## [1.6.2](https://github.com/flyimg/flyimg/compare/1.6.1...1.6.2) (2024-11-24)
 
 
