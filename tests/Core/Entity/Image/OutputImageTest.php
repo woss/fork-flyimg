@@ -50,6 +50,7 @@ class OutputImageTest extends BaseTest
             'preserve-aspect-ratio' => 1,
             'preserve-natural-size' => 1,
             'webp-lossless' => 0,
+            'webp-method' => 4,
             'gif-frame' => 0,
             'extract' => null,
             'extract-top-x' => null,
