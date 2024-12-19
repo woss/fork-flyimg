@@ -57,6 +57,9 @@ thread: 1
 # For Avif format: conversion speed parameter for the HEIF library.
 heic_speed: 8
 
+# For Webp format: enable multi-threaded encoding: 0 = disabled, 1 = enabled.
+webp_threads: 1
+
 # Read source image timeout in seconds
 source_image_request_timeout: 5
 
@@ -113,6 +116,7 @@ options_keys:
   par: preserve-aspect-ratio
   pns: preserve-natural-size
   webpl: webp-lossless
+  webpm: webp-method
   gf: gif-frame
   e: extract
   p1x: extract-top-x
@@ -156,6 +160,7 @@ default_options:
   preserve-aspect-ratio: 1
   preserve-natural-size: 1
   webp-lossless: 0
+  webp-method: 4
   gif-frame: 0
   extract: null
   extract-top-x: null
