@@ -1,5 +1,14 @@
 # Flyimg Changelog
 
+## [1.7.1](https://github.com/flyimg/flyimg/compare/1.7.0...1.7.1) (2024-12-19)
+
+
+### Bug Fixes
+
+* add documentation for Support for -m and -mt flags with Cwebp, close [#547](https://github.com/flyimg/flyimg/issues/547) ([77b7f02](https://github.com/flyimg/flyimg/commit/77b7f0278c53f2151049074ab425948ab12c9b75))
+* add Support for -m and -mt flags with Cwebp , closes [#547](https://github.com/flyimg/flyimg/issues/547) ([29ea4a6](https://github.com/flyimg/flyimg/commit/29ea4a65c50794db82d00035d4b19d0c66635168))
+* fix linting errors ([7f3fdf5](https://github.com/flyimg/flyimg/commit/7f3fdf504a92475f3e83160a346ad31032839775))
+
 # [1.7.0](https://github.com/flyimg/flyimg/compare/1.6.2...1.7.0) (2024-12-02)
 
 
