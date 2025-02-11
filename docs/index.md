@@ -91,7 +91,7 @@ This project exists thanks to all the people who contributed to it :heart:{ .bea
 
 A special thanks to JetBrains for supporting our project with their [open source license program](https://www.jetbrains.com/buy/opensource/).
 
-![Jetbrains](https://demo.flyimg.io/upload/w_150/https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)
+<img src="https://demo.flyimg.io/upload/w_200/https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png" width="200"/>
 
 
 ## Backers
