@@ -98,7 +98,7 @@ A special thanks to JetBrains for supporting our project with their [open source
 
 [Become a backer](https://opencollective.com/flyimg) and show your support to our open source project on [our site](https://docs.flyimg.io/#backers).
 
-<a href="https://opencollective.com/flyimg"><img src="https://opencollective.com/flyimg/tiers/backers.svg?limit=30&button=false&avatarHeight=46&width=750"></a>
+<a href="https://opencollective.com/flyimg"><img src="https://opencollective.com/flyimg/tiers/backers.svg?width=890"></a>
 
 
 ## Sponsors
@@ -107,7 +107,6 @@ Does your company use Flyimg? If not, consider asking your manager or marketing 
 
 [Here's the info](https://opencollective.com/flyimg).
 
-<a href="https://opencollective.com/flyimg" target="_blank"><img src="https://opencollective.com/flyimg/backers.svg?width=890"></a>
 <a href="https://opencollective.com/flyimg/sponsor/0/website" target="_blank"><img src="https://opencollective.com/flyimg/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/flyimg/sponsor/1/website" target="_blank"><img src="https://opencollective.com/flyimg/sponsor/1/avatar.svg"></a>
 <a href="https://opencollective.com/flyimg/sponsor/2/website" target="_blank"><img src="https://opencollective.com/flyimg/sponsor/2/avatar.svg"></a>
