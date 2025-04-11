@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.7.3](https://github.com/flyimg/flyimg/compare/1.7.2...1.7.3) (2025-04-11)
+
+
+### Bug Fixes
+
+* add density option for PDF processing and update documentation. ([ad3f172](https://github.com/flyimg/flyimg/commit/ad3f172e6bd163aeaa379d103c7f7de96fffbac1))
+
 ## [1.7.2](https://github.com/flyimg/flyimg/compare/1.7.1...1.7.2) (2025-01-31)
 
 
