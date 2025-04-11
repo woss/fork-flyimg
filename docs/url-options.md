@@ -379,22 +379,33 @@ _Description:_ Use smart crop to get the best possible crop of the image.
 
 ![lago_ranco](https://demo.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg)
 
-### `pg` : pdf-page
+### `pdfp` : pdf-page
 
 `int`
 _Default:_ `1`
 _Description:_ Sets the target page of the PDF. If not set, the default is page 1.
 
-**example:`pg_1`**
+**example:`pdfp_1`**
 
 - PDF: `http://mudawn.com/assets/lighthouses.pdf`
 - Width: 200
 - Height: 200
-- Page: `pg_1`
+- Page: `pdfp_1`
 
-`https://demo.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf`
+`https://demo.flyimg.io/upload/w_200,h_200,pdfp_1/http://mudawn.com/assets/lighthouses.pdf`
 
-![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,pg_1/http://mudawn.com/assets/lighthouses.pdf)
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,pdfp_1/http://mudawn.com/assets/lighthouses.pdf)
+
+### `dnst` : density
+
+`int`  
+_Default:_ 72  
+_Description:_ Sets the PDF density. If not set, the default is 72.
+
+**example:`dnst_300`**
+
+`dnst_300` : `https://demo.flyimg.io/upload/dnst_300,pdfp_1/http://mudawn.com/assets/lighthouses.pdf`
+
 
 ### `tm` : video-time
 
