@@ -124,6 +124,7 @@ options_keys:
   p2x: extract-bottom-x
   p2y: extract-bottom-y
   pdfp: pdf-page-number
+  dnst: density
   tm: time
   clsp: colorspace
   mnchr: monochrome
@@ -171,3 +172,4 @@ default_options:
   time: '00:00:01'
   colorspace: 'sRGB'
   monochrome: null
+  density: 72

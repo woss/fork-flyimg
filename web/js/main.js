@@ -57,6 +57,7 @@ const addInput = () => {
                     <option value="webpm" data-bs-example="The compression method to use. It controls the trade off between encoding speed and the compressed file size and quality. Possible values range from 0 to 6. Default value is 4. When higher values are utilized, the encoder spends more time inspecting additional encoding possibilities and decide on the quality gain. Lower value might result in faster processing time at the expense of larger file size and lower compression quality.">webp-method</option>
                     <option value="gf" data-bs-example="When supplying a Gif image, you can choose which frame to generate the output image from, default 0, possible values the frame number : 1 , 3 , 10,..">gif-frame</option>
                     <option value="pdfp" data-bs-example="When supplying a PDF as input, you can specify a which page number to generate the image from, default 1, possible values one the pdf pages number.">pdf-page-number</option>
+                    <option value="dnst" data-bs-example="Sets the PDF density. If not set, the default is 72.">density</option>
                     <option value="tm" data-bs-example="Get a video image to fit dimensions from a time duration point, possible value 00:00:05 ">time</option>
                     <option value="clsp" data-bs-example="Converting to Colorspace Gray, possible value Gray">colorspace</option>
                     <option value="mnchr" data-bs-example="Converting to Monochrome, possible value 1">monochrome</option>

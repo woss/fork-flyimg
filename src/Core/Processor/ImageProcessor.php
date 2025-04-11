@@ -68,10 +68,15 @@ class ImageProcessor extends Processor
     protected function generateCommand(OutputImage $outputImage): Command
     {
         $command = new Command(self::IM_CONVERT_COMMAND);
+        $isPdf = $outputImage->getInputImage()->isInputPdf();
 
-        $pdfPageNo = $outputImage->getInputImage()->isInputPdf() ?
+        $pdfPageNo = $isPdf ?
             '[' . $outputImage->extractKey('pdf-page-number') - 1 . ']' :
             '';
+
+        if ($isPdf && !empty($this->options->getOption('density'))) {
+            $command->addArgument('-density', $this->options->getOption('density'));
+        }
 
         $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo);
 

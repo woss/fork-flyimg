@@ -150,6 +150,17 @@ class DefaultControllerTest extends BaseTest
     /**
      *
      */
+    public function testUploadPdfWithDensity()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_200,h_200,dnst_300/' . BaseTest::PDF_TEST_FILE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /**
+     *
+     */
     public function testUploadMovieNoTimeSpecified()
     {
         $client = static::createClient();
