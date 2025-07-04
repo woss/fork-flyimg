@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.7.4](https://github.com/flyimg/flyimg/compare/1.7.3...1.7.4) (2025-07-04)
+
+
+### Bug Fixes
+
+* update base image to 1.8.1, enhance error message in InputImage, and add AVIF test cases ([4c713cd](https://github.com/flyimg/flyimg/commit/4c713cd6d88e7309add97e9291282879a303a191))
+
 ## [1.7.3](https://github.com/flyimg/flyimg/compare/1.7.2...1.7.3) (2025-04-11)
 
 
