@@ -186,7 +186,7 @@ class InputImage
                 $imageData = file_get_contents($this->sourceImageUrl);
                 file_put_contents($this->sourceImagePath, $imageData);
             } else {
-                throw new ReadFileException('Local file ' . $this->sourceImageUrl . ' does not exist.');
+                throw new ReadFileException('File ' . $this->sourceImageUrl . ' does not exist.');
             }
         }
     }
