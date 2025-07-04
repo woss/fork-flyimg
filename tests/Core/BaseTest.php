@@ -23,6 +23,7 @@ class BaseTest extends TestCase
 
     public const FACES_TEST_IMAGE = __DIR__ . '/../testImages/faces.jpg';
     public const FACES_CP0_TEST_IMAGE = __DIR__ . '/../testImages/face_cp0.png';
+    public const FACES_CP0_TEST_IMAGE_AVIF = __DIR__ . '/../testImages/face_cp0.avif';
     public const FACES_BLUR_TEST_IMAGE = __DIR__ . '/../testImages/face_fb.png';
 
     public const EXTRACT_TEST_IMAGE = __DIR__ . '/../testImages/extract-original.jpg';
