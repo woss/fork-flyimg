@@ -63,7 +63,14 @@ class CoreController
 
         // Get current domain for dynamic URLs
         $request = $this->app['request_stack']->getCurrentRequest();
-        $currentDomain = $request ? $request->getSchemeAndHttpHost() : '';
+        $currentDomain = '';
+
+        if ($request) {
+            $currentDomain = $request->getSchemeAndHttpHost();
+            if ($this->app['params']->parameterByKey('app_domain')) {
+                $currentDomain = $this->app['params']->parameterByKey('app_domain');
+            }
+        }
 
         $body = strtr($body, [
             '{$version}' => $version,
