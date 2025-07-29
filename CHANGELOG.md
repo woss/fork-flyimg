@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.7.5](https://github.com/flyimg/flyimg/compare/1.7.4...1.7.5) (2025-07-29)
+
+
+### Bug Fixes
+
+* add dynamic URL support and copy functionality to example code snippet ([efa6725](https://github.com/flyimg/flyimg/commit/efa6725288316695d10a500bd59f450ef1ffba78))
+
 ## [1.7.4](https://github.com/flyimg/flyimg/compare/1.7.3...1.7.4) (2025-07-04)
 
 
