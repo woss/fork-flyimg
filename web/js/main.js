@@ -233,6 +233,13 @@ const formatBytes = (bytes, decimals = 2) => {
         navigator.clipboard.writeText(copyText.innerHTML);
     }, false);
 
+    let copyExampleBtn = document.getElementById('copy-example-btn');
+    copyExampleBtn.addEventListener("click", function () {
+        let copyText = document.getElementById("example-url");
+        // Copy the text inside the code element
+        navigator.clipboard.writeText(copyText.textContent);
+    }, false);
+
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 })();

@@ -100,3 +100,7 @@ body {
     -webkit-print-color-adjust: exact;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+code{
+    color: #08bfd7;
+}

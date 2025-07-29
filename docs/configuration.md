@@ -14,6 +14,16 @@ _Description:_ Enables debug mode, currently is used only for the tests, so ther
 _Defaults to:_ `error`
 _Description:_ Log level, possible values are: debug, info, notice, warning, error
 
+### app_domain
+
+_Defaults to:_ ``
+_Description:_ Custom domain name (optional) - used when running in containers to override localhost detectionm, leave empty to use automatic detection from HTTP headers
+
+### home_page_title
+
+_Defaults to:_ `Flyimg`
+_Description:_ Home Page title
+
 ### enable_cronjob_cleanup
 
 _Defaults to:_ `true`
