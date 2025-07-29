@@ -60,9 +60,15 @@ class CoreController
         ob_start();
         include($templateFullPath);
         $body = ob_get_contents();
+        
+        // Get current domain for dynamic URLs
+        $request = $this->app['request_stack']->getCurrentRequest();
+        $currentDomain = $request ? $request->getSchemeAndHttpHost() : '';
+        
         $body = strtr($body, [
             '{$version}' => $version,
-            '{$title}' => $title
+            '{$title}' => $title,
+            '{$current_domain}' => $currentDomain
         ]);
         ob_end_clean();
 
