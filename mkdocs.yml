@@ -50,7 +50,7 @@ theme:
 extra:
   analytics:
     provider: google
-    property: G-6QWHLG77D2
+    property: GT-5TPCQ2KS
 
 markdown_extensions:
   - pymdownx.highlight:
