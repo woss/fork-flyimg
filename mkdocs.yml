@@ -40,6 +40,7 @@ theme:
     - navigation.footer
     - navigation.instant
     - navigation.top
+    - navigation.path
     - toc.follow
 
   icon:
