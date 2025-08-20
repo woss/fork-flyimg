@@ -13,7 +13,7 @@ permissions:
   
 jobs:
   deploy-docs:
-    name: Update Github Page (flyimg.io)
+    name: Update Github Page (docs.flyimg.io)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
