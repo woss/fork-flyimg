@@ -41,7 +41,7 @@ class SecurityHandler
         $imageDomain = parse_url($imageSource, PHP_URL_HOST);
         if (!in_array($imageDomain, $this->appParameters->parameterByKey('whitelist_domains'))) {
             throw  new SecurityException(
-                'Domain restriction is enabled. The domain you are trying to fetch from is not permitted ' .
+                'The domain you are trying to fetch from is not permitted' .
                     $imageDomain
             );
         }

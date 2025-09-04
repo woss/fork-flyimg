@@ -19,7 +19,7 @@ class SecurityHandlerTest extends BaseTest
     public function testRestrictedDomains()
     {
         $this->expectException(SecurityException::class);
-        $this->expectExceptionMessage("Domain restriction is enabled. The domain you are trying to fetch from is not permitted ");
+        $this->expectExceptionMessage("The domain you are trying to fetch from is not permitted");
         /** @var AppParameters $appParameters */
         $appParameters = clone $this->app['params'];
         $appParameters->addParameter('restricted_domains', true);
