@@ -35,14 +35,14 @@ class SecurityHandler
      */
     public function checkRestrictedDomains(string $imageSource)
     {
-        if (
-            $this->appParameters->parameterByKey('restricted_domains') &&
-            is_array($this->appParameters->parameterByKey('whitelist_domains')) &&
-            !in_array(parse_url($imageSource, PHP_URL_HOST), $this->appParameters->parameterByKey('whitelist_domains'))
-        ) {
+        if (!$this->appParameters->parameterByKey('restricted_domains')) {
+            return;            
+        }
+        $imageDomain = parse_url($imageSource, PHP_URL_HOST);
+        if (!in_array($imageDomain, $this->appParameters->parameterByKey('whitelist_domains'))) {
             throw  new SecurityException(
-                'Restricted domains enabled, the domain your fetching from is not allowed: ' .
-                    parse_url($imageSource, PHP_URL_HOST)
+                'Domain restriction is enabled. The domain you are trying to fetch from is not permitted ' .
+                    $imageDomain
             );
         }
     }

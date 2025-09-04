@@ -104,8 +104,6 @@ class Response extends BaseResponse
         if ($this->appParameters->parameterByKey('disable_cache')) {
             $image->removeGeneratedImage();
         }
-
-        $image->removeOutputImage();
     }
 
     /**
@@ -116,7 +114,6 @@ class Response extends BaseResponse
     {
         $imagePath = sprintf($this->storageFileSystem['file_path_resolver'], $image->getOutputImageName());
         $this->setContent($imagePath);
-        $image->removeOutputImage();
     }
 
     /**
