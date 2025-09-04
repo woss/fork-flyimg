@@ -2,17 +2,17 @@
 
 namespace Core\Handler;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\ErrorHandler\ErrorRenderer\ErrorRendererInterface;
-use Symfony\Component\HttpKernel\Log\DebugLoggerConfigurator;
 use Symfony\Component\ErrorHandler\ErrorRenderer\FileLinkFormatter;
-use Symfony\Component\ErrorHandler\ErrorRenderer\FileLinkFormatterInterface;
 use Symfony\Component\ErrorHandler\Exception\FlattenException;
+use Symfony\Component\HttpKernel\Log\DebugLoggerConfigurator;
 use Symfony\Component\VarDumper\Cloner\Data;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class ErrorHandler
+ *
  * @package Core\Handler
  */
 class ErrorHandler implements ErrorRendererInterface
@@ -27,9 +27,8 @@ class ErrorHandler implements ErrorRendererInterface
     private const GHOST_HEART = 'M125.91386369681868,8.305165958366445 C128.95033202169043,-0.40540639102854037 140.8469835342744,8.305165958366445 125.91386369681868,19.504526138305664 C110.98208663272044,8.305165958366445 122.87795231771452,-0.40540639102854037 125.91386369681868,8.305165958366445 z';
     private const GHOST_PLUS = 'M111.36824226379395,8.969108581542969 L118.69175148010254,8.969108581542969 L118.69175148010254,1.6455793380737305 L126.20429420471191,1.6455793380737305 L126.20429420471191,8.969108581542969 L133.52781105041504,8.969108581542969 L133.52781105041504,16.481630325317383 L126.20429420471191,16.481630325317383 L126.20429420471191,23.805158615112305 L118.69175148010254,23.805158615112305 L118.69175148010254,16.481630325317383 L111.36824226379395,16.481630325317383 z';
 
-
-    private static string $template =  'Errors/error.html.php';
-    private static string $debugTemplate =  'Errors/exception_full.html.php';
+    private static string $template = 'Errors/error.html.php';
+    private static string $debugTemplate = 'Errors/exception_full.html.php';
     private string $charset;
     private bool $debug;
     private string|\Closure $outputBuffer;
@@ -44,7 +43,7 @@ class ErrorHandler implements ErrorRendererInterface
         private ?LoggerInterface $logger = null,
     ) {
         $this->debug = $debug;
-        $this->charset =  'UTF-8';
+        $this->charset = 'UTF-8';
         $this->outputBuffer = \is_string($outputBuffer) ? $outputBuffer : $outputBuffer(...);
         $this->logger = $logger;
         $this->fileLinkFormat = $fileLinkFormat instanceof FileLinkFormatter ? $fileLinkFormat : new FileLinkFormatter($fileLinkFormat);
@@ -76,24 +75,28 @@ class ErrorHandler implements ErrorRendererInterface
         $exceptionMessage = $this->escape($exception->getMessage());
 
         if (!$debug) {
-            return $this->include(self::$template, [
+            return $this->include(
+                self::$template,
+                [
                 'title' => $statusText,
                 'statusText' => $statusText,
                 'statusCode' => $statusCode,
                 'exceptionMessage' => $exceptionMessage,
-            ]);
+                ]
+            );
         }
 
-       
-
-        return $this->include(self::$debugTemplate, [
+        return $this->include(
+            self::$debugTemplate,
+            [
             'exception' => $exception,
             'exceptionMessage' => $exceptionMessage,
             'statusText' => $statusText,
             'statusCode' => $statusCode,
             'logger' => null !== $this->logger && class_exists(DebugLoggerConfigurator::class) ? DebugLoggerConfigurator::getDebugLogger($this->logger) : null,
             'currentContent' => \is_string($this->outputBuffer) ? $this->outputBuffer : ($this->outputBuffer)(),
-        ]);
+            ]
+        );
     }
 
 
@@ -142,7 +145,7 @@ class ErrorHandler implements ErrorRendererInterface
         return $dumper->dump($value, true);
     }
 
-     /**
+    /**
      * Formats a file path.
      *
      * @param string $file An absolute file path
@@ -181,7 +184,7 @@ class ErrorHandler implements ErrorRendererInterface
         return null;
     }
 
-     /**
+    /**
      * Returns an excerpt of a code file around the given line number.
      *
      * @param string $file       A file path
@@ -198,9 +201,13 @@ class ErrorHandler implements ErrorRendererInterface
                 // remove main pre/code tags
                 $code = preg_replace('#^<pre.*?>\s*<code.*?>(.*)</code>\s*</pre>#s', '\\1', $code);
                 // split multiline span tags
-                $code = preg_replace_callback('#<span ([^>]++)>((?:[^<\\n]*+\\n)++[^<]*+)</span>#', function ($m) {
-                    return "<span $m[1]>" . str_replace("\n", "</span>\n<span $m[1]>", $m[2]) . '</span>';
-                }, $code);
+                $code = preg_replace_callback(
+                    '#<span ([^>]++)>((?:[^<\\n]*+\\n)++[^<]*+)</span>#',
+                    function ($m) {
+                        return "<span $m[1]>" . str_replace("\n", "</span>\n<span $m[1]>", $m[2]) . '</span>';
+                    },
+                    $code
+                );
                 $content = explode("\n", $code);
             } else {
                 // remove main code/span tags
