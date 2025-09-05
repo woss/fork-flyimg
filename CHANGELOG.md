@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.7.6](https://github.com/flyimg/flyimg/compare/1.7.5...1.7.6) (2025-09-05)
+
+
+### Bug Fixes
+
+* update error handling and security domain checks ([dca76f5](https://github.com/flyimg/flyimg/commit/dca76f5f6eacff7d0c187a6733c3130c56550d61))
+* update exception message for domain restriction in SecurityHandler ([ff714be](https://github.com/flyimg/flyimg/commit/ff714be010a1bf604e51834b43be70a902f512fd))
+
 ## [1.7.5](https://github.com/flyimg/flyimg/compare/1.7.4...1.7.5) (2025-07-29)
 
 
