@@ -24,6 +24,16 @@ By default, Flyimg generates the **AVIF** image format (when the browser support
 
 Additionally, Flyimg also generates the **WebP** format, along with the impressive **MozJPEG** compression algorithm to optimize images, other formats are supported also such as **PNG** and **GIF**.
 
+## Security Features
+
+Flyimg includes built-in security features to protect your service:
+
+- **Domain Restrictions**: Control which domains can be used as image sources with support for wildcard patterns (e.g., `*.example.com`)
+- **Signature Generation**: Prevent unauthorized access with encrypted URLs
+- **Configurable Security**: Easy-to-configure security settings via `parameters.yml`
+
+See the [Security documentation](security.md) for detailed configuration options.
+
 ## How it works:
 
 **Fetch an image from anywhere; resize, compress, cache and serve...and serve, and serve, and serve...**

@@ -39,12 +39,52 @@ class SecurityHandler
             return;
         }
         $imageDomain = parse_url($imageSource, PHP_URL_HOST);
-        if (!in_array($imageDomain, $this->appParameters->parameterByKey('whitelist_domains'))) {
+        
+        // If parse_url returns null, it means the imageSource is not a valid URL
+        // (e.g., it's a local file path). In this case, we allow it.
+        if ($imageDomain === null) {
+            return;
+        }
+        
+        $whitelistDomains = $this->appParameters->parameterByKey('whitelist_domains');
+        
+        if (!$this->isDomainAllowed($imageDomain, $whitelistDomains)) {
             throw  new SecurityException(
-                'The domain you are trying to fetch from is not permitted' .
+                'The domain you are trying to fetch from is not permitted: ' .
                     $imageDomain
             );
         }
+    }
+
+    /**
+     * Check if a domain is allowed based on whitelist (supports wildcards)
+     *
+     * @param string $domain
+     * @param array $whitelistDomains
+     * @return bool
+     */
+    private function isDomainAllowed(string $domain, array $whitelistDomains): bool
+    {
+        foreach ($whitelistDomains as $allowedDomain) {
+            // Exact match
+            if ($domain === $allowedDomain) {
+                return true;
+            }
+            
+            // Wildcard match (e.g., *.example.com)
+            if (strpos($allowedDomain, '*') === 0) {
+                $pattern = substr($allowedDomain, 1); // Remove the *
+                if (strpos($pattern, '.') === 0) {
+                    // Pattern like *.example.com
+                    $pattern = substr($pattern, 1); // Remove the leading dot
+                    if (str_ends_with($domain, $pattern)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
     }
 
     /**

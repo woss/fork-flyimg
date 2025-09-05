@@ -152,7 +152,7 @@ _Description:_ Output format requested, for example you can force the output as 
 ## `q` : quality
 
 `int` (0-100)  
-_Default:_ `80`  
+_Default:_ `90`  
 _Description:_ Sets the compression level for the output image. Your best results will be between **70** and **95**.
 
 **example:`q_100`,`q_75`,...**
