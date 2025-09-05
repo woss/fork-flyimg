@@ -15,7 +15,9 @@
     </div>
     <div class="exception-message-wrapper">
         <div class="container">
-            <h1 class="break-long-words exception-message<?= mb_strlen($exceptionMessage) > 180 ? ' long' : ''; ?>"><?= $this->formatFileFromText(nl2br($exceptionMessage)); ?></h1>
+            <h1 class="break-long-words exception-message<?= mb_strlen($exceptionMessage) > 180 ? ' long' : ''; ?>">
+                <?= $this->formatFileFromText(nl2br($exceptionMessage)); ?>
+            </h1>
 
             <div class="exception-illustration hidden-xs-down">
                 <?= $this->include('Errors/assets/images/symfony-ghost.svg.php'); ?>
@@ -34,7 +36,12 @@
             $last = $exceptionAsArrayCount - 1;
             foreach ($exceptionAsArray as $i => $e) {
                 foreach ($e['trace'] as $trace) {
-                    if ($trace['file'] && !str_contains($trace['file'], '/vendor/') && !str_contains($trace['file'], '/var/cache/') && $i < $last) {
+                    if (
+                        $trace['file']
+                        && !str_contains($trace['file'], '/vendor/')
+                        && !str_contains($trace['file'], '/var/cache/')
+                        && $i < $last
+                    ) {
                         $exceptionWithUserCode[] = $i;
                     }
                 }
@@ -54,7 +61,8 @@
                     echo $this->include('Errors/traces.html.php', [
                         'exception' => $e,
                         'index' => $i + 1,
-                        'expand' => in_array($i, $exceptionWithUserCode, true) || ([] === $exceptionWithUserCode && 0 === $i),
+                        'expand' => in_array($i, $exceptionWithUserCode, true)
+                            || ([] === $exceptionWithUserCode && 0 === $i),
                     ]);
                 }
                 ?>
@@ -65,7 +73,9 @@
         <div class="tab <?= !$logger->getLogs() ? 'disabled' : ''; ?>">
             <h3 class="tab-title">
                 Logs
-                <?php if ($logger->countErrors()) { ?><span class="badge status-error"><?= $logger->countErrors(); ?></span><?php } ?>
+                <?php if ($logger->countErrors()) { ?>
+                    <span class="badge status-error"><?= $logger->countErrors(); ?></span>
+                <?php } ?>
             </h3>
 
             <div class="tab-content">
