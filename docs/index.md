@@ -24,6 +24,16 @@ By default, Flyimg generates the **AVIF** image format (when the browser support
 
 Additionally, Flyimg also generates the **WebP** format, along with the impressive **MozJPEG** compression algorithm to optimize images, other formats are supported also such as **PNG** and **GIF**.
 
+## Security Features
+
+Flyimg includes built-in security features to protect your service:
+
+- **Domain Restrictions**: Control which domains can be used as image sources with support for wildcard patterns (e.g., `*.example.com`)
+- **Signature Generation**: Prevent unauthorized access with encrypted URLs
+- **Configurable Security**: Easy-to-configure security settings via `parameters.yml`
+
+See the [Security documentation](security.md) for detailed configuration options.
+
 ## How it works:
 
 **Fetch an image from anywhere; resize, compress, cache and serve...and serve, and serve, and serve...**
@@ -31,13 +41,13 @@ Additionally, Flyimg also generates the **WebP** format, along with the impressi
 You pass the image URL and a set of keys with options, like size or compression. Flyimg will fetch the image, convert it, store it, cache it and serve it. The next time the request comes, it will serve the cached version.
 
 ```html
-<!-- https://mudawn.com/assets/butterfly-3000.jpg -->
+<!-- https://flyimg.io/demo-images/Citroen-DS.jpg -->
 <img
-  src="https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg"
+  src="https://demo.flyimg.io/upload/w_300,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg"
 />
 ```
 
-![Flyimg-demo](https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg)
+![Flyimg-demo](https://demo.flyimg.io/upload/w_300,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ## Demo
 
@@ -46,12 +56,6 @@ Check out our demo page where you can test and review Flying's features:
 <div class="result" markdown>
 [https://demo.flyimg.io/](https://demo.flyimg.io) :material-cursor-default-click-outline:{ .beat }
 </div>
-
-## Cloud Run Button
-
-Flyimg can be deployed to GCP as a serverless container in one click with Cloud Run Button:
-
-<a href="https://deploy.cloud.run/" target="_blank"><img src="https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git" alt="Run on Google Cloud" style="width:180px;margin-top:20px;"/></a>
 
 ## How to transform images
 
@@ -68,9 +72,9 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 
 [https://demo.flyimg.io](https://demo.flyimg.io)
 
-`https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![resize-test](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![resize-test](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ## Community
 

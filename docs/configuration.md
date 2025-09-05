@@ -71,7 +71,23 @@ _Defaults to:_
     - domain-2.com
 ```
 
-_Description:_ If `restricted_domains` is enabled, put your whitelisted domains in this list, subdomains are also OK. For the [Digital Ocean Provisioning Script](https://github.com/flyimg/DigitalOcean-provision) you can set the restricted domains at the droplet provisioning step.
+_Description:_ If `restricted_domains` is enabled, put your whitelisted domains in this list. You can use both exact domain matches and wildcard patterns:
+
+- **Exact matches**: `example.com` - matches only `example.com`
+- **Wildcard patterns**: `*.example.com` - matches any subdomain of `example.com` (e.g., `api.example.com`, `cdn.example.com`, `www.example.com`)
+
+Example configuration:
+```yml
+whitelist_domains:
+  - example.com
+  - "*.example.org"
+  - api.myservice.com
+  - "*.cdn.myservice.com"
+```
+
+**Note**: Wildcard patterns must be quoted in YAML to avoid parsing errors, as the `*` character has special meaning in YAML.
+
+For the [Digital Ocean Provisioning Script](https://github.com/flyimg/DigitalOcean-provision) you can set the restricted domains at the droplet provisioning step.
 
 ### disable_cache
 

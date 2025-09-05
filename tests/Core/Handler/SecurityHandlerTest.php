@@ -13,19 +13,116 @@ use Tests\Core\BaseTest;
 class SecurityHandlerTest extends BaseTest
 {
     /**
+     * Test that local file paths are allowed (no domain restriction)
      *
      * @throws SecurityException
      */
-    public function testRestrictedDomains()
+    public function testLocalFilePathsAllowed()
     {
-        $this->expectException(SecurityException::class);
-        $this->expectExceptionMessage("Restricted domains enabled, the domain your fetching from is not allowed:");
         /** @var AppParameters $appParameters */
         $appParameters = clone $this->app['params'];
         $appParameters->addParameter('restricted_domains', true);
         $securityHandler = new SecurityHandler($appParameters);
 
+        // Should not throw exception for local file paths
+        $this->expectNotToPerformAssertions();
         $securityHandler->checkRestrictedDomains(parent::PNG_TEST_IMAGE);
+    }
+
+    /**
+     * Test restricted domains with invalid URL
+     *
+     * @throws SecurityException
+     */
+    public function testRestrictedDomainsWithInvalidUrl()
+    {
+        $this->expectException(SecurityException::class);
+        $this->expectExceptionMessage("The domain you are trying to fetch from is not permitted: forbidden.com");
+        /** @var AppParameters $appParameters */
+        $appParameters = clone $this->app['params'];
+        $appParameters->addParameter('restricted_domains', true);
+        $securityHandler = new SecurityHandler($appParameters);
+
+        $securityHandler->checkRestrictedDomains('https://forbidden.com/image.jpg');
+    }
+
+    /**
+     * Test exact domain matching
+     *
+     * @throws SecurityException
+     */
+    public function testExactDomainMatch()
+    {
+        /** @var AppParameters $appParameters */
+        $appParameters = clone $this->app['params'];
+        $appParameters->addParameter('restricted_domains', true);
+        $appParameters->addParameter('whitelist_domains', ['example.com', 'test.org']);
+        $securityHandler = new SecurityHandler($appParameters);
+
+        // Should not throw exception for exact matches
+        $this->expectNotToPerformAssertions();
+        $securityHandler->checkRestrictedDomains('https://example.com/image.jpg');
+        $securityHandler->checkRestrictedDomains('https://test.org/image.png');
+    }
+
+    /**
+     * Test wildcard domain matching
+     *
+     * @throws SecurityException
+     */
+    public function testWildcardDomainMatch()
+    {
+        /** @var AppParameters $appParameters */
+        $appParameters = clone $this->app['params'];
+        $appParameters->addParameter('restricted_domains', true);
+        $appParameters->addParameter('whitelist_domains', ['*.example.com', '*.test.org']);
+        $securityHandler = new SecurityHandler($appParameters);
+
+        // Should not throw exception for wildcard matches
+        $this->expectNotToPerformAssertions();
+        $securityHandler->checkRestrictedDomains('https://subdomain.example.com/image.jpg');
+        $securityHandler->checkRestrictedDomains('https://api.test.org/image.png');
+        $securityHandler->checkRestrictedDomains('https://cdn.example.com/image.gif');
+    }
+
+    /**
+     * Test wildcard domain rejection
+     *
+     * @throws SecurityException
+     */
+    public function testWildcardDomainRejection()
+    {
+        $this->expectException(SecurityException::class);
+        $this->expectExceptionMessage("The domain you are trying to fetch from is not permitted: other.com");
+
+        /** @var AppParameters $appParameters */
+        $appParameters = clone $this->app['params'];
+        $appParameters->addParameter('restricted_domains', true);
+        $appParameters->addParameter('whitelist_domains', ['*.example.com']);
+        $securityHandler = new SecurityHandler($appParameters);
+
+        // Should throw exception for non-matching domains
+        $securityHandler->checkRestrictedDomains('https://other.com/image.jpg');
+    }
+
+    /**
+     * Test mixed exact and wildcard domain matching
+     *
+     * @throws SecurityException
+     */
+    public function testMixedDomainMatching()
+    {
+        /** @var AppParameters $appParameters */
+        $appParameters = clone $this->app['params'];
+        $appParameters->addParameter('restricted_domains', true);
+        $appParameters->addParameter('whitelist_domains', ['example.com', '*.test.org', 'specific.domain.com']);
+        $securityHandler = new SecurityHandler($appParameters);
+
+        // Should not throw exception for any of these
+        $this->expectNotToPerformAssertions();
+        $securityHandler->checkRestrictedDomains('https://example.com/image.jpg');
+        $securityHandler->checkRestrictedDomains('https://subdomain.test.org/image.png');
+        $securityHandler->checkRestrictedDomains('https://specific.domain.com/image.gif');
     }
 
     /**

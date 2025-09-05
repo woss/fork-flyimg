@@ -51,8 +51,19 @@ parameters:
         secret_key: 'xxxxxx'
         region: 'eu-central-1'
         bucket_name: 'xxxxx'
+    # Security configuration
+    restricted_domains: true
+    whitelist_domains:
+        - "example.com"
+        - "*.example.org"
+        - "api.myservice.com"
+        - "*.cdn.myservice.com"
+    security_key: 'your-security-key'
+    security_iv: 'your-security-iv'
     ....
 ```
+
+**Note**: When using wildcard patterns in YAML, make sure to quote them (e.g., `"*.example.com"`) to avoid YAML parsing errors.
 
 ### Upgrade Flyimg
 

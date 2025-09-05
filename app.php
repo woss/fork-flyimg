@@ -3,13 +3,9 @@
 require_once __DIR__ . '/constants.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
-use Symfony\Component\ErrorHandler\ErrorHandler;
+use Core\Handler\ErrorHandler;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\HttpFoundation\Response;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-use Monolog\Registry;
 use Silex\Application;
 /**
  * Create directories if they don't exist
@@ -50,7 +46,7 @@ $exceptionHandlerFunction = function (\Exception $e) use ($app): Response {
             'http_client_ip' => is_null($request) ? '' : $request->headers->get('X-Forwarded-For'),
         ]
     );
-    $htmlErrorHandler = new HtmlErrorRenderer($app['params']->parameterByKey('debug'));
+    $htmlErrorHandler = new ErrorHandler($app['params']->parameterByKey('debug'));
     return new Response($htmlErrorHandler->render($e)->getAsString(), 500);
 };
 

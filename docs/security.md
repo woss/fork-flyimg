@@ -6,13 +6,20 @@ Restricted domains disabled by default. This means that you can fetch a resource
 restricted_domains: true
 ```
 
-After enabling, you need to put the white listed domains
+After enabling, you need to put the white listed domains. You can use both exact domain matches and wildcard patterns:
 
 ```yml
 whitelist_domains:
   - www.domain-1.org
   - www.domain-2.org
+  - "*.example.com"
+  - api.myservice.com
 ```
+
+- **Exact matches**: `www.domain-1.org` - matches only `www.domain-1.org`
+- **Wildcard patterns**: `"*.example.com"` - matches any subdomain of `example.com` (e.g., `api.example.com`, `cdn.example.com`, `www.example.com`)
+
+**Note**: Wildcard patterns must be quoted in YAML to avoid parsing errors, as the `*` character has special meaning in YAML.
 
 ## Signature Generation
 
@@ -24,7 +31,7 @@ Than any request to Fyimg app will throw an error unless it's encrypted.
 To generate the encrypted url you need to run this command:
 
 ```sh
-docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://mudawn.com/assets/butterfly-3000.jpg
+docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://flyimg.io/demo-images/Citroen-DS.jpg
 ```
 
 it'll return something like this:

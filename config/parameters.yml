@@ -37,9 +37,13 @@ security_iv: ''
 restricted_domains: false
 
 # If restricted_domains is enabled, put whitelist domains here
+# You can use both exact domain matches and wildcard patterns:
+# - Exact matches: example.com (matches only example.com)
+# - Wildcard patterns: *.example.com (matches any subdomain of example.com)
 whitelist_domains:
   - domain-1.com
   - domain-2.com
+  - "*.example.com"
 
 # Default storage system is local, to use AWS S3, change this param to s3
 storage_system: local

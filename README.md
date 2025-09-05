@@ -32,13 +32,13 @@ Additionally, Flyimg also generates the **WebP** format, along with the impressi
 You pass the image URL and a set of keys with options, like size or compression. Flyimg will fetch the image, convert it, store it, cache it and serve it. The next time the request comes, it will serve the cached version.
 
 ```html
-<!-- https://mudawn.com/assets/butterfly-3000.jpg -->
+<!-- https://flyimg.io/demo-images/Citroen-DS.jpg -->
 <img
-  src="https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg"
+  src="https://demo.flyimg.io/upload/w_300,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg"
 />
 ```
 
-![Flyimg-demo](https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg)
+![Flyimg-demo](https://demo.flyimg.io/upload/w_300,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ## Demo
 Check out our demo page where you can test and review Flying's features:
@@ -48,12 +48,6 @@ Check out our demo page where you can test and review Flying's features:
 ## Documentation
 
 Documentation available here: [https://flyimg.io](https://flyimg.io)
-
-## Cloud Run Button
-
-Flyimg can be deployed to GCP as a serverless container in one click with Cloud Run Button:
-
-<a href="https://deploy.cloud.run/" target="_blank"><img src="https://storage.googleapis.com/cloudrun/button.svg?git_repo=https://github.com/flyimg/flyimg.git" alt="Run on Google Cloud" style="width:180px;margin-top:20px;"/></a>
 
 ## Requirements
 
@@ -119,7 +113,7 @@ The above command will make the Dockerfile run s6-overlay command which launches
 
 You can navigate to your machine's IP in port 8080 (ex: `http://127.0.0.1:8080/` ) ; you should get a message saying: **Hello from Flyimg!** and a small homepage of Flyimg already working. If you get any errors at this stage it's most likely that composer has not finished installing or skipped something.
 
-You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://mudawn.com/assets/butterfly-3000.jpg`
+You can test your image resizing service by navigating to: `http://127.0.0.1:8080/upload/w_130,h_113,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
 **It's working!**
 
@@ -141,9 +135,9 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 
 [https://demo.flyimg.io](https://demo.flyimg.io)
 
-`https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![resize-test](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![resize-test](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ## Community
 
