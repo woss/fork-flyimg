@@ -179,7 +179,7 @@ If `input` is passed, no "optimal" format will be attempted. Flyimg will try to 
 ### `q` : quality
 
 `int` (0-100)
-_Default:_ `90`
+_Default:_ `80`
 _Description:_ Sets the compression level for the output image. Your best results will be between **70** and **95**.
 
 **example:`q_100`,`q_75`,...**
@@ -573,7 +573,7 @@ options_keys:
 ```yml
 default_options:
   mozjpeg: 1
-  quality: 90
+  quality: 80
   output: auto
   unsharp: null
   face-crop: 0
