@@ -24,7 +24,7 @@ Than any request to Fyimg app will throw an error unless it's encrypted.
 To generate the encrypted url you need to run this command:
 
 ```sh
-docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://mudawn.com/assets/butterfly-3000.jpg
+docker exec flyimg php app.php encrypt w_200,h_200,c_1/https://flyimg.io/demo-images/Citroen-DS.jpg
 ```
 
 it'll return something like this:

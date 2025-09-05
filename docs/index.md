@@ -31,13 +31,13 @@ Additionally, Flyimg also generates the **WebP** format, along with the impressi
 You pass the image URL and a set of keys with options, like size or compression. Flyimg will fetch the image, convert it, store it, cache it and serve it. The next time the request comes, it will serve the cached version.
 
 ```html
-<!-- https://mudawn.com/assets/butterfly-3000.jpg -->
+<!-- https://flyimg.io/demo-images/Citroen-DS.jpg -->
 <img
-  src="https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg"
+  src="https://demo.flyimg.io/upload/w_300,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg"
 />
 ```
 
-![Flyimg-demo](https://demo.flyimg.io/upload/w_300,q_90/https://mudawn.com/assets/butterfly-3000.jpg)
+![Flyimg-demo](https://demo.flyimg.io/upload/w_300,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ## Demo
 
@@ -62,9 +62,9 @@ So to get a pretty kitten at 250 pixels wide, with 50% compression, you would wr
 
 [https://demo.flyimg.io](https://demo.flyimg.io)
 
-`https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![resize-test](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![resize-test](https://demo.flyimg.io/upload/w_300,h_250,c_1,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ## Community
 

@@ -58,7 +58,7 @@ body {
 
 .btn-clipboard {
     display: block;
-    padding: 0.5em;
+    padding: 0;
     line-height: 1;
     color: var(--bs-body-color);
     background-color: var(--bd-pre-bg);
@@ -103,4 +103,9 @@ body {
 
 code{
     color: #08bfd7;
+}
+
+#example-url{
+    word-wrap: break-word;
+    max-width: 100%;
 }

@@ -11,7 +11,7 @@ https://server.address.io/[process-type]/[image_options]/[path_to_image]
 for example:
 
 ```html
-https://demo.flyimg.io/upload/w_500/https://mudawn.com/assets/butterfly-3000.jpg
+https://demo.flyimg.io/upload/w_500/https://flyimg.io/demo-images/Citroen-DS.jpg
 ```
 
 Explanation:
@@ -30,7 +30,7 @@ The second: **path**, grabs an image from a URL, transforms it, saves it, and re
 
 It's the first operation the server does, it will try to get an image from the URI in the path, it can be relative to the local server, or absolute to the internet.
 
-**example:** `https://mudawn.com/assets/butterfly-3000.jpg`
+**example:** `https://flyimg.io/demo-images/Citroen-DS.jpg`
 
 ---
 
@@ -53,9 +53,9 @@ _Description:_ Sets the target width of the image. If not set, width will be cal
 
 **example:`w_100`**
 
-`w_100` : `https://demo.flyimg.io/upload/w_100/https://mudawn.com/assets/butterfly-3000.jpg`
+`w_100` : `https://demo.flyimg.io/upload/w_100/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![w_100](https://demo.flyimg.io/upload/w_100,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![w_100](https://demo.flyimg.io/upload/w_100,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `h` : height
 
@@ -65,9 +65,9 @@ _Description:_ Sets the target height of the image. If not set, height will be c
 
 **example:`h_100`**
 
-`h_100` : `https://demo.flyimg.io/upload/h_100/https://mudawn.com/assets/butterfly-3000.jpg`
+`h_100` : `https://demo.flyimg.io/upload/h_100/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![h_100](https://demo.flyimg.io/upload/h_100,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![h_100](https://demo.flyimg.io/upload/h_100,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### Using width AND height
 
@@ -80,9 +80,9 @@ By default; width, height, or both will **not scale up** an image that is smalle
 
 <!-- in the future put example images here-->
 
-`h_300,w_300` : `https://demo.flyimg.io/upload/h_300,w_300/https://mudawn.com/assets/butterfly-3000.jpg`
+`h_300,w_300` : `https://demo.flyimg.io/upload/h_300,w_300/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![h_300,w_300](https://demo.flyimg.io/upload/h_300,w_300,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![h_300,w_300](https://demo.flyimg.io/upload/h_300,w_300,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `c` : crop
 
@@ -92,9 +92,9 @@ _Description:_ When both width and height are set, this allows the image to be c
 
 **example:`c_1`**
 
-`c_1,h_400,w_400` : `https://demo.flyimg.io/upload/c_1,h_400,w_400/https://mudawn.com/assets/butterfly-3000.jpg`
+`c_1,h_400,w_400` : `https://demo.flyimg.io/upload/c_1,h_400,w_400/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![c_1,h_400,w_400](https://demo.flyimg.io/upload/c_1,h_400,w_400,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![c_1,h_400,w_400](https://demo.flyimg.io/upload/c_1,h_400,w_400,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `g` : gravity
 
@@ -148,7 +148,7 @@ For the hex code, the hash `#` character should be replaced by `%23`
 
 **example:`tbg_%23ff4455`, `tbg_red`**
 
-![t_by%20Flyimg,tc_%23bcc7c9,ts_44,tbg_%234f8400,g_SouthEast](https://demo.flyimg.io/upload/w_600,t_by%20Flyimg,tc_%23bcc7c9,ts_44,tbg_%234f8400,g_SouthEast,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![t_by%20Flyimg,tc_%23bcc7c9,ts_44,tbg_%234f8400,g_SouthEast](https://demo.flyimg.io/upload/w_600,t_by%20Flyimg,tc_%23bcc7c9,ts_44,tbg_%234f8400,g_SouthEast,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `r` : rotate
 
@@ -158,9 +158,9 @@ _Description:_ Apply image rotation (using shear operations) to the image.
 
 **example: `r_90`, `r_-180`,...**
 
-`r_45` : `https://demo.flyimg.io/upload/r_-45,w_400,h_400/https://mudawn.com/assets/butterfly-3000.jpg`
+`r_45` : `https://demo.flyimg.io/upload/r_-45,w_400,h_400/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![r_45](https://demo.flyimg.io/upload/r_-45,w_400,h_400,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![r_45](https://demo.flyimg.io/upload/r_-45,w_400,h_400,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ---
 
@@ -184,13 +184,13 @@ _Description:_ Sets the compression level for the output image. Your best result
 
 **example:`q_100`,`q_75`,...**
 
-`q_30` : `https://demo.flyimg.io/upload/q_30,w_600/https://mudawn.com/assets/butterfly-3000.jpg`
+`q_30` : `https://demo.flyimg.io/upload/q_30,w_600/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![q_30](https://demo.flyimg.io/upload/q_30,w_600,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![q_30](https://demo.flyimg.io/upload/q_30,w_600,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
-`q_100` : `https://demo.flyimg.io/upload/q_100,w_600/https://mudawn.com/assets/butterfly-3000.jpg`
+`q_100` : `https://demo.flyimg.io/upload/q_100,w_600/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![q_100](https://demo.flyimg.io/upload/q_100,w_600,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![q_100](https://demo.flyimg.io/upload/q_100,w_600,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `webpl` : webp-lossless
 
@@ -200,9 +200,9 @@ _Description:_ If output is set to webp, it will default to lossy compression, b
 
 **example:`webpl_1`**
 
-`webpl_1` : `https://demo.flyimg.io/upload/webpl_1,w_600/https://mudawn.com/assets/butterfly-3000.jpg`
+`webpl_1` : `https://demo.flyimg.io/upload/webpl_1,w_600/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![webpl_1](https://demo.flyimg.io/upload/webpl_1,w_600,o_webp/https://mudawn.com/assets/butterfly-3000.jpg)
+![webpl_1](https://demo.flyimg.io/upload/webpl_1,w_600,o_webp/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `webpm` : webp-method
 
@@ -245,9 +245,9 @@ For the hex code, the hash `#` character should be replaced by `%23`
   [...] -background "rgb(255,120,100)" ...
 ```
 
-`https://demo.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![bg_red](https://demo.flyimg.io/upload/r_45,w_400,h_400,bg_red,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![bg_red](https://demo.flyimg.io/upload/r_45,w_400,h_400,bg_red,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `st` : strip
 
@@ -387,14 +387,14 @@ _Description:_ Sets the target page of the PDF. If not set, the default is page 
 
 **example:`pdfp_1`**
 
-- PDF: `http://mudawn.com/assets/lighthouses.pdf`
+- PDF: `https://flyimg.io/demo-images/lighthouses.pdf`
 - Width: 200
 - Height: 200
 - Page: `pdfp_1`
 
-`https://demo.flyimg.io/upload/w_200,h_200,pdfp_1/http://mudawn.com/assets/lighthouses.pdf`
+`https://demo.flyimg.io/upload/w_200,h_200,pdfp_1/https://flyimg.io/demo-images/lighthouses.pdf`
 
-![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,pdfp_1/http://mudawn.com/assets/lighthouses.pdf)
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,pdfp_1/https://flyimg.io/demo-images/lighthouses.pdf)
 
 ### `dnst` : density
 
@@ -404,7 +404,7 @@ _Description:_ Sets the PDF density. If not set, the default is 72.
 
 **example:`dnst_300`**
 
-`dnst_300` : `https://demo.flyimg.io/upload/dnst_300,pdfp_1/http://mudawn.com/assets/lighthouses.pdf`
+`dnst_300` : `https://demo.flyimg.io/upload/dnst_300,pdfp_1/https://flyimg.io/demo-images/lighthouses.pdf`
 
 
 ### `tm` : video-time
@@ -415,14 +415,14 @@ _Description:_ Sets the frame capture time duration point in the video. If not s
 
 **example:`tm_00:00:05`**
 
-- Video: `http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
+- Video: `https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4`
 - Width: 200
 - Height: 200
 - Time: `tm_00:00:05`
 
-`https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
+`https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4`
 
-![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/http://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4)
+![lago_ranco](https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4)
 
 ### `clsp` : colorspace
 
@@ -432,13 +432,13 @@ _Description:_ Convert the image to a different colorspace.
 
 **example:`clsp_Gray`**
 
-- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
+- Image: `https://flyimg.io/demo-images/Citroen-DS.jpg`
 - Width: 400
 - Colorspace: `clsp_Gray`
 
-`https://demo.flyimg.io/upload/w_400,clsp_Gray/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_400,clsp_Gray/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![lago_ranco](https://demo.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![lago_ranco](https://demo.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `mnchr` : monochrome
 
@@ -448,13 +448,13 @@ _Description:_ Convert the image to monochrome.
 
 **example:`mnchr_1`**
 
-- Image: `https://mudawn.com/assets/butterfly-3000.jpg`
+- Image: `https://flyimg.io/demo-images/Citroen-DS.jpg`
 - Width: 400
 - Monochrome: `mnchr_1`
 
-`https://demo.flyimg.io/upload/w_400,mnchr_1/https://mudawn.com/assets/butterfly-3000.jpg`
+`https://demo.flyimg.io/upload/w_400,mnchr_1/https://flyimg.io/demo-images/Citroen-DS.jpg`
 
-![lago_ranco](https://demo.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://mudawn.com/assets/butterfly-3000.jpg)
+![lago_ranco](https://demo.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 ### `e` : extract
 
@@ -510,9 +510,9 @@ _Description:_ Sets the target page of the PDF. If not set, the default is page 
 
 **example:`pdfp_2`**
 
-`pdfp_2` : `https://demo.flyimg.io/upload/pdfp_2,w_300/https://mudawn.com/assets/lighthouses.pdf`
+`pdfp_2` : `https://demo.flyimg.io/upload/pdfp_2,w_300/https://flyimg.io/demo-images/lighthouses.pdf`
 
-![pdfp_2](https://demo.flyimg.io/upload/pdfp_2,w_300/https://mudawn.com/assets/lighthouses.pdf)
+![pdfp_2](https://demo.flyimg.io/upload/pdfp_2,w_300/https://flyimg.io/demo-images/lighthouses.pdf)
 
 
 ### Video options
@@ -527,15 +527,15 @@ _Description:_ Sets the frame capture time duration point in the video. If not s
 
 **example:`tm_00:00:05`**
 
-`tm_00:00:05` : `https://demo.flyimg.io/upload/tm_00:00:05/https://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
+`tm_00:00:05` : `https://demo.flyimg.io/upload/tm_00:00:05/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4`
 
-![tm_00:00:05](https://demo.flyimg.io/upload/tm_00:00:05/https://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4)
+![tm_00:00:05](https://demo.flyimg.io/upload/tm_00:00:05/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4)
 
 You can also use a shorter syntax for the first 60 seconds.
 
 **example:`tm_10`**
 
-`tm_10` : `https://demo.flyimg.io/upload/tm_10/https://mudawn.com/assets/big_buck_bunny_720p_2mb.mp4`
+`tm_10` : `https://demo.flyimg.io/upload/tm_10/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4`
 
 ---
 

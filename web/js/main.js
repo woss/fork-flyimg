@@ -64,7 +64,7 @@ const addInput = () => {
                 </select>
             </div>
             <div class="col-md-2">
-                <input type="text" class="form-control option-value" placeholder="Enter value" />
+                <input type="text" class="form-control option-value" placeholder="Enter value" value="80" />
             </div>
             <div class="col-md">
                 <div class="p-2 bg-info bg-opacity-10 border-info rounded row">
@@ -73,7 +73,7 @@ const addInput = () => {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
                         </svg>
                     </div>
-                    <div class="example-info col">Default 90 | Example 80</div>
+                    <div class="example-info col">Default 80</div>
                 </div>
             </div>
         </div>
@@ -90,6 +90,7 @@ const addInput = () => {
     inputField.focus();
     selectInput.addEventListener('change', function () {
         exampleBox.innerHTML = this.querySelector('option:checked').getAttribute('data-bs-example')
+        inputField.value = ''
         inputField.focus();
     }, false);
 
@@ -242,4 +243,5 @@ const formatBytes = (bytes, decimals = 2) => {
 
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    addInput();
 })();

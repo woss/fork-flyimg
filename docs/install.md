@@ -67,7 +67,7 @@ The above command will make the Dockerfile run s6-overlay command which launches
 
 You can navigate to your machine's IP in port 8080 (ex: [http://127.0.0.1:8080/](http://127.0.0.1:8080/) ) ; you should get the demo homepage of Flyimg already working. If you get any errors at this stage it's most likely that composer has not finished installing or skipped something.
 
-You can test your image resizing service by navigating to: [http://127.0.0.1:8080/upload/w_600,h_500,q_90/https://mudawn.com/assets/butterfly-3000.jpg](http://127.0.0.1:8080/upload/w_600,h_500,q_90/https://mudawn.com/assets/butterfly-3000.jpg)
+You can test your image resizing service by navigating to: [http://127.0.0.1:8080/upload/w_600,h_500,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg](http://127.0.0.1:8080/upload/w_600,h_500,q_90/https://flyimg.io/demo-images/Citroen-DS.jpg)
 
 **It's working!**
 
