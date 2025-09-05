@@ -36,7 +36,7 @@ class SecurityHandler
     public function checkRestrictedDomains(string $imageSource)
     {
         if (!$this->appParameters->parameterByKey('restricted_domains')) {
-            return;            
+            return;
         }
         $imageDomain = parse_url($imageSource, PHP_URL_HOST);
         if (!in_array($imageDomain, $this->appParameters->parameterByKey('whitelist_domains'))) {
