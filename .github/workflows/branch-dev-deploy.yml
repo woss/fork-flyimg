@@ -58,5 +58,5 @@ jobs:
             bash -c "git checkout ${{ steps.branch-deploy.outputs.ref }}"
             bash -c "docker build -t dev-branch ."
             bash -c "docker rm -f flyimg-dev || true"
-            bash -c "docker run -itd -p 8090:80 -v $PWD:/var/www/html --name flyimg-dev dev-branch"
+            bash -c "docker run -itd -p 9900:80 -v $PWD:/var/www/html --name flyimg-dev dev-branch"
             bash -c "docker exec flyimg-dev composer install"
