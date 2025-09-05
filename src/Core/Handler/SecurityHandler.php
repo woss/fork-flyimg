@@ -39,15 +39,15 @@ class SecurityHandler
             return;
         }
         $imageDomain = parse_url($imageSource, PHP_URL_HOST);
-        
+
         // If parse_url returns null, it means the imageSource is not a valid URL
         // (e.g., it's a local file path). In this case, we allow it.
         if ($imageDomain === null) {
             return;
         }
-        
+
         $whitelistDomains = $this->appParameters->parameterByKey('whitelist_domains');
-        
+
         if (!$this->isDomainAllowed($imageDomain, $whitelistDomains)) {
             throw  new SecurityException(
                 'The domain you are trying to fetch from is not permitted: ' .
@@ -70,7 +70,7 @@ class SecurityHandler
             if ($domain === $allowedDomain) {
                 return true;
             }
-            
+
             // Wildcard match (e.g., *.example.com)
             if (strpos($allowedDomain, '*') === 0) {
                 $pattern = substr($allowedDomain, 1); // Remove the *
@@ -83,7 +83,7 @@ class SecurityHandler
                 }
             }
         }
-        
+
         return false;
     }
 

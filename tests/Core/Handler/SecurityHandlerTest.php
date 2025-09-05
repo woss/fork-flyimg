@@ -94,7 +94,7 @@ class SecurityHandlerTest extends BaseTest
     {
         $this->expectException(SecurityException::class);
         $this->expectExceptionMessage("The domain you are trying to fetch from is not permitted: other.com");
-        
+
         /** @var AppParameters $appParameters */
         $appParameters = clone $this->app['params'];
         $appParameters->addParameter('restricted_domains', true);
