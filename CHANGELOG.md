@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.7.7](https://github.com/flyimg/flyimg/compare/1.7.6...1.7.7) (2025-09-07)
+
+
+### Bug Fixes
+
+* convert RGBA images to RGB before processing in SmartCrop ([e362835](https://github.com/flyimg/flyimg/commit/e36283570233b20fef435c0edc7c98532eda4f5d))
+
 ## [1.7.6](https://github.com/flyimg/flyimg/compare/1.7.5...1.7.6) (2025-09-05)
 
 
