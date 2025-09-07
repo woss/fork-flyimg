@@ -100,6 +100,10 @@ class SmartCrop(object):
         This implementation / algorithm is really slow for large images.
         Use `crop()` which is pre-scaling the image before analyzing it.
         """
+        # Convert to RGB before applying the matrix:
+        if image.mode == "RGBA":
+            image = image.convert("RGB")
+
         cie_image = image.convert("L", (0.2126, 0.7152, 0.0722, 0))
         cie_array = np.array(cie_image)  # [0; 255]
 
