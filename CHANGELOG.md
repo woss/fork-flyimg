@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.7.8](https://github.com/flyimg/flyimg/compare/1.7.7...1.7.8) (2025-09-08)
+
+
+### Bug Fixes
+
+* fix restricted domains where source image url contain one slash ([9554892](https://github.com/flyimg/flyimg/commit/955489278739a4d8a4b4f37b8f04a1b4be33b158))
+
 ## [1.7.7](https://github.com/flyimg/flyimg/compare/1.7.6...1.7.7) (2025-09-07)
 
 
