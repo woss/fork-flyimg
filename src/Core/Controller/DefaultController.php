@@ -21,7 +21,7 @@ class DefaultController extends CoreController
      * @return Response
      * @throws \Exception
      */
-    public function uploadAction(string $options, string $imageSrc = null): Response
+    public function uploadAction(string $options, ?string $imageSrc = null): Response
     {
         $image = $this->imageHandler()->processImage($options, $imageSrc);
 
@@ -37,7 +37,7 @@ class DefaultController extends CoreController
      * @return Response
      * @throws \Exception
      */
-    public function pathAction(string $options, string $imageSrc = null): Response
+    public function pathAction(string $options, ?string $imageSrc = null): Response
     {
         $image = $this->imageHandler()->processImage($options, $imageSrc);
 
