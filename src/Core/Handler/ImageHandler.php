@@ -91,6 +91,7 @@ class ImageHandler
      */
     public function processImage(string $options, string $imageSrc): OutputImage
     {
+        $imageSrc = preg_replace('#^(https?):/([^/])#', '$1://$2', $imageSrc);
         [$options, $imageSrc] = $this->securityHandler->checkSecurityHash($options, $imageSrc);
         $this->securityHandler->checkRestrictedDomains($imageSrc);
 
