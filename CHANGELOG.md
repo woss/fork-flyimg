@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.7.9](https://github.com/flyimg/flyimg/compare/1.7.8...1.7.9) (2025-09-09)
+
+
+### Bug Fixes
+
+* update cleanup-tmp.sh to delete only files older than 1 hour and add retry mechanism in ImageHandler for temporary file access ([e626d85](https://github.com/flyimg/flyimg/commit/e626d853eef3fad059683d4d41eef06498e14c1d))
+
 ## [1.7.8](https://github.com/flyimg/flyimg/compare/1.7.7...1.7.8) (2025-09-08)
 
 
