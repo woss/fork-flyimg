@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.7.10](https://github.com/flyimg/flyimg/compare/1.7.9...1.7.10) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove unnecessary whitespace in ImageHandler and improve exception message for temporary file access ([0028dc8](https://github.com/flyimg/flyimg/commit/0028dc8b2b9e60363e982af000e5e1c6b9e15b81))
+
 ## [1.7.9](https://github.com/flyimg/flyimg/compare/1.7.8...1.7.9) (2025-09-09)
 
 
