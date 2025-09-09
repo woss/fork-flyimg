@@ -174,11 +174,11 @@ class ImageHandler
         $this->faceDetectionProcess($outputImage);
 
         $tmpPath = $outputImage->getOutputTmpPath();
-        
+
         // Retry mechanism for concurrent access
         $maxRetries = 3;
         $retryDelay = 100000; // 100ms in microseconds
-        
+
         for ($attempt = 1; $attempt <= $maxRetries; $attempt++) {
             if (!file_exists($tmpPath)) {
                 if ($attempt < $maxRetries) {
@@ -187,7 +187,7 @@ class ImageHandler
                 }
                 throw new \Exception("Temporary file not found after $maxRetries attempts: " . $tmpPath);
             }
-            
+
             $handle = fopen($tmpPath, 'r');
             if ($handle === false) {
                 if ($attempt < $maxRetries) {
@@ -196,22 +196,22 @@ class ImageHandler
                 }
                 throw new \Exception("Failed to open temporary file after $maxRetries attempts: " . $tmpPath);
             }
-            
+
             $content = stream_get_contents($handle);
             fclose($handle);
-            
+
             if ($content === false) {
                 if ($attempt < $maxRetries) {
                     usleep($retryDelay);
                     continue;
                 }
-                throw new \Exception("Failed to read content from temporary file after $maxRetries attempts: " . $tmpPath);
+                throw new \Exception("Failed to read from temporary file after $maxRetries attempts: " . $tmpPath);
             }
-            
+
             // Success - break out of retry loop
             break;
         }
-        
+
         $this->filesystem->write(
             $outputImage->getOutputImageName(),
             $content
