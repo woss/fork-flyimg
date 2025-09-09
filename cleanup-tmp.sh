@@ -37,8 +37,8 @@ if [ -z "$CRON_INTERVAL" ]; then
   CRON_INTERVAL="0 */5 * * *"
 fi
 
-# Cleanup the tmp directory
-find "$TMP_DIR" -type f -delete
+# Cleanup the tmp directory - only delete files older than 1 hour to avoid race conditions
+find "$TMP_DIR" -type f -mmin +60 -delete
 
 # Update the cron job with the new interval
 echo "$CRON_INTERVAL root /var/www/html/cleanup-tmp.sh" > "$CRON_FILE"
