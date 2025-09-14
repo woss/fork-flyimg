@@ -32,6 +32,18 @@ class DefaultControllerTest extends BaseTest
     /**
      *
      */
+    public function testIndexActionWithDemoDisabled()
+    {
+        $this->app['params']->addParameter('demo_page_enabled', false);
+        $client = static::createClient();
+        $client->request('GET', '/');
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertEmpty($client->getResponse()->getContent());
+    }
+
+    /**
+     *
+     */
     public function testUploadAction()
     {
         $client = static::createClient();
