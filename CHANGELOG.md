@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.7.11](https://github.com/flyimg/flyimg/compare/1.7.10...1.7.11) (2025-09-14)
+
+
+### Bug Fixes
+
+* add the possiblity to enable or disable the default demo page ([5edeba6](https://github.com/flyimg/flyimg/commit/5edeba65706b2fcd723f611ff1572c28845fa282))
+
 ## [1.7.10](https://github.com/flyimg/flyimg/compare/1.7.9...1.7.10) (2025-09-09)
 
 
