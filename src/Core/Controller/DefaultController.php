@@ -11,6 +11,13 @@ class DefaultController extends CoreController
      */
     public function indexAction()
     {
+        // Check if demo page is enabled
+        if (!$this->app['params']->parameterByKey('demo_page_enabled', true)) {
+            $this->response->setContent('');
+            $this->response->setStatusCode(200);
+            return $this->response;
+        }
+
         return $this->render('Default/index');
     }
 

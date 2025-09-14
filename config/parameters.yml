@@ -8,6 +8,10 @@ log_level: error
 # Home page title
 home_page_title: Flyimg
 
+# Enable or disable the demo page (default /)
+# When false, returns an empty page with 200 code
+demo_page_enabled: true
+
 # Application domain name (optional) - used when running in containers to override localhost detection
 # Leave empty to use automatic detection from HTTP headers
 # without trailing slash

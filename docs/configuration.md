@@ -24,6 +24,11 @@ _Description:_ Custom domain name (optional) - used when running in containers t
 _Defaults to:_ `Flyimg`
 _Description:_ Home Page title
 
+### demo_page_enabled
+
+_Defaults to:_ `true`
+_Description:_ Enable or disable the demo page (default /). When false, returns an empty page with 200 code
+
 ### enable_cronjob_cleanup
 
 _Defaults to:_ `true`
