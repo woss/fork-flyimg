@@ -5,7 +5,7 @@
  * Handles homepage rendering and image upload/path endpoints.
  *
  * @category Controller
- * @package  Flyimg\\Core\\Controller
+ * @package  Flyimg\Core\Controller
  * @author   Flyimg Team <dev@flyimg.io>
  * @license  MIT License <https://opensource.org/licenses/MIT>
  * @link     https://github.com/flyimg/flyimg
@@ -19,7 +19,7 @@ use Core\Entity\Response;
  * Class DefaultController
  *
  * @category Controller
- * @package  Flyimg\\Core\\Controller
+ * @package  Flyimg\Core\Controller
  * @author   Flyimg Team <dev@flyimg.io>
  * @license  MIT License <https://opensource.org/licenses/MIT>
  * @link     https://github.com/flyimg/flyimg
@@ -46,7 +46,7 @@ class DefaultController extends CoreController
     /**
      * Process an image from a URL-like source and return the generated image.
      *
-     * @param string $options Image transformation options.
+     * @param string $options  Image transformation options.
      * @param string $imageSrc Source image spec (URL, data URI, local path, s3 URI).
      *
      * @return Response
@@ -65,7 +65,7 @@ class DefaultController extends CoreController
     /**
      * Accept binary or base64 payload in request body and process with options.
      *
-     * @param string $options  Image transformation options.
+     * @param string $options Image transformation options.
      *
      * @return Response
      *
@@ -83,14 +83,20 @@ class DefaultController extends CoreController
             $data = json_decode($rawBody, true);
             $source = isset($data['dataUri']) ? (string)$data['dataUri'] : '';
             if (!$source && isset($data['base64'])) {
-                $source = 'data:application/octet-stream;base64,' . $data['base64'];
+                $source = 'data:application/octet-stream;base64,'
+                    . $data['base64'];
             }
-        } elseif (stripos($contentType, 'application/octet-stream') !== false || stripos($contentType, 'image/') !== false) {
-            $source = 'data:application/octet-stream;base64,' . base64_encode($rawBody);
+        } elseif (stripos($contentType, 'application/octet-stream') !== false
+            || stripos($contentType, 'image/') !== false
+        ) {
+            $source = 'data:application/octet-stream;base64,'
+                . base64_encode($rawBody);
         } else {
             // Fallback: try to treat body as a data URI or base64 string directly
             $trimmed = trim($rawBody);
-            $source = (stripos($trimmed, 'data:') === 0) ? $trimmed : 'data:application/octet-stream;base64,' . $trimmed;
+            $source = (stripos($trimmed, 'data:') === 0)
+                ? $trimmed
+                : 'data:application/octet-stream;base64,' . $trimmed;
         }
 
         $image = $this->imageHandler()->processImage($options, $source);

@@ -156,7 +156,15 @@ class InputImage
         $query = isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '';
         $fragment = isset($parsedUrl['fragment']) ? '#' . $parsedUrl['fragment'] : '';
 
-        return  $parsedUrl['scheme'] . '://' . $auth . $host . $port . $path . $query . $fragment;
+        $result = $parsedUrl['scheme'] . '://'
+            . $auth
+            . $host
+            . $port
+            . $path
+            . $query
+            . $fragment;
+
+        return $result;
     }
 
     /**
@@ -229,9 +237,15 @@ class InputImage
             if (!is_array($params) || empty($params)) {
                 throw new AppException('S3 not configured');
             }
-            $endpoint = isset($params['endpoint']) && !empty($params['endpoint'])
+            $endpoint = (
+                isset($params['endpoint']) && !empty($params['endpoint'])
+            )
                 ? sprintf($params['endpoint'], $bucket, $params['region'])
-                : sprintf('https://%s.s3.%s.amazonaws.com/', $bucket, $params['region']);
+                : sprintf(
+                    'https://%s.s3.%s.amazonaws.com/',
+                    $bucket,
+                    $params['region']
+                );
             $signedUrl = $endpoint . $key;
 
             // Fetch via curl (public or signed by custom endpoint). If private, rely on Authorization forwarding.
@@ -260,7 +274,11 @@ class InputImage
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_TIMEOUT, $this->optionsBag->appParameters()->parameterByKey('source_image_request_timeout'));
+            curl_setopt(
+                $ch,
+                CURLOPT_TIMEOUT,
+                $this->optionsBag->appParameters()->parameterByKey('source_image_request_timeout')
+            );
             $imageData = curl_exec($ch);
             if (curl_errno($ch)) {
                 throw new ReadFileException('Curl error: ' . curl_error($ch));
