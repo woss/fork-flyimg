@@ -38,7 +38,6 @@ It's the first operation the server does, it will try to get an image from the U
 
 In addition to fetching images from an HTTP/HTTPS URL, Flyimg supports:
 
-- data URIs: `data:<mime>;base64,<payload>`
 - S3 references: `s3://<bucket>/<key>`
 - Direct POST uploads with the request body
 
@@ -64,14 +63,6 @@ curl -X POST -H "Content-Type: application/json" \
   http://localhost:8080/upload/w_300,o_png -o out.png
 ```
 
-### GET with data URI
-
-For small payloads only (URLs have size limits):
-
-```
-/upload/w_200,o_jpg/data:image/png;base64,<BASE64>
-```
-
 ### S3 sources
 
 Fetch from S3 using a simple URI:
@@ -80,7 +71,7 @@ Fetch from S3 using a simple URI:
 /upload/w_300/s3://my-bucket/path/to/image.png
 ```
 
-Configuration for S3 endpoint/region is required; see configuration docs below.
+Configuration for S3 endpoint/region is *required*, see configuration docs below.
 
 ## image_options
 
