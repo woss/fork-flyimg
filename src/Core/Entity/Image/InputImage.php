@@ -1,16 +1,4 @@
 <?php
-/**
- * InputImage
- *
- * Loads the source image from URL, local path, data URI, or s3 reference
- * into a temporary file and exposes metadata for processing.
- *
- * @category Entity
- * @package  Flyimg\\Core\\Entity
- * @author   Flyimg Team <dev@flyimg.io>
- * @license  MIT License <https://opensource.org/licenses/MIT>
- * @link     https://github.com/flyimg/flyimg
- */
 
 namespace Core\Entity\Image;
 
@@ -28,12 +16,7 @@ use Core\Exception\FileNotFoundException;
 
 /**
  * Class InputImage
- *
- * @category Entity
- * @package  Flyimg\\Core\\Entity
- * @author   Flyimg Team <dev@flyimg.io>
- * @license  MIT License <https://opensource.org/licenses/MIT>
- * @link     https://github.com/flyimg/flyimg
+ * @package Core\Entity
  */
 class InputImage
 {

@@ -1,15 +1,4 @@
 <?php
-/**
- * DefaultController
- *
- * Handles homepage rendering and image upload/path endpoints.
- *
- * @category Controller
- * @package  Flyimg\Core\Controller
- * @author   Flyimg Team <dev@flyimg.io>
- * @license  MIT License <https://opensource.org/licenses/MIT>
- * @link     https://github.com/flyimg/flyimg
- */
 
 namespace Core\Controller;
 
@@ -17,12 +6,7 @@ use Core\Entity\Response;
 
 /**
  * Class DefaultController
- *
- * @category Controller
- * @package  Flyimg\Core\Controller
- * @author   Flyimg Team <dev@flyimg.io>
- * @license  MIT License <https://opensource.org/licenses/MIT>
- * @link     https://github.com/flyimg/flyimg
+ * @package Core\Controller
  */
 class DefaultController extends CoreController
 {
