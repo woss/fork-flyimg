@@ -1,4 +1,16 @@
 <?php
+/**
+ * InputImage
+ *
+ * Loads the source image from URL, local path, data URI, or s3 reference
+ * into a temporary file and exposes metadata for processing.
+ *
+ * @category Entity
+ * @package  Flyimg\\Core\\Entity
+ * @author   Flyimg Team <dev@flyimg.io>
+ * @license  MIT License <https://opensource.org/licenses/MIT>
+ * @link     https://github.com/flyimg/flyimg
+ */
 
 namespace Core\Entity\Image;
 
@@ -14,9 +26,20 @@ use Core\Processor\VideoProcessor;
 use Symfony\Component\HttpFoundation\Request;
 use Core\Exception\FileNotFoundException;
 
+/**
+ * Class InputImage
+ *
+ * @category Entity
+ * @package  Flyimg\\Core\\Entity
+ * @author   Flyimg Team <dev@flyimg.io>
+ * @license  MIT License <https://opensource.org/licenses/MIT>
+ * @link     https://github.com/flyimg/flyimg
+ */
 class InputImage
 {
-    /** Content TYPE */
+    /**
+     * Content TYPE
+     */
     public const WEBP_MIME_TYPE = 'image/webp';
     public const JPEG_MIME_TYPE = 'image/jpeg';
     public const PNG_MIME_TYPE = 'image/png';
@@ -24,29 +47,41 @@ class InputImage
     public const AVIF_MIME_TYPE = 'image/avif';
     public const PDF_MIME_TYPE = 'application/pdf';
 
-    /** @var OptionsBag */
+    /**
+     * @var OptionsBag
+     */
     protected $optionsBag;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $sourceImageUrl;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $sourceImagePath;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $sourceImageMimeType;
 
-    /** @var ImageMetaInfo */
+    /**
+     * @var ImageMetaInfo
+     */
     protected $sourceImageInfo;
 
-    /**  @var string */
+    /**
+     * @var string
+     */
     protected $sourceFileMimeType;
 
     /**
      * InputImage constructor.
      *
-     * @param OptionsBag $optionsBag
-     * @param string $sourceImageUrl
+     * @param OptionsBag $optionsBag      Options for processing.
+     * @param string     $sourceImageUrl  Source image spec.
      *
      * @throws \Exception
      */
@@ -77,12 +112,12 @@ class InputImage
     }
 
     /**
-     * Properly encode URL
+     * Properly encode URL.
      *
-     * @param string $url
+     * @param  string $url URL to encode.
      * @return string
      */
-    private function encodeUrl($url)
+    private function _encodeUrl($url)
     {
         // URL scheme was not always set as the input scheme
         if (preg_match("!https?:/[a-zA-Z]!", $url)) {
@@ -118,7 +153,9 @@ class InputImage
      */
     protected function saveToTemporaryFile()
     {
-        $this->sourceImageUrl = $this->encodeUrl($this->sourceImageUrl);
+        // Support data URI (base64) and s3:// schemes in addition to http(s) and local files
+        $originalSource = $this->sourceImageUrl;
+        $this->sourceImageUrl = $this->_encodeUrl($this->sourceImageUrl);
 
         $headers = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
         if (is_string($headers)) {
@@ -145,14 +182,106 @@ class InputImage
             return;
         }
 
+        // Handle data URI
+        if (stripos($originalSource, 'data:') === 0) {
+            $commaPos = strpos($originalSource, ',');
+            if ($commaPos === false) {
+                throw new InvalidArgumentException('Invalid data URI');
+            }
+            $meta = substr($originalSource, 0, $commaPos);
+            $dataPart = substr($originalSource, $commaPos + 1);
+            $isBase64 = stripos($meta, ';base64') !== false;
+            $binary = $isBase64 ? base64_decode($dataPart) : urldecode($dataPart);
+            if ($binary === false) {
+                throw new InvalidArgumentException('Invalid base64 data');
+            }
+            file_put_contents($this->sourceImagePath, $binary);
+            return;
+        }
+
+        // Handle s3://bucket/key
+        if (stripos($originalSource, 's3://') === 0) {
+            $withoutScheme = substr($originalSource, 5);
+            $firstSlash = strpos($withoutScheme, '/');
+            if ($firstSlash === false) {
+                throw new InvalidArgumentException('Invalid S3 URI, expected s3://bucket/key');
+            }
+            $bucket = substr($withoutScheme, 0, $firstSlash);
+            $key = substr($withoutScheme, $firstSlash + 1);
+
+            // Build HTTP URL using configured endpoint pattern if present
+            $params = $this->optionsBag->appParameters()->parameterByKey('aws_s3');
+            if (!is_array($params) || empty($params)) {
+                throw new AppException('S3 not configured');
+            }
+            $endpoint = isset($params['endpoint']) && !empty($params['endpoint'])
+                ? sprintf($params['endpoint'], $bucket, $params['region'])
+                : sprintf('https://%s.s3.%s.amazonaws.com/', $bucket, $params['region']);
+            $signedUrl = $endpoint . $key;
+
+            // Fetch via curl (public or signed by custom endpoint). If private, rely on Authorization forwarding.
+            $headers = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
+            if (is_string($headers)) {
+                $headers = [$headers];
+            }
+            $forwardRequestHeaders = (array)$this->optionsBag
+                ->appParameters()
+                ->parameterByKey('forward_request_headers', []);
+            if (!empty($forwardRequestHeaders)) {
+                $requestHeaders = Request::createFromGlobals()->headers;
+                foreach ($forwardRequestHeaders as $name) {
+                    if ($requestHeaders->has($name)) {
+                        $value = $requestHeaders->get($name);
+                        $headers[] = "$name: $value";
+                        if ('Authorization' === $name) {
+                            $this->sourceImagePath .= md5($value);
+                        }
+                    }
+                }
+            }
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $signedUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_TIMEOUT, $this->optionsBag->appParameters()->parameterByKey('source_image_request_timeout'));
+            $imageData = curl_exec($ch);
+            if (curl_errno($ch)) {
+                throw new ReadFileException('Curl error: ' . curl_error($ch));
+            }
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            if ($httpCode == 200 && $imageData !== false) {
+                file_put_contents($this->sourceImagePath, $imageData);
+                return;
+            }
+            switch ($httpCode) {
+            case 400:
+                throw new InvalidArgumentException();
+            case 401:
+                throw new UnauthorizedException();
+            case 403:
+                throw new AccessDeniedException();
+            case 404:
+                throw new FileNotFoundException();
+            case 503:
+                throw new ServiceUnavailableException();
+            default:
+                throw new AppException();
+            }
+        }
+
         if (filter_var($this->sourceImageUrl, FILTER_VALIDATE_URL)) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->sourceImageUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);  // Allow redirects
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);  // Add custom headers
-            curl_setopt($ch, CURLOPT_TIMEOUT, $this->optionsBag->appParameters()
-            ->parameterByKey('source_image_request_timeout'));
+            curl_setopt(
+                $ch, CURLOPT_TIMEOUT, $this->optionsBag->appParameters()
+                    ->parameterByKey('source_image_request_timeout')
+            );
 
             $imageData = curl_exec($ch);
 
@@ -164,18 +293,18 @@ class InputImage
                     file_put_contents($this->sourceImagePath, $imageData);
                 } else {
                     switch ($httpCode) {
-                        case 400:
-                            throw new InvalidArgumentException();
-                        case 401:
-                            throw new UnauthorizedException();
-                        case 403:
-                            throw new AccessDeniedException();
-                        case 404:
-                            throw new FileNotFoundException();
-                        case 503:
-                            throw new ServiceUnavailableException();
-                        default:
-                            throw new AppException();
+                    case 400:
+                        throw new InvalidArgumentException();
+                    case 401:
+                        throw new UnauthorizedException();
+                    case 403:
+                        throw new AccessDeniedException();
+                    case 404:
+                        throw new FileNotFoundException();
+                    case 503:
+                        throw new ServiceUnavailableException();
+                    default:
+                        throw new AppException();
                     }
                 }
             }
