@@ -46,7 +46,7 @@ class DefaultController extends CoreController
     /**
      * Process an image from a URL-like source and return the generated image.
      *
-     * @param string $options  Image transformation options.
+     * @param string $options Image transformation options.
      * @param string $imageSrc Source image spec (URL, data URI, local path, s3 URI).
      *
      * @return Response

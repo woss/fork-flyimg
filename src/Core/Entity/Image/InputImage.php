@@ -38,7 +38,7 @@ use Core\Exception\FileNotFoundException;
 class InputImage
 {
     /**
-     * Content TYPE
+     * Content TYPE constants.
      */
     public const WEBP_MIME_TYPE = 'image/webp';
     public const JPEG_MIME_TYPE = 'image/jpeg';
@@ -48,31 +48,43 @@ class InputImage
     public const PDF_MIME_TYPE = 'application/pdf';
 
     /**
+     * Options selected for processing.
+     *
      * @var OptionsBag
      */
     protected $optionsBag;
 
     /**
+     * Original source image spec (URL, path, data URI, s3 URI).
+     *
      * @var string
      */
     protected $sourceImageUrl;
 
     /**
+     * Temporary local path to the downloaded source image.
+     *
      * @var string
      */
     protected $sourceImagePath;
 
     /**
+     * Detected MIME type of the source image.
+     *
      * @var string
      */
     protected $sourceImageMimeType;
 
     /**
+     * Parsed metadata for the source image.
+     *
      * @var ImageMetaInfo
      */
     protected $sourceImageInfo;
 
     /**
+     * Source file MIME type (videos handled specially).
+     *
      * @var string
      */
     protected $sourceFileMimeType;
@@ -80,8 +92,8 @@ class InputImage
     /**
      * InputImage constructor.
      *
-     * @param OptionsBag $optionsBag      Options for processing.
-     * @param string     $sourceImageUrl  Source image spec.
+     * @param OptionsBag $optionsBag     Options for processing.
+     * @param string     $sourceImageUrl Source image spec.
      *
      * @throws \Exception
      */
@@ -114,7 +126,8 @@ class InputImage
     /**
      * Properly encode URL.
      *
-     * @param  string $url URL to encode.
+     * @param string $url URL to encode.
+     *
      * @return string
      */
     private function _encodeUrl($url)
@@ -147,7 +160,9 @@ class InputImage
     }
 
     /**
-     * Save given image to temporary file and return the path
+     * Save given image to temporary file and return the path.
+     *
+     * @return void
      *
      * @throws \Exception
      */
@@ -321,7 +336,9 @@ class InputImage
     }
 
     /**
-     * @param string $key
+     * Extract and remove an option from the options bag.
+     *
+     * @param string $key Option key to extract.
      *
      * @return string
      */
@@ -337,6 +354,8 @@ class InputImage
     }
 
     /**
+     * Get the options bag.
+     *
      * @return OptionsBag
      */
     public function optionsBag(): OptionsBag
@@ -345,6 +364,8 @@ class InputImage
     }
 
     /**
+     * Get original source image spec.
+     *
      * @return string
      */
     public function sourceImageUrl(): string
@@ -353,6 +374,8 @@ class InputImage
     }
 
     /**
+     * Get temporary local path for the source image.
+     *
      * @return string
      */
     public function sourceImagePath(): string
@@ -361,6 +384,8 @@ class InputImage
     }
 
     /**
+     * Get detected MIME type for the source image.
+     *
      * @return string
      */
     public function sourceImageMimeType(): string
@@ -374,13 +399,18 @@ class InputImage
         return $this->sourceImageMimeType;
     }
 
+    /**
+     * Get parsed metadata for the source image.
+     *
+     * @return ImageMetaInfo
+     */
     public function sourceImageInfo()
     {
         return $this->sourceImageInfo;
     }
 
     /**
-     * Source file mime type
+     * Source file mime type.
      *
      * @return string
      */
@@ -390,7 +420,7 @@ class InputImage
     }
 
     /**
-     * Is input file a pdf
+     * Check if the input file is a PDF.
      *
      * @return bool
      */
@@ -400,6 +430,8 @@ class InputImage
     }
 
     /**
+     * Check if the input file is a GIF.
+     *
      * @return bool
      */
     public function isInputGif(): bool
