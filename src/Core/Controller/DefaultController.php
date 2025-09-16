@@ -86,7 +86,8 @@ class DefaultController extends CoreController
                 $source = 'data:application/octet-stream;base64,'
                     . $data['base64'];
             }
-        } elseif (stripos($contentType, 'application/octet-stream') !== false
+        } elseif (
+            stripos($contentType, 'application/octet-stream') !== false
             || stripos($contentType, 'image/') !== false
         ) {
             $source = 'data:application/octet-stream;base64,'

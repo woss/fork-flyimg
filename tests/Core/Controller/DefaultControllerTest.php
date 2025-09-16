@@ -1,17 +1,4 @@
 <?php
-/**
- * DefaultControllerTest
- *
- * Functional tests for upload and path endpoints, including POST uploads,
- * data URIs, and s3 sources.
- *
- * @category Tests
- * @package  Flyimg\\Tests
- * @author   Flyimg Team <dev@flyimg.io>
- * @license  MIT License <https://opensource.org/licenses/MIT>
- * @link     https://github.com/flyimg/flyimg
- */
-
 
 namespace Tests\Core\Controller;
 

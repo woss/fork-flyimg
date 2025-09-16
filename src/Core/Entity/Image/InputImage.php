@@ -130,7 +130,7 @@ class InputImage
      *
      * @return string
      */
-    private function _encodeUrl($url)
+    private function encodeUrl($url)
     {
         // URL scheme was not always set as the input scheme
         if (preg_match("!https?:/[a-zA-Z]!", $url)) {
@@ -178,7 +178,7 @@ class InputImage
     {
         // Support data URI (base64) and s3:// schemes in addition to http(s) and local files
         $originalSource = $this->sourceImageUrl;
-        $this->sourceImageUrl = $this->_encodeUrl($this->sourceImageUrl);
+        $this->sourceImageUrl = $this->encodeUrl($this->sourceImageUrl);
 
         $headers = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
         if (is_string($headers)) {
@@ -290,18 +290,18 @@ class InputImage
                 return;
             }
             switch ($httpCode) {
-            case 400:
-                throw new InvalidArgumentException();
-            case 401:
-                throw new UnauthorizedException();
-            case 403:
-                throw new AccessDeniedException();
-            case 404:
-                throw new FileNotFoundException();
-            case 503:
-                throw new ServiceUnavailableException();
-            default:
-                throw new AppException();
+                case 400:
+                    throw new InvalidArgumentException();
+                case 401:
+                    throw new UnauthorizedException();
+                case 403:
+                    throw new AccessDeniedException();
+                case 404:
+                    throw new FileNotFoundException();
+                case 503:
+                    throw new ServiceUnavailableException();
+                default:
+                    throw new AppException();
             }
         }
 
@@ -312,8 +312,10 @@ class InputImage
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);  // Allow redirects
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);  // Add custom headers
             curl_setopt(
-                $ch, CURLOPT_TIMEOUT, $this->optionsBag->appParameters()
-                    ->parameterByKey('source_image_request_timeout')
+                $ch,
+                CURLOPT_TIMEOUT,
+                $this->optionsBag->appParameters()
+                     ->parameterByKey('source_image_request_timeout')
             );
 
             $imageData = curl_exec($ch);
@@ -326,18 +328,18 @@ class InputImage
                     file_put_contents($this->sourceImagePath, $imageData);
                 } else {
                     switch ($httpCode) {
-                    case 400:
-                        throw new InvalidArgumentException();
-                    case 401:
-                        throw new UnauthorizedException();
-                    case 403:
-                        throw new AccessDeniedException();
-                    case 404:
-                        throw new FileNotFoundException();
-                    case 503:
-                        throw new ServiceUnavailableException();
-                    default:
-                        throw new AppException();
+                        case 400:
+                            throw new InvalidArgumentException();
+                        case 401:
+                            throw new UnauthorizedException();
+                        case 403:
+                            throw new AccessDeniedException();
+                        case 404:
+                            throw new FileNotFoundException();
+                        case 503:
+                            throw new ServiceUnavailableException();
+                        default:
+                            throw new AppException();
                     }
                 }
             }
