@@ -264,6 +264,19 @@ The nginx server will send headers to prevent caching of this request.
 
 It will also send headers with the command done on the image + info returned by the command identity from Imagemagick.
 
+
+### `v` : cache-busting version
+
+`string | int`
+_Default:_ `null`
+_Description:_ You can pass cache-busting parameters of any kind to the URL which will break cache in modern proxies and browsers. Using `v` forces clients and intermediaries to fetch a fresh asset. For example, adding `v_1` to the parameters will generate a new image in Flyimg and cause browsers to get the new version. The value is arbitrary; you can increment it or use a hash.
+
+**example:** `v_1`
+
+`https://demo.flyimg.io/upload/w_500,v_1/https://flyimg.io/demo-images/Citroen-DS.jpg`
+
+> Tip: `v` is a generic option that does not change processing. It is solely for cache-busting and can be any value.
+
 ---
 
 ## Fancy options
