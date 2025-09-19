@@ -6,7 +6,7 @@
 a,
 a:focus,
 a:hover {
-    color: #fff;
+    color: #08bfd7;
 }
 
 /* Custom default button */
@@ -108,4 +108,54 @@ code{
 #example-url{
     word-wrap: break-word;
     max-width: 100%;
+}
+
+/* Flyimg promo block */
+.flyimg-promo {
+    padding: 0;
+    margin: 0;
+}
+
+.flyimg-heading {
+    color: #08bfd7;
+}
+
+.flyimg-subtext {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-brand-cyan {
+    background-color: #08bfd7;
+    border-color: #08bfd7;
+    color: #fff;
+}
+
+.btn-brand-cyan:hover,
+.btn-brand-cyan:focus {
+    background-color: #07a9be;
+    border-color: #07a9be;
+    color: #fff;
+}
+
+.btn-brand-amber {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.btn-brand-amber:hover,
+.btn-brand-amber:focus {
+    background-color: #e0ac06;
+    border-color: #e0ac06;
+    color: #212529;
+}
+
+.badge-brand-outline {
+    background-color: transparent;
+    color: #08bfd7;
+    border: 1px solid #08bfd7;
+}
+
+.error-message {
+    color: #ffc107;
 }

@@ -15,7 +15,7 @@
     </div>
     <div class="exception-message-wrapper">
         <div class="container">
-            <h1 class="break-long-words exception-message<?= mb_strlen($exceptionMessage) > 180 ? ' long' : ''; ?>">
+            <h1 id="exception-message" class="break-long-words exception-message<?= mb_strlen($exceptionMessage) > 180 ? ' long' : ''; ?>">
                 <?= $this->formatFileFromText(nl2br($exceptionMessage)); ?>
             </h1>
 

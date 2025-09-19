@@ -119,7 +119,7 @@
 
                     <input type="text" class="form-control" id="source-image-input" placeholder="Enter image URL"
                            value="https://flyimg.io/demo-images/Citroen-DS.jpg">
-                    <div id="source-image-validation" class="invalid-feedback">
+                    <div id="source-image-validation" class="invalid-feedback error-message">
                         Please enter a source image URL.
                     </div>
                 </div>
@@ -138,9 +138,17 @@
                 </button>
             </div>
             <hr/>
-            <p><a href="https://github.com/flyimg/flyimg" target="_blank">Check the docs for more info</a>.</p>
-            <p>Happy imaging!</p>
-            <div id="version">Version: <span id="version-number">{$version}</span></div>
+            <div class="text-center flyimg-promo">
+                <h6 class="mb-2 flyimg-heading">Supercharge your images with <strong>Flyimg</strong></h6>
+                <p class="mb-2 small flyimg-subtext">Real‑time image processing, caching, and modern codecs — optimized by default.</p>
+                <div class="d-flex justify-content-center gap-2 mb-2">
+                    <a class="btn btn-sm btn-brand-cyan" href="https://docs.flyimg.io" target="_blank" rel="noopener">Read the Docs</a>
+                    <a class="btn btn-sm btn-brand-amber" href="https://github.com/flyimg/flyimg" target="_blank" rel="noopener">Star on GitHub</a>
+                </div>
+                <small class="d-block mb-2">
+                    <span class="badge badge-brand-outline">version:<span id="version-number">{$version}</span></span>
+                </small>
+            </div>
             <hr />
         </div>
 

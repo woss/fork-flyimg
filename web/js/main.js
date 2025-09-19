@@ -160,7 +160,51 @@ const errorWhileLoading = () => {
     // Display loading spinner
     loadingSpinner.style.display = 'none';
     sourceImageValidation.style.display = 'block';
-    sourceImageValidation.innerHTML = 'Error while leading the generated image'
+
+    // Try to fetch the error message from the server for the generated image URL
+    const url = generatedImage.src;
+
+    fetch(url, { method: 'GET', cache: 'no-store', credentials: 'same-origin' })
+        .then(async (res) => {
+            // If server responded with an error status, try to extract meaningful message
+            let message = `Error loading generated image (${res.status} ${res.statusText})`;
+            try {
+                const contentType = res.headers.get('Content-Type') || '';
+                if (!res.ok) {
+                    if (contentType.includes('application/json')) {
+                        const json = await res.json();
+                        if (json && (json.error || json.message)) {
+                            message = json.error || json.message;
+                        }
+                    } else {
+                        const text = await res.text();
+                        if (text && text.trim().length > 0) {
+                            if (contentType.includes('text/html')) {
+                                // Parse HTML and try to extract the specific error content
+                                const parser = new DOMParser();
+                                const doc = parser.parseFromString(text, 'text/html');
+                                const exceptionNode = doc.getElementById('exception-message');
+                                if (exceptionNode && exceptionNode.textContent) {
+                                    message = exceptionNode.textContent.trim();
+                                } else {
+                                    message = text.trim();
+                                }
+                            } else {
+                                message = text.trim();
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                // ignore parsing errors and keep default message
+            }
+
+            sourceImageValidation.innerHTML = message;
+        })
+        .catch(() => {
+            // Network or CORS error; show a generic message
+            sourceImageValidation.innerHTML = 'Error loading the generated image';
+        });
 };
 
 const showLoading = () => {

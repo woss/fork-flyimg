@@ -23,7 +23,7 @@
                 </p>
                 <h1><?= $statusCode; ?> <?= $statusText; ?></h1>
                 <h2>The server returned:</h2>
-                <p><?= $exceptionMessage; ?></p>
+                <p id="exception-message" class="error-message"><?= $exceptionMessage; ?></p>
             </div>
         </div>
     </div>
