@@ -87,7 +87,7 @@ const addInput = () => {
     let selectInput = htmlDivElement.querySelector('select')
     let exampleBox = htmlDivElement.querySelector('div.example-info')
 
-    inputField.focus();
+    selectInput.focus();
     selectInput.addEventListener('change', function () {
         exampleBox.innerHTML = this.querySelector('option:checked').getAttribute('data-bs-example')
         inputField.value = ''
