@@ -6,7 +6,7 @@
 a,
 a:focus,
 a:hover {
-    color: #fff;
+    color: #08bfd7;
 }
 
 /* Custom default button */
@@ -60,8 +60,7 @@ body {
     display: block;
     padding: 0;
     line-height: 1;
-    color: var(--bs-body-color);
-    background-color: var(--bd-pre-bg);
+    background-color: #7f7f7f;
     border: 0;
     border-radius: 0.25rem;
 }
@@ -108,4 +107,75 @@ code{
 #example-url{
     word-wrap: break-word;
     max-width: 100%;
+    color: #7f7f7f;
+}
+
+/* Flyimg promo block */
+.flyimg-promo {
+    padding: 0;
+    margin: 0;
+}
+
+.flyimg-heading {
+    color: #08bfd7;
+}
+
+.flyimg-subtext {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-brand-cyan {
+    background-color: #08bfd7;
+    border-color: #08bfd7;
+    color: #fff;
+}
+
+.btn-brand-cyan:hover,
+.btn-brand-cyan:focus {
+    background-color: #07a9be;
+    border-color: #07a9be;
+    color: #fff;
+}
+
+.btn-brand-amber {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.btn-brand-amber:hover,
+.btn-brand-amber:focus {
+    background-color: #e0ac06;
+    border-color: #e0ac06;
+    color: #212529;
+}
+
+.badge-brand-outline {
+    background-color: transparent;
+    color: #08bfd7;
+    border: 1px solid #08bfd7;
+}
+
+.error-message {
+    color: #ffc107;
+}
+
+.example-url {
+    background-color: #000000;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    border: 1px solid #585855;
+    color: #7f7f7f;
+}
+
+.form-control {
+    background-color: #000000;
+    border: 1px solid #585855;
+    color: #fff;
+}
+
+.form-control:focus {
+    background-color: #000000;
+    border: 1px solid #585855;
+    color: #fff;
 }

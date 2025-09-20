@@ -21,15 +21,19 @@
                     <img alt="Flyimg"
                          src="/upload/w_300/https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png">
                 </p>
-                <h2 id="hello-from-flyimg">Hello from Flyimg</h2>
+                <h2 id="hello-from-flyimg">Welcome to Flyimg</h2>
 
-                <h3 id="image-title">The image above (logo) has been served using Flyimg.
-                </h3>
+                <p>Experience the power of <strong>Flyimg</strong> - a powerful image processing service 
+                    that transforms your high-resolution images into optimized, web-ready formats. 
+                    <br />
+                    Watch how we process the example car image below, reducing it from <strong>2266×1957 pixels (3.78MB)</strong> to perfectly optimized web formats.</p>
 
-                <p>how? Calling the source in the <code>&lt;img&gt;</code> like this:</p>
+                <p>Simply call the source in your <code>&lt;img&gt;</code> tag like this:</p>
 
-                <div class="d-flex align-items-center bg-warning bg-opacity-10 border border-warning rounded p-2">
-                    <code id="example-url">{$current_domain}/upload/w_300/https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png</code>
+                <div class="d-flex align-items-center example-url">
+                    <code id="example-url">
+                        {$current_domain}/upload/w_800/https://flyimg.io/demo-images/Citroen-DS.jpg
+                    </code>
                     <button id="copy-example-btn" type="button" class="d-flex ms-auto btn-clipboard" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
                             <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
@@ -37,23 +41,21 @@
                         </svg>
                     </button>
                 </div>
+                <br />
+                <p>
+                    Our caching system stores the transformed image on the server, eliminating redundant processing for future requests. 
+                </p>
+                <p>
+                    The default output format is the powerful <em>AVIF</em> format for superior compression and quality. You can also choose to generate images in <em>WebP</em>, <em>PNG</em>, or <em>JPEG</em> formats. For JPEG output, Flyimg uses <em>MozJPEG</em> compression for maximum quality and minimal file size.
+                </p>
+                <h3 id="transformations">Advanced Image Transformations</h3>
 
-                <p>It got transformed from the original file which was 6000px wide!</p>
-                <p>Now, on the server, there is a cached version of this transformed image. There is no need to do the
-                    transformation again next time someone requests this image.</p>
-                <p>The best of all is that you get <em>Moz-jpeg</em> compression by default on all your JPEGs.</p>
-
-
-                <h3 id="transformations">Transformations</h3>
-
-                <p>You can do many different transformations to you images, like: <strong>quality</strong>,
-                    <strong>face-crop</strong>, <strong>face-blur</strong>, <strong>width</strong>,
-                    <strong>height</strong>,
-                    <strong>crop</strong>, <strong>background</strong>, <strong>rotate</strong>, <strong>scale</strong>,
-                    amongst many others.</p>
+                <p>Unlock the full potential of your images with our comprehensive suite of transformations: <strong>intelligent cropping</strong>,
+                    <strong>face detection &#38; blur</strong>, <strong>dynamic resizing</strong>, <strong>quality optimization</strong>,
+                    <strong>background manipulation</strong>, <strong>rotation</strong>, <strong>scaling</strong>, and many more professional-grade features.</p>
             </div>
+            <hr>
             <h1>Try it now !</h1>
-            <br>
             <hr>
             <div class="row g-3">
                 <div class="col">
@@ -89,7 +91,7 @@
             <hr>
             <div class="row g-3">
                 <div class="col-md" id="generated-url-container">
-                    <div class="p-2 bg-info bg-opacity-10 border border-info rounded">
+                    <div class="p-2 example-url">
                         <div class="row">
                             <div class="col-sm">
                                 <div id="generated-url" class="align"></div>
@@ -119,12 +121,12 @@
 
                     <input type="text" class="form-control" id="source-image-input" placeholder="Enter image URL"
                            value="https://flyimg.io/demo-images/Citroen-DS.jpg">
-                    <div id="source-image-validation" class="invalid-feedback">
+                    <div id="source-image-validation" class="invalid-feedback error-message">
                         Please enter a source image URL.
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-outline-info" type="button" id="add-btn">
+                    <button class="btn btn-secondary" type="button" id="add-btn">
                         Add new Parameter
                     </button>
                     <div class="alert alert-danger" role="alert" id="error-options">
@@ -134,13 +136,25 @@
                 <!-- Dynamic input fields will be added here -->
                 <div id="dynamic-input-fields"></div>
 
-                <button type="button" class="btn btn-primary mt-3" id="refresh-btn">Refresh generated image
+                <button type="button" class="btn btn-dark mt-3" id="refresh-btn">
+                    Generate image
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-crop" viewBox="0 0 16 16">
+                        <path d="M3.5.5A.5.5 0 0 1 4 1v13h13a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2H3.5a.5.5 0 0 1-.5-.5V4H1a.5.5 0 0 1 0-1h2V1a.5.5 0 0 1 .5-.5m2.5 3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4H6.5a.5.5 0 0 1-.5-.5"/>
+                    </svg>
                 </button>
             </div>
             <hr/>
-            <p><a href="https://github.com/flyimg/flyimg" target="_blank">Check the docs for more info</a>.</p>
-            <p>Happy imaging!</p>
-            <div id="version">Version: <span id="version-number">{$version}</span></div>
+            <div class="text-center flyimg-promo">
+                <h6 class="mb-2 flyimg-heading">Supercharge your images with <strong>Flyimg</strong></h6>
+                <p class="mb-2 small flyimg-subtext">Real‑time image processing, caching, and modern codecs — optimized by default.</p>
+                <div class="d-flex justify-content-center gap-2 mb-2">
+                    <a class="btn btn-sm btn-info" href="https://docs.flyimg.io" target="_blank" rel="noopener">Read the Docs</a>
+                    <a class="btn btn-sm btn-warning" href="https://github.com/flyimg/flyimg" target="_blank" rel="noopener">Star on GitHub</a>
+                </div>
+                <small class="d-block mb-2">
+                    <span class="badge badge-brand-outline">version:<span id="version-number">{$version}</span></span>
+                </small>
+            </div>
             <hr />
         </div>
 
