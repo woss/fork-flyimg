@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.8.1](https://github.com/flyimg/flyimg/compare/1.8.0...1.8.1) (2025-09-20)
+
+
+### Bug Fixes
+
+* better error handling in the demo page, closes [#586](https://github.com/flyimg/flyimg/issues/586) ([42b10dd](https://github.com/flyimg/flyimg/commit/42b10ddc4767275300ab1d56a15bea93062557d8))
+
 # [1.8.0](https://github.com/flyimg/flyimg/compare/1.7.11...1.8.0) (2025-09-18)
 
 
