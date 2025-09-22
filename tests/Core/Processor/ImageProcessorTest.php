@@ -21,7 +21,7 @@ class ImageProcessorTest extends BaseTest
     public const PNG_TEST_SMALL_LANDSCAPE_IMAGE = __DIR__ . '/../../testImages/landscape-color-squares-300x200.png';
     public const PNG_TEST_SMALL_PORTRAIT_IMAGE = __DIR__ . '/../../testImages/portrait-color-squares-200x300.png';
     public const TEST_IMAGE_WITH_TEXT_RESULT = __DIR__ . '/../../testImages/image-with-text-result.jpg';
-    public const OUTPUT_EXTENSIONS = ['png', 'jpg', 'webp', 'gif'];
+    public const OUTPUT_EXTENSIONS = ['png', 'jpg', 'webp', 'gif', 'jxl'];
 
     protected $imageProcessor;
 

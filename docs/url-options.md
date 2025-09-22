@@ -213,7 +213,11 @@ _Description:_ Output format requested, for example you can force the output as 
 
 If `input` is passed, no "optimal" format will be attempted. Flyimg will try to respond with the source format or fallback to `jpg`.
 
-**example:`o_auto`,`o_input`,`o_png`,`o_webp`,`o_jpeg`,`o_jpg`**
+When `o_auto` is used, Flyimg negotiates the best format supported by the requester. The current order is: AVIF → JPEG XL (JXL) → WebP → PNG/JPEG. JPEG XL will only be selected if the request includes `Accept: image/jxl` and `enable_jxl` is true in configuration.
+
+Note: Browser support for JPEG XL is evolving. Many stable browsers still download JXL instead of displaying it inline. Use `o_auto` for production unless you specifically target clients with JXL support.
+
+**example:`o_auto`,`o_input`,`o_png`,`o_webp`,`o_avif`,`o_jxl`,`o_jpeg`,`o_jpg`**
 
 ### `q` : quality
 
@@ -250,6 +254,14 @@ _Default:_ `4`
 _Description:_ the compression method to use. It controls the trade off between encoding speed and the compressed file size and quality. Possible values range from 0 to 6. Default value is 4. When higher values are utilized, the encoder spends more time inspecting additional encoding possibilities and decide on the quality gain. Lower value might result in faster processing time at the expense of larger file size and lower compression quality.
 
 **example:`webpm_6`**
+
+### `jxlef` : jxl-effort
+
+`int` (1-9)
+_Default:_ `7`
+_Description:_ Controls JPEG XL encoding effort (1 = fastest, 9 = slowest/best). Only applies when output is `o_jxl` or when auto-negotiation selects JXL.
+
+**example:`jxlef_9`**
 
 ## Refresh or re-fetch source image
 

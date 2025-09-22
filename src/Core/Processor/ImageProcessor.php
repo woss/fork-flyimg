@@ -205,6 +205,13 @@ class ImageProcessor extends Processor
             $heicSpeed = $outputImage->getInputImage()->optionsBag()->appParameters()->parameterByKey('heic_speed');
             $parameter = "-define heic:speed=" . $heicSpeed . " -quality " . escapeshellarg($quality) .
                 " " . escapeshellarg($outputImage->getOutputTmpPath());
+        } elseif ($outputImage->isOutputJxl()) {
+            // Native JPEG XL via ImageMagick
+            $jxlEffort = $outputImage->extractKey('jxl-effort');
+            // map quality 0-100 into jxl distance if IM expects it; IM supports -quality for JXL as of recent versions
+            $parameter = "-define jxl:effort=" . (int)$jxlEffort .
+                " -quality " . escapeshellarg($quality) .
+                " " . escapeshellarg($outputImage->getOutputTmpPath());
         } elseif (is_executable(self::CWEBP_COMMAND) && $outputImage->isOutputWebP()) {
             $lossLess = $outputImage->extractKey('webp-lossless') ? 'true' : 'false';
             $webpThreads = $outputImage->getInputImage()->optionsBag()->appParameters()->parameterByKey('webp_threads');
@@ -233,7 +240,7 @@ class ImageProcessor extends Processor
      * This works as a cache for calculations
      *
      * @param string $key the key with wich we store a calculated value
-     * @param callback $calculate function that returns a calculated value
+     * @param callable $calculate function that returns a calculated value
      *
      * @return string|mixed
      */

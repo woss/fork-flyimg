@@ -87,6 +87,9 @@ enable_avif: true
 # as default output (after checking AVIF support)
 enable_webp: true
 
+# Enable JPEG XL auto output when browser supports it
+enable_jxl: true
+
 # Extra options for the header sent to source image server,
 # as some servers requires the User-Agent.
 header_extra_options:
@@ -130,6 +133,7 @@ options_keys:
   pns: preserve-natural-size
   webpl: webp-lossless
   webpm: webp-method
+  jxlef: jxl-effort
   gf: gif-frame
   e: extract
   p1x: extract-top-x
@@ -175,6 +179,7 @@ default_options:
   preserve-natural-size: 1
   webp-lossless: 0
   webp-method: 4
+  jxl-effort: 7
   gif-frame: 0
   extract: null
   extract-top-x: null

@@ -45,6 +45,7 @@ class OutputImageTest extends BaseTest
             'scale' => '50',
             'sampling-factor' => '1x1',
             'refresh' => '1',
+            'jxl-effort' => 7,
             'smart-crop' => false,
             'extent' => '100x80',
             'preserve-aspect-ratio' => true,

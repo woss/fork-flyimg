@@ -237,6 +237,9 @@ class ImageHandler
      */
     public function responseContentType(OutputImage $outputImage): string
     {
+        if ($outputImage->getOutputImageExtension() == OutputImage::EXT_JXL) {
+            return InputImage::JXL_MIME_TYPE;
+        }
         if ($outputImage->getOutputImageExtension() == OutputImage::EXT_AVIF) {
             return InputImage::AVIF_MIME_TYPE;
         }

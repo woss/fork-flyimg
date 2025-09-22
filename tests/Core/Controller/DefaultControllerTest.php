@@ -66,6 +66,38 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
+    public function testUploadActionJxl()
+    {
+        $client = static::createClient();
+        $client->request('GET', 'upload/o_jxl/' . BaseTest::PNG_TEST_IMAGE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    public function testUploadActionJxlWithEffort()
+    {
+        $client = static::createClient();
+        $client->request('GET', 'upload/o_jxl,jxlef_9/' . BaseTest::PNG_TEST_IMAGE);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+        $this->assertEquals('image/jxl', $client->getResponse()->headers->get('Content-Type'));
+        $this->assertGreaterThan(0, strlen($client->getResponse()->getContent()));
+    }
+
+    public function testUploadActionJxlResult()
+    {
+        $client = static::createClient();
+        $client->request('GET', 'upload/o_jxl,jxlef_9/' . BaseTest::PNG_TEST_IMAGE);
+        $expectedSize = filesize(parent::JXL_TEST_IMAGE_RESULT);
+        $tmpFile = tempnam(sys_get_temp_dir(), 'jxl_test');
+        file_put_contents($tmpFile, $client->getResponse()->getContent());
+        $this->assertEquals($expectedSize, filesize($tmpFile));
+        unlink($tmpFile);
+
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
     public function testUploadActionGif()
     {
         $client = static::createClient();

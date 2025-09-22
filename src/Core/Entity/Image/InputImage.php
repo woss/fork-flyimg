@@ -28,6 +28,7 @@ class InputImage
     public const PNG_MIME_TYPE = 'image/png';
     public const GIF_MIME_TYPE = 'image/gif';
     public const AVIF_MIME_TYPE = 'image/avif';
+    public const JXL_MIME_TYPE = 'image/jxl';
     public const PDF_MIME_TYPE = 'application/pdf';
 
     /**
