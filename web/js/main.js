@@ -21,7 +21,7 @@ const addInput = () => {
             <div class="col-md-2">
                 <select class="form-control">
                     <option value="q" data-bs-example="Controls the output quality of generated image, valid values are in the range 0 – 100, default is 90.">quality</option>
-                    <option value="o" data-bs-example="The output format to convert the image to, default auto, possible values: auto | input (same as the input image) avif | webp | jxl | jpg | png" data-bs-values="auto,input,avif,webp,jxl,jpg,png">output</option>
+                    <option value="o" data-bs-example="The output format to convert the image to, default auto, possible values: auto | input (same as the input image) | avif | webp | jxl | jpg | png" data-bs-values="auto,input,avif,webp,jxl,jpg,png">output</option>
                     <option value="rf" data-bs-example="It will force a re-request of the original image, default 0 , to enable it 1" data-bs-values="0,1">refresh</option>
                     <option value="unsh" data-bs-example="Sharpens an image, usage {radius}x{sigma}[+gain][+threshold], examples: 0x6 | 0.25x0.25+8+0.065 ">unsharp</option>
                     <option value="sh" data-bs-example="Use a Gaussian operator of the given radius and standard deviation (sigma), usage {radius}x{sigma}, example: 3 | 0x5">sharpen</option>
