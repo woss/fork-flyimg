@@ -41,14 +41,14 @@ class OutputImage
 
     /** @var array list of the supported output extensions */
     protected $allowedOutExtensions = [
-                                            self::EXT_PNG, 
-                                            self::EXT_JPG, 
-                                            self::EXT_GIF, 
-                                            self::EXT_WEBP, 
-                                            self::EXT_AVIF, 
+                                            self::EXT_PNG,
+                                            self::EXT_JPG,
+                                            self::EXT_GIF,
+                                            self::EXT_WEBP,
+                                            self::EXT_AVIF,
                                             self::EXT_JXL
                                         ];
-                                        
+
     /**
      * OutputImage constructor.
      *
