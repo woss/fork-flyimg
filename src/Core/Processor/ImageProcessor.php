@@ -208,8 +208,11 @@ class ImageProcessor extends Processor
         } elseif ($outputImage->isOutputJxl()) {
             // Native JPEG XL via ImageMagick
             $jxlEffort = $outputImage->extractKey('jxl-effort');
+            $jxlDecodingSpeed = $outputImage->extractKey('jxl-decoding-speed');
+            $jxlDecodingSpeedCmd = $jxlDecodingSpeed ? " -define jxl:decoding-speed=" . (int)$jxlDecodingSpeed : "";
             // map quality 0-100 into jxl distance if IM expects it; IM supports -quality for JXL as of recent versions
             $parameter = "-define jxl:effort=" . (int)$jxlEffort .
+                $jxlDecodingSpeedCmd .
                 " -quality " . escapeshellarg($quality) .
                 " " . escapeshellarg($outputImage->getOutputTmpPath());
         } elseif (is_executable(self::CWEBP_COMMAND) && $outputImage->isOutputWebP()) {

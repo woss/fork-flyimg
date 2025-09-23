@@ -263,6 +263,14 @@ _Description:_ Controls JPEG XL encoding effort (1 = fastest, 9 = slowest/best).
 
 **example:`jxlef_9`**
 
+### `jxlds` : jxl-decoding-speed
+
+`int` (0-4)
+_Default:_ `0`
+_Description:_ Set the JPEG XL decoding speed. Valid values are in the range of 0 (slowest) to 4 (fastest, at the cost of some quality/density).
+
+**example:`jxlds_4`**
+
 ## Refresh or re-fetch source image
 
 ### `rf` : refresh

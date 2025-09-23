@@ -134,6 +134,7 @@ options_keys:
   webpl: webp-lossless
   webpm: webp-method
   jxlef: jxl-effort
+  jxlds: jxl-decoding-speed
   gf: gif-frame
   e: extract
   p1x: extract-top-x
@@ -179,7 +180,8 @@ default_options:
   preserve-natural-size: 1
   webp-lossless: 0
   webp-method: 4
-  jxl-effort: 7
+  jxl-effort: 5
+  jxl-decoding-speed: null
   gif-frame: 0
   extract: null
   extract-top-x: null
