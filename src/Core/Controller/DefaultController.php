@@ -3,6 +3,7 @@
 namespace Core\Controller;
 
 use Core\Entity\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DefaultController
@@ -58,36 +59,7 @@ class DefaultController extends CoreController
     public function uploadStreamAction(string $options): Response
     {
         $request = $this->app['request_stack']->getCurrentRequest();
-
-        $contentType = $request ? $request->headers->get('Content-Type', '') : '';
-        $rawBody = $request ? $request->getContent() : '';
-
-        // Determine source URL placeholder
-        if (stripos($contentType, 'application/json') !== false) {
-            $data = json_decode($rawBody, true);
-            $source = isset($data['dataUri']) ? (string)$data['dataUri'] : '';
-            if (!$source && isset($data['base64'])) {
-                $source = 'data:application/octet-stream;base64,'
-                    . $data['base64'];
-            }
-        } elseif (
-            stripos($contentType, 'application/octet-stream') !== false
-            || stripos($contentType, 'image/') !== false
-        ) {
-            $source = 'data:application/octet-stream;base64,'
-                . base64_encode($rawBody);
-        } else {
-            // Fallback: try to treat body as a data URI or base64 string directly
-            $trimmed = trim($rawBody);
-            $source = (stripos($trimmed, 'data:') === 0)
-                ? $trimmed
-                : 'data:application/octet-stream;base64,' . $trimmed;
-        }
-
-        $image = $this->imageHandler()->processImage($options, $source);
-
-        $this->response->generateImageResponse($image);
-
+        $this->response->handleUploadStream($options, $request);
         return $this->response;
     }
 

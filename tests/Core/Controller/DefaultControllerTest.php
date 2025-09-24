@@ -8,6 +8,7 @@ use Core\Exception\AppException;
 use Core\Exception\ReadFileException;
 use Silex\WebTestCase;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Tests\Core\BaseTest;
 
 /**
@@ -123,6 +124,50 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
+    /** Ensure POST /upload with multipart file field works (PNG). */
+    public function testUploadPostMultipartFilePng()
+    {
+        $client = static::createClient();
+        $file = new UploadedFile(
+            BaseTest::PNG_TEST_IMAGE,
+            basename(BaseTest::PNG_TEST_IMAGE),
+            'image/png',
+            null,
+            true
+        );
+        $client->request(
+            'POST',
+            '/upload/w_80,o_jpg',
+            [],
+            ['file' => $file],
+            ['CONTENT_TYPE' => 'multipart/form-data']
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure POST /upload with multipart file field works (JPG). */
+    public function testUploadPostMultipartFileJpg()
+    {
+        $client = static::createClient();
+        $file = new UploadedFile(
+            BaseTest::JPG_TEST_IMAGE,
+            basename(BaseTest::JPG_TEST_IMAGE),
+            'image/jpeg',
+            null,
+            true
+        );
+        $client->request(
+            'POST',
+            '/upload/w_120,o_png',
+            [],
+            ['file' => $file],
+            ['CONTENT_TYPE' => 'multipart/form-data']
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
     /** Ensure POST /upload with JSON {base64} works. */
     public function testUploadPostJsonBase64()
     {
@@ -136,6 +181,118 @@ class DefaultControllerTest extends BaseTest
             [],
             ['CONTENT_TYPE' => 'application/json'],
             $payload
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure POST /upload with JSON {dataUri} works. */
+    public function testUploadPostJsonDataUri()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::PNG_TEST_IMAGE);
+        $dataUri = 'data:image/png;base64,' . base64_encode($binary);
+        $payload = json_encode(['dataUri' => $dataUri]);
+        $client->request(
+            'POST',
+            '/upload/w_70,o_jpg',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            $payload
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure POST /upload with text/plain body containing a data URI works. */
+    public function testUploadPostPlainTextDataUri()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::JPG_TEST_IMAGE);
+        $dataUri = 'data:image/jpeg;base64,' . base64_encode($binary);
+        $client->request(
+            'POST',
+            '/upload/w_90,o_png',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'text/plain'],
+            $dataUri
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure POST /upload with octet-stream body containing a base64 string works. */
+    public function testUploadPostOctetStreamBase64String()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::PNG_TEST_IMAGE);
+        $base64 = base64_encode($binary);
+        $client->request(
+            'POST',
+            '/upload/w_75,o_jpg',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/octet-stream'],
+            $base64
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure POST /upload with octet-stream body containing a data URI works. */
+    public function testUploadPostOctetStreamDataUri()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::PNG_TEST_IMAGE);
+        $dataUri = 'data:image/png;base64,' . base64_encode($binary);
+        $client->request(
+            'POST',
+            '/upload/w_85,o_jpg',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/octet-stream'],
+            $dataUri
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure POST /upload with octet-stream base64 including whitespace/newlines works. */
+    public function testUploadPostOctetStreamBase64WithWhitespace()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::JPG_TEST_IMAGE);
+        $base64 = base64_encode($binary);
+        // Insert CRLF and spaces to simulate chunked base64
+        $chunked = rtrim(chunk_split($base64, 76, "\r\n"));
+        $chunked = "  " . $chunked . "  \r\n";
+        $client->request(
+            'POST',
+            '/upload/w_95,o_png',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/octet-stream'],
+            $chunked
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure POST /upload with text/plain base64 string (no data URI) works. */
+    public function testUploadPostPlainTextBase64String()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::PNG_TEST_IMAGE);
+        $base64 = base64_encode($binary);
+        $client->request(
+            'POST',
+            '/upload/w_65,o_jpg',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'text/plain'],
+            $base64
         );
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertFalse($client->getResponse()->isEmpty());

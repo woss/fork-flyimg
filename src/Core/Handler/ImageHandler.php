@@ -95,7 +95,6 @@ class ImageHandler
         [$options, $imageSrc] = $this->securityHandler->checkSecurityHash($options, $imageSrc);
         $this->securityHandler->checkRestrictedDomains($imageSrc);
 
-
         $optionsBag = new OptionsBag($this->appParameters, $options);
         $inputImage = new InputImage($optionsBag, $imageSrc);
         $outputImage = new OutputImage($inputImage);

@@ -85,8 +85,12 @@ class InputImage
     {
         $this->optionsBag = $optionsBag;
         $this->sourceImageUrl = $sourceImageUrl;
-
-        $this->sourceImagePath =  TMP_DIR . 'original-' . md5($this->sourceImageUrl);
+        // If the source image is a temporary file, read the contents of the file for the md5 hash
+        if (strpos($sourceImageUrl, '/tmp/') === 0) {
+            $sourceImageUrl = file_get_contents($sourceImageUrl);
+        }
+ 
+        $this->sourceImagePath =  TMP_DIR . 'original-' . md5($sourceImageUrl);
         $this->saveToTemporaryFile();
 
         $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);

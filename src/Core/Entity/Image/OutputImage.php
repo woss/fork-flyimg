@@ -197,7 +197,7 @@ class OutputImage
     protected function generateFilesName()
     {
         $hashedOptions = $this->inputImage->optionsBag();
-        $this->outputImageName = $hashedOptions->hashedOptionsAsString($this->inputImage->sourceImageUrl());
+        $this->outputImageName = $hashedOptions->hashedOptionsAsString($this->inputImage->sourceImagePath());
         $this->outputTmpPath = sprintf("%s%s", TMP_DIR, $this->outputImageName);
 
         if ($hashedOptions->get('refresh')) {
