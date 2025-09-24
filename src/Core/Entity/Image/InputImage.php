@@ -89,7 +89,7 @@ class InputImage
         if (strpos($sourceImageUrl, '/tmp/') === 0) {
             $sourceImageUrl = file_get_contents($sourceImageUrl);
         }
- 
+
         $this->sourceImagePath =  TMP_DIR . 'original-' . md5($sourceImageUrl);
         $this->saveToTemporaryFile();
 
