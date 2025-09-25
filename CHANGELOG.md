@@ -1,5 +1,19 @@
 # Flyimg Changelog
 
+# [1.9.0](https://github.com/flyimg/flyimg/compare/1.8.1...1.9.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* fix demo page option creation ([5eca9cb](https://github.com/flyimg/flyimg/commit/5eca9cba634bd2fc586af0d972bd25593f950470))
+* refactor upload handling in Response and DefaultController to support multipart and various content types ([713aaa8](https://github.com/flyimg/flyimg/commit/713aaa86a5524c19590ed59e98b6ac34ea997a77))
+
+
+### Features
+
+* add jxl-decoding-speed option and update jxl-effort default value ([ab4cbe5](https://github.com/flyimg/flyimg/commit/ab4cbe5421cb8af32e86313d2d3f36b2c84b23ef))
+* add support for JPEG XL, closes [#588](https://github.com/flyimg/flyimg/issues/588) ([b493227](https://github.com/flyimg/flyimg/commit/b4932273f2aa48bb525576e0927412589d06fa62))
+
 ## [1.8.1](https://github.com/flyimg/flyimg/compare/1.8.0...1.8.1) (2025-09-20)
 
 
