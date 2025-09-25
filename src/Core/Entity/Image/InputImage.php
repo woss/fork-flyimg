@@ -28,6 +28,7 @@ class InputImage
     public const PNG_MIME_TYPE = 'image/png';
     public const GIF_MIME_TYPE = 'image/gif';
     public const AVIF_MIME_TYPE = 'image/avif';
+    public const JXL_MIME_TYPE = 'image/jxl';
     public const PDF_MIME_TYPE = 'application/pdf';
 
     /**
@@ -84,8 +85,12 @@ class InputImage
     {
         $this->optionsBag = $optionsBag;
         $this->sourceImageUrl = $sourceImageUrl;
+        // If the source image is a temporary file, read the contents of the file for the md5 hash
+        if (strpos($sourceImageUrl, '/tmp/') === 0) {
+            $sourceImageUrl = file_get_contents($sourceImageUrl);
+        }
 
-        $this->sourceImagePath =  TMP_DIR . 'original-' . md5($this->sourceImageUrl);
+        $this->sourceImagePath =  TMP_DIR . 'original-' . md5($sourceImageUrl);
         $this->saveToTemporaryFile();
 
         $this->sourceImageInfo = new ImageMetaInfo($this->sourceImagePath);

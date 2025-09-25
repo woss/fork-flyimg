@@ -19,6 +19,7 @@ class OutputImage
     public const EXT_JPG = 'jpg';
     public const EXT_GIF = 'gif';
     public const EXT_AVIF = 'avif';
+    public const EXT_JXL = 'jxl';
 
     /** @var InputImage */
     protected $inputImage;
@@ -39,7 +40,14 @@ class OutputImage
     protected $commandString;
 
     /** @var array list of the supported output extensions */
-    protected $allowedOutExtensions = [self::EXT_PNG, self::EXT_JPG, self::EXT_GIF, self::EXT_WEBP, self::EXT_AVIF];
+    protected $allowedOutExtensions = [
+                                            self::EXT_PNG,
+                                            self::EXT_JPG,
+                                            self::EXT_GIF,
+                                            self::EXT_WEBP,
+                                            self::EXT_AVIF,
+                                            self::EXT_JXL
+                                        ];
 
     /**
      * OutputImage constructor.
@@ -189,7 +197,7 @@ class OutputImage
     protected function generateFilesName()
     {
         $hashedOptions = $this->inputImage->optionsBag();
-        $this->outputImageName = $hashedOptions->hashedOptionsAsString($this->inputImage->sourceImageUrl());
+        $this->outputImageName = $hashedOptions->hashedOptionsAsString($this->inputImage->sourceImagePath());
         $this->outputTmpPath = sprintf("%s%s", TMP_DIR, $this->outputImageName);
 
         if ($hashedOptions->get('refresh')) {
@@ -206,6 +214,10 @@ class OutputImage
 
         if ($requestedOutput == self::EXT_AUTO && $this->isAvifBrowserSupported()) {
             return self::EXT_AVIF;
+        }
+
+        if ($requestedOutput == self::EXT_AUTO && $this->isJxlBrowserSupported()) {
+            return self::EXT_JXL;
         }
 
         if ($requestedOutput == self::EXT_AUTO && $this->isWebPBrowserSupported()) {
@@ -242,6 +254,7 @@ class OutputImage
             InputImage::JPEG_MIME_TYPE => self::EXT_JPG,
             InputImage::GIF_MIME_TYPE => self::EXT_GIF,
             InputImage::AVIF_MIME_TYPE => self::EXT_AVIF,
+            InputImage::JXL_MIME_TYPE => self::EXT_JXL,
             InputImage::PDF_MIME_TYPE => self::EXT_JPG,
         ];
 
@@ -267,6 +280,14 @@ class OutputImage
     public function isOutputAvif(): bool
     {
         return $this->outputImageExtension == self::EXT_AVIF;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOutputJxl(): bool
+    {
+        return $this->outputImageExtension == self::EXT_JXL;
     }
 
     /**
@@ -314,5 +335,16 @@ class OutputImage
         return in_array(InputImage::AVIF_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes())
             &&
             $this->inputImage->optionsBag()->appParameters()->parameterByKey('enable_avif');
+    }
+
+    /**
+     * This checks if the browser supports JPEG XL
+     * @return boolean
+     */
+    public function isJxlBrowserSupported(): bool
+    {
+        return in_array(InputImage::JXL_MIME_TYPE, Request::createFromGlobals()->getAcceptableContentTypes())
+            &&
+            $this->inputImage->optionsBag()->appParameters()->parameterByKey('enable_jxl');
     }
 }

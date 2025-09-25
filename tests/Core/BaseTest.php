@@ -19,6 +19,9 @@ class BaseTest extends TestCase
 
     public const MOVIE_TEST_FILE = __DIR__ . '/../testImages/SampleVideo_1280x720_2mb.mp4';
 
+
+    public const JXL_TEST_IMAGE_RESULT = __DIR__ . '/../testImages/square_result.jxl';
+
     public const PDF_TEST_FILE = __DIR__ . '/../testImages/lighthouses.pdf';
 
     public const FACES_TEST_IMAGE = __DIR__ . '/../testImages/faces.jpg';

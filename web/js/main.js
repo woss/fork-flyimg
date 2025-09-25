@@ -21,20 +21,20 @@ const addInput = () => {
             <div class="col-md-2">
                 <select class="form-control">
                     <option value="q" data-bs-example="Controls the output quality of generated image, valid values are in the range 0 – 100, default is 90.">quality</option>
-                    <option value="o" data-bs-example="The output format to convert the image to, default auto, possible values: auto | input (same as the input image) | webp | avif | jpg | png">output</option>
-                    <option value="rf" data-bs-example="It will force a re-request of the original image, default 0 , to enable it 1">refresh</option>
+                    <option value="o" data-bs-example="The output format to convert the image to, default auto, possible values: auto | input (same as the input image) | avif | webp | jxl | jpg | png" data-bs-values="auto,input,avif,webp,jxl,jpg,png">output</option>
+                    <option value="rf" data-bs-example="It will force a re-request of the original image, default 0 , to enable it 1" data-bs-values="0,1">refresh</option>
                     <option value="unsh" data-bs-example="Sharpens an image, usage {radius}x{sigma}[+gain][+threshold], examples: 0x6 | 0.25x0.25+8+0.065 ">unsharp</option>
                     <option value="sh" data-bs-example="Use a Gaussian operator of the given radius and standard deviation (sigma), usage {radius}x{sigma}, example: 3 | 0x5">sharpen</option>
-                    <option value="fc" data-bs-example="Crop a face from given image, default 0 , to enable it 1">face-crop</option>
+                    <option value="fc" data-bs-example="Crop a face from given image, default 0 , to enable it 1" data-bs-values="0,1">face-crop</option>
                     <option value="fcp" data-bs-example="Can be used combined with Face Crop option, you can specify which face you want get cropped in case of multi faces, example 2">face-crop-position</option>
-                    <option value="fb" data-bs-example="Apply blur effect on faces in a given image, default 0 , to enable it 1 ">face-blur</option>
+                    <option value="fb" data-bs-example="Apply blur effect on faces in a given image, default 0 , to enable it 1 " data-bs-values="0,1">face-blur</option>
                     <option value="w" data-bs-example="Sets the target width of the image. If not set, width will be calculated in order to keep aspect ratio.">width</option>
                     <option value="h" data-bs-example="Sets the target height of the image. If not set, height will be calculated in order to keep aspect ratio.">height</option>
-                    <option value="c" data-bs-example="When both width and height are set, this allows the image to be cropped so it fills the width x height area, default 0 , to enable it 1">crop</option>
+                    <option value="c" data-bs-example="When both width and height are set, this allows the image to be cropped so it fills the width x height area, default 0 , to enable it 1" data-bs-values="0,1">crop</option>
                     <option value="bg" data-bs-example="Sets the background of the canvas for the cases where padding is added to the images. It supports hex, css color names, rgb. Only css color names are supported without quotation marks.Example red <br>#ff4455 <br>rgb(255,120,100)">background</option>
-                    <option value="st" data-bs-example="Removes exif data and additional color profile. Leaving your image with the default sRGB color profile, default 0 , to enable it 1 ">strip</option>
-                    <option value="ao" data-bs-example="Adjusts an image so that its orientation is suitable for viewing (i.e. top-left orientation), default 0 , to enable it 1">auto-orient</option>
-                    <option value="rz" data-bs-example="The alternative resizing method to -thumbnail, default 0 , to enable it 1">resize</option>
+                    <option value="st" data-bs-example="Removes exif data and additional color profile. Leaving your image with the default sRGB color profile, default 0 , to enable it 1 " data-bs-values="0,1">strip</option>
+                    <option value="ao" data-bs-example="Adjusts an image so that its orientation is suitable for viewing (i.e. top-left orientation), default 0 , to enable it 1" data-bs-values="0,1">auto-orient</option>
+                    <option value="rz" data-bs-example="The alternative resizing method to -thumbnail, default 0 , to enable it 1" data-bs-values="0,1">resize</option>
                     <option value="g" data-bs-example="When crop is applied, changing the gravity will define which part of the image is kept inside the crop area. The basic options are: NorthWest, North, NorthEast, West, Center, East, SouthWest, South, SouthEast.">gravity</option>
                     <option value="t" data-bs-example="Add text to the image (watermark).">text</option>
                     <option value="tc" data-bs-example="Set the color of the text.It supports hex, css color names, rgb. Only css color names are supported without quotation marks. Example: <br>red <br>#ff4455 <br>rgb(255,120,100)">text-color</option>
@@ -42,19 +42,21 @@ const addInput = () => {
                     <option value="tbg" data-bs-example="Set the background color of the text. It supports hex, css color names, rgb. Only css color names are supported without quotation marks. Example: <br>red <br> #ff4455 <br>rgb(255,120,100)">text-bg</option>
                     <option value="f" data-bs-example="Resizing algorithm, default Lanczos, possible value Triangle (Triangle is a smoother lighter option)">filter</option>
                     <option value="r" data-bs-example="Apply image rotation (using shear operations) to the image, default 0, possible value 90 | 45">rotate</option>
-                    <option value="sc" data-bs-example="The -scale resize operator is a simplified, faster form of the resize command. Useful for fast exact scaling of pixels, default 0 , to enable it 1">scale</option>
+                    <option value="sc" data-bs-example="The -scale resize operator is a simplified, faster form of the resize command. Useful for fast exact scaling of pixels, default 0 , to enable it 1" data-bs-values="0,1">scale</option>
                     <option value="e" data-bs-example="Extract and crop an image with given the x/y coordinates of each booth top and bottom.">extract</option>
                     <option value="p1x" data-bs-example="The Point's 1 x coordinates of the Extract option">extract-top-x</option>
                     <option value="p1y" data-bs-example="The Point's 1 y coordinates of the Extract option">extract-top-y</option>
                     <option value="p2x" data-bs-example="The Point's 2 x coordinates of the Extract option">extract-bottom-x</option>
                     <option value="p2y" data-bs-example="The Point's 2 y coordinates of the Extract option">extract-bottom-y</option>
                     <option value="sf" data-bs-example="This option specifies the sampling factors to be used by the JPEG encoder for chroma downsampling. If this option is omitted, the JPEG library will use its own default values, default 0 to enable it 1">sampling-factor</option>
-                    <option value="smc" data-bs-example="This option automatically identifies and extracts the most visually compelling region from an image, default 0 , to enable it 1">smart-crop</option>
+                    <option value="smc" data-bs-example="This option automatically identifies and extracts the most visually compelling region from an image, default 0 , to enable it 1" data-bs-values="0,1">smart-crop</option>
                     <option value="ett" data-bs-example="Set the image size and offset, default Null, example values 4:3 | 800x600">extent</option>
-                    <option value="par" data-bs-example="If set to 0, when passing width and height to an image, the image will be distorted to fill the size of the rectangle defined by width and height, default 1 ">preserve-aspect-ratio</option>
-                    <option value="pns" data-bs-example="f set to 0 and if the source image is smaller than the target dimensions, the image will be stretched to the target size, default 1 ">preserve-natural-size</option>
-                    <option value="webpl" data-bs-example="If output is set to webp, it will default to lossy compression, but if you want lossless webp encoding you have to set it to 1, default 0">webp-lossless</option>
-                    <option value="webpm" data-bs-example="The compression method to use. It controls the trade off between encoding speed and the compressed file size and quality. Possible values range from 0 to 6. Default value is 4. When higher values are utilized, the encoder spends more time inspecting additional encoding possibilities and decide on the quality gain. Lower value might result in faster processing time at the expense of larger file size and lower compression quality.">webp-method</option>
+                    <option value="par" data-bs-example="If set to 0, when passing width and height to an image, the image will be distorted to fill the size of the rectangle defined by width and height, default 1 " data-bs-values="0,1">preserve-aspect-ratio</option>
+                    <option value="pns" data-bs-example="f set to 0 and if the source image is smaller than the target dimensions, the image will be stretched to the target size, default 1 " data-bs-values="0,1">preserve-natural-size</option>
+                    <option value="webpl" data-bs-example="If output is set to webp, it will default to lossy compression, but if you want lossless webp encoding you have to set it to 1, default 0" data-bs-values="0,1">webp-lossless</option>
+                    <option value="webpm" data-bs-example="The compression method to use. It controls the trade off between encoding speed and the compressed file size and quality. Possible values range from 0 to 6. Default value is 4. When higher values are utilized, the encoder spends more time inspecting additional encoding possibilities and decide on the quality gain. Lower value might result in faster processing time at the expense of larger file size and lower compression quality." data-bs-values="0,1,2,3,4,5,6">webp-method</option>
+                    <option value="jxlef" data-bs-example="JPEG XL encoder effort (1 fastest – 9 slowest/best)." data-bs-values="1,2,3,4,5,6,7,8,9">jxl-effort</option>
+                    <option value="jxlds" data-bs-example="Set the jpeg-xl decoding speed. Valid values are in the range of 0 (slowest) to 4 (fastest, at the cost of some quality/density)." data-bs-values="0,1,2,3,4">jxl-decoding-speed</option>
                     <option value="gf" data-bs-example="When supplying a Gif image, you can choose which frame to generate the output image from, default 0, possible values the frame number : 1 , 3 , 10,..">gif-frame</option>
                     <option value="pdfp" data-bs-example="When supplying a PDF as input, you can specify a which page number to generate the image from, default 1, possible values one the pdf pages number.">pdf-page-number</option>
                     <option value="dnst" data-bs-example="Sets the PDF density. If not set, the default is 72.">density</option>
@@ -87,10 +89,50 @@ const addInput = () => {
     let selectInput = htmlDivElement.querySelector('select')
     let exampleBox = htmlDivElement.querySelector('div.example-info')
 
+    // Build/replace the value control (second column) when data-bs-values is present
+    const rebuildValueControl = () => {
+        // Column that holds the value control (the second .col-md-2 in the row)
+        const cols = htmlDivElement.querySelectorAll('.input-group .col-md-2');
+        const valueCol = cols && cols.length > 1 ? cols[1] : null;
+        if (!valueCol) { return; }
+
+        const selected = selectInput.options[selectInput.selectedIndex];
+        const valuesAttr = selected ? (selected.getAttribute('data-bs-values') || '') : '';
+
+        // If there are predefined values, replace the text input with a select
+        if (valuesAttr && valuesAttr.trim().length > 0) {
+            const values = valuesAttr.split(',').map(v => v.trim()).filter(v => v.length > 0);
+            const sel = document.createElement('select');
+            sel.className = 'form-control option-value';
+            values.forEach(v => {
+                const opt = document.createElement('option');
+                opt.value = v;
+                opt.textContent = v;
+                sel.appendChild(opt);
+            });
+            valueCol.innerHTML = '';
+            valueCol.appendChild(sel);
+            inputField = sel;
+        } else {
+            // Ensure a text input exists
+            const inp = document.createElement('input');
+            inp.type = 'text';
+            inp.className = 'form-control option-value';
+            inp.placeholder = 'Enter value';
+            inp.value = '';
+            valueCol.innerHTML = '';
+            valueCol.appendChild(inp);
+            inputField = inp;
+        }
+    };
+
+    // Initialize based on default selected option
+    rebuildValueControl();
+
     selectInput.focus();
     selectInput.addEventListener('change', function () {
         exampleBox.innerHTML = this.querySelector('option:checked').getAttribute('data-bs-example')
-        inputField.value = ''
+        rebuildValueControl();
         inputField.focus();
     }, false);
 
@@ -124,14 +166,25 @@ const refreshImage = () => {
     // Combine input values to form the image parameters
     let imageParams = '';
     inputs.forEach((input, index) => {
-        let input_option = input.querySelector('input')
-        if (isEmpty(input_option.value)) {
-            input_option.setAttribute('class', 'form-control is-invalid');
+        // key is the first select in the row (option picker)
+        const keySelect = input.querySelector('select');
+        const input_key = keySelect ? keySelect.value : '';
+
+        // value control is either a text input or a select with class option-value
+        let input_option = input.querySelector('.option-value');
+        if (!input_option) {
             return;
         }
-        input_option.setAttribute('class', 'form-control is-valid');
-        let input_key = input.querySelector('option:checked').value
-        imageParams += `${input_key}_${encodeURIComponent(input_option.value)}`+ OPTIONS_SEPARATOR;
+
+        const valueStr = (input_option.tagName === 'SELECT') ? input_option.value : input_option.value;
+
+        if (isEmpty(valueStr)) {
+            input_option.setAttribute('class', 'form-control option-value is-invalid');
+            return;
+        }
+        input_option.setAttribute('class', 'form-control option-value is-valid');
+
+        imageParams += `${input_key}_${encodeURIComponent(valueStr)}` + OPTIONS_SEPARATOR;
     });
 
     // Get the base image URL
@@ -166,7 +219,7 @@ const errorWhileLoading = () => {
 
     fetch(url, { method: 'GET', cache: 'no-store', credentials: 'same-origin' })
         .then(async (res) => {
-            // If server responded with an error status, try to extract meaningful message
+            // If server responded with an error status, or image couldn't be displayed, explain why
             let message = `Error loading generated image (${res.status} ${res.statusText})`;
             try {
                 const contentType = res.headers.get('Content-Type') || '';
@@ -193,6 +246,15 @@ const errorWhileLoading = () => {
                                 message = text.trim();
                             }
                         }
+                    }
+                } else {
+                    // 200 OK but the <img> failed to render. Likely unsupported codec.
+                    if (contentType.includes('image/jxl')) {
+                        message = "This image was generated as JPEG XL (image/jxl). Your browser may not support displaying it inline. Try 'o_auto' or use a browser with JXL enabled.";
+                    } else if (contentType.includes('image/avif')) {
+                        message = "This image was generated as AVIF. If it doesn't render, your browser may not support AVIF. Try 'o_auto' or a different browser.";
+                    } else if (contentType.includes('image/webp')) {
+                        message = "This image was generated as WebP. If it doesn't render, your browser may not support WebP.";
                     }
                 }
             } catch (e) {
@@ -222,6 +284,11 @@ const getImageInformation = () => {
     let sourceSize, generatedSize, sourceType, generatedType = '';
     let xhr = new XMLHttpRequest();
     xhr.open('HEAD', generatedImage.src, true);
+    // Prefer modern codecs for accurate negotiation of the generated image headers
+    xhr.setRequestHeader('Accept', 'image/avif,image/jxl,image/webp,image/*,*/*;q=0.8');
+    // Avoid cached responses when reading headers
+    xhr.setRequestHeader('Cache-Control', 'no-cache');
+    xhr.setRequestHeader('Pragma', 'no-cache');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {

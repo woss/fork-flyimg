@@ -95,7 +95,6 @@ class ImageHandler
         [$options, $imageSrc] = $this->securityHandler->checkSecurityHash($options, $imageSrc);
         $this->securityHandler->checkRestrictedDomains($imageSrc);
 
-
         $optionsBag = new OptionsBag($this->appParameters, $options);
         $inputImage = new InputImage($optionsBag, $imageSrc);
         $outputImage = new OutputImage($inputImage);
@@ -237,6 +236,9 @@ class ImageHandler
      */
     public function responseContentType(OutputImage $outputImage): string
     {
+        if ($outputImage->getOutputImageExtension() == OutputImage::EXT_JXL) {
+            return InputImage::JXL_MIME_TYPE;
+        }
         if ($outputImage->getOutputImageExtension() == OutputImage::EXT_AVIF) {
             return InputImage::AVIF_MIME_TYPE;
         }
