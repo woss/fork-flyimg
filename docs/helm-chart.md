@@ -43,9 +43,10 @@ helm install <release_name> flyimg/flyimg \
 
 To override the default configuration for Flyimg, you can do that by adding the needed changes in the `parameters:` section in your values.yaml file as the following example:
 
+#### Traditional AWS Credentials
 ```yaml
 parameters:
-    storage_system: local
+    storage_system: s3
     aws_s3:
         access_id: 'xxxxxxx'
         secret_key: 'xxxxxx'
@@ -62,6 +63,33 @@ parameters:
     security_iv: 'your-security-iv'
     ....
 ```
+
+#### IRSA (IAM Roles for Service Accounts) Configuration
+For EKS environments using IRSA, you can omit the access credentials:
+
+```yaml
+parameters:
+    storage_system: s3
+    aws_s3:
+        # access_id and secret_key are not needed with IRSA
+        region: 'eu-central-1'
+        bucket_name: 'xxxxx'
+    # Security configuration
+    restricted_domains: true
+    whitelist_domains:
+        - "example.com"
+        - "*.example.org"
+        - "api.myservice.com"
+        - "*.cdn.myservice.com"
+    security_key: 'your-security-key'
+    security_iv: 'your-security-iv'
+    ....
+```
+
+**IRSA Setup Requirements:**
+- Configure a Kubernetes ServiceAccount with an IAM role annotation
+- Ensure the IAM role has the necessary S3 permissions
+- The AWS SDK will automatically use the role credentials injected by IRSA
 
 **Note**: When using wildcard patterns in YAML, make sure to quote them (e.g., `"*.example.com"`) to avoid YAML parsing errors.
 

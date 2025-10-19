@@ -25,7 +25,7 @@ class S3StorageProvider implements ServiceProviderInterface
     public function register(Container $app)
     {
         $s3Params = $app['params']->parameterByKey('aws_s3');
-        $requiredParams = ['access_id', 'secret_key', 'bucket_name', 'region'];
+        $requiredParams = ['bucket_name', 'region'];
         $this->validateRequiredParams($s3Params, $requiredParams);
 
         $this->registerS3ServiceProvider($app, $s3Params);
@@ -65,15 +65,20 @@ class S3StorageProvider implements ServiceProviderInterface
     protected function registerS3ServiceProvider(Container $app, array $s3Params): Container
     {
         $clientParams = [
-            'credentials' => [
-                'key' => $s3Params['access_id'],
-                'secret' => $s3Params['secret_key'],
-            ],
             'region' => $s3Params['region'],
             'version' => 'latest',
             'bucket_endpoint' => $s3Params['bucket_endpoint'] ?? false,
             'use_path_style_endpoint' => $s3Params['use_path_style_endpoint'] ?? false,
         ];
+
+        // Only set credentials if access_id and secret_key are provided (traditional setup)
+        // For IRSA setups, omit credentials to use the default credential chain
+        if (!empty($s3Params['access_id']) && !empty($s3Params['secret_key'])) {
+            $clientParams['credentials'] = [
+                'key' => $s3Params['access_id'],
+                'secret' => $s3Params['secret_key'],
+            ];
+        }
 
         // Support for third party S3 compatible services
         if (isset($s3Params['endpoint'])) {

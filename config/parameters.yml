@@ -54,15 +54,21 @@ storage_system: local
 
 # In case storage_system: s3, you need to add those AWS S3 parameters:
 aws_s3:
-  access_id: ''
-  secret_key: ''
+  # Traditional AWS credentials (required for non-IRSA setups)
+  access_id: '' # optional when using IRSA (IAM Roles for Service Accounts)
+  secret_key: '' # optional when using IRSA (IAM Roles for Service Accounts)
+  # Required parameters
   region: 'eu-central-1'
   bucket_name: ''
+  # Optional parameters
   # path_prefix: '' # optional
   #visibility: 'PRIVATE' # options: PUBLIC or PRIVATE
   #endpoint: 'https://%s.s3.%s.amazonaws.com/' # optional for third party
   # S3 compatible services, the format is https://<bucket-name>.
   # s3.<region>.amazonaws.com/
+  # IRSA Note: For EKS/container environments, access_id and secret_key are not needed
+  # when using IAM Roles for Service Accounts. The AWS SDK will automatically
+  # use the role credentials injected by the Kubernetes ServiceAccount.
 
 # Number of threads for Imagemagick to use
 thread: 1

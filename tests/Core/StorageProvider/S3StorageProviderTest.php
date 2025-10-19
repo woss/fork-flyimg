@@ -78,11 +78,36 @@ class S3StorageProviderTest extends BaseTest
             'aws_s3',
             [
                 'access_id' => 'xxxxx',
-                'secret_key' => '',
-                'region' => '',
-                'bucket_name' => ''
+                'secret_key' => 'xxxxx',
+                'region' => '', // region is required
+                'bucket_name' => '' // bucket_name is required
             ]
         );
         $this->app->register(new S3StorageProvider());
+    }
+
+    /**
+     * Test IRSA configuration without access_id and secret_key
+     */
+    public function testUploadActionWithS3IRSA()
+    {
+        unset($this->app['flysystems']);
+        unset($this->app['image.handler']);
+        $this->app['params']->addParameter(
+            'aws_s3',
+            [
+                // access_id and secret_key are not needed with IRSA
+                'region' => 'eu-central-1',
+                'bucket_name' => 'test-bucket',
+                'path_prefix' => 'test-prefix',
+                'visibility' => 'PRIVATE',
+            ]
+        );
+
+        $this->app->register(new S3StorageProvider());
+        $this->assertStringMatchesFormat(
+            'https://%s.s3.%s.amazonaws.com/%s',
+            $this->app['flysystems']['file_path_resolver']
+        );
     }
 }
