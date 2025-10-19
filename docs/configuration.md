@@ -111,6 +111,7 @@ More info at [Storage Options](storage-options.md).
 
 When using S3 sources (e.g., `s3://bucket/key`), configure the S3 parameters in `config/parameters.yml` under `aws_s3`:
 
+#### Traditional AWS Credentials
 ```yml
 aws_s3:
   access_id: "..."
@@ -124,8 +125,25 @@ aws_s3:
   # use_path_style_endpoint: false
 ```
 
+#### IRSA (IAM Roles for Service Accounts) - EKS/Container Environments
+For containerized environments like Amazon EKS, you can use IRSA to avoid managing access keys and secrets:
+
+```yml
+aws_s3:
+  # access_id and secret_key are not needed with IRSA
+  region: "eu-central-1"
+  bucket_name: "my-bucket"
+  # path_prefix: ''
+  # visibility: 'PRIVATE'   # PUBLIC or PRIVATE
+  # endpoint: 'https://%s.s3.%s.amazonaws.com/'
+  # bucket_endpoint: false
+  # use_path_style_endpoint: false
+```
+
+**Notes:**
 - `endpoint` can target third-party S3-compatible services. It should accept `%s` placeholders for bucket and region.
 - For private objects, you may need to forward request headers (e.g., `Authorization`).
+- With IRSA, the AWS SDK automatically uses the IAM role credentials injected by the Kubernetes ServiceAccount.
 
 ### forward_request_headers
 
