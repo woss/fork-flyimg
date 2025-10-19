@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.9.1](https://github.com/flyimg/flyimg/compare/1.9.0...1.9.1) (2025-10-19)
+
+
+### Bug Fixes
+
+* enhance S3 configuration for IRSA support and update documentation, closes [#590](https://github.com/flyimg/flyimg/issues/590) ([58a77d8](https://github.com/flyimg/flyimg/commit/58a77d8967c6b8e3d0a554ec3a4e242c5a8cec4d))
+
 # [1.9.0](https://github.com/flyimg/flyimg/compare/1.8.1...1.9.0) (2025-09-25)
 
 
