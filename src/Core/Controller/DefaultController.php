@@ -3,7 +3,6 @@
 namespace Core\Controller;
 
 use Core\Entity\Response;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DefaultController

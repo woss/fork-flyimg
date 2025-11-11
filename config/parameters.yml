@@ -106,6 +106,37 @@ header_extra_options:
 # (example Authorization)
 forward_request_headers: [ ]
 
+# Rate Limiting
+# Enable or disable rate limiting (default: false)
+rate_limit_enabled: false
+
+# Rate limit storage backend: 'file' or 'memory'
+# - 'file': Stores rate limit data in files (persistent, suitable for multi-instance)
+# - 'memory': Stores rate limit data in memory (fast, lost on restart, single-instance only)
+rate_limit_storage: file
+
+# Optional: Custom directory for file-based rate limit storage
+# If not set, defaults to var/tmp/ratelimit/
+# rate_limit_storage_dir: ''
+
+# Rate limit requests per minute (default: 100)
+rate_limit_requests_per_minute: 100
+
+# Optional: Rate limit requests per hour (uncomment to enable)
+# rate_limit_requests_per_hour: 1000
+
+# Optional: Rate limit requests per day (uncomment to enable)
+# rate_limit_requests_per_day: 10000
+
+# Enable IP-based rate limiting (default: true)
+rate_limit_by_ip: true
+
+# Rate limit strategy: 'fixed_window' or 'sliding_window'
+# - 'fixed_window': Fixed time windows (simpler, recommended for file storage)
+# - 'sliding_window': Sliding time windows (more accurate but more complex)
+rate_limit_strategy: fixed_window
+
+
 # Keys used in url to match options. Ex: q_80,w_200,h_100
 options_keys:
   q: quality
