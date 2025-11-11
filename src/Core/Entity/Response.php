@@ -69,7 +69,6 @@ class Response extends BaseResponse
 
         $this->addLastModifiedHeader($outputImageName);
         $this->addRateLimitHeaders($image);
-       
     }
 
     /**
@@ -78,8 +77,8 @@ class Response extends BaseResponse
      */
     protected function addRateLimitHeaders(OutputImage $image): void
     {
-        if($image->getOutputRateLimitHeaders() && 
-            $this->appParameters->parameterByKey('rate_limit_enabled')){
+        if ($image->getOutputRateLimitHeaders() && 
+            $this->appParameters->parameterByKey('rate_limit_enabled')) {
             foreach ($image->getOutputRateLimitHeaders() as $key => $value) {
                 $this->headers->set($key, $value);
             }

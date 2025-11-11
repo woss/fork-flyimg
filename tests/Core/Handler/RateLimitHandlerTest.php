@@ -142,7 +142,6 @@ class RateLimitHandlerTest extends TestCase
 
         $this->assertArrayHasKey('X-RateLimit-Limit', $headers);
         $this->assertArrayHasKey('X-RateLimit-Remaining', $headers);
-        $this->assertArrayHasKey('X-RateLimit-Reset', $headers); 
+        $this->assertArrayHasKey('X-RateLimit-Reset', $headers);
     }
 }
-

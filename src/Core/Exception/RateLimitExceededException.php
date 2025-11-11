@@ -31,4 +31,3 @@ class RateLimitExceededException extends HttpException
         return $this->retryAfter;
     }
 }
-

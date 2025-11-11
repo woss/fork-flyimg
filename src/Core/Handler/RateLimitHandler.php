@@ -74,7 +74,7 @@ class RateLimitHandler
     public function checkRateLimit(Request $request): array
     {
         $identifier = $this->extractClientIp($request);
-        
+
         // Get limits from configuration
         $requestsPerMinute = $this->params->parameterByKey('rate_limit_requests_per_minute', 100);
         $requestsPerHour = $this->params->parameterByKey('rate_limit_requests_per_hour');
@@ -82,7 +82,7 @@ class RateLimitHandler
 
         // Check per-minute limit (primary limit)
         $result = $this->rateLimiter->checkLimit($identifier, $requestsPerMinute, 60);
-        
+
         if (!$result['allowed']) {
             throw new RateLimitExceededException(
                 sprintf('Rate limit exceeded. Maximum %d requests per minute allowed.', $requestsPerMinute),
@@ -132,4 +132,3 @@ class RateLimitHandler
         ];
     }
 }
-

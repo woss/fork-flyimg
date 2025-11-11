@@ -43,4 +43,3 @@ interface RateLimiterInterface
      */
     public function reset(string $identifier): void;
 }
-

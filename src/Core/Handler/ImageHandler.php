@@ -116,11 +116,11 @@ class ImageHandler
             // Check if the image is already generated
             if (!$this->filesystem->has($outputImage->getOutputImageName())) {
                 // Check if rate limiting is enabled
-                if($this->appParameters->parameterByKey('rate_limit_enabled')){
+                if ($this->appParameters->parameterByKey('rate_limit_enabled')) {
                     $headers = $this->rateLimitHandler->checkRateLimit($request);
                     // Attach the rate limit headers to the output image
                     foreach ($headers as $key => $value) {
-                        $outputImage->setOutputRateLimitHeader($key, $value);  
+                        $outputImage->setOutputRateLimitHeader($key, $value);
                     }
                 }
                 // Process the image

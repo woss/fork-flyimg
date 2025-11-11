@@ -50,7 +50,7 @@ $exceptionHandlerFunction = function (\Exception $e) use ($app): Response {
     $htmlErrorHandler = new ErrorHandler($app['params']->parameterByKey('debug'));
     $response = new Response($htmlErrorHandler->render($e)->getAsString(), 500);
     // Handle rate limit exceptions with appropriate response
-    if($e instanceof RateLimitExceededException){
+    if ($e instanceof RateLimitExceededException) {
         $perMinuteLimit = $app['params']->parameterByKey('rate_limit_requests_per_minute', 100);
         $response->headers->set('X-RateLimit-Limit', (string)$perMinuteLimit);
         $response->headers->set('X-RateLimit-Remaining', '0');
