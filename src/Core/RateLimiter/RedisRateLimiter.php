@@ -227,4 +227,3 @@ class RedisRateLimiter implements RateLimiterInterface
         return $this->connectionAvailable;
     }
 }
-

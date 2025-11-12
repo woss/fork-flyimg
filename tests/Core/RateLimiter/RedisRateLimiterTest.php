@@ -170,4 +170,3 @@ class RedisRateLimiterTest extends TestCase
         $this->assertEquals(4, $result2['remaining']); // 5 - 1 = 4
     }
 }
-
