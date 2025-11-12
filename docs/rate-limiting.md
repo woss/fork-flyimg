@@ -3,6 +3,8 @@
 Flyimg includes a built-in rate limiting feature to protect your image processing service from abuse and excessive usage. 
 Rate limiting can be configured to control the number of requests per minute, hour, or day based on client IP addresses.
 
+**Important:** Rate limiting only applies to **new image transformations** - requests that require actual image processing. Requests for already generated/cached images are not rate limited, allowing fast serving of cached content without consuming rate limit quota.
+
 ## Configuration
 
 Rate limiting is disabled by default. To enable it, update your `config/parameters.yml` file:
@@ -11,14 +13,20 @@ Rate limiting is disabled by default. To enable it, update your `config/paramete
 # Enable or disable rate limiting (default: false)
 rate_limit_enabled: true
 
-# Rate limit storage backend: 'file' or 'memory'
-# - 'file': Stores rate limit data in files (persistent, suitable for multi-instance)
+# Rate limit storage backend: 'redis' or 'memory'
+# - 'redis': Stores rate limit data in Redis (persistent, suitable for multi-instance, recommended for production)
 # - 'memory': Stores rate limit data in memory (fast, lost on restart, single-instance only)
-rate_limit_storage: file
+rate_limit_storage: memory
 
-# Optional: Custom directory for file-based rate limit storage
-# If not set, defaults to var/tmp/ratelimit/
-# rate_limit_storage_dir: ''
+# Redis configuration (only used when rate_limit_storage is 'redis')
+# Optional: Redis connection configuration
+# Uncomment and configure if using Redis storage
+# rate_limit_redis:
+#   host: '127.0.0.1'
+#   port: 6379
+#   scheme: 'tcp'
+#   # Or use connection URL:
+#   # url: 'redis://localhost:6379'
 
 # Rate limit requests per minute (default: 100)
 rate_limit_requests_per_minute: 100
@@ -41,22 +49,37 @@ rate_limit_strategy: fixed_window
 
 ## Storage Backends
 
-### File-based Storage (Default)
+### Redis Storage (Recommended for Production)
 
-The file-based storage backend stores rate limit data in files under `var/tmp/ratelimit/`. This is the default option and is suitable for:
+The Redis storage backend stores rate limit data in Redis. This is the recommended option for production environments and is suitable for:
 
-- Multi-instance deployments (when files are on a shared filesystem)
-- Persistent rate limiting across restarts
-- Production environments where data persistence is important
+- Multi-instance deployments
+- High-performance requirements
+- Production environments where data persistence and scalability are important
 
 **Pros:**
 - Persistent across application restarts
-- Works with multiple application instances (if using shared storage)
-- No additional dependencies
+- Works seamlessly with multiple application instances
+- High performance with atomic operations
+- Automatic expiration of rate limit data
+- Scalable and battle-tested
 
 **Cons:**
-- Slower than in-memory storage
-- Requires filesystem access and permissions
+- Requires Redis server to be running
+- Additional dependency (predis/predis)
+
+**Configuration:**
+
+```yaml
+rate_limit_storage: redis
+
+rate_limit_redis:
+  host: '127.0.0.1'
+  port: 6379
+  scheme: 'tcp'
+  # Or use connection URL:
+  # url: 'redis://localhost:6379'
+```
 
 ### In-Memory Storage
 
@@ -76,19 +99,21 @@ The in-memory storage backend stores rate limit data in PHP memory. This is suit
 
 ## Rate Limit Configuration
 
+**Note:** All rate limits apply only to new image transformations. Cached images are served without rate limiting.
+
 ### Requests Per Minute
 
-The primary rate limit is set by `rate_limit_requests_per_minute`. This is the most commonly used limit and is always enforced when rate limiting is enabled.
+The primary rate limit is set by `rate_limit_requests_per_minute`. This limits the number of new image transformations per minute per IP address. This is the most commonly used limit and is always enforced when rate limiting is enabled.
 
 ### Requests Per Hour
 
-Optionally, you can set an hourly limit by uncommenting and setting `rate_limit_requests_per_hour`. This provides an additional safeguard against burst traffic.
+Optionally, you can set an hourly limit by uncommenting and setting `rate_limit_requests_per_hour`. This provides an additional safeguard against burst traffic of new transformations.
 
 ### Requests Per Day
 
-Similarly, you can set a daily limit using `rate_limit_requests_per_day`. This helps protect against sustained abuse.
+Similarly, you can set a daily limit using `rate_limit_requests_per_day`. This helps protect against sustained abuse of image processing resources.
 
-All three limits are checked independently. If any limit is exceeded, the request is blocked.
+All three limits are checked independently. If any limit is exceeded, the new transformation request is blocked. However, requests for already cached images will still be served normally.
 
 ## IP Address Detection
 
@@ -102,7 +127,17 @@ This ensures rate limiting works correctly behind reverse proxies, load balancer
 
 ## Scope
 
-Rate limiting applies globally to transformation requests. There is no per-endpoint configuration.
+Rate limiting applies only to **new image transformations** that require processing. Specifically:
+
+- **Rate limited:** Requests that trigger new image generation (image doesn't exist in cache, or `refresh` option is used)
+- **Not rate limited:** Requests for already generated/cached images (served directly from cache)
+
+This design ensures that:
+- Image processing resources are protected from abuse
+- Cached images can be served quickly without rate limit restrictions
+- Users can freely access previously generated images
+
+Rate limiting applies globally to all transformation requests. There is no per-endpoint configuration.
 
 ## Rate Limit Responses
 
@@ -143,22 +178,11 @@ Currently, only `fixed_window` strategy is implemented. This means:
 
 - Time windows are fixed (e.g., minute 1:00-1:59, minute 2:00-2:59)
 - Counters reset at the start of each window
-- Simpler and more efficient, especially for file-based storage
+- Simpler and more efficient, especially for Redis and memory storage
 
 The `sliding_window` option is reserved for future implementation.
 
 ## Troubleshooting
-
-### Rate limit files accumulating
-
-Rate limit files are stored in `var/tmp/ratelimit/`. If you're using file-based storage and notice many files:
-
-1. This is normal - each IP address gets its own file
-2. Files are automatically cleaned up when windows expire
-3. You can manually clean the directory if needed:
-   ```bash
-   rm -rf var/tmp/ratelimit/*
-   ```
 
 ### Rate limiting not working
 
@@ -167,9 +191,10 @@ Rate limit files are stored in `var/tmp/ratelimit/`. If you're using file-based 
    rate_limit_enabled: true
    ```
 
-2. **Check storage directory permissions:**
-   - For file-based storage, ensure `var/tmp/ratelimit/` is writable
-   - The directory is created automatically if it doesn't exist
+2. **Check Redis connection (if using Redis storage):**
+   - Ensure Redis server is running
+   - Verify Redis connection settings in `rate_limit_redis` configuration
+   - Test Redis connection: `redis-cli ping` should return `PONG`
 
 3. **Check logs:**
    - Rate limit exceeded events are logged (if log level is appropriate)
@@ -190,7 +215,7 @@ If IP detection isn't working correctly, check the `X-Forwarded-For` header valu
 
 2. **Monitor rate limit headers:** Clients can use the rate limit headers to implement backoff strategies
 
-3. **Use file storage for production:** In-memory storage is fine for single-instance deployments, but file storage is more reliable for production
+3. **Use Redis storage for production:** In-memory storage is fine for single-instance deployments, but Redis storage is recommended for production and multi-instance deployments
 
 4. **Set appropriate limits:** Balance between protecting your service and allowing legitimate traffic
    - Per-minute: For burst protection
@@ -205,7 +230,18 @@ If IP detection isn't working correctly, check the `X-Forwarded-For` header valu
 
 ```yaml
 rate_limit_enabled: true
-rate_limit_storage: file
+rate_limit_storage: memory
+rate_limit_requests_per_minute: 100
+```
+
+### Production Configuration with Redis
+
+```yaml
+rate_limit_enabled: true
+rate_limit_storage: redis
+rate_limit_redis:
+  host: '127.0.0.1'
+  port: 6379
 rate_limit_requests_per_minute: 100
 ```
 
@@ -213,7 +249,10 @@ rate_limit_requests_per_minute: 100
 
 ```yaml
 rate_limit_enabled: true
-rate_limit_storage: file
+rate_limit_storage: redis
+rate_limit_redis:
+  host: '127.0.0.1'
+  port: 6379
 rate_limit_requests_per_minute: 60
 rate_limit_requests_per_hour: 1000
 rate_limit_requests_per_day: 10000

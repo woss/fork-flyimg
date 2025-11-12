@@ -2,49 +2,66 @@
 
 namespace Tests\Core\RateLimiter;
 
-use Core\RateLimiter\FileRateLimiter;
+use Core\RateLimiter\RedisRateLimiter;
 use PHPUnit\Framework\TestCase;
+use Predis\Client;
 
 /**
- * Test file-based rate limiter
+ * Test Redis-based rate limiter
  *
- * Class FileRateLimiterTest
+ * Class RedisRateLimiterTest
  * @package Tests\Core\RateLimiter
  */
-class FileRateLimiterTest extends TestCase
+class RedisRateLimiterTest extends TestCase
 {
     /**
-     * @var FileRateLimiter
+     * @var RedisRateLimiter
      */
     private $rateLimiter;
 
     /**
-     * @var string
+     * @var Client
      */
-    private $testStorageDir;
+    private $redis;
 
     /**
      * Setup test environment
      */
     protected function setUp(): void
     {
-        $this->testStorageDir = sys_get_temp_dir() . '/flyimg_ratelimit_test_' . uniqid() . '/';
-        $this->rateLimiter = new FileRateLimiter($this->testStorageDir);
+        // Use a test Redis database (db 15) to avoid conflicts
+        $this->redis = new Client([
+            'scheme' => 'tcp',
+            'host' => '172.17.0.3',
+            'port' => 6379,
+            'database' => 15,
+        ]);
+
+        // Check if Redis is available
+        try {
+            $this->redis->ping();
+        } catch (\Exception $e) {
+            $this->markTestSkipped('Redis server is not available');
+        }
+
+        $this->rateLimiter = new RedisRateLimiter($this->redis);
     }
 
     /**
-     * Cleanup test files
+     * Cleanup test data
      */
     protected function tearDown(): void
     {
-        if (is_dir($this->testStorageDir)) {
-            $files = glob($this->testStorageDir . '*');
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file);
+        if ($this->redis) {
+            try {
+                // Clean up test keys
+                $keys = $this->redis->keys('rate_limit:*');
+                if (!empty($keys)) {
+                    $this->redis->del($keys);
                 }
+            } catch (\Exception $e) {
+                // Ignore cleanup errors
             }
-            rmdir($this->testStorageDir);
         }
     }
 
@@ -153,3 +170,4 @@ class FileRateLimiterTest extends TestCase
         $this->assertEquals(4, $result2['remaining']); // 5 - 1 = 4
     }
 }
+

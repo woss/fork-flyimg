@@ -110,14 +110,20 @@ forward_request_headers: [ ]
 # Enable or disable rate limiting (default: false)
 rate_limit_enabled: false
 
-# Rate limit storage backend: 'file' or 'memory'
-# - 'file': Stores rate limit data in files (persistent, suitable for multi-instance)
+# Rate limit storage backend: 'redis' or 'memory'
+# - 'redis': Stores rate limit data in Redis (persistent, suitable for multi-instance, recommended for production)
 # - 'memory': Stores rate limit data in memory (fast, lost on restart, single-instance only)
-rate_limit_storage: file
+rate_limit_storage: redis
 
-# Optional: Custom directory for file-based rate limit storage
-# If not set, defaults to var/tmp/ratelimit/
-# rate_limit_storage_dir: ''
+# Redis configuration (only used when rate_limit_storage is 'redis')
+# Optional: Redis connection configuration
+# Uncomment and configure if using Redis storage
+rate_limit_redis:
+  host: 'localhost'
+  port: 6379
+  scheme: 'tcp'
+#   # Or use connection URL:
+#   # url: 'redis://localhost:6379'
 
 # Rate limit requests per minute (default: 100)
 rate_limit_requests_per_minute: 100
@@ -132,7 +138,7 @@ rate_limit_requests_per_minute: 100
 rate_limit_by_ip: true
 
 # Rate limit strategy: 'fixed_window' or 'sliding_window'
-# - 'fixed_window': Fixed time windows (simpler, recommended for file storage)
+# - 'fixed_window': Fixed time windows (simpler, recommended for Redis and memory storage)
 # - 'sliding_window': Sliding time windows (more accurate but more complex)
 rate_limit_strategy: fixed_window
 
