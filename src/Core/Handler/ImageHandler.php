@@ -61,9 +61,11 @@ class ImageHandler
         $this->extractProcessor = new ExtractProcessor();
         $this->smartCropProcessor = new SmartCropProcessor();
         $this->securityHandler = new SecurityHandler($appParameters);
-
-        $rateLimiter = RateLimiterFactory::create($appParameters);
-        $this->rateLimitHandler = new RateLimitHandler($rateLimiter, $appParameters);
+        
+        if ($this->appParameters->parameterByKey('rate_limit_enabled')) {
+            $rateLimiter = RateLimiterFactory::create($appParameters);
+            $this->rateLimitHandler = new RateLimitHandler($rateLimiter, $appParameters);
+        }
     }
 
     /**

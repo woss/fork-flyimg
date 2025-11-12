@@ -62,7 +62,10 @@ class RateLimiterFactory
         try {
             $client->ping();
         } catch (\Exception $e) {
-            error_log('Redis rate limiter: WARNING - Connection test failed: ' . $e->getMessage() . ' (host: ' . ($connection['host'] ?? 'default') . ', port: ' . ($connection['port'] ?? 'default') . ')');
+            error_log('Redis rate limiter: WARNING - Connection test failed: ' .
+                $e->getMessage() . ' (host: ' . ($connection['host'] ?? 'default') .
+                ', port: ' . ($connection['port'] ?? 'default') . ')'
+            );
             // Continue anyway - connection will be tested on first use
         }
 
