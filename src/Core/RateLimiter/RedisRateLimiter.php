@@ -168,7 +168,7 @@ class RedisRateLimiter implements RateLimiterInterface
         try {
             // Use INCR to atomically increment
             $count = $this->redis->incr($key);
-            
+
             // Set expiration if this is the first increment in the window
             if ($count === 1) {
                 $this->redis->expire($key, $window);
