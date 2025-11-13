@@ -137,12 +137,6 @@ rate_limit_requests_per_minute: 100
 # Enable IP-based rate limiting (default: true)
 rate_limit_by_ip: true
 
-# Rate limit strategy: 'fixed_window' or 'sliding_window'
-# - 'fixed_window': Fixed time windows (simpler, recommended for Redis and memory storage)
-# - 'sliding_window': Sliding time windows (more accurate but more complex)
-rate_limit_strategy: fixed_window
-
-
 # Keys used in url to match options. Ex: q_80,w_200,h_100
 options_keys:
   q: quality

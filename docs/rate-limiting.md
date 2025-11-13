@@ -40,11 +40,6 @@ rate_limit_requests_per_minute: 100
 # Enable IP-based rate limiting (default: true)
 rate_limit_by_ip: true
 
-# Rate limit strategy: 'fixed_window' or 'sliding_window'
-# - 'fixed_window': Fixed time windows (simpler, recommended for file storage)
-# - 'sliding_window': Sliding time windows (more accurate but more complex)
-rate_limit_strategy: fixed_window
-
 ```
 
 ## Storage Backends
@@ -174,13 +169,11 @@ These headers help clients monitor their usage and avoid hitting limits.
 
 ## Rate Limit Strategy
 
-Currently, only `fixed_window` strategy is implemented. This means:
+The rate limiter uses a fixed window strategy. This means:
 
 - Time windows are fixed (e.g., minute 1:00-1:59, minute 2:00-2:59)
 - Counters reset at the start of each window
-- Simpler and more efficient, especially for Redis and memory storage
-
-The `sliding_window` option is reserved for future implementation.
+- Simple and efficient, especially for Redis and memory storage
 
 ## Troubleshooting
 
