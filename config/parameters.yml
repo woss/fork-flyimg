@@ -110,10 +110,10 @@ forward_request_headers: [ ]
 # Enable or disable rate limiting (default: false)
 rate_limit_enabled: false
 
-# Rate limit storage backend: 'redis' or 'memory'
-# - 'redis': Stores rate limit data in Redis (persistent, suitable for multi-instance, recommended for production)
+# Rate limit storage backend: 'memory' or 'redis'
 # - 'memory': Stores rate limit data in memory (fast, lost on restart, single-instance only)
-rate_limit_storage: redis
+# - 'redis': Stores rate limit data in Redis (persistent, suitable for multi-instance, recommended for production)
+rate_limit_storage: memory
 
 # Redis configuration (only used when rate_limit_storage is 'redis')
 # Optional: Redis connection configuration
