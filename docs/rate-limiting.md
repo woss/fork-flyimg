@@ -139,21 +139,12 @@ Rate limiting applies globally to all transformation requests. There is no per-e
 When a rate limit is exceeded, the service returns:
 
 - **HTTP Status Code:** `429 Too Many Requests`
-- **Response Body:** JSON with error details
+- **Response Body:** Error message with error details
 - **Headers:**
   - `X-RateLimit-Limit`: Maximum requests allowed
   - `X-RateLimit-Remaining`: Remaining requests in current window
   - `X-RateLimit-Reset`: Unix timestamp when the limit resets
   - `Retry-After`: Seconds to wait before retrying
-
-Example response:
-
-```json
-{
-  "error": "Rate limit exceeded",
-  "message": "Rate limit exceeded. Maximum 100 requests per minute allowed."
-}
-```
 
 ## Successful Request Headers
 
