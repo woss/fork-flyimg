@@ -32,7 +32,7 @@ class RedisRateLimiterTest extends TestCase
         // Use environment variable for Redis host (for CI), fallback to localhost
         $redisHost = getenv('REDIS_HOST') ?: 'localhost';
         $redisPort = getenv('REDIS_PORT') ?: 6379;
-        
+
         // Use a test Redis database (db 15) to avoid conflicts
         $this->redis = new Client([
             'scheme' => 'tcp',
