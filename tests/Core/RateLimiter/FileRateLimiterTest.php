@@ -189,7 +189,7 @@ class FileRateLimiterTest extends TestCase
     {
         // Create rate limiter without specifying directory
         $rateLimiter = new FileRateLimiter();
-        
+
         $identifier = '127.0.0.1';
         $limit = 10;
         $window = 60;
@@ -197,7 +197,7 @@ class FileRateLimiterTest extends TestCase
         // Should work without errors
         $result = $rateLimiter->checkLimit($identifier, $limit, $window);
         $this->assertTrue($result['allowed']);
-        
+
         // Cleanup default directory if it was created in temp
         $defaultDir = '/tmp/flyimg/ratelimit';
         if (is_dir($defaultDir)) {
@@ -236,4 +236,3 @@ class FileRateLimiterTest extends TestCase
         $this->assertEquals(4, $result2['remaining']); // 5 - 1 = 4
     }
 }
-
