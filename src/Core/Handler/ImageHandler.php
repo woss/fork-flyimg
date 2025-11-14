@@ -11,6 +11,9 @@ use Core\Processor\FaceDetectProcessor;
 use Core\Processor\ImageProcessor;
 use Core\Processor\SmartCropProcessor;
 use League\Flysystem\Filesystem;
+use Core\Handler\RateLimitHandler;
+use Core\RateLimiter\RateLimiterFactory;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ImageHandler
@@ -32,6 +35,9 @@ class ImageHandler
 
     /** @var SecurityHandler */
     protected $securityHandler;
+
+    /** @var RateLimitHandler */
+    protected $rateLimitHandler;
 
     /** @var Filesystem */
     protected $filesystem;
@@ -55,6 +61,11 @@ class ImageHandler
         $this->extractProcessor = new ExtractProcessor();
         $this->smartCropProcessor = new SmartCropProcessor();
         $this->securityHandler = new SecurityHandler($appParameters);
+
+        if ($this->appParameters->parameterByKey('rate_limit_enabled')) {
+            $rateLimiter = RateLimiterFactory::create($appParameters);
+            $this->rateLimitHandler = new RateLimitHandler($rateLimiter, $appParameters);
+        }
     }
 
     /**
@@ -95,6 +106,7 @@ class ImageHandler
         [$options, $imageSrc] = $this->securityHandler->checkSecurityHash($options, $imageSrc);
         $this->securityHandler->checkRestrictedDomains($imageSrc);
 
+        $request = Request::createFromGlobals();
         $optionsBag = new OptionsBag($this->appParameters, $options);
         $inputImage = new InputImage($optionsBag, $imageSrc);
         $outputImage = new OutputImage($inputImage);
@@ -103,11 +115,20 @@ class ImageHandler
             if ($this->filesystem->has($outputImage->getOutputImageName()) && $optionsBag->get('refresh')) {
                 $this->filesystem->delete($outputImage->getOutputImageName());
             }
-
+            // Check if the image is already generated
             if (!$this->filesystem->has($outputImage->getOutputImageName())) {
+                // Check if rate limiting is enabled
+                if ($this->appParameters->parameterByKey('rate_limit_enabled')) {
+                    $headers = $this->rateLimitHandler->checkRateLimit($request);
+                    // Attach the rate limit headers to the output image
+                    foreach ($headers as $key => $value) {
+                        $outputImage->setOutputRateLimitHeader($key, $value);
+                    }
+                }
+                // Process the image
                 $outputImage = $this->processNewImage($outputImage);
             }
-
+            // Attach the output content to the output image
             $outputImage->attachOutputContent($this->filesystem->read($outputImage->getOutputImageName()));
         } catch (\Exception $e) {
             $outputImage->removeOutputImage();

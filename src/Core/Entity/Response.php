@@ -68,8 +68,21 @@ class Response extends BaseResponse
         }
 
         $this->addLastModifiedHeader($outputImageName);
+        $this->addRateLimitHeaders($image);
     }
 
+    /**
+     * Add rate limit headers
+     * @param OutputImage $image
+     */
+    protected function addRateLimitHeaders(OutputImage $image): void
+    {
+        if ($this->appParameters->parameterByKey('rate_limit_enabled') && $image->getOutputRateLimitHeaders()) {
+            foreach ($image->getOutputRateLimitHeaders() as $key => $value) {
+                $this->headers->set($key, $value);
+            }
+        }
+    }
     /**
      * Add Security Headers
      */
@@ -115,6 +128,7 @@ class Response extends BaseResponse
     {
         $imagePath = sprintf($this->storageFileSystem['file_path_resolver'], $image->getOutputImageName());
         $this->setContent($imagePath);
+        $this->generateHeaders($image);
     }
 
     /**

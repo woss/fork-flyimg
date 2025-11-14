@@ -36,6 +36,9 @@ class OutputImage
     /** @var string */
     protected $outputImageContent;
 
+    /** @var array<string, mixed> */
+    protected $outputRateLimitHeaders = [];
+
     /** @var string */
     protected $commandString;
 
@@ -170,6 +173,22 @@ class OutputImage
         return $this->outputImageExtension;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
+    public function getOutputRateLimitHeaders(): array
+    {
+        return $this->outputRateLimitHeaders;
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     */
+    public function setOutputRateLimitHeader(string $key, mixed $value)
+    {
+        $this->outputRateLimitHeaders[$key] = $value;
+    }
     /**
      * Remove Temporary file
      */

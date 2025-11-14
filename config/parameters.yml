@@ -106,6 +106,34 @@ header_extra_options:
 # (example Authorization)
 forward_request_headers: [ ]
 
+# Rate Limiting
+# Enable or disable rate limiting (default: false)
+rate_limit_enabled: false
+
+## Rate limit storage backend: 'file' or 'redis'
+## - 'file': Stores rate limit data in files (persistent, suitable for single-instance, default)
+## - 'redis': Stores rate limit data in Redis (persistent, suitable for multi-instance, recommended for production)
+# rate_limit_storage: file
+
+## Redis configuration (only used when rate_limit_storage is 'redis')
+## Optional: Redis connection configuration
+## Uncomment and configure if using Redis storage
+# rate_limit_redis:
+#   host: 'localhost'
+#   port: 6379
+#   scheme: 'tcp'
+#   # Or use connection URL:
+#   # url: 'redis://localhost:6379'
+
+## Rate limit requests per minute (default: 100). Required if rate limiting is enabled.
+# rate_limit_requests_per_minute: 100
+
+## Optional: Rate limit requests per hour (uncomment to enable)
+# rate_limit_requests_per_hour: 1000
+
+## Optional: Rate limit requests per day (uncomment to enable)
+# rate_limit_requests_per_day: 10000
+
 # Keys used in url to match options. Ex: q_80,w_200,h_100
 options_keys:
   q: quality

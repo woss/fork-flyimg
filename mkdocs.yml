@@ -78,6 +78,7 @@ nav:
       - Configuration: configuration.md
       - URL Options: url-options.md
       - Storage Options: storage-options.md
+      - Rate Limiting: rate-limiting.md
       - Security: security.md
       - Benchmark: benchmark.md
       - Unit Tests: unit-tests.md

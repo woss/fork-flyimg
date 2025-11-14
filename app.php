@@ -4,6 +4,7 @@ require_once __DIR__ . '/constants.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Core\Handler\ErrorHandler;
+use Core\Exception\RateLimitExceededException;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
@@ -47,7 +48,18 @@ $exceptionHandlerFunction = function (\Exception $e) use ($app): Response {
         ]
     );
     $htmlErrorHandler = new ErrorHandler($app['params']->parameterByKey('debug'));
-    return new Response($htmlErrorHandler->render($e)->getAsString(), 500);
+    $response = new Response($htmlErrorHandler->render($e)->getAsString(), 500);
+    // Handle rate limit exceptions with appropriate response
+    if ($e instanceof RateLimitExceededException) {
+        $perMinuteLimit = $app['params']->parameterByKey('rate_limit_requests_per_minute', 100);
+        $retryAfter = $e->getRetryAfter();
+        $response->headers->set('X-RateLimit-Limit', (string)$perMinuteLimit);
+        $response->headers->set('X-RateLimit-Remaining', '0');
+        $response->headers->set('X-RateLimit-Reset', (string)$retryAfter);
+        $response->headers->set('Retry-After', (string)$retryAfter);
+        $response->setStatusCode(429);
+    }
+    return $response;
 };
 
 if (!isset($_ENV['env']) || $_ENV['env'] !== 'test') {
