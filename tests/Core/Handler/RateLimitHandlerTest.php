@@ -5,7 +5,7 @@ namespace Tests\Core\Handler;
 use Core\Entity\AppParameters;
 use Core\Exception\RateLimitExceededException;
 use Core\Handler\RateLimitHandler;
-use Core\RateLimiter\MemoryRateLimiter;
+use Core\RateLimiter\FileRateLimiter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -35,8 +35,7 @@ class RateLimitHandlerTest extends TestCase
         $paramsArray = [
             'rate_limit_requests_per_minute' => 5,
             'rate_limit_requests_per_hour' => 100,
-            'rate_limit_requests_per_day' => 1000,
-            'rate_limit_by_ip' => true
+            'rate_limit_requests_per_day' => 1000
         ];
 
         $this->params = $this->createMock(AppParameters::class);
@@ -45,8 +44,28 @@ class RateLimitHandlerTest extends TestCase
                 return $paramsArray[$key] ?? $default;
             });
 
-        $rateLimiter = new MemoryRateLimiter();
+        // Use a temporary directory for test rate limit files
+        $testStorageDir = sys_get_temp_dir() . '/flyimg_rate_limit_test_' . uniqid();
+        $rateLimiter = new FileRateLimiter($testStorageDir);
         $this->handler = new RateLimitHandler($rateLimiter, $this->params);
+    }
+
+    /**
+     * Cleanup test environment
+     */
+    protected function tearDown(): void
+    {
+        // Cleanup test rate limit files
+        $testStorageDir = sys_get_temp_dir() . '/flyimg_rate_limit_test_*';
+        $files = glob($testStorageDir);
+        if ($files !== false) {
+            foreach ($files as $file) {
+                if (is_dir($file)) {
+                    array_map('unlink', glob($file . '/*'));
+                    @rmdir($file);
+                }
+            }
+        }
     }
 
     /**

@@ -13,10 +13,10 @@ Rate limiting is disabled by default. To enable it, update your `config/paramete
 # Enable or disable rate limiting (default: false)
 rate_limit_enabled: true
 
-# Rate limit storage backend: 'redis' or 'memory'
+# Rate limit storage backend: 'file' or 'redis'
+# - 'file': Stores rate limit data in files (persistent, suitable for single-instance, default)
 # - 'redis': Stores rate limit data in Redis (persistent, suitable for multi-instance, recommended for production)
-# - 'memory': Stores rate limit data in memory (fast, lost on restart, single-instance only)
-rate_limit_storage: memory
+rate_limit_storage: file
 
 # Redis configuration (only used when rate_limit_storage is 'redis')
 # Optional: Redis connection configuration
@@ -36,9 +36,6 @@ rate_limit_requests_per_minute: 100
 
 # Optional: Rate limit requests per day (uncomment to enable)
 # rate_limit_requests_per_day: 10000
-
-# Enable IP-based rate limiting (default: true)
-rate_limit_by_ip: true
 
 ```
 
@@ -76,21 +73,24 @@ rate_limit_redis:
   # url: 'redis://localhost:6379'
 ```
 
-### In-Memory Storage
+### File Storage (Default)
 
-The in-memory storage backend stores rate limit data in PHP memory. This is suitable for:
+The file storage backend stores rate limit data in files on the filesystem. This is the default option and is suitable for:
 
 - Single-instance deployments
-- High-performance requirements
 - Development and testing
+- Production environments where Redis is not available
 
 **Pros:**
-- Fastest performance
-- No filesystem I/O
+- Persistent across application restarts
+- No additional dependencies
+- Simple to set up and use
+- Files are stored in `/tmp/flyimg/ratelimit/` directory
 
 **Cons:**
-- Data is lost on application restart
+- Slower than Redis or memory storage
 - Not suitable for multi-instance deployments (each instance tracks separately)
+- Requires filesystem write permissions
 
 ## Rate Limit Configuration
 
@@ -214,7 +214,7 @@ If IP detection isn't working correctly, check the `X-Forwarded-For` header valu
 
 ```yaml
 rate_limit_enabled: true
-rate_limit_storage: memory
+rate_limit_storage: file
 rate_limit_requests_per_minute: 100
 ```
 
@@ -246,7 +246,7 @@ rate_limit_requests_per_day: 10000
 
 ```yaml
 rate_limit_enabled: true
-rate_limit_storage: memory
+rate_limit_storage: file
 rate_limit_requests_per_minute: 500
 ```
 

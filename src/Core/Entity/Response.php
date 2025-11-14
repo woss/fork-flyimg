@@ -77,7 +77,7 @@ class Response extends BaseResponse
      */
     protected function addRateLimitHeaders(OutputImage $image): void
     {
-        if ($image->getOutputRateLimitHeaders() && $this->appParameters->parameterByKey('rate_limit_enabled')) {
+        if ($this->appParameters->parameterByKey('rate_limit_enabled') && $image->getOutputRateLimitHeaders()) {
             foreach ($image->getOutputRateLimitHeaders() as $key => $value) {
                 $this->headers->set($key, $value);
             }
