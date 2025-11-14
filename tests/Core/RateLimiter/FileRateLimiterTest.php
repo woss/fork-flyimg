@@ -235,4 +235,273 @@ class FileRateLimiterTest extends TestCase
         $this->assertEquals(3, $result1['remaining']); // 5 - 2 = 3
         $this->assertEquals(4, $result2['remaining']); // 5 - 1 = 4
     }
+
+    /**
+     * Test rate limiting per hour
+     */
+    public function testRateLimitPerHour(): void
+    {
+        $identifier = '127.0.0.1_hour';
+        $limit = 100;
+        $window = 3600; // 1 hour in seconds
+
+        // Check initial state
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals($limit, $result['remaining']);
+
+        // Increment 50 times
+        for ($i = 0; $i < 50; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals(50, $result['remaining']); // 100 - 50 = 50
+
+        // Increment to the limit
+        for ($i = 0; $i < 50; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertFalse($result['allowed']);
+        $this->assertEquals(0, $result['remaining']);
+    }
+
+    /**
+     * Test rate limiting per day
+     */
+    public function testRateLimitPerDay(): void
+    {
+        $identifier = '127.0.0.1_day';
+        $limit = 1000;
+        $window = 86400; // 1 day in seconds (24 * 60 * 60)
+
+        // Check initial state
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals($limit, $result['remaining']);
+
+        // Increment 500 times
+        for ($i = 0; $i < 500; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals(500, $result['remaining']); // 1000 - 500 = 500
+
+        // Increment to the limit
+        for ($i = 0; $i < 500; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertFalse($result['allowed']);
+        $this->assertEquals(0, $result['remaining']);
+    }
+
+    /**
+     * Test rate limiting per month (30 days)
+     */
+    public function testRateLimitPerMonth(): void
+    {
+        $identifier = '127.0.0.1_month';
+        $limit = 10000;
+        $window = 2592000; // 30 days in seconds (30 * 24 * 60 * 60)
+
+        // Check initial state
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals($limit, $result['remaining']);
+
+        // Increment 5000 times
+        for ($i = 0; $i < 5000; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals(5000, $result['remaining']); // 10000 - 5000 = 5000
+
+        // Increment to the limit
+        for ($i = 0; $i < 5000; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertFalse($result['allowed']);
+        $this->assertEquals(0, $result['remaining']);
+    }
+
+    /**
+     * Test that hour, day, and month limits work independently
+     */
+    public function testIndependentHourDayMonthLimits(): void
+    {
+        $baseIdentifier = '127.0.0.1';
+        $hourIdentifier = $baseIdentifier . '_hour';
+        $dayIdentifier = $baseIdentifier . '_day';
+        $monthIdentifier = $baseIdentifier . '_month';
+
+        $limit = 100;
+        $hourWindow = 3600;
+        $dayWindow = 86400;
+        $monthWindow = 2592000;
+
+        // Increment hour limit
+        $this->rateLimiter->increment($hourIdentifier, $hourWindow);
+        $this->rateLimiter->increment($hourIdentifier, $hourWindow);
+
+        // Increment day limit
+        $this->rateLimiter->increment($dayIdentifier, $dayWindow);
+        $this->rateLimiter->increment($dayIdentifier, $dayWindow);
+        $this->rateLimiter->increment($dayIdentifier, $dayWindow);
+
+        // Increment month limit
+        $this->rateLimiter->increment($monthIdentifier, $monthWindow);
+
+        // Check each limit independently
+        $hourResult = $this->rateLimiter->checkLimit($hourIdentifier, $limit, $hourWindow);
+        $dayResult = $this->rateLimiter->checkLimit($dayIdentifier, $limit, $dayWindow);
+        $monthResult = $this->rateLimiter->checkLimit($monthIdentifier, $limit, $monthWindow);
+
+        $this->assertEquals(98, $hourResult['remaining']); // 100 - 2 = 98
+        $this->assertEquals(97, $dayResult['remaining']); // 100 - 3 = 97
+        $this->assertEquals(99, $monthResult['remaining']); // 100 - 1 = 99
+    }
+
+    /**
+     * Test hour window expiration
+     */
+    public function testHourWindowExpiration(): void
+    {
+        $identifier = '127.0.0.1_hour';
+        $limit = 10;
+        $window = 2; // Short window for testing (normally 3600)
+
+        // Increment to limit
+        for ($i = 0; $i < $limit; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertFalse($result['allowed']);
+
+        // Wait for window to expire
+        sleep($window + 1);
+
+        // Should be reset after window expiration
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals($limit, $result['remaining']);
+    }
+
+    /**
+     * Test day window expiration
+     */
+    public function testDayWindowExpiration(): void
+    {
+        $identifier = '127.0.0.1_day';
+        $limit = 10;
+        $window = 2; // Short window for testing (normally 86400)
+
+        // Increment to limit
+        for ($i = 0; $i < $limit; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertFalse($result['allowed']);
+
+        // Wait for window to expire
+        sleep($window + 1);
+
+        // Should be reset after window expiration
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals($limit, $result['remaining']);
+    }
+
+    /**
+     * Test reset for hour identifier
+     */
+    public function testResetHourIdentifier(): void
+    {
+        $identifier = '127.0.0.1_hour';
+        $limit = 100;
+        $window = 3600;
+
+        // Increment several times
+        for ($i = 0; $i < 50; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertEquals(50, $result['remaining']);
+
+        // Reset
+        $this->rateLimiter->reset($identifier);
+
+        // Should be back to full limit
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals($limit, $result['remaining']);
+    }
+
+    /**
+     * Test reset for day identifier
+     */
+    public function testResetDayIdentifier(): void
+    {
+        $identifier = '127.0.0.1_day';
+        $limit = 1000;
+        $window = 86400;
+
+        // Increment several times
+        for ($i = 0; $i < 500; $i++) {
+            $this->rateLimiter->increment($identifier, $window);
+        }
+
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertEquals(500, $result['remaining']);
+
+        // Reset
+        $this->rateLimiter->reset($identifier);
+
+        // Should be back to full limit
+        $result = $this->rateLimiter->checkLimit($identifier, $limit, $window);
+        $this->assertTrue($result['allowed']);
+        $this->assertEquals($limit, $result['remaining']);
+    }
+
+    /**
+     * Test concurrent hour and day limits with same base identifier
+     */
+    public function testConcurrentHourAndDayLimits(): void
+    {
+        $baseIdentifier = '192.168.1.100';
+        $hourIdentifier = $baseIdentifier . '_hour';
+        $dayIdentifier = $baseIdentifier . '_day';
+
+        $hourLimit = 100;
+        $dayLimit = 1000;
+        $hourWindow = 3600;
+        $dayWindow = 86400;
+
+        // Simulate requests that increment both hour and day counters
+        for ($i = 0; $i < 50; $i++) {
+            $this->rateLimiter->increment($hourIdentifier, $hourWindow);
+            $this->rateLimiter->increment($dayIdentifier, $dayWindow);
+        }
+
+        $hourResult = $this->rateLimiter->checkLimit($hourIdentifier, $hourLimit, $hourWindow);
+        $dayResult = $this->rateLimiter->checkLimit($dayIdentifier, $dayLimit, $dayWindow);
+
+        $this->assertEquals(50, $hourResult['remaining']); // 100 - 50 = 50
+        $this->assertEquals(950, $dayResult['remaining']); // 1000 - 50 = 950
+        $this->assertTrue($hourResult['allowed']);
+        $this->assertTrue($dayResult['allowed']);
+    }
 }
