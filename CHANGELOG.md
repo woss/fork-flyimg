@@ -1,5 +1,18 @@
 # Flyimg Changelog
 
+# [1.10.0](https://github.com/flyimg/flyimg/compare/1.9.1...1.10.0) (2025-11-14)
+
+
+### Bug Fixes
+
+* conditionally enable rate limiting based on configuration parameter ([49402f6](https://github.com/flyimg/flyimg/commit/49402f63943bd9d2d7dd04654433485335b86db9))
+
+
+### Features
+
+* implement rate limiting functionality with configurable parameters and response headers ([fafbad3](https://github.com/flyimg/flyimg/commit/fafbad3e9aeb6bc52c8969a659ff47686e019c6d))
+* implement Redis-based rate limiting and remove file-based implementation ([eb9099b](https://github.com/flyimg/flyimg/commit/eb9099b4507ab68eba44cd19019e7a5327a74ce1))
+
 ## [1.9.1](https://github.com/flyimg/flyimg/compare/1.9.0...1.9.1) (2025-10-19)
 
 
