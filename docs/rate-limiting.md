@@ -28,7 +28,7 @@ rate_limit_storage: file
 #   # Or use connection URL:
 #   # url: 'redis://localhost:6379'
 
-# Rate limit requests per minute (default: 100)
+# Rate limit requests per minute (default: 100). Required if rate limiting is enabled.
 rate_limit_requests_per_minute: 100
 
 # Optional: Rate limit requests per hour (uncomment to enable)
