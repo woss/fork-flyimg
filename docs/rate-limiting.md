@@ -88,7 +88,7 @@ The file storage backend stores rate limit data in files on the filesystem. This
 - Files are stored in `/tmp/flyimg/ratelimit/` directory
 
 **Cons:**
-- Slower than Redis or memory storage
+- Slightly slower than Redis or memory storage
 - Not suitable for multi-instance deployments (each instance tracks separately)
 - Requires filesystem write permissions
 
