@@ -1,7 +1,7 @@
 # Rate Limiting
 
 Flyimg includes a built-in rate limiting feature to protect your image processing service from abuse and excessive usage. 
-Rate limiting can be configured to control the number of requests per minute, hour, or day based on client IP addresses.
+Rate limiting can be configured to control the number of transformation requests per minute, hour, or day based on client IP addresses.
 
 **Important:** Rate limiting only applies to **new image transformations** - requests that require actual image processing. Requests for already generated/cached images are not rate limited, allowing fast serving of cached content without consuming rate limit quota.
 
