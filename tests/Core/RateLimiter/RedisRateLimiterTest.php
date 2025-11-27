@@ -173,4 +173,70 @@ class RedisRateLimiterTest extends TestCase
         $this->assertEquals(3, $result1['remaining']); // 5 - 2 = 3
         $this->assertEquals(4, $result2['remaining']); // 5 - 1 = 4
     }
+
+    public function testIncrementUsesInstanceScopedKeyFormatWhenInstanceIdProvided(): void
+    {
+        $identifier = '127.0.0.1';
+        $window = 60;
+        $hash = md5($identifier);
+        $instanceId = 'deployment-a';
+
+        // Use a dedicated rate limiter instance with instance id on the same Redis connection
+        $rateLimiter = new RedisRateLimiter($this->redis, $instanceId);
+        $rateLimiter->increment($identifier, $window);
+
+        $keys = $this->redis->keys('rate_limit:*');
+        $this->assertNotEmpty($keys);
+
+        $key = $keys[0];
+        $this->assertMatchesRegularExpression(
+            sprintf('#^rate_limit:%s:%s:%d:\d+$#', $instanceId, $hash, $window),
+            $key
+        );
+    }
+
+    public function testResetUsesLegacyPatternWhenNoInstanceId(): void
+    {
+        $identifier = '127.0.0.1';
+        $window = 60;
+        $limit = 5;
+
+        // Create some legacy-format keys using the default rate limiter (no instance id)
+        $this->rateLimiter->increment($identifier, $window);
+        $this->rateLimiter->increment($identifier, $window);
+
+        $keysBefore = $this->redis->keys('rate_limit:*');
+        $this->assertNotEmpty($keysBefore);
+
+        // Reset and ensure all matching keys are removed
+        $this->rateLimiter->reset($identifier);
+
+        $keysAfter = $this->redis->keys('rate_limit:*');
+        $this->assertEmpty($keysAfter);
+    }
+
+    public function testResetUsesInstanceScopedPatternWhenInstanceIdProvided(): void
+    {
+        $identifier = '127.0.0.1';
+        $hash = md5($identifier);
+        $instanceId = 'deployment-a';
+
+        $rateLimiter = new RedisRateLimiter($this->redis, $instanceId);
+
+        // Create some instance-scoped keys
+        $rateLimiter->increment($identifier, 60);
+
+        $keysBefore = $this->redis->keys('rate_limit:*');
+        $this->assertNotEmpty($keysBefore);
+        $this->assertMatchesRegularExpression(
+            sprintf('#^rate_limit:%s:%s:%d:\d+$#', $instanceId, $hash, 60),
+            $keysBefore[0]
+        );
+
+        // Reset and ensure keys for this identifier/instance are removed
+        $rateLimiter->reset($identifier);
+
+        $keysAfter = $this->redis->keys('rate_limit:*');
+        $this->assertEmpty($keysAfter);
+    }
 }
