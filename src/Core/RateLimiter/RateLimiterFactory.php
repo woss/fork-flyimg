@@ -22,12 +22,13 @@ class RateLimiterFactory
     public static function create(AppParameters $params): RateLimiterInterface
     {
         $storageType = $params->parameterByKey('rate_limit_storage', 'file');
+        $instanceId = $params->parameterByKey('rate_limit_instance_id');
 
         switch ($storageType) {
             case 'redis':
                 $redisConfig = $params->parameterByKey('rate_limit_redis', []);
                 $redis = self::createRedisClient($redisConfig);
-                return new RedisRateLimiter($redis);
+                return new RedisRateLimiter($redis, $instanceId);
             case 'file':
             default:
                 return new FileRateLimiter();

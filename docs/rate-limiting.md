@@ -218,6 +218,30 @@ rate_limit_storage: file
 rate_limit_requests_per_minute: 100
 ```
 
+### Scoping Redis rate limits by deployment (instance id)
+
+When using Redis storage in multi-environment setups (e.g. staging, production, multiple clusters),
+you typically want:
+
+- All replicas of the **same** deployment to share rate limit counters.
+- **Different** deployments/environments to use separate rate limit counters.
+
+Flyimg supports this via an optional **instance-group identifier**:
+
+```yaml
+# Optional: scope Redis rate limit keys per deployment
+# All replicas of the same deployment should share this value.
+# Different environments should use different values.
+rate_limit_instance_id: 'my-deployment-id'
+```
+
+Behavior:
+
+- If `rate_limit_instance_id` is **not** set, Redis keys use the
+  original (legacy) format, so existing deployments keep their behavior.
+- If it **is** set, Redis rate limit keys are prefixed with this id, so different deployments
+  no longer share rate limit counters while replicas of the same deployment still do.
+
 ### Production Configuration with Redis
 
 ```yaml

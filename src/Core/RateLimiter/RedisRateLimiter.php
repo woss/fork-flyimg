@@ -19,14 +19,20 @@ class RedisRateLimiter implements RateLimiterInterface
     private $redis;
 
     /**
+     * @var string|null Instance-group identifier for scoping keys
+     */
+    private $instanceId;
+
+    /**
      * @var bool Whether Redis connection is available
      */
     private $connectionAvailable = true;
 
     /**
-     * @param Client|null $redis Redis client instance (optional, will create default if not provided)
+     * @param Client|null  $redis      Redis client instance (optional, will create default if not provided)
+     * @param string|null  $instanceId Optional instance-group identifier used to scope Redis keys
      */
-    public function __construct(Client $redis = null)
+    public function __construct(Client $redis = null, ?string $instanceId = null)
     {
         if ($redis === null) {
             // Default Redis connection: localhost:6379
@@ -38,6 +44,8 @@ class RedisRateLimiter implements RateLimiterInterface
         } else {
             $this->redis = $redis;
         }
+
+        $this->instanceId = ($instanceId !== null && $instanceId !== '') ? $instanceId : null;
 
         // Test connection on construction
         $this->testConnection();
@@ -71,7 +79,15 @@ class RedisRateLimiter implements RateLimiterInterface
     private function getKey(string $identifier, int $window): string
     {
         $windowStart = $this->getWindowStart(time(), $window);
-        return sprintf('rate_limit:%s:%d:%d', md5($identifier), $window, $windowStart);
+        $hash = md5($identifier);
+
+        // Backward compatible key format when no instance id is configured
+        if ($this->instanceId === null) {
+            return sprintf('rate_limit:%s:%d:%d', $hash, $window, $windowStart);
+        }
+
+        // When instance id is set, prefix keys with it to scope per deployment
+        return sprintf('rate_limit:%s:%s:%d:%d', $this->instanceId, $hash, $window, $windowStart);
     }
 
     /**
@@ -192,7 +208,15 @@ class RedisRateLimiter implements RateLimiterInterface
 
         // Redis keys expire automatically, but we can delete matching keys
         try {
-            $pattern = 'rate_limit:' . md5($identifier) . ':*';
+            $hash = md5($identifier);
+
+            if ($this->instanceId === null) {
+                // Backward compatible pattern when no instance id is configured
+                $pattern = 'rate_limit:' . $hash . ':*';
+            } else {
+                // Scope reset to the current instance id
+                $pattern = 'rate_limit:' . $this->instanceId . ':' . $hash . ':*';
+            }
             $keys = $this->redis->keys($pattern);
             if (!empty($keys)) {
                 $this->redis->del($keys);

@@ -115,6 +115,12 @@ rate_limit_enabled: false
 ## - 'redis': Stores rate limit data in Redis (persistent, suitable for multi-instance, recommended for production)
 # rate_limit_storage: file
 
+## Optional: Rate limit instance-group identifier
+## All replicas of the same deployment should share this value.
+## Different environments or deployments should use different values to avoid sharing
+## rate limit counters when using Redis storage.
+# rate_limit_instance_id: 'my-deployment-id'
+
 ## Redis configuration (only used when rate_limit_storage is 'redis')
 ## Optional: Redis connection configuration
 ## Uncomment and configure if using Redis storage
