@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.10.1](https://github.com/flyimg/flyimg/compare/1.10.0...1.10.1) (2025-11-28)
+
+
+### Bug Fixes
+
+* add instance-group identifier for Redis rate limiting, closes [#595](https://github.com/flyimg/flyimg/issues/595) ([850f853](https://github.com/flyimg/flyimg/commit/850f85347c95ad0c9b0667b56ffdcbacc7493b34))
+
 # [1.10.0](https://github.com/flyimg/flyimg/compare/1.9.1...1.10.0) (2025-11-14)
 
 
