@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.10.2](https://github.com/flyimg/flyimg/compare/1.10.1...1.10.2) (2026-01-12)
+
+
+### Bug Fixes
+
+* fix preserve-aspect-ratio option, add tests to cover that, closes [#599](https://github.com/flyimg/flyimg/issues/599) ([46a0c71](https://github.com/flyimg/flyimg/commit/46a0c71176de951bdd035ce3e969055257364eab))
+
 ## [1.10.1](https://github.com/flyimg/flyimg/compare/1.10.0...1.10.1) (2025-11-28)
 
 
