@@ -294,4 +294,40 @@ class ImageProcessorTest extends BaseTest
         $this->assertFileExists($image->getOutputTmpPath());
         $this->assertEquals($filesizeCrc32, $filesize2Crc32);
     }
+
+    #[DataProvider('preserveAspectRatioProvider')]
+    public function testPreserveAspectRatio(string $options, string $expectedSize, string $sourceImage)
+    {
+        $image = $this->imageHandler->processImage($options, $sourceImage);
+        $this->generatedImage[] = $image;
+        $this->assertFileExists($image->getOutputTmpPath());
+        $imageDimensions = $this->imageInfo($image->getOutputTmpPath())[ImageMetaInfo::IMAGE_PROP_DIMENSIONS];
+        $this->assertEquals($expectedSize, $imageDimensions);
+    }
+
+    /**
+     * Tests for preserve-aspect-ratio option
+     * @return array list of tests
+     * The key is the test name, the items in the array are:
+     * [options, expected output size, source image path]
+     */
+    public static function preserveAspectRatioProvider(): array
+    {
+        return [
+            'par_0 stretches landscape to exact dimensions' =>
+            ['w_200,h_300,par_0', '200x300', self::PNG_TEST_LANDSCAPE_IMAGE],
+            'par_0 stretches portrait to exact dimensions' =>
+            ['w_300,h_200,par_0', '300x200', self::PNG_TEST_PORTRAIT_IMAGE],
+            'par_0 stretches square to exact dimensions' =>
+            ['w_200,h_300,par_0', '200x300', self::PNG_TEST_SQUARE_IMAGE],
+            'par_1 preserves aspect ratio for landscape' =>
+            ['w_200,h_300,par_1', '200x133', self::PNG_TEST_LANDSCAPE_IMAGE],
+            'par_1 preserves aspect ratio for portrait' =>
+            ['w_300,h_200,par_1', '133x200', self::PNG_TEST_PORTRAIT_IMAGE],
+            'par_1 preserves aspect ratio for square' =>
+            ['w_200,h_300,par_1', '200x200', self::PNG_TEST_SQUARE_IMAGE],
+            'default (par_1) preserves aspect ratio for landscape' =>
+            ['w_200,h_300', '200x133', self::PNG_TEST_LANDSCAPE_IMAGE],
+        ];
+    }
 }

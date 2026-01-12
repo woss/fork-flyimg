@@ -160,8 +160,20 @@ class ImageProcessor extends Processor
     {
         $command = [];
         $command[] = $this->getResizeOperator();
-        $command[] = $this->getDimensions() .
-            ($this->options->getOption('preserve-natural-size') ? escapeshellarg('>') : '');
+
+        $dimensions = $this->getDimensions();
+        $preserveAspectRatio = $this->options->getOption('preserve-aspect-ratio');
+        $preserveNaturalSize = $this->options->getOption('preserve-natural-size');
+
+        if (!$preserveAspectRatio || $preserveAspectRatio === '0' || $preserveAspectRatio === 0) {
+            // par=0 → stretch: ignore aspect ratio and fill exactly w×h
+            $dimensions .= '!';
+        } elseif ($preserveNaturalSize && ($preserveNaturalSize === '1' || $preserveNaturalSize === 1)) {
+            // default behavior: don't upscale small images
+            $dimensions .= escapeshellarg('>');
+        }
+
+        $command[] = $dimensions;
 
         return implode(' ', $command);
     }
