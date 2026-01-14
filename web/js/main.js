@@ -131,7 +131,19 @@ const addInput = () => {
 
     selectInput.focus();
     selectInput.addEventListener('change', function () {
-        exampleBox.innerHTML = this.querySelector('option:checked').getAttribute('data-bs-example')
+        const exampleText = this.querySelector('option:checked').getAttribute('data-bs-example') || '';
+        // Sanitize HTML to prevent XSS: escape HTML entities but preserve <br> tags
+        // First, temporarily replace <br> tags with a placeholder
+        const placeholder = '___BR_TAG___';
+        const withPlaceholder = exampleText.replace(/<br\s*\/?>/gi, placeholder);
+        // Escape all HTML
+        const escaped = withPlaceholder
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        // Restore <br> tags
+        const sanitized = escaped.replace(new RegExp(placeholder, 'g'), '<br>');
+        exampleBox.innerHTML = sanitized;
         rebuildValueControl();
         inputField.focus();
     }, false);
@@ -147,14 +159,32 @@ const refreshImage = () => {
     let sourceImageInput = document.getElementById('source-image-input');
     let errorOptions = document.getElementById('error-options');
 
-    sourceImage.src = decodeURIComponent(sourceImageInput.value);
+    const rawSource = sourceImageInput.value || '';
 
-    if (isEmpty(sourceImageInput.value)) {
+    // Validate the source image URL before assigning it to the <img> element
+    if (isEmpty(rawSource)) {
         sourceImageInput.setAttribute('class', 'form-control is-invalid');
         sourceImageValidation.innerHTML = 'Please enter an Image URL.'
         sourceImageValidation.style.display = 'block';
         return;
     }
+
+    let finalSourceUrl;
+    try {
+        const parsedSource = new URL(rawSource, window.location.href);
+        const allowedProtocols = ['http:', 'https:'];
+        if (!allowedProtocols.includes(parsedSource.protocol)) {
+            throw new Error('Disallowed URL scheme');
+        }
+        finalSourceUrl = parsedSource.toString();
+    } catch (e) {
+        sourceImageInput.setAttribute('class', 'form-control is-invalid');
+        sourceImageValidation.innerHTML = 'Invalid or unsafe source image URL.';
+        sourceImageValidation.style.display = 'block';
+        return;
+    }
+
+    sourceImage.src = finalSourceUrl;
 
     //option-value
     sourceImageValidation.style.display = 'none';
@@ -187,8 +217,8 @@ const refreshImage = () => {
         imageParams += `${input_key}_${encodeURIComponent(valueStr)}` + OPTIONS_SEPARATOR;
     });
 
-    // Get the base image URL
-    const baseUrl = window.location.href + 'upload/';
+    // Get the base image URL (use origin to avoid reinterpreting arbitrary text as full URL)
+    const baseUrl = window.location.origin + window.location.pathname.replace(/\/?$/, '/') + 'upload/';
 
     // Concatenate parameters with commas and append to the base URL
     let params = imageParams.slice(0, -1);
@@ -197,15 +227,34 @@ const refreshImage = () => {
         return;
     }
 
-    const imageUrl = baseUrl + params + '/' + sourceImageInput.value; // Remove the trailing comma
-    document.getElementById('generated-url').textContent = imageUrl;
+    // Safely build the image URL and validate its scheme to avoid DOM-based XSS
+    const rawPath = sourceImageInput.value || '';
+    const safePath = encodeURI(rawPath);
+    const imageUrl = baseUrl + params + '/' + safePath; // Remove the trailing comma
+
+    let finalUrl;
+    try {
+        const parsed = new URL(imageUrl, window.location.href);
+        const allowedProtocols = ['http:', 'https:'];
+        if (!allowedProtocols.includes(parsed.protocol)) {
+            throw new Error('Disallowed URL scheme');
+        }
+        finalUrl = parsed.toString();
+    } catch (e) {
+        // If URL is invalid or uses a disallowed scheme, show an error instead of navigating the <img> src
+        errorOptions.style.display = 'block';
+        sourceImageValidation.innerHTML = 'Invalid or unsafe image URL.';
+        return;
+    }
+
+    document.getElementById('generated-url').textContent = finalUrl;
     document.getElementById('generated-url-container').style.display = 'block';
 
     showLoading();
 
     generatedImage.onload = hideLoading;
     generatedImage.onerror = errorWhileLoading;
-    generatedImage.src = imageUrl;
+    generatedImage.src = finalUrl;
 
 };
 
