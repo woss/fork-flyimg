@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.10.3](https://github.com/flyimg/flyimg/compare/1.10.2...1.10.3) (2026-01-14)
+
+
+### Bug Fixes
+
+* Harden client-side security and GitHub Actions GITHUB_TOKEN permissions ([b0ac9e4](https://github.com/flyimg/flyimg/commit/b0ac9e47a70fed69965c08a67482559172de179d))
+
 ## [1.10.2](https://github.com/flyimg/flyimg/compare/1.10.1...1.10.2) (2026-01-12)
 
 
