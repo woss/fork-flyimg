@@ -1,5 +1,7 @@
 ---
 name: CD
+permissions:
+  contents: read
 on:
   push:
     branches:
@@ -57,6 +59,9 @@ jobs:
     if: ${{ needs.release.outputs.new_tag_version != '' }}
     runs-on: ubuntu-latest
     name: Docker Build and Push
+    permissions:
+      contents: read
+      actions: write # required for upload-artifact
     outputs:
       new_tag_version: ${{ needs.release.outputs.new_tag_version }}
     strategy:
@@ -128,6 +133,9 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - docker_publish
+    permissions:
+      contents: read
+      actions: write # required for download-artifact
     outputs:
       new_tag_version: ${{ needs.docker_publish.outputs.new_tag_version }}
     steps:

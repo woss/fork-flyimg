@@ -3,6 +3,9 @@ name: CI
 
 # Run this workflow every time a new commit pushed
 # to main branch or on pull request to main
+permissions:
+  contents: read
+
 on:
   push:
     branches:
