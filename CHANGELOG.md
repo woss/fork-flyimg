@@ -1,5 +1,17 @@
 # Flyimg Changelog
 
+# [1.11.0](https://github.com/flyimg/flyimg/compare/1.10.3...1.11.0) (2026-01-31)
+
+
+### Bug Fixes
+
+* fix Security alerts by Dependabot alerts ([079e4c4](https://github.com/flyimg/flyimg/commit/079e4c4cf0d687673a0f18a3d922d25926ccbbce))
+
+
+### Features
+
+* Enhance rate limiting functionality by introducing custom intervals for request limits. ([e82d1c9](https://github.com/flyimg/flyimg/commit/e82d1c953566ef8ffe7abe6ce34802cbaf956a71))
+
 ## [1.10.3](https://github.com/flyimg/flyimg/compare/1.10.2...1.10.3) (2026-01-14)
 
 
