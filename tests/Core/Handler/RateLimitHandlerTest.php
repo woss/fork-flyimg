@@ -33,9 +33,9 @@ class RateLimitHandlerTest extends TestCase
     protected function setUp(): void
     {
         $paramsArray = [
-            'rate_limit_requests_per_minute' => 5,
-            'rate_limit_requests_per_hour' => 100,
-            'rate_limit_requests_per_day' => 1000
+            'rate_limit_limits' => [
+                ['value' => 1, 'unit' => 'minute', 'requests' => 5],
+            ],
         ];
 
         $this->params = $this->createMock(AppParameters::class);
@@ -162,5 +162,50 @@ class RateLimitHandlerTest extends TestCase
         $this->assertArrayHasKey('X-RateLimit-Limit', $headers);
         $this->assertArrayHasKey('X-RateLimit-Remaining', $headers);
         $this->assertArrayHasKey('X-RateLimit-Reset', $headers);
+    }
+
+    /**
+     * Test custom interval (value + unit): 30 days limit
+     */
+    public function testCheckRateLimitWithCustomInterval(): void
+    {
+        $paramsArray = [
+            'rate_limit_limits' => [
+                ['value' => 30, 'unit' => 'day', 'requests' => 3],
+            ],
+        ];
+        $this->params = $this->createMock(AppParameters::class);
+        $this->params->method('parameterByKey')
+            ->willReturnCallback(function ($key, $default = null) use ($paramsArray) {
+                return $paramsArray[$key] ?? $default;
+            });
+        $testStorageDir = sys_get_temp_dir() . '/flyimg_rate_limit_test_' . uniqid();
+        $rateLimiter = new FileRateLimiter($testStorageDir);
+        $handler = new RateLimitHandler($rateLimiter, $this->params);
+
+        $request = Request::create('/upload/test', 'GET');
+        $request->server->set('REMOTE_ADDR', '10.0.0.1');
+
+        $handler->checkRateLimit($request);
+        $handler->checkRateLimit($request);
+        $result = $handler->checkRateLimit($request);
+        $this->assertEquals(3, $result['X-RateLimit-Limit']);
+        $this->assertEquals(0, $result['X-RateLimit-Remaining']);
+
+        $this->expectException(RateLimitExceededException::class);
+        $handler->checkRateLimit($request);
+    }
+
+    /**
+     * Test windowSeconds helper for custom units
+     */
+    public function testWindowSeconds(): void
+    {
+        $this->assertEquals(60, RateLimitHandler::windowSeconds(1, 'minute'));
+        $this->assertEquals(120, RateLimitHandler::windowSeconds(2, 'minutes'));
+        $this->assertEquals(3600, RateLimitHandler::windowSeconds(1, 'hour'));
+        $this->assertEquals(86400, RateLimitHandler::windowSeconds(1, 'day'));
+        $this->assertEquals(2592000, RateLimitHandler::windowSeconds(1, 'month')); // 30 days
+        $this->assertEquals(5184000, RateLimitHandler::windowSeconds(2, 'months'));
     }
 }

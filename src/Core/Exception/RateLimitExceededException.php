@@ -12,13 +12,20 @@ class RateLimitExceededException extends HttpException
     private $retryAfter;
 
     /**
-     * @param string $message Error message
-     * @param int $retryAfter Unix timestamp when the rate limit resets
+     * @var int|null Maximum requests allowed for the limit that was exceeded
      */
-    public function __construct(string $message = 'Rate limit exceeded', int $retryAfter = null)
+    private $limit;
+
+    /**
+     * @param string $message Error message
+     * @param int|null $retryAfter Unix timestamp when the rate limit resets
+     * @param int|null $limit Maximum requests allowed (for X-RateLimit-Limit header)
+     */
+    public function __construct(string $message = 'Rate limit exceeded', ?int $retryAfter = null, ?int $limit = null)
     {
         parent::__construct(429, $message);
         $this->retryAfter = $retryAfter;
+        $this->limit = $limit;
     }
 
     /**
@@ -29,5 +36,15 @@ class RateLimitExceededException extends HttpException
     public function getRetryAfter(): ?int
     {
         return $this->retryAfter;
+    }
+
+    /**
+     * Get the maximum requests allowed for the limit that was exceeded
+     *
+     * @return int|null
+     */
+    public function getLimit(): ?int
+    {
+        return $this->limit;
     }
 }

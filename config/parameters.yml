@@ -131,14 +131,13 @@ rate_limit_enabled: false
 #   # Or use connection URL:
 #   # url: 'redis://localhost:6379'
 
-## Rate limit requests per minute (default: 100). Required if rate limiting is enabled.
-# rate_limit_requests_per_minute: 100
-
-## Optional: Rate limit requests per hour (uncomment to enable)
-# rate_limit_requests_per_hour: 1000
-
-## Optional: Rate limit requests per day (uncomment to enable)
-# rate_limit_requests_per_day: 10000
+## Rate limit intervals: list of { value, unit, requests }.
+## value: number; unit: minute|hour|day|month (singular or plural); requests: max requests in that window.
+## At least one limit is required when rate limiting is enabled.
+# rate_limit_limits:
+#   - { value: 1, unit: minute, requests: 100 }
+#   - { value: 1, unit: hour, requests: 1000 }
+#   - { value: 30, unit: day, requests: 10000 }
 
 # Keys used in url to match options. Ex: q_80,w_200,h_100
 options_keys:

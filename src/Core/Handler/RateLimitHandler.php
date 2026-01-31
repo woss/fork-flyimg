@@ -16,6 +16,20 @@ use Symfony\Component\HttpFoundation\Request;
 class RateLimitHandler
 {
     /**
+     * Seconds per unit for rate limit window calculation
+     */
+    private const UNIT_SECONDS = [
+        'minute' => 60,
+        'minutes' => 60,
+        'hour' => 3600,
+        'hours' => 3600,
+        'day' => 86400,
+        'days' => 86400,
+        'month' => 2592000,   // 30 days
+        'months' => 2592000,
+    ];
+
+    /**
      * @var RateLimiterInterface
      */
     private $rateLimiter;
@@ -65,70 +79,102 @@ class RateLimitHandler
     }
 
     /**
+     * Convert (value, unit) to window size in seconds
+     *
+     * @param int $value
+     * @param string $unit One of: minute, hour, day, month (singular or plural)
+     * @return int Window in seconds
+     */
+    public static function windowSeconds(int $value, string $unit): int
+    {
+        $unit = strtolower(trim($unit));
+        if (!isset(self::UNIT_SECONDS[$unit])) {
+            throw new \InvalidArgumentException(
+                sprintf('Invalid rate limit unit: %s. Use: minute, hour, day, month.', $unit)
+            );
+        }
+        return $value * self::UNIT_SECONDS[$unit];
+    }
+
+    /**
      * Check rate limit for a request
      *
      * @param Request $request
-     * @return array Rate limit information with headers
+     * @return array Rate limit information with headers (from first configured limit)
      * @throws RateLimitExceededException
      */
     public function checkRateLimit(Request $request): array
     {
         $identifier = $this->extractClientIp($request);
 
-        // Get limits from configuration
-        $requestsPerMinute = $this->params->parameterByKey('rate_limit_requests_per_minute', 100);
-        $requestsPerHour = $this->params->parameterByKey('rate_limit_requests_per_hour');
-        $requestsPerDay = $this->params->parameterByKey('rate_limit_requests_per_day');
-
-        // Check per-minute limit (primary limit)
-        $result = $this->rateLimiter->checkLimit($identifier, $requestsPerMinute, 60);
-
-        if (!$result['allowed']) {
-            throw new RateLimitExceededException(
-                sprintf('Rate limit exceeded. Maximum %d requests per minute allowed.', $requestsPerMinute),
-                $result['reset']
-            );
+        $limits = $this->params->parameterByKey('rate_limit_limits', []);
+        if (!is_array($limits) || count($limits) === 0) {
+            throw new \RuntimeException('rate_limit_limits must be set and non-empty when rate limiting is enabled.');
         }
 
-        // Check per-hour limit if configured
-        if ($requestsPerHour !== null) {
-            $hourResult = $this->rateLimiter->checkLimit($identifier . '_hour', $requestsPerHour, 3600);
-            if (!$hourResult['allowed']) {
+        $primaryResult = null;
+        $primaryLimit = null;
+
+        foreach ($limits as $entry) {
+            $value = (int) ($entry['value'] ?? $entry['interval_value'] ?? 0);
+            $unit = (string) ($entry['unit'] ?? $entry['interval_unit'] ?? 'minute');
+            $requests = (int) ($entry['requests'] ?? 0);
+
+            if ($value <= 0 || $requests <= 0) {
+                continue;
+            }
+
+            $window = self::windowSeconds($value, $unit);
+            $key = $identifier . '_' . $window;
+
+            $result = $this->rateLimiter->checkLimit($key, $requests, $window);
+
+            if ($primaryResult === null) {
+                $primaryResult = $result;
+                $primaryLimit = $requests;
+            }
+
+            if (!$result['allowed']) {
+                $unitLabel = $value === 1 ? rtrim($unit, 's') : $unit;
                 throw new RateLimitExceededException(
-                    sprintf('Rate limit exceeded. Maximum %d requests per hour allowed.', $requestsPerHour),
-                    $hourResult['reset']
+                    sprintf(
+                        'Rate limit exceeded. Maximum %d requests per %d %s allowed.',
+                        $requests,
+                        $value,
+                        $unitLabel
+                    ),
+                    $result['reset'],
+                    $requests
                 );
             }
         }
 
-        // Check per-day limit if configured
-        if ($requestsPerDay !== null) {
-            $dayResult = $this->rateLimiter->checkLimit($identifier . '_day', $requestsPerDay, 86400);
-            if (!$dayResult['allowed']) {
-                throw new RateLimitExceededException(
-                    sprintf('Rate limit exceeded. Maximum %d requests per day allowed.', $requestsPerDay),
-                    $dayResult['reset']
-                );
+        if ($primaryResult === null || $primaryLimit === null) {
+            throw new
+                \RuntimeException('rate_limit_limits must contain at least one valid entry (value, unit, requests).');
+        }
+
+        // Increment all configured limits
+        foreach ($limits as $entry) {
+            $value = (int) ($entry['value'] ?? $entry['interval_value'] ?? 0);
+            $unit = (string) ($entry['unit'] ?? $entry['interval_unit'] ?? 'minute');
+            $requests = (int) ($entry['requests'] ?? 0);
+
+            if ($value <= 0 || $requests <= 0) {
+                continue;
             }
+
+            $window = self::windowSeconds($value, $unit);
+            $key = $identifier . '_' . $window;
+            $this->rateLimiter->increment($key, $window);
         }
 
-        // Get remaining count before incrementing (will be used in response)
-        $remaining = $result['remaining'];
+        $remaining = $primaryResult['remaining'];
 
-        // Increment counters
-        $this->rateLimiter->increment($identifier, 60);
-        if ($requestsPerHour !== null) {
-            $this->rateLimiter->increment($identifier . '_hour', 3600);
-        }
-        if ($requestsPerDay !== null) {
-            $this->rateLimiter->increment($identifier . '_day', 86400);
-        }
-
-        // Return rate limit headers (remaining - 1 since we just incremented)
         return [
-            'X-RateLimit-Limit' => $requestsPerMinute,
+            'X-RateLimit-Limit' => $primaryLimit,
             'X-RateLimit-Remaining' => max(0, $remaining - 1),
-            'X-RateLimit-Reset' => $result['reset']
+            'X-RateLimit-Reset' => $primaryResult['reset']
         ];
     }
 }

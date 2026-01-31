@@ -51,12 +51,16 @@ $exceptionHandlerFunction = function (\Exception $e) use ($app): Response {
     $response = new Response($htmlErrorHandler->render($e)->getAsString(), 500);
     // Handle rate limit exceptions with appropriate response
     if ($e instanceof RateLimitExceededException) {
-        $perMinuteLimit = $app['params']->parameterByKey('rate_limit_requests_per_minute', 100);
+        $limit = $e->getLimit();
         $retryAfter = $e->getRetryAfter();
-        $response->headers->set('X-RateLimit-Limit', (string)$perMinuteLimit);
+        if ($limit !== null) {
+            $response->headers->set('X-RateLimit-Limit', (string)$limit);
+        }
         $response->headers->set('X-RateLimit-Remaining', '0');
-        $response->headers->set('X-RateLimit-Reset', (string)$retryAfter);
-        $response->headers->set('Retry-After', (string)$retryAfter);
+        if ($retryAfter !== null) {
+            $response->headers->set('X-RateLimit-Reset', (string)$retryAfter);
+            $response->headers->set('Retry-After', (string)$retryAfter);
+        }
         $response->setStatusCode(429);
     }
     return $response;
