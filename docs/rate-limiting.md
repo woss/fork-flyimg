@@ -1,7 +1,7 @@
 # Rate Limiting
 
-Flyimg includes a built-in rate limiting feature to protect your image processing service from abuse and excessive usage. 
-Rate limiting can be configured to control the number of transformation requests per minute, hour, or day based on client IP addresses.
+Flyimg includes a built-in rate limiting feature to protect your image processing service from abuse and excessive usage.
+You configure one or more **custom intervals**: each limit has a **value**, **unit** (minute, hour, day, or month), and **requests** (max requests in that window). Rate limiting is applied per client IP address.
 
 **Important:** Rate limiting only applies to **new image transformations** - requests that require actual image processing. Requests for already generated/cached images are not rate limited, allowing fast serving of cached content without consuming rate limit quota.
 
@@ -28,16 +28,32 @@ rate_limit_storage: file
 #   # Or use connection URL:
 #   # url: 'redis://localhost:6379'
 
-# Rate limit requests per minute (default: 100). Required if rate limiting is enabled.
-rate_limit_requests_per_minute: 100
-
-# Optional: Rate limit requests per hour (uncomment to enable)
-# rate_limit_requests_per_hour: 1000
-
-# Optional: Rate limit requests per day (uncomment to enable)
-# rate_limit_requests_per_day: 10000
+# Rate limit intervals: list of { value, unit, requests }
+# value: number; unit: minute|hour|day|month (singular or plural); requests: max requests in that window.
+# At least one limit is required when rate limiting is enabled.
+rate_limit_limits:
+  - { value: 1, unit: minute, requests: 100 }
+  - { value: 1, unit: hour, requests: 1000 }
+  - { value: 30, unit: day, requests: 10000 }
 
 ```
+
+## Custom rate limit intervals
+
+Each entry in `rate_limit_limits` has:
+
+- **value** – Size of the time window (integer, e.g. `1`, `30`).
+- **unit** – Time unit: `minute`, `hour`, `day`, or `month` (singular or plural, e.g. `minute` or `minutes`).
+- **requests** – Maximum number of new transformations allowed per client IP in that window.
+
+Examples:
+
+- `{ value: 1, unit: minute, requests: 100 }` – 100 requests per 1 minute.
+- `{ value: 2, unit: hours, requests: 500 }` – 500 requests per 2 hours.
+- `{ value: 30, unit: day, requests: 10000 }` – 10,000 requests per 30 days.
+- `{ value: 1, unit: month, requests: 100000 }` – 100,000 requests per month (month = 30 days).
+
+All configured limits are checked independently. If any limit is exceeded, the new transformation request is blocked. Requests for already cached images are still served normally.
 
 ## Storage Backends
 
@@ -92,24 +108,6 @@ The file storage backend stores rate limit data in files on the filesystem. This
 - Not suitable for multi-instance deployments (each instance tracks separately)
 - Requires filesystem write permissions
 
-## Rate Limit Configuration
-
-**Note:** All rate limits apply only to new image transformations. Cached images are served without rate limiting.
-
-### Requests Per Minute
-
-The primary rate limit is set by `rate_limit_requests_per_minute`. This limits the number of new image transformations per minute per IP address. This is the most commonly used limit and is always enforced when rate limiting is enabled.
-
-### Requests Per Hour
-
-Optionally, you can set an hourly limit by uncommenting and setting `rate_limit_requests_per_hour`. This provides an additional safeguard against burst traffic of new transformations.
-
-### Requests Per Day
-
-Similarly, you can set a daily limit using `rate_limit_requests_per_day`. This helps protect against sustained abuse of image processing resources.
-
-All three limits are checked independently. If any limit is exceeded, the new transformation request is blocked. However, requests for already cached images will still be served normally.
-
 ## IP Address Detection
 
 Rate limiting uses IP addresses to identify clients. The system checks headers in the following order:
@@ -141,14 +139,14 @@ When a rate limit is exceeded, the service returns:
 - **HTTP Status Code:** `429 Too Many Requests`
 - **Response Body:** Error message with error details
 - **Headers:**
-  - `X-RateLimit-Limit`: Maximum requests allowed
+  - `X-RateLimit-Limit`: Maximum requests allowed (for the limit that was exceeded)
   - `X-RateLimit-Remaining`: Remaining requests in current window
   - `X-RateLimit-Reset`: Unix timestamp when the limit resets
   - `Retry-After`: Seconds to wait before retrying
 
 ## Successful Request Headers
 
-Even when requests are successful, the service includes rate limit headers in the response:
+Even when requests are successful, the service includes rate limit headers in the response (from the first configured limit):
 
 ```
 X-RateLimit-Limit: 100
@@ -175,12 +173,14 @@ The rate limiter uses a fixed window strategy. This means:
    rate_limit_enabled: true
    ```
 
-2. **Check Redis connection (if using Redis storage):**
+2. **Check that `rate_limit_limits` is set:** You must have at least one entry with `value`, `unit`, and `requests`.
+
+3. **Check Redis connection (if using Redis storage):**
    - Ensure Redis server is running
    - Verify Redis connection settings in `rate_limit_redis` configuration
    - Test Redis connection: `redis-cli ping` should return `PONG`
 
-3. **Check logs:**
+4. **Check logs:**
    - Rate limit exceeded events are logged (if log level is appropriate)
    - Check application logs for any errors
 
@@ -201,21 +201,21 @@ If IP detection isn't working correctly, check the `X-Forwarded-For` header valu
 
 3. **Use Redis storage for production:** In-memory storage is fine for single-instance deployments, but Redis storage is recommended for production and multi-instance deployments
 
-4. **Set appropriate limits:** Balance between protecting your service and allowing legitimate traffic
-   - Per-minute: For burst protection
-   - Per-hour: For sustained traffic limits
-   - Per-day: For abuse prevention
+4. **Set appropriate limits:** Balance between protecting your service and allowing legitimate traffic. Use custom intervals to match your needs, e.g.:
+   - Short windows (e.g. 1 minute) for burst protection
+   - Longer windows (e.g. 1 hour, 30 days) for sustained or monthly caps
 
 5. **Test rate limiting:** Enable rate limiting and test with various scenarios to ensure it behaves as expected
 
 ## Examples
 
-### Basic Configuration (100 requests per minute)
+### Basic configuration (100 requests per minute)
 
 ```yaml
 rate_limit_enabled: true
 rate_limit_storage: file
-rate_limit_requests_per_minute: 100
+rate_limit_limits:
+  - { value: 1, unit: minute, requests: 100 }
 ```
 
 ### Scoping Redis rate limits by deployment (instance id)
@@ -242,7 +242,7 @@ Behavior:
 - If it **is** set, Redis rate limit keys are prefixed with this id, so different deployments
   no longer share rate limit counters while replicas of the same deployment still do.
 
-### Production Configuration with Redis
+### Production configuration with Redis
 
 ```yaml
 rate_limit_enabled: true
@@ -250,10 +250,11 @@ rate_limit_storage: redis
 rate_limit_redis:
   host: '127.0.0.1'
   port: 6379
-rate_limit_requests_per_minute: 100
+rate_limit_limits:
+  - { value: 1, unit: minute, requests: 100 }
 ```
 
-### Strict Rate Limiting (Multiple Limits)
+### Multiple custom limits
 
 ```yaml
 rate_limit_enabled: true
@@ -261,17 +262,18 @@ rate_limit_storage: redis
 rate_limit_redis:
   host: '127.0.0.1'
   port: 6379
-rate_limit_requests_per_minute: 60
-rate_limit_requests_per_hour: 1000
-rate_limit_requests_per_day: 10000
+rate_limit_limits:
+  - { value: 1, unit: minute, requests: 60 }
+  - { value: 1, unit: hour, requests: 1000 }
+  - { value: 30, unit: day, requests: 10000 }
+  - { value: 1, unit: month, requests: 100000 }
 ```
 
-### High-Performance Single Instance
+### High-performance single instance
 
 ```yaml
 rate_limit_enabled: true
 rate_limit_storage: file
-rate_limit_requests_per_minute: 500
+rate_limit_limits:
+  - { value: 1, unit: minute, requests: 500 }
 ```
-
-
