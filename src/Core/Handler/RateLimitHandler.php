@@ -139,7 +139,9 @@ class RateLimitHandler
                 throw new RateLimitExceededException(
                     sprintf(
                         'Rate limit exceeded. Maximum %d requests per %d %s allowed.',
-                        $requests, $value, $unitLabel
+                        $requests,
+                        $value,
+                        $unitLabel
                     ),
                     $result['reset'],
                     $requests
