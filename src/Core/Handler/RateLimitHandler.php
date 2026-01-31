@@ -137,8 +137,10 @@ class RateLimitHandler
             if (!$result['allowed']) {
                 $unitLabel = $value === 1 ? rtrim($unit, 's') : $unit;
                 throw new RateLimitExceededException(
-                    sprintf('Rate limit exceeded. Maximum %d requests per %d %s allowed.', 
-                        $requests, $value, $unitLabel),
+                    sprintf(
+                        'Rate limit exceeded. Maximum %d requests per %d %s allowed.',
+                        $requests, $value, $unitLabel
+                    ),
                     $result['reset'],
                     $requests
                 );
@@ -146,7 +148,7 @@ class RateLimitHandler
         }
 
         if ($primaryResult === null || $primaryLimit === null) {
-            throw new 
+            throw new
                 \RuntimeException('rate_limit_limits must contain at least one valid entry (value, unit, requests).');
         }
 
