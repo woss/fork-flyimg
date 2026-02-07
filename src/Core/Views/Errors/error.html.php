@@ -19,7 +19,7 @@
                 <hr>
                 <p>
                     <img alt="Flyimg"
-                         src="/upload/w_300/https://raw.githubusercontent.com/flyimg/graphic-assets/master/logo/raster/flyimg-logo-rgb.png">
+                         src="/upload/w_300/https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png">
                 </p>
                 <h1><?= $statusCode; ?> <?= $statusText; ?></h1>
                 <h2>The server returned:</h2>

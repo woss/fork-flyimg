@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://flyimg.io" target="_blank">
-    <img alt="Flyimg" src="https://raw.githubusercontent.com/flyimg/graphic-assets/main/logo/raster/flyimg-logo-rgb.png" width="300">
+    <img alt="Flyimg" src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" width="300">
   </a>
   <br />
     <br />
