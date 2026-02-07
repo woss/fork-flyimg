@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+# [1.12.0](https://github.com/flyimg/flyimg/compare/1.11.0...1.12.0) (2026-02-07)
+
+
+### Features
+
+* update Flyimg logo references in documentation and views ([5e10866](https://github.com/flyimg/flyimg/commit/5e108661f73fa892c3d9cdbb2d34d2b9dbe0ee98))
+
 # [1.11.0](https://github.com/flyimg/flyimg/compare/1.10.3...1.11.0) (2026-01-31)
 
 
