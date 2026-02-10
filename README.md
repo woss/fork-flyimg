@@ -2,31 +2,16 @@
 
 <table>
   <tr>
-    <td>
-      <p align="center">
-        <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72">
-      </p>
-      <p align="center">
-        Open‑source, self‑hosted Flyimg for on-the-fly image optimization.
-      </p>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72"><br>
+      Open‑source, self‑hosted Flyimg for on-the-fly image optimization.
     </td>
-    <td>
-      <p align="center">
-        <strong style="font-size: 1.4rem;">Flyimg Managed Service</strong><br>
-        Production‑ready, fully managed Flyimg SaaS for image optimization.<br><br>
-        <a href="https://flyimg.io" style="
-            display:inline-block;
-            padding:10px 22px;
-            border-radius:999px;
-            background:#F9B721;
-            color:#1C232B;
-            text-decoration:none;
-            font-weight:600;
-            border:2px solid #28B6D6;
-          ">
-          Start in minutes
-        </a>
-      </p>
+    <td align="center">
+      <strong>Flyimg Managed Service</strong><br>
+      Production‑ready, fully managed Flyimg SaaS for image optimization.<br><br>
+      <a href="https://flyimg.io">
+        <img rc="https://raw.githubusercontent.com/flyimg/flyimg/add-saas-link/web/start.png" alt="Start in minutes" />
+      </a>
     </td>
   </tr>
 </table>
