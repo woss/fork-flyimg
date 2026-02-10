@@ -53,7 +53,7 @@ Check out our demo page where you can test and review Flying's features:
 
 ## Documentation
 
-Documentation available here: [https://flyimg.io](https://flyimg.io)
+Documentation available here: [https://docs.flyimg.io](https://docs.flyimg.io)
 
 ## Requirements
 
