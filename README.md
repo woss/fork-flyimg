@@ -1,6 +1,6 @@
 # Flyimg
 
-<table border="0">
+<table>
   <tr>
     <td align="center">
       <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72"><br>
@@ -10,7 +10,7 @@
       <strong>Flyimg Managed Service</strong><br>
       Production‑ready, fully managed Flyimg SaaS for image optimization.<br><br>
       <a href="https://flyimg.io">
-        <img rc="https://raw.githubusercontent.com/flyimg/flyimg/add-saas-link/web/start.png" alt="Start in minutes" />
+        <img src="https://raw.githubusercontent.com/flyimg/flyimg/add-saas-link/web/start.png" alt="Start in minutes" />
       </a>
     </td>
   </tr>
