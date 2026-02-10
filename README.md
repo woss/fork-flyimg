@@ -1,6 +1,6 @@
 # Flyimg
 
-<table>
+<table border="0">
   <tr>
     <td align="center">
       <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72"><br>
@@ -28,7 +28,7 @@
 
 The Flyimg project is a Dockerized application that allows you to resize, crop, and compress images on the fly.  One Docker container to build your own Cloudinary-like service.
 
-By default, Flyimg generates the **AVIF** image format (when the browser supports it)  which provides superior compression compared to other formats.
+By default, Flyimg generates the **AVIF** image format (when the browser supports it) which provides superior compression compared to other formats.
 
 Additionally, Flyimg also generates the **WebP** format, along with the impressive **MozJPEG** compression algorithm to optimize images, other formats are supported also such as **PNG** and **GIF**.
 Flyimg also supports **JPEG XL (JXL)** output via ImageMagick when enabled. Use `o_auto` to negotiate formats based on the request `Accept` header. You can force JXL with `o_jxl` and tune encoder effort with `jxlef_1..9`.
