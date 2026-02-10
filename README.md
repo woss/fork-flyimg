@@ -1,34 +1,20 @@
 # Flyimg
 
-<div align="center" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:32px; margin:24px 0;">
-
-  <div style="flex:1 1 260px; text-align:center;">
-    <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72">
-    <p style="margin-top:12px; font-size:0.95rem;">
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72"><br>
       Open‑source, self‑hosted Flyimg for on-the-fly image optimization.
-    </p>
-  </div>
-
-  <div style="flex:1 1 260px; text-align:center;">
-    <p>
-      <strong style="font-size: 1.4rem;">Flyimg Managed Service</strong><br>
+    </td>
+    <td align="center">
+      <strong>Flyimg Managed Service</strong><br>
       Production‑ready, fully managed Flyimg SaaS for image optimization.<br><br>
-      <a href="https://flyimg.io" style="
-          display:inline-block;
-          padding:10px 22px;
-          border-radius:999px;
-          background:#F9B721;
-          color:#1C232B;
-          text-decoration:none;
-          font-weight:600;
-          border:2px solid #28B6D6;
-        ">
-        Start in minutes
+      <a href="https://flyimg.io">
+        <img width="140" src="https://raw.githubusercontent.com/flyimg/flyimg/add-saas-link/web/start.png" alt="Start in minutes" />
       </a>
-    </p>
-  </div>
-
-</div>
+    </td>
+  </tr>
+</table>
 
 
 <p align="center">
@@ -42,7 +28,7 @@
 
 The Flyimg project is a Dockerized application that allows you to resize, crop, and compress images on the fly.  One Docker container to build your own Cloudinary-like service.
 
-By default, Flyimg generates the **AVIF** image format (when the browser supports it)  which provides superior compression compared to other formats.
+By default, Flyimg generates the **AVIF** image format (when the browser supports it) which provides superior compression compared to other formats.
 
 Additionally, Flyimg also generates the **WebP** format, along with the impressive **MozJPEG** compression algorithm to optimize images, other formats are supported also such as **PNG** and **GIF**.
 Flyimg also supports **JPEG XL (JXL)** output via ImageMagick when enabled. Use `o_auto` to negotiate formats based on the request `Accept` header. You can force JXL with `o_jxl` and tune encoder effort with `jxlef_1..9`.
@@ -67,7 +53,7 @@ Check out our demo page where you can test and review Flying's features:
 
 ## Documentation
 
-Documentation available here: [https://flyimg.io](https://flyimg.io)
+Documentation available here: [https://docs.flyimg.io](https://docs.flyimg.io)
 
 ## Requirements
 
