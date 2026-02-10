@@ -1,13 +1,18 @@
-<p align="center">
-  <a href="https://flyimg.io" target="_blank">
-    <img alt="Flyimg" src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" width="300">
-  </a>
-  <br />
-    <br />
-    <a href="https://github.com/flyimg/flyimg">GitHub</a>
-    ·
-    <a href="https://github.com/flyimg/flyimg/issues">Bugs Report</a>
-</p>
+<table border="0">
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72"><br>
+      Open‑source, self‑hosted Flyimg for on-the-fly image optimization.
+    </td>
+    <td align="center">
+      <strong>Flyimg Managed Service</strong><br>
+      Production‑ready, fully managed Flyimg SaaS for image optimization.<br><br>
+      <a href="https://flyimg.io">
+        <img width="140" src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/start.png" alt="Start in minutes" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
 <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/flyimg/backers/badge.svg"></a>

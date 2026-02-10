@@ -10,7 +10,7 @@
       <strong>Flyimg Managed Service</strong><br>
       Production‑ready, fully managed Flyimg SaaS for image optimization.<br><br>
       <a href="https://flyimg.io">
-        <img width="140" src="https://raw.githubusercontent.com/flyimg/flyimg/add-saas-link/web/start.png" alt="Start in minutes" />
+        <img width="140" src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/start.png" alt="Start in minutes" />
       </a>
     </td>
   </tr>
