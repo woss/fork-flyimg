@@ -1,34 +1,35 @@
 # Flyimg
 
-<div align="center" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:32px; margin:24px 0;">
-
-  <div style="flex:1 1 260px; text-align:center;">
-    <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72">
-    <p style="margin-top:12px; font-size:0.95rem;">
-      Open‑source, self‑hosted Flyimg for on-the-fly image optimization.
-    </p>
-  </div>
-
-  <div style="flex:1 1 260px; text-align:center;">
-    <p>
-      <strong style="font-size: 1.4rem;">Flyimg Managed Service</strong><br>
-      Production‑ready, fully managed Flyimg SaaS for image optimization.<br><br>
-      <a href="https://flyimg.io" style="
-          display:inline-block;
-          padding:10px 22px;
-          border-radius:999px;
-          background:#F9B721;
-          color:#1C232B;
-          text-decoration:none;
-          font-weight:600;
-          border:2px solid #28B6D6;
-        ">
-        Start in minutes
-      </a>
-    </p>
-  </div>
-
-</div>
+<table>
+  <tr>
+    <td>
+      <p align="center">
+        <img src="https://raw.githubusercontent.com/flyimg/flyimg/main/web/flyimg.png" alt="Flyimg logo" height="72">
+      </p>
+      <p align="center">
+        Open‑source, self‑hosted Flyimg for on-the-fly image optimization.
+      </p>
+    </td>
+    <td>
+      <p align="center">
+        <strong style="font-size: 1.4rem;">Flyimg Managed Service</strong><br>
+        Production‑ready, fully managed Flyimg SaaS for image optimization.<br><br>
+        <a href="https://flyimg.io" style="
+            display:inline-block;
+            padding:10px 22px;
+            border-radius:999px;
+            background:#F9B721;
+            color:#1C232B;
+            text-decoration:none;
+            font-weight:600;
+            border:2px solid #28B6D6;
+          ">
+          Start in minutes
+        </a>
+      </p>
+    </td>
+  </tr>
+</table>
 
 
 <p align="center">
