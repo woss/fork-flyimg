@@ -5,3 +5,4 @@ This is a list of companies / organisations that have adopted Flyimg, feel free 
 ## Adopters list (alphabetically)
 
 * [Opencity Labs](https://opencitylabs.it/)
+* [Respectlytics — Privacy-focused analytics](https://respectlytics.com/open-source-directory/)
