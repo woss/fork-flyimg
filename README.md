@@ -16,7 +16,6 @@
   </tr>
 </table>
 
-
 <p align="center">
 <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/flyimg/backers/badge.svg"></a>
 <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/flyimg/sponsors/badge.svg"></a>
@@ -24,6 +23,8 @@
 <a href="https://codecov.io/gh/flyimg/flyimg"><img alt="Codecov" src="https://codecov.io/gh/flyimg/flyimg/branch/main/graph/badge.svg?token=jgryCuAGjF"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="License" src="https://poser.pugx.org/flyimg/flyimg/license.svg"></a>
 <a href="https://packagist.org/packages/flyimg/flyimg"><img alt="Latest Stable Version]" src="https://poser.pugx.org/flyimg/flyimg/v/stable.svg"></a>
+<br/>
+<a href="https://trendshift.io/repositories/11453" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11453" alt="flyimg%2Fflyimg | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 </p>
 
 The Flyimg project is a Dockerized application that allows you to resize, crop, and compress images on the fly.  One Docker container to build your own Cloudinary-like service.
