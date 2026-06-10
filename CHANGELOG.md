@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.1](https://github.com/flyimg/flyimg/compare/1.12.0...1.12.1) (2026-06-10)
+
+
+### Bug Fixes
+
+* update security dependencies ([47475aa](https://github.com/flyimg/flyimg/commit/47475aac868f5ba9ffb17c87100eca66bc18df1e))
+
 # [1.12.0](https://github.com/flyimg/flyimg/compare/1.11.0...1.12.0) (2026-02-07)
 
 
