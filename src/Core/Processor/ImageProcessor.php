@@ -230,10 +230,10 @@ class ImageProcessor extends Processor
         } elseif (is_executable(self::CWEBP_COMMAND) && $outputImage->isOutputWebP()) {
             $lossLess = $outputImage->extractKey('webp-lossless') ? 'true' : 'false';
             $webpThreads = $outputImage->getInputImage()->optionsBag()->appParameters()->parameterByKey('webp_threads');
-            $webpMethod =  $outputImage->extractKey('webp-method');
+            $webpMethod = max(0, min(6, (int) $outputImage->extractKey('webp-method')));
             $parameter = "-quality " . escapeshellarg($quality) .
                 " -define webp:thread-level=" . $webpThreads .
-                " -define webp:method=" . $webpMethod .
+                " -define webp:method=" . escapeshellarg((string) $webpMethod) .
                 " -define webp:lossless=" . $lossLess .
                 " " . escapeshellarg($outputImage->getOutputTmpPath());
         } elseif (is_executable(self::MOZJPEG_COMMAND) && $outputImage->isOutputMozJpeg()) {
