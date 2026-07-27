@@ -249,9 +249,9 @@ _Description:_ If output is set to webp, it will default to lossy compression, b
 
 ### `webpm` : webp-method
 
-`string`
+`int` (0-6)
 _Default:_ `4`
-_Description:_ the compression method to use. It controls the trade off between encoding speed and the compressed file size and quality. Possible values range from 0 to 6. Default value is 4. When higher values are utilized, the encoder spends more time inspecting additional encoding possibilities and decide on the quality gain. Lower value might result in faster processing time at the expense of larger file size and lower compression quality.
+_Description:_ the compression method to use. It controls the trade off between encoding speed and the compressed file size and quality. Possible values range from 0 to 6. Default value is 4. When higher values are utilized, the encoder spends more time inspecting additional encoding possibilities and decide on the quality gain. Lower value might result in faster processing time at the expense of larger file size and lower compression quality. Non-integer or out-of-range values are clamped to 0–6.
 
 **example:`webpm_6`**
 
