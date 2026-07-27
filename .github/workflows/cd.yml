@@ -180,15 +180,33 @@ jobs:
     runs-on: ubuntu-latest
     needs: manifest
     steps:
+      - name: Install cloudflared
+        run: |
+          curl -fsSL --output cloudflared.deb \
+            https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared.deb
+
+      - name: Configure SSH with cloudflared ProxyCommand
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.FLYIMG_DEMO_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          cat >> ~/.ssh/config <<EOF
+          Host ${{ secrets.FLYIMG_DEMO_HOST }}
+            ProxyCommand cloudflared access ssh --hostname %h
+            IdentityFile ~/.ssh/id_rsa
+            StrictHostKeyChecking no
+            ServerAliveInterval 60
+            ServerAliveCountMax 10
+          EOF
+
       - name: Deploy new version of Flyimg to the demo server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.FLYIMG_DEMO_HOST }}
-          username: ${{ secrets.FLYIMG_DEMO_USERNAME }}
-          port: ${{ secrets.FLYIMG_DEMO_PORT }}
-          key: ${{ secrets.FLYIMG_DEMO_KEY }}
-          command_timeout: 20m
-          script: |
-            cd /home/deployer/
-            bash -c "sed 's/VERSION/${{ needs.manifest.outputs.new_tag_version }}/g' flyimg-swarm.yaml.tpl > flyimg-swarm.yaml"
-            bash -c "docker stack deploy -c flyimg-swarm.yaml flyimg --detach"
+        env:
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          ssh ${{ secrets.FLYIMG_DEMO_USERNAME }}@${{ secrets.FLYIMG_DEMO_HOST }} \
+            "cd /home/deployer/ && \
+            sed 's/VERSION/${{ needs.manifest.outputs.new_tag_version }}/g' flyimg-swarm.yaml.tpl > flyimg-swarm.yaml && \
+            docker stack deploy -c flyimg-swarm.yaml flyimg --detach"
