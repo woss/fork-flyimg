@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.3](https://github.com/flyimg/flyimg/compare/1.12.2...1.12.3) (2026-07-27)
+
+
+### Bug Fixes
+
+* sanitize webp-method before shell command assembly ([6e75b63](https://github.com/flyimg/flyimg/commit/6e75b63080818ca501d4768fb95274a67448921b))
+
 ## [1.12.2](https://github.com/flyimg/flyimg/compare/1.12.1...1.12.2) (2026-06-24)
 
 
