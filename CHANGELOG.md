@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.4](https://github.com/flyimg/flyimg/compare/1.12.3...1.12.4) (2026-07-27)
+
+
+### Bug Fixes
+
+* enhance deployment process with cloudflared integration ([a3fb455](https://github.com/flyimg/flyimg/commit/a3fb455b9573f4327e143c92199d96d47fb7f1f1))
+
 ## [1.12.3](https://github.com/flyimg/flyimg/compare/1.12.2...1.12.3) (2026-07-27)
 
 
